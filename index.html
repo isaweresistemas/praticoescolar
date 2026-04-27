@@ -1281,7 +1281,7 @@ function limparFormNoticia(){
 /* ═══════════════════════════════════════════════════════
    DOWNLOADS
 ═══════════════════════════════════════════════════════ */
-const DOWNLOAD_FIXO={id:'jornal_fixo',nome:'Jornal da Escola',categoria:'Jornal Escolar',descricao:'Edição mais recente do jornal escolar.',link:'/arquivos/combinados.pdf',icone:'📰',fixo:true};
+const DOWNLOAD_FIXO={id:'jornal_fixo',nome:'Jornal da Escola',categoria:'Jornal Escolar',descricao:'Edição mais recente do jornal escolar.',link:'https://isaweresistemas.github.io/praticoescolar/arquivos/jornal.pdf',icone:'📰',fixo:true};
 function carregarDownloads(){
   fetch(API_URL+'?sheet=Downloads')
     .then(r=>r.json())
