@@ -443,8 +443,6 @@
 
   <!-- MAIN WRAPPER -->
   <div class="main-wrapper">
-
-    <!-- TOPBAR -->
     <header class="topbar">
       <button class="topbar-hamburger" onclick="abrirSidebar()">☰</button>
       <span class="topbar-title">📚 Prático Escolar</span>
@@ -458,7 +456,7 @@
       </div>
     </header>
 
-    <!-- ══ INÍCIO ══ -->
+    <!-- INÍCIO -->
     <section class="secao ativa" id="sec-inicio">
       <div class="card">
         <div class="admin-bar">
@@ -468,11 +466,11 @@
         <div id="noticias-loading" style="display:none;" class="loading-txt"><span class="spinner"></span> Carregando notícias...</div>
         <div id="noticiasPrincipal"></div>
         <div id="noticiasGrid" class="noticias-grid"></div>
-        <div id="noticias-vazio" style="display:none;" class="vazio-estado"><div class="vazio-icon">📭</div><p>Nenhuma notícia cadastrada ainda.<br>Clique em <strong>⚙️ Gerenciar</strong> para adicionar.</p></div>
+        <div id="noticias-vazio" style="display:none;" class="vazio-estado"><div class="vazio-icon">📭</div><p>Nenhuma notícia cadastrada ainda.</p></div>
       </div>
     </section>
 
-    <!-- ══ CALENDÁRIO ══ -->
+    <!-- CALENDÁRIO -->
     <section class="secao" id="sec-calendario">
       <div class="card">
         <div class="admin-bar">
@@ -489,12 +487,12 @@
       </div>
     </section>
 
-    <!-- ══ ANIVERSARIANTES ══ -->
+    <!-- ANIVERSARIANTES -->
     <section class="secao" id="sec-aniversariantes">
       <div id="anivConteudo"></div>
     </section>
 
-    <!-- ══ AVISOS ══ -->
+    <!-- AVISOS -->
     <section class="secao" id="sec-avisos">
       <div class="card">
         <div class="admin-bar">
@@ -505,7 +503,7 @@
       </div>
     </section>
 
-    <!-- ══ CADASTRO DE LISTA ══ -->
+    <!-- CADASTRO DE LISTA -->
     <section class="secao" id="sec-cadastro">
       <div class="card">
         <div class="admin-bar">
@@ -519,7 +517,7 @@
       </div>
     </section>
 
-    <!-- ══ PESQUISA ══ -->
+    <!-- PESQUISA -->
     <section class="secao" id="sec-pesquisa">
       <div class="card">
         <div class="card-titulo">🔍 Pesquisar Aluno ou Funcionário</div>
@@ -531,7 +529,7 @@
       </div>
     </section>
 
-    <!-- ══ PLANTÃO PEDAGÓGICO ══ -->
+    <!-- PLANTÃO PEDAGÓGICO -->
     <section class="secao" id="sec-plantaopg">
       <div class="card">
         <div class="admin-bar">
@@ -546,7 +544,7 @@
       </div>
     </section>
 
-    <!-- ══ ATA ══ -->
+    <!-- ATA -->
     <section class="secao" id="sec-ata">
       <div class="card">
         <div class="admin-bar">
@@ -560,7 +558,7 @@
       </div>
     </section>
 
-    <!-- ══ DOWNLOADS ══ -->
+    <!-- DOWNLOADS -->
     <section class="secao" id="sec-downloads">
       <div class="card">
         <div class="admin-bar">
@@ -572,7 +570,7 @@
       </div>
     </section>
 
-    <!-- ══ TOTALIZADOR ══ -->
+    <!-- TOTALIZADOR -->
     <section class="secao" id="sec-totalizador">
       <div class="totalizador-hero">
         <div class="totalizador-hero-icon">📊</div>
@@ -680,7 +678,7 @@
   </div>
 </div>
 
-<!-- MODAL SELECIONAR ORIGEM (turma/funcionário/outro) -->
+<!-- MODAL SELECIONAR ORIGEM -->
 <div class="modal-overlay" id="modalOrigemLista">
   <div class="modal" style="max-width:500px;">
     <button class="modal-fechar" onclick="fecharModal('modalOrigemLista')">✕</button>
@@ -834,7 +832,7 @@
       <div style="grid-column:1/-1;"><label>Título / Assunto *</label><input type="text" id="ataTitulo" placeholder="Ex: Reunião de pais e mestres - 3º bimestre"></div>
       <div style="grid-column:1/-1;"><label>Local</label><input type="text" id="ataLocal" placeholder="Ex: Auditório da escola"></div>
     </div>
-    <div style="margin-top:10px;"><label>Conteúdo da Ata *</label><textarea id="ataConteudo" class="ata-texto-area" placeholder="Digite o conteúdo da ata aqui...&#10;&#10;Pauta:&#10;1. ...&#10;&#10;Deliberações:&#10;..."></textarea></div>
+    <div style="margin-top:10px;"><label>Conteúdo da Ata *</label><textarea id="ataConteudo" class="ata-texto-area" placeholder="Digite o conteúdo da ata aqui..."></textarea></div>
     <div style="margin-top:14px;">
       <label>Participantes</label>
       <div id="ataParticipantesWrap"></div>
@@ -860,8 +858,6 @@
 <!-- RELÓGIO E TOAST -->
 <div id="relogio"><div class="hora" id="relogioHora">00:00:00</div><div id="relogioData">—</div></div>
 <div id="toast"></div>
-
-<!-- ÁREA DE IMPRESSÃO DE ATA -->
 <div class="ata-impressao" id="ataImpressaoArea"></div>
 
 <script>
@@ -870,7 +866,6 @@
 ══════════════════════════════════════════════════════ */
 const API_URL = "https://script.google.com/macros/s/AKfycbzP_n9hFNcnMgDzEIUTYyl5CVa__JPWBbOF7F20p46B9qgwVx8o0p21ay62qRq3bzM4/exec";
 
-// ← Adicione/remova usuários aqui
 const USUARIOS = [
   {nome:"Kadigina",cargo:"Diretora",senha:"1234"},
   {nome:"Ivan",cargo:"Coordenador Pedagógico",senha:"1234"},
@@ -879,10 +874,10 @@ const USUARIOS = [
   {nome:"Visitante",cargo:"Operacional",senha:"1234"},
 ];
 
-const NOME_ESCOLA   = "Escola Municipal";
+const NOME_ESCOLA    = "Escola Municipal";
 const ENDERECO_ESCOLA = "Rua Exemplo, 123 — Cidade/PB — CEP 00000-000";
 
-const TURMAS_FIXAS = ["1A","1B","2A","2B","3A","3B","4A","4B","5A","5B","6A","6B","7A","7B","8A","8B","9A","9B"];
+const TURMAS_FIXAS  = ["1A","1B","2A","2B","3A","3B","4A","4B","5A","5B","6A","6B","7A","7B","8A","8B","9A","9B"];
 const ANOS_INICIAIS = ["1A","1B","2A","2B","3A","3B","4A","4B","5A","5B"];
 const ANOS_FINAIS   = ["6A","6B","7A","7B","8A","8B","9A","9B"];
 const MESES_NOMES   = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
@@ -890,11 +885,11 @@ const DIAS_SEM_REL  = ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','S
 const MESES_REL     = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
 
 const TIPOS_LISTA = [
-  {value:'kit-escolar',label:'🎒 Kit Escolar'},
-  {value:'reforco-mat',label:'📐 Reforço de Mat.'},
-  {value:'reforco-alfa',label:'📖 Reforço de Alfa.'},
-  {value:'fardamento',label:'👕 Fardamento'},
-  {value:'outro',label:'✏️ Outro'},
+  {value:'kit-escolar',  label:'🎒 Kit Escolar'},
+  {value:'reforco-mat',  label:'📐 Reforço de Mat.'},
+  {value:'reforco-alfa', label:'📖 Reforço de Alfa.'},
+  {value:'fardamento',   label:'👕 Fardamento'},
+  {value:'outro',        label:'✏️ Outro'},
 ];
 
 const EVENTOS_FIXOS = [
@@ -986,8 +981,8 @@ let downloadFiltCat  = '';
 let calMesAtual      = new Date().getMonth();
 let calAnoAtual      = new Date().getFullYear();
 let corAvisoSel      = 'azul';
-// Lista em edição
 let listaAtual       = {tipo:'',itens:[]};
+let listasSalvas     = JSON.parse(localStorage.getItem('listas_v1')||'[]');
 
 /* ══════════════════════════════════════════════════════
    HELPERS
@@ -998,24 +993,29 @@ function toast(msg,dur=2400){const el=document.getElementById('toast');el.textCo
 function fecharModal(id){document.getElementById(id).classList.remove('aberto');}
 function fmtData(iso){
   if(!iso)return '';
-  // Suporta tanto "YYYY-MM-DD" quanto Date objects
-  let s = String(iso);
+  let s=String(iso);
   if(s.includes('T'))s=s.slice(0,10);
-  const partes=s.split('-');
-  if(partes.length===3) return `${partes[2]}/${partes[1]}/${partes[0]}`;
+  const p=s.split('-');
+  if(p.length===3)return `${p[2]}/${p[1]}/${p[0]}`;
   return s;
 }
 function dataParaISO(val){
   if(!val)return '';
-  if(val instanceof Date){
-    const y=val.getFullYear(),m=String(val.getMonth()+1).padStart(2,'0'),d=String(val.getDate()).padStart(2,'0');
-    return `${y}-${m}-${d}`;
-  }
+  if(val instanceof Date){const y=val.getFullYear(),m=String(val.getMonth()+1).padStart(2,'0'),d=String(val.getDate()).padStart(2,'0');return `${y}-${m}-${d}`;}
   return String(val).slice(0,10);
 }
 function toggleVerSenha(inputId,btnId){
   const inp=document.getElementById(inputId),btn=document.getElementById(btnId);
   if(inp.type==='password'){inp.type='text';btn.textContent='🙈';}else{inp.type='password';btn.textContent='👁️';}
+}
+async function apiPost(payload){
+  const r=await fetch(API_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+  return r.json();
+}
+async function apiGet(sheet){
+  const r=await fetch(`${API_URL}?sheet=${sheet}`);
+  const d=await r.json();
+  return Array.isArray(d)?d:[];
 }
 
 /* ══════════════════════════════════════════════════════
@@ -1030,10 +1030,9 @@ function renderLoginUsuarios(){
         <div class="login-user-cargo">${esc(u.cargo)}</div>
       </div>
     </div>`).join('');
-  // Seleciona primeiro por padrão
-  selecionarUsuario(0, document.querySelector('.login-usuario-btn'));
+  selecionarUsuario(0,document.querySelector('.login-usuario-btn'));
 }
-let usuarioSelecionadoIdx = 0;
+let usuarioSelecionadoIdx=0;
 function selecionarUsuario(idx,el){
   usuarioSelecionadoIdx=idx;
   document.querySelectorAll('.login-usuario-btn').forEach(b=>b.classList.remove('selecionado'));
@@ -1048,9 +1047,8 @@ function fazerLogin(){
   if(senha!==u.senha){
     document.getElementById('loginErro').textContent='❌ Senha incorreta.';
     document.getElementById('loginSenha').value='';
-    document.querySelector('.login-card').style.animation='none';
-    document.querySelector('.login-card').offsetHeight;
-    document.querySelector('.login-card').style.animation='shake 0.35s ease';
+    const card=document.querySelector('.login-card');
+    card.style.animation='none';card.offsetHeight;card.style.animation='shake 0.35s ease';
     return;
   }
   usuarioLogado=u;
@@ -1073,7 +1071,6 @@ function fazerLogout(){
   document.getElementById('appContent').classList.remove('visivel');
   document.getElementById('loginSenha').value='';
   document.getElementById('loginErro').textContent='';
-  // Reset seções ativas
   document.querySelectorAll('.secao').forEach(s=>s.classList.remove('ativa'));
   document.getElementById('sec-inicio').classList.add('ativa');
   document.querySelectorAll('.sidebar-nav button').forEach(b=>b.classList.remove('ativo'));
@@ -1091,15 +1088,15 @@ function irPara(secao,btn){
   document.getElementById('sec-'+secao).classList.add('ativa');
   if(btn)btn.classList.add('ativo');
   fecharSidebar();
-  if(secao==='calendario')    carregarEventosCal();
+  if(secao==='calendario')      carregarEventosCal();
   if(secao==='aniversariantes') renderAniversariantes();
-  if(secao==='avisos')        renderAvisos();
-  if(secao==='cadastro')      renderCadastroLista();
-  if(secao==='pesquisa')      {document.getElementById('pesqNome').value='';renderPesquisa();}
-  if(secao==='plantaopg')     carregarPlantaoPg();
-  if(secao==='ata')           renderAtas();
-  if(secao==='downloads')     renderDownloads();
-  if(secao==='totalizador')   carregarTotalizador();
+  if(secao==='avisos')          renderAvisos();
+  if(secao==='cadastro')        renderCadastroLista();
+  if(secao==='pesquisa')        {document.getElementById('pesqNome').value='';renderPesquisa();}
+  if(secao==='plantaopg')       carregarPlantaoPg();
+  if(secao==='ata')             renderAtas();
+  if(secao==='downloads')       renderDownloads();
+  if(secao==='totalizador')     carregarTotalizador();
 }
 
 /* ══════════════════════════════════════════════════════
@@ -1114,160 +1111,191 @@ function atualizarRelogio(){
 setInterval(atualizarRelogio,1000);atualizarRelogio();
 
 /* ══════════════════════════════════════════════════════
-   TURMAS
+   TURMAS — select helpers
 ══════════════════════════════════════════════════════ */
 function atualizarSelectTurmas(){
-  const opts=TURMAS_FIXAS.map(t=>`<option value="${t}">${t}</option>`).join('');
-  const optsAll='<option value="">Todas as turmas</option>'+opts;
-  ['plantaoAlunoTurma'].forEach(id=>{const el=document.getElementById(id);if(el)el.innerHTML=opts;});
-  const fp=document.getElementById('filtroPlantaoAlunoTurma');if(fp)fp.innerHTML=optsAll;
+  ['plantaoAlunoTurma','filtroPlantaoAlunoTurma'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(!el)return;
+    const temTodos=id==='filtroPlantaoAlunoTurma';
+    el.innerHTML=(temTodos?'<option value="">Todas</option>':'')+
+      TURMAS_FIXAS.map(t=>`<option value="${t}">${t}</option>`).join('');
+  });
 }
 
 /* ══════════════════════════════════════════════════════
    NOTÍCIAS
 ══════════════════════════════════════════════════════ */
-function carregarNoticias(){
+async function carregarNoticias(){
   document.getElementById('noticias-loading').style.display='block';
-  fetch(API_URL+'?sheet=Noticias')
-    .then(r=>r.json())
-    .then(dados=>{
-      noticias=dados.map(r=>{
-        const n={};
-        Object.keys(r).forEach(k=>{
-          let v=r[k];
-          // Corrige datas que vêm como objetos Date ou strings estranhas
-          if(k.toLowerCase()==='data'){
-            if(v instanceof Date)v=dataParaISO(v);
-            else if(typeof v==='string'&&v.includes('T'))v=v.slice(0,10);
-            else if(typeof v==='string'&&v.includes('/')) {
-              // DD/MM/YYYY → YYYY-MM-DD
-              const p=v.split('/');
-              if(p.length===3)v=`${p[2]}-${p[1].padStart(2,'0')}-${p[0].padStart(2,'0')}`;
-            }
-          }
-          n[k.toLowerCase()]=v;
-        });
-        return n;
-      });
-      localStorage.setItem('noticias_v2',JSON.stringify(noticias));
-      document.getElementById('noticias-loading').style.display='none';
-      renderNoticias();
-    })
-    .catch(()=>{document.getElementById('noticias-loading').style.display='none';renderNoticias();});
+  document.getElementById('noticias-vazio').style.display='none';
+  try{
+    noticias=await apiGet('Noticias');
+    noticias.sort((a,b)=>String(b.data||b.id).localeCompare(String(a.data||a.id)));
+  }catch(e){noticias=JSON.parse(localStorage.getItem('noticias_v2')||'[]');}
+  document.getElementById('noticias-loading').style.display='none';
+  renderNoticias();
 }
 function renderNoticias(){
-  const principal=document.getElementById('noticiasPrincipal'),grid=document.getElementById('noticiasGrid'),vazio=document.getElementById('noticias-vazio');
-  if(!noticias.length){principal.innerHTML='';grid.innerHTML='';vazio.style.display='block';return;}
+  const princ=document.getElementById('noticiasPrincipal');
+  const grid=document.getElementById('noticiasGrid');
+  const vazio=document.getElementById('noticias-vazio');
+  if(!noticias.length){princ.innerHTML='';grid.innerHTML='';vazio.style.display='block';return;}
   vazio.style.display='none';
-  const destaque=noticias.find(n=>norm(n.destaque)==='sim')||noticias[0];
-  principal.innerHTML=`<div class="noticias-hero ${norm(destaque.tamanho)==='pequeno'?'banner-pequeno':'banner-grande'}" onclick="abrirNoticia('${esc(String(destaque.id))}')">
-    ${destaque.imagem?`<img src="${esc(destaque.imagem)}" alt="" onerror="this.style.display='none'">`:''}
-    <div class="noticias-hero-conteudo">
-      <div class="noticias-hero-badge">${esc(destaque.categoria||'Destaque')}</div>
-      <div class="noticias-hero-titulo">${esc(destaque.titulo)}</div>
-      <div class="noticias-hero-data">${destaque.data?'📅 '+fmtData(destaque.data):''}</div>
-    </div></div>`;
-  const demais=noticias.filter(n=>String(n.id)!==String(destaque.id));
-  grid.innerHTML=demais.map(n=>{
-    const tam=norm(n.tamanho);
-    let imgHtml='';
-    if(tam!=='semimagem'&&n.imagem)imgHtml=`<div class="noticia-img-wrap ${tam==='pequeno'?'pequeno':'grande'}"><img src="${esc(n.imagem)}" alt="" onerror="this.parentElement.style.display='none'"></div>`;
-    else if(tam!=='semimagem')imgHtml=`<div class="noticia-img-placeholder">📰</div>`;
-    return `<div class="noticia-card" onclick="abrirNoticia('${esc(String(n.id))}')">
-      ${imgHtml}<div class="noticia-corpo">
-        <div class="noticia-categoria">${esc(n.categoria||'Notícia')}</div>
+  const destaque=noticias.find(n=>String(n.destaque)==='SIM')||noticias[0];
+  const resto=noticias.filter(n=>n.id!==destaque.id);
+  const tam=destaque.tamanho||'grande';
+  if(tam==='semimagem'||!destaque.imagem){
+    princ.innerHTML=`<div class="noticias-hero banner-${tam==='pequeno'?'pequeno':'grande'}" onclick="abrirNoticia('${destaque.id}')" style="cursor:pointer;">
+      <div class="noticias-hero-conteudo">
+        ${destaque.categoria?`<span class="noticias-hero-badge">${esc(destaque.categoria)}</span>`:''}
+        <div class="noticias-hero-titulo">${esc(destaque.titulo)}</div>
+        <div class="noticias-hero-data">${fmtData(destaque.data)}</div>
+      </div></div>`;
+  }else{
+    princ.innerHTML=`<div class="noticias-hero banner-${tam==='pequeno'?'pequeno':'grande'}" onclick="abrirNoticia('${destaque.id}')" style="cursor:pointer;">
+      <img src="${esc(destaque.imagem)}" alt="" onerror="this.style.display='none'">
+      <div class="noticias-hero-conteudo">
+        ${destaque.categoria?`<span class="noticias-hero-badge">${esc(destaque.categoria)}</span>`:''}
+        <div class="noticias-hero-titulo">${esc(destaque.titulo)}</div>
+        <div class="noticias-hero-data">${fmtData(destaque.data)}</div>
+      </div></div>`;
+  }
+  grid.innerHTML=resto.map(n=>{
+    const t=n.tamanho||'grande';
+    const imgH=t==='pequeno'?'pequeno':'grande';
+    const imgPart=n.imagem&&t!=='semimagem'
+      ?`<div class="noticia-img-wrap ${imgH}"><img src="${esc(n.imagem)}" alt="" onerror="this.parentElement.style.display='none'"></div>`
+      :`<div class="noticia-img-placeholder">📰</div>`;
+    return `<div class="noticia-card" onclick="abrirNoticia('${n.id}')">
+      ${imgPart}
+      <div class="noticia-corpo">
+        ${n.categoria?`<div class="noticia-categoria">${esc(n.categoria)}</div>`:''}
         <div class="noticia-titulo">${esc(n.titulo)}</div>
-        <div class="noticia-texto">${esc(n.texto||'').substring(0,120)}${(n.texto||'').length>120?'…':''}</div>
-        <div class="noticia-data">${n.data?'📅 '+fmtData(n.data):''}</div>
+        <div class="noticia-texto">${esc((n.texto||'').slice(0,120))}${(n.texto||'').length>120?'…':''}</div>
+        <div class="noticia-data">${fmtData(n.data)}</div>
       </div></div>`;
   }).join('');
 }
 function abrirNoticia(id){
-  const n=noticias.find(x=>String(x.id)===String(id));if(!n)return;
+  const n=noticias.find(x=>String(x.id)===String(id));
+  if(!n)return;
   document.getElementById('modalNoticiaConteudo').innerHTML=`
-    ${n.imagem&&norm(n.tamanho)!=='semimagem'?`<img class="modal-noticia-img" src="${esc(n.imagem)}" alt="" onerror="this.style.display='none'">`:''}
-    <div class="modal-noticia-meta"><span class="badge badge-azul">${esc(n.categoria||'Notícia')}</span> ${n.data?'&nbsp; 📅 '+fmtData(n.data):''}</div>
+    ${n.imagem&&n.tamanho!=='semimagem'?`<img class="modal-noticia-img" src="${esc(n.imagem)}" alt="" onerror="this.style.display='none'">`:''}
+    ${n.categoria?`<div class="noticia-categoria">${esc(n.categoria)}</div>`:''}
     <div class="modal-noticia-titulo">${esc(n.titulo)}</div>
+    <div class="modal-noticia-meta">${fmtData(n.data)}</div>
     <div class="modal-noticia-texto">${esc(n.texto||'')}</div>`;
   document.getElementById('modalNoticia').classList.add('aberto');
 }
-function abrirAdminNoticias(){limparFormNoticia();renderAdminNoticias();document.getElementById('modalAdminNoticias').classList.add('aberto');}
-function setTamanho(t){tamanhoImagem=t;['grande','pequeno','semimagem'].forEach(x=>document.getElementById('opt-'+x).classList.toggle('selecionado',x===t));}
-function previewImagem(){const url=document.getElementById('noticiaImagem').value.trim();const prev=document.getElementById('imgPreview');if(url){prev.src=url;prev.classList.add('visivel');}else prev.classList.remove('visivel');}
-function renderAdminNoticias(){
-  const el=document.getElementById('adminNoticiasList');
-  if(!noticias.length){el.innerHTML='<p style="font-size:0.84rem;color:var(--texto2);">Nenhuma notícia ainda.</p>';return;}
-  el.innerHTML=noticias.map(n=>`<div style="display:flex;align-items:center;justify-content:space-between;padding:8px 10px;border:1.5px solid var(--borda);border-radius:8px;margin-bottom:7px;gap:10px;flex-wrap:wrap;">
-    <div style="flex:1;"><div style="font-family:'Nunito',sans-serif;font-weight:700;font-size:0.88rem;">${esc(n.titulo)}</div>
-    <div style="font-size:0.75rem;color:var(--texto2);">${esc(n.categoria||'')}${n.data?' · '+fmtData(n.data):''}${norm(n.destaque)==='sim'?' · <strong style=color:var(--amarelo)>★ Destaque</strong>':''}</div></div>
-    <div style="display:flex;gap:6px;">
-      <button class="btn btn-azul btn-icon" onclick="editarNoticia('${esc(String(n.id))}')">✏️</button>
-      <button class="btn btn-verm btn-icon" onclick="excluirNoticia('${esc(String(n.id))}')">🗑️</button>
-    </div></div>`).join('');
+function abrirAdminNoticias(){
+  renderAdminNoticiasList();
+  limparFormNoticia();
+  document.getElementById('modalAdminNoticias').classList.add('aberto');
 }
-function salvarNoticia(){
-  const titulo=document.getElementById('noticiaTitulo').value.trim();
-  const texto=document.getElementById('noticiaTexto').value.trim();
-  if(!titulo||!texto){toast('⚠️ Título e texto são obrigatórios!');return;}
-  const categoria=document.getElementById('noticiaCategoria').value.trim();
-  const imagem=document.getElementById('noticiaImagem').value.trim();
-  const destaque=document.getElementById('noticiaDestaque').checked?'SIM':'NÃO';
-  const editId=document.getElementById('noticiaEditId').value;
-  const dataHoje=dataParaISO(new Date());
-  fetch(API_URL,{method:'POST',body:JSON.stringify({action:editId?'editarNoticia':'salvarNoticia',id:editId,titulo,texto,categoria,imagem,destaque,tamanho:tamanhoImagem,data:dataHoje,sheet:'Noticias'})})
-    .then(r=>r.json())
-    .then(res=>{if(res.ok){toast(editId?'✅ Notícia atualizada!':'✅ Notícia publicada!');limparFormNoticia();carregarNoticias();setTimeout(renderAdminNoticias,800);}else toast('❌ Erro: '+JSON.stringify(res));})
-    .catch(()=>toast('❌ Erro ao salvar.'));
+function renderAdminNoticiasList(){
+  const div=document.getElementById('adminNoticiasList');
+  if(!noticias.length){div.innerHTML='<div style="color:var(--texto2);font-size:0.84rem;">Nenhuma notícia.</div>';return;}
+  div.innerHTML=noticias.map(n=>`
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:7px 10px;border-bottom:1px solid var(--borda);font-size:0.84rem;">
+      <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${esc(n.titulo)}</span>
+      <div style="display:flex;gap:6px;margin-left:8px;">
+        <button class="btn btn-cinza btn-icon" onclick="editarNoticia('${n.id}')">✏️</button>
+        <button class="btn btn-verm btn-icon" onclick="excluirNoticia('${n.id}')">🗑️</button>
+      </div>
+    </div>`).join('');
 }
 function editarNoticia(id){
-  const n=noticias.find(x=>String(x.id)===String(id));if(!n)return;
+  const n=noticias.find(x=>String(x.id)===String(id));
+  if(!n)return;
   document.getElementById('noticiaEditId').value=n.id;
   document.getElementById('noticiaTitulo').value=n.titulo||'';
-  document.getElementById('noticiaTexto').value=n.texto||'';
   document.getElementById('noticiaCategoria').value=n.categoria||'';
+  document.getElementById('noticiaTexto').value=n.texto||'';
   document.getElementById('noticiaImagem').value=n.imagem||'';
-  document.getElementById('noticiaDestaque').checked=norm(n.destaque)==='sim';
+  document.getElementById('noticiaDestaque').checked=String(n.destaque)==='SIM';
+  setTamanho(n.tamanho||'grande');
+  previewImagem();
   document.getElementById('formNoticiasTitulo').textContent='✏️ Editar Notícia';
-  setTamanho(n.tamanho||'grande');previewImagem();
-  document.getElementById('modalAdminNoticias').scrollTop=999;
 }
-function excluirNoticia(id){
+async function salvarNoticia(){
+  const titulo=document.getElementById('noticiaTitulo').value.trim();
+  const texto=document.getElementById('noticiaTexto').value.trim();
+  if(!titulo||!texto){toast('⚠️ Preencha título e texto.');return;}
+  const editId=document.getElementById('noticiaEditId').value;
+  const payload={
+    action: editId?'editarNoticia':'salvarNoticia',
+    titulo, texto,
+    categoria:document.getElementById('noticiaCategoria').value.trim(),
+    imagem:document.getElementById('noticiaImagem').value.trim(),
+    destaque:document.getElementById('noticiaDestaque').checked?'SIM':'NÃO',
+    tamanho:tamanhoImagem,
+    data:new Date().toISOString().slice(0,10)
+  };
+  if(editId)payload.id=editId;
+  try{
+    const r=await apiPost(payload);
+    if(r.ok){toast('✅ Notícia salva!');limparFormNoticia();await carregarNoticias();renderAdminNoticiasList();}
+    else toast('❌ '+(r.erro||'Erro'));
+  }catch(e){toast('❌ Erro: '+e.message);}
+}
+async function excluirNoticia(id){
   if(!confirm('Excluir esta notícia?'))return;
-  fetch(API_URL,{method:'POST',body:JSON.stringify({action:'excluirNoticia',id:String(id),sheet:'Noticias'})})
-    .then(()=>{toast('🗑️ Excluída.');carregarNoticias();setTimeout(renderAdminNoticias,800);})
-    .catch(()=>toast('❌ Erro.'));
+  try{const r=await apiPost({action:'excluirNoticia',id});if(r.ok){toast('🗑️ Excluída.');await carregarNoticias();renderAdminNoticiasList();}}
+  catch(e){toast('❌ '+e.message);}
 }
 function limparFormNoticia(){
-  ['noticiaEditId','noticiaTitulo','noticiaTexto','noticiaCategoria','noticiaImagem'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('noticiaEditId').value='';
+  document.getElementById('noticiaTitulo').value='';
+  document.getElementById('noticiaCategoria').value='';
+  document.getElementById('noticiaTexto').value='';
+  document.getElementById('noticiaImagem').value='';
   document.getElementById('noticiaDestaque').checked=false;
-  document.getElementById('formNoticiasTitulo').textContent='➕ Nova Notícia';
-  document.getElementById('imgPreview').classList.remove('visivel');
   setTamanho('grande');
+  document.getElementById('imgPreview').className='img-preview';
+  document.getElementById('formNoticiasTitulo').textContent='➕ Nova Notícia';
+}
+function setTamanho(t){
+  tamanhoImagem=t;
+  ['grande','pequeno','semimagem'].forEach(k=>{
+    const el=document.getElementById('opt-'+k);
+    if(el)el.classList.toggle('selecionado',k===t);
+  });
+}
+function previewImagem(){
+  const url=document.getElementById('noticiaImagem').value.trim();
+  const img=document.getElementById('imgPreview');
+  if(url){img.src=url;img.className='img-preview visivel';}
+  else{img.className='img-preview';}
 }
 
 /* ══════════════════════════════════════════════════════
    AVISOS
 ══════════════════════════════════════════════════════ */
-function salvarAvisos(){localStorage.setItem('avisos_v1',JSON.stringify(avisos));}
-function abrirModalAviso(id){
-  corAvisoSel='azul';
+function renderAvisos(){
+  const div=document.getElementById('avisosConteudo');
+  if(!avisos.length){div.innerHTML='<div class="vazio-estado"><div class="vazio-icon">📭</div><p>Nenhum aviso.</p></div>';return;}
+  const sorted=[...avisos].sort((a,b)=>String(b.data||b.id).localeCompare(String(a.data||a.id)));
+  div.innerHTML=`<div class="avisos-grid">${sorted.map(a=>`
+    <div class="aviso-card aviso-${a.cor||'azul'}">
+      <div class="aviso-acoes">
+        <button class="btn btn-cinza btn-icon" onclick="editarAviso('${a.id}')">✏️</button>
+        <button class="btn btn-verm btn-icon" onclick="excluirAviso('${a.id}')">🗑️</button>
+      </div>
+      <div class="aviso-titulo">${esc(a.titulo)}</div>
+      <div class="aviso-data">${fmtData(a.data)}</div>
+      <div class="aviso-desc">${esc(a.desc||'')}</div>
+    </div>`).join('')}</div>`;
+}
+function abrirModalAviso(){
   document.getElementById('avisoEditId').value='';
-  document.getElementById('avisoData').value=dataParaISO(new Date());
   document.getElementById('avisoTitulo').value='';
+  document.getElementById('avisoData').value=new Date().toISOString().slice(0,10);
   document.getElementById('avisoDesc').value='';
   document.getElementById('avisoModalTitulo').textContent='📢 Novo Aviso';
+  corAvisoSel='azul';
   document.querySelectorAll('.cor-opt').forEach(c=>c.classList.remove('selecionada'));
-  document.querySelector('.cor-opt').classList.add('selecionada');
-  if(id){
-    const a=avisos.find(x=>x.id===id);if(!a)return;
-    document.getElementById('avisoEditId').value=a.id;
-    document.getElementById('avisoData').value=a.data||'';
-    document.getElementById('avisoTitulo').value=a.titulo||'';
-    document.getElementById('avisoDesc').value=a.desc||'';
-    corAvisoSel=a.cor||'azul';
-    document.getElementById('avisoModalTitulo').textContent='✏️ Editar Aviso';
-    document.querySelectorAll('.cor-opt').forEach(c=>{c.classList.toggle('selecionada',c.dataset.cor===corAvisoSel);});
-  }
+  document.querySelector('.cor-opt[data-cor="azul"]').classList.add('selecionada');
   document.getElementById('modalAviso').classList.add('aberto');
 }
 function selecionarCorAviso(cor,el){
@@ -1275,401 +1303,164 @@ function selecionarCorAviso(cor,el){
   document.querySelectorAll('.cor-opt').forEach(c=>c.classList.remove('selecionada'));
   el.classList.add('selecionada');
 }
+function editarAviso(id){
+  const a=avisos.find(x=>String(x.id)===String(id));
+  if(!a)return;
+  document.getElementById('avisoEditId').value=a.id;
+  document.getElementById('avisoTitulo').value=a.titulo||'';
+  document.getElementById('avisoData').value=a.data||'';
+  document.getElementById('avisoDesc').value=a.desc||'';
+  document.getElementById('avisoModalTitulo').textContent='✏️ Editar Aviso';
+  corAvisoSel=a.cor||'azul';
+  document.querySelectorAll('.cor-opt').forEach(c=>c.classList.toggle('selecionada',c.dataset.cor===corAvisoSel));
+  document.getElementById('modalAviso').classList.add('aberto');
+}
 function salvarAviso(){
   const titulo=document.getElementById('avisoTitulo').value.trim();
   const desc=document.getElementById('avisoDesc').value.trim();
-  if(!titulo||!desc){toast('⚠️ Título e descrição são obrigatórios!');return;}
+  if(!titulo||!desc){toast('⚠️ Preencha título e descrição.');return;}
   const editId=document.getElementById('avisoEditId').value;
-  const data=document.getElementById('avisoData').value;
   if(editId){
-    const idx=avisos.findIndex(a=>a.id===editId);
-    if(idx>=0)avisos[idx]={...avisos[idx],titulo,desc,data,cor:corAvisoSel};
-  } else {
-    avisos.unshift({id:Date.now().toString(36),titulo,desc,data,cor:corAvisoSel});
+    const a=avisos.find(x=>String(x.id)===String(editId));
+    if(a){a.titulo=titulo;a.data=document.getElementById('avisoData').value;a.desc=desc;a.cor=corAvisoSel;}
+  }else{
+    avisos.push({id:Date.now(),titulo,data:document.getElementById('avisoData').value,desc,cor:corAvisoSel});
   }
-  salvarAvisos();fecharModal('modalAviso');renderAvisos();toast('✅ Aviso salvo!');
+  localStorage.setItem('avisos_v1',JSON.stringify(avisos));
+  fecharModal('modalAviso');renderAvisos();toast('✅ Aviso salvo!');
 }
 function excluirAviso(id){
-  if(!confirm('Excluir este aviso?'))return;
-  avisos=avisos.filter(a=>a.id!==id);salvarAvisos();renderAvisos();toast('🗑️ Aviso excluído.');
-}
-function renderAvisos(){
-  const el=document.getElementById('avisosConteudo');
-  if(!avisos.length){el.innerHTML=`<div class="vazio-estado"><div class="vazio-icon">📢</div><p>Nenhum aviso cadastrado.<br>Clique em <strong>+ Novo Aviso</strong> para adicionar.</p></div>`;return;}
-  el.innerHTML=`<div class="avisos-grid">`+avisos.map(a=>`
-    <div class="aviso-card aviso-${a.cor||'azul'}">
-      <div class="aviso-acoes">
-        <button class="btn btn-cinza btn-icon" onclick="abrirModalAviso('${a.id}')" style="font-size:0.7rem;padding:3px 7px;">✏️</button>
-        <button class="btn btn-verm btn-icon" onclick="excluirAviso('${a.id}')" style="font-size:0.7rem;padding:3px 7px;">🗑️</button>
-      </div>
-      <div class="aviso-data">📅 ${fmtData(a.data)}</div>
-      <div class="aviso-titulo">${esc(a.titulo)}</div>
-      <div class="aviso-desc">${esc(a.desc)}</div>
-    </div>`).join('')+'</div>';
-}
-
-/* ══════════════════════════════════════════════════════
-   CADASTRO DE LISTA
-══════════════════════════════════════════════════════ */
-let listasSalvas = JSON.parse(localStorage.getItem('listas_salvas_v1')||'[]');
-
-function renderCadastroLista(){
-  const el=document.getElementById('cadastroConteudo');
-  if(!listaAtual.tipo){
-    el.innerHTML=`<div class="vazio-estado"><div class="vazio-icon">📝</div><p>Clique em <strong>+ Nova Lista</strong> para começar,<br>ou em <strong>📂 Listas Salvas</strong> para consultar uma existente.</p></div>`;
-    return;
-  }
-  const label=TIPOS_LISTA.find(t=>t.value===listaAtual.tipo)?.label||listaAtual.tipo;
-  el.innerHTML=`
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px;">
-      <div><span class="badge badge-azul" style="font-size:0.85rem;">${esc(label)}</span> <span style="font-size:0.82rem;color:var(--texto2);margin-left:8px;">${listaAtual.itens.length} item(s)</span></div>
-      <div style="display:flex;gap:8px;">
-        <button class="btn btn-azul btn-icon" onclick="abrirOrigemLista()" style="font-size:0.8rem;">+ Novo</button>
-        <button class="btn btn-verde btn-icon" onclick="salvarListaNaPlanilha()" style="font-size:0.8rem;">💾 Salvar Lista</button>
-        <button class="btn btn-cinza btn-icon" onclick="imprimirLista()" style="font-size:0.8rem;">🖨️ Imprimir</button>
-      </div>
-    </div>
-    <div id="listaItensContainer">
-      ${listaAtual.itens.length?listaAtual.itens.map((it,i)=>`
-        <div class="lista-item-row">
-          <span>${i+1}. <strong>${esc(it.nome)}</strong>${it.turma?` <span class="badge badge-azul" style="margin-left:6px;">${esc(it.turma)}</span>`:''}${it.obs?` <span style="font-size:0.78rem;color:var(--texto2);margin-left:6px;">${esc(it.obs)}</span>`:''}</span>
-          <button class="btn btn-verm btn-icon" onclick="removerItemLista(${i})" style="font-size:0.7rem;padding:3px 7px;">🗑️</button>
-        </div>`).join('')
-        :'<div class="loading-txt">Nenhum item ainda. Clique em <strong>+ Novo</strong> para adicionar.</div>'}
-    </div>`;
-}
-
-function abrirModalNovaLista(){
-  document.getElementById('listaTipoOpts').innerHTML=TIPOS_LISTA.map(t=>`
-    <div class="lista-tipo-btn" onclick="selecionarTipoLista('${t.value}',this)">${t.label}</div>`).join('');
-  document.getElementById('listaTipoCustomWrap').style.display='none';
-  document.getElementById('modalNovaLista').classList.add('aberto');
-}
-let tipoListaSel='';
-function selecionarTipoLista(v,el){
-  tipoListaSel=v;
-  document.querySelectorAll('.lista-tipo-btn').forEach(b=>b.classList.remove('selecionado'));
-  el.classList.add('selecionado');
-  document.getElementById('listaTipoCustomWrap').style.display=v==='outro'?'block':'none';
-}
-function confirmarTipoLista(){
-  if(!tipoListaSel){toast('⚠️ Selecione um tipo.');return;}
-  let tipo=tipoListaSel;
-  if(tipo==='outro'){
-    const custom=document.getElementById('listaTipoCustom').value.trim();
-    if(!custom){toast('⚠️ Digite o nome da lista.');return;}
-    tipo=custom;
-  }
-  listaAtual={tipo,itens:[]};
-  fecharModal('modalNovaLista');
-  renderCadastroLista();
-}
-
-function abrirOrigemLista(){
-  const label=TIPOS_LISTA.find(t=>t.value===listaAtual.tipo)?.label||listaAtual.tipo;
-  document.getElementById('origemListaTitulo').textContent=`Adicionar à lista: ${label}`;
-  document.getElementById('origemListaConteudo').innerHTML='';
-  document.getElementById('modalOrigemLista').classList.add('aberto');
-}
-function mostrarTurmasParaLista(){
-  document.getElementById('origemListaConteudo').innerHTML=`
-    <div style="font-size:0.84rem;color:var(--texto2);margin-bottom:8px;">Selecione a turma:</div>
-    <div class="turmas-grid-popup">`+TURMAS_FIXAS.map(t=>`<button class="turma-btn-popup" onclick="carregarAlunosDaTurmaParaLista('${t}')">${t}</button>`).join('')+`</div>`;
-}
-function carregarAlunosDaTurmaParaLista(turma){
-  document.getElementById('origemListaConteudo').innerHTML=`<div class="loading-txt"><span class="spinner spinner-azul"></span> Carregando alunos da turma ${turma}...</div>`;
-  fetch(API_URL)
-    .then(r=>r.json())
-    .then(dados=>{
-      const alunos=dados.filter(a=>norm(a.turma||a.Turma)===norm(turma));
-      if(!alunos.length){document.getElementById('origemListaConteudo').innerHTML=`<div style="font-size:0.84rem;color:var(--texto2);padding:12px 0;">Nenhum aluno encontrado na turma ${turma}.</div>`;return;}
-      const checkIds=alunos.map((a,i)=>'chk_aluno_'+i);
-      document.getElementById('origemListaConteudo').innerHTML=`
-        <div style="font-size:0.84rem;font-weight:700;margin-bottom:8px;">Turma ${turma} — ${alunos.length} aluno(s)</div>
-        <div style="max-height:240px;overflow-y:auto;">
-        ${alunos.map((a,i)=>`<div class="check-row"><input type="checkbox" id="chk_aluno_${i}" value="${esc(a.nome||a.Nome)}"><label for="chk_aluno_${i}">${esc(a.nome||a.Nome)}</label></div>`).join('')}
-        </div>
-        <div style="display:flex;gap:8px;margin-top:12px;">
-          <button class="btn btn-verde" onclick="adicionarAlunosSelecionados('${turma}')">✅ Adicionar selecionados</button>
-          <button class="btn btn-cinza" onclick="mostrarTurmasParaLista()">← Voltar</button>
-        </div>`;
-    })
-    .catch(()=>{document.getElementById('origemListaConteudo').innerHTML=`<div style="color:var(--vermelho);font-size:0.84rem;">❌ Erro ao carregar. Verifique a conexão.</div>`;});
-}
-function adicionarAlunosSelecionados(turma){
-  document.querySelectorAll('#origemListaConteudo input[type=checkbox]:checked').forEach(chk=>{
-    const nome=chk.value;
-    if(!listaAtual.itens.some(it=>it.nome===nome&&it.turma===turma)){
-      listaAtual.itens.push({nome,turma});
-    }
-  });
-  fecharModal('modalOrigemLista');
-  renderCadastroLista();
-  toast(`✅ Alunos adicionados!`);
-}
-function adicionarFuncionarioLista(){
-  document.getElementById('origemListaConteudo').innerHTML=`
-    <div style="font-size:0.84rem;color:var(--texto2);margin-bottom:8px;">Selecione um funcionário ou digite o nome:</div>
-    <div style="display:flex;gap:8px;margin-bottom:10px;">
-      <input type="text" id="funcNomeInput" placeholder="Nome do funcionário..." style="flex:1;">
-      <button class="btn btn-verde" onclick="confirmarFuncionarioLista()">+ Adicionar</button>
-    </div>
-    <div style="max-height:200px;overflow-y:auto;">
-      ${ANIVERSARIANTES.sort((a,b)=>a.nome.localeCompare(b.nome)).map(f=>`
-        <div class="check-row"><input type="checkbox" value="${esc(f.nome)}" class="chk-func"><label>${esc(f.nome)} <span style="color:var(--texto2);font-size:0.76rem;">(${esc(f.turma)})</span></label></div>`).join('')}
-    </div>
-    <div style="display:flex;gap:8px;margin-top:12px;">
-      <button class="btn btn-verde" onclick="confirmarFuncsCheckados()">✅ Adicionar selecionados</button>
-    </div>`;
-  setTimeout(()=>document.getElementById('funcNomeInput').focus(),100);
-}
-function confirmarFuncionarioLista(){
-  const nome=document.getElementById('funcNomeInput').value.trim();
-  if(!nome){toast('⚠️ Digite o nome.');return;}
-  if(!listaAtual.itens.some(it=>it.nome===nome)){listaAtual.itens.push({nome,obs:'Funcionário'});}
-  fecharModal('modalOrigemLista');renderCadastroLista();toast('✅ Adicionado!');
-}
-function confirmarFuncsCheckados(){
-  document.querySelectorAll('.chk-func:checked').forEach(chk=>{
-    const nome=chk.value;
-    if(!listaAtual.itens.some(it=>it.nome===nome)){listaAtual.itens.push({nome,obs:'Funcionário'});}
-  });
-  fecharModal('modalOrigemLista');renderCadastroLista();toast('✅ Adicionados!');
-}
-function adicionarOutroLista(){
-  document.getElementById('origemListaConteudo').innerHTML=`
-    <div style="font-size:0.84rem;color:var(--texto2);margin-bottom:8px;">Digite o nome a adicionar:</div>
-    <div style="display:flex;gap:8px;">
-      <input type="text" id="outroNomeInput" placeholder="Nome..." style="flex:1;">
-      <button class="btn btn-verde" onclick="confirmarOutroLista()">+ Adicionar</button>
-    </div>`;
-  setTimeout(()=>document.getElementById('outroNomeInput').focus(),100);
-}
-function confirmarOutroLista(){
-  const nome=document.getElementById('outroNomeInput').value.trim();
-  if(!nome){toast('⚠️ Digite o nome.');return;}
-  listaAtual.itens.push({nome});
-  fecharModal('modalOrigemLista');renderCadastroLista();toast('✅ Adicionado!');
-}
-function removerItemLista(idx){
-  listaAtual.itens.splice(idx,1);renderCadastroLista();
-}
-function salvarListaNaPlanilha(){
-  if(!listaAtual.itens.length){toast('⚠️ A lista está vazia!');return;}
-  // Salva localmente
-  const id=Date.now().toString(36);
-  const nova={id,tipo:listaAtual.tipo,itens:[...listaAtual.itens],data:dataParaISO(new Date())};
-  listasSalvas.unshift(nova);
-  localStorage.setItem('listas_salvas_v1',JSON.stringify(listasSalvas));
-  toast('✅ Lista salva!');
-  listaAtual={tipo:'',itens:[]};
-  renderCadastroLista();
-}
-function abrirModalListasSalvas(){
-  renderListasSalvas();
-  document.getElementById('modalListasSalvas').classList.add('aberto');
-}
-function renderListasSalvas(){
-  const el=document.getElementById('listasSalvasConteudo');
-  if(!listasSalvas.length){el.innerHTML=`<div class="pesq-vazio">Nenhuma lista salva ainda.</div>`;return;}
-  el.innerHTML=listasSalvas.map(l=>{
-    const label=TIPOS_LISTA.find(t=>t.value===l.tipo)?.label||l.tipo;
-    return `<div style="display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border:1.5px solid var(--borda);border-radius:10px;margin-bottom:8px;gap:10px;flex-wrap:wrap;">
-      <div><div style="font-family:'Nunito',sans-serif;font-weight:700;">${esc(label)}</div><div style="font-size:0.78rem;color:var(--texto2);">${fmtData(l.data)} · ${l.itens.length} item(s)</div></div>
-      <div style="display:flex;gap:6px;">
-        <button class="btn btn-azul btn-icon" onclick="carregarListaSalva('${l.id}')" style="font-size:0.78rem;">📂 Abrir</button>
-        <button class="btn btn-verde btn-icon" onclick="imprimirListaSalva('${l.id}')" style="font-size:0.78rem;">🖨️</button>
-        <button class="btn btn-verm btn-icon" onclick="excluirListaSalva('${l.id}')" style="font-size:0.78rem;">🗑️</button>
-      </div></div>`;
-  }).join('');
-}
-function carregarListaSalva(id){
-  const l=listasSalvas.find(x=>x.id===id);if(!l)return;
-  listaAtual={tipo:l.tipo,itens:[...l.itens]};
-  fecharModal('modalListasSalvas');
-  renderCadastroLista();
-}
-function excluirListaSalva(id){
-  if(!confirm('Excluir esta lista?'))return;
-  listasSalvas=listasSalvas.filter(l=>l.id!==id);
-  localStorage.setItem('listas_salvas_v1',JSON.stringify(listasSalvas));
-  renderListasSalvas();toast('🗑️ Excluída.');
-}
-function imprimirLista(){
-  if(!listaAtual.itens.length){toast('⚠️ Lista vazia.');return;}
-  imprimirListaItens(listaAtual.tipo, listaAtual.itens);
-}
-function imprimirListaSalva(id){
-  const l=listasSalvas.find(x=>x.id===id);if(!l)return;
-  imprimirListaItens(l.tipo,l.itens);
-}
-function imprimirListaItens(tipo,itens){
-  const label=TIPOS_LISTA.find(t=>t.value===tipo)?.label||tipo;
-  const w=window.open('','_blank');
-  w.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Lista - ${label}</title>
-  <style>body{font-family:Arial,sans-serif;max-width:700px;margin:40px auto;padding:20px;}h1{font-size:1.2rem;}h2{font-size:1rem;color:#666;margin-bottom:16px;}table{width:100%;border-collapse:collapse;}th{background:#1565c0;color:#fff;padding:8px 12px;text-align:left;}td{padding:8px 12px;border-bottom:1px solid #ddd;}tr:nth-child(even){background:#f9f9f9;}</style>
-  </head><body>
-  <h1>${NOME_ESCOLA}</h1><p style="font-size:0.85rem;color:#666;">${ENDERECO_ESCOLA}</p><hr>
-  <h2>Lista: ${label} — ${fmtData(dataParaISO(new Date()))}</h2>
-  <table><thead><tr><th>#</th><th>Nome</th><th>Turma</th><th>Obs</th></tr></thead><tbody>
-  ${itens.map((it,i)=>`<tr><td>${i+1}</td><td>${it.nome}</td><td>${it.turma||''}</td><td>${it.obs||''}</td></tr>`).join('')}
-  </tbody></table></body></html>`);
-  w.document.close();w.print();
-}
-
-/* ══════════════════════════════════════════════════════
-   PESQUISA
-══════════════════════════════════════════════════════ */
-function renderPesquisa(){
-  const busca=norm(document.getElementById('pesqNome').value);
-  const el=document.getElementById('pesqResultados');
-  if(!busca){el.innerHTML='<div class="pesq-vazio">Digite um nome para pesquisar.</div>';return;}
-  const resAlunos=todosAlunos.filter(a=>norm(a.nome).includes(busca));
-  const resFuncs=ANIVERSARIANTES.filter(f=>norm(f.nome).includes(busca));
-  if(!resAlunos.length&&!resFuncs.length){el.innerHTML='<div class="pesq-vazio">🔍 Nenhum resultado encontrado.</div>';return;}
-  let html='';
-  if(resAlunos.length){
-    html+=`<div style="font-size:0.8rem;font-weight:700;color:var(--texto2);margin-bottom:6px;">🎓 Alunos (${resAlunos.length})</div>`;
-    html+=resAlunos.map(a=>`<div class="pesq-resultado">
-      <div class="pesq-nome">${esc(a.nome)}</div>
-      <div class="pesq-detalhe">Turma: <strong>${esc(a.turma)}</strong> · Professor: <strong>${esc(a.professor)}</strong>${a.dificuldades?` · Dificuldades: <em>${esc(a.dificuldades)}</em>`:''}</div>
-    </div>`).join('');
-  }
-  if(resFuncs.length){
-    html+=`<div style="font-size:0.8rem;font-weight:700;color:var(--texto2);margin:12px 0 6px;">👤 Funcionários (${resFuncs.length})</div>`;
-    html+=resFuncs.map(f=>`<div class="pesq-resultado" style="border-left-color:var(--verde);">
-      <div class="pesq-nome">${esc(f.nome)}</div>
-      <div class="pesq-detalhe">Cargo: <strong>${esc(f.turma)}</strong> · Aniversário: <strong>${String(f.dia).padStart(2,'0')}/${String(f.mes).padStart(2,'0')}</strong></div>
-    </div>`).join('');
-  }
-  el.innerHTML=html;
-}
-// Carregar alunos do GestaoEscolar para pesquisa
-function carregarTodosAlunos(){
-  fetch(API_URL)
-    .then(r=>r.json())
-    .then(dados=>{todosAlunos=dados.map(r=>{const n={};Object.keys(r).forEach(k=>{n[k.toLowerCase()]=r[k];});return n;});})
-    .catch(()=>{});
+  if(!confirm('Excluir aviso?'))return;
+  avisos=avisos.filter(a=>String(a.id)!==String(id));
+  localStorage.setItem('avisos_v1',JSON.stringify(avisos));
+  renderAvisos();toast('🗑️ Aviso excluído.');
 }
 
 /* ══════════════════════════════════════════════════════
    CALENDÁRIO
 ══════════════════════════════════════════════════════ */
-function carregarEventosCal(){
-  fetch(API_URL+'?sheet=Calendario')
-    .then(r=>r.json())
-    .then(dados=>{
-      eventosCustom=dados.map(r=>{
-        const n={};Object.keys(r).forEach(k=>{n[k.toLowerCase()]=r[k];});
-        if(n.data){
-          if(n.data instanceof Date) n.data=dataParaISO(n.data);
-          else n.data=String(n.data).slice(0,10);
-        }
-        return n;
-      });
-      renderCalendario();
-    })
-    .catch(()=>renderCalendario());
-}
-function getTodosEventos(){return[...EVENTOS_FIXOS,...eventosCustom];}
-function mudarMes(d){calMesAtual+=d;if(calMesAtual>11){calMesAtual=0;calAnoAtual++;}if(calMesAtual<0){calMesAtual=11;calAnoAtual--;}renderCalendario();}
-function getCorEvento(tipo){
-  if(tipo==='feriado')return{bg:'var(--verm-cl)',border:'var(--vermelho)',badge:'badge-vermelho'};
-  if(tipo==='recesso')return{bg:'var(--amar-cl)',border:'var(--amarelo)',badge:'badge-amarelo'};
-  if(tipo==='reuniao')return{bg:'var(--roxo-cl)',border:'var(--roxo)',badge:'badge-roxo'};
-  return{bg:'var(--verde-cl)',border:'var(--verde)',badge:'badge-verde'};
+async function carregarEventosCal(){
+  try{eventosCustom=await apiGet('Calendario');}catch(e){eventosCustom=[];}
+  renderCalendario();
 }
 function renderCalendario(){
-  document.getElementById('calMesAno').textContent=MESES_NOMES[calMesAtual]+' '+calAnoAtual;
-  const todos=getTodosEventos();
-  const evMes=todos.filter(e=>{const d=new Date(e.data+'T12:00:00');return d.getMonth()===calMesAtual&&d.getFullYear()===calAnoAtual;});
-  const diasFixos=new Set(EVENTOS_FIXOS.filter(e=>{const d=new Date(e.data+'T12:00:00');return d.getMonth()===calMesAtual&&d.getFullYear()===calAnoAtual;}).map(e=>e.data.slice(8,10).replace(/^0/,'')));
-  const diasCustom=new Set(eventosCustom.filter(e=>{const d=new Date(e.data+'T12:00:00');return d.getMonth()===calMesAtual&&d.getFullYear()===calAnoAtual;}).map(e=>e.data.slice(8,10).replace(/^0/,'')));
-  const hoje=new Date(),ehHMes=hoje.getMonth()===calMesAtual&&hoje.getFullYear()===calAnoAtual,dH=hoje.getDate();
-  const prim=new Date(calAnoAtual,calMesAtual,1).getDay(),ult=new Date(calAnoAtual,calMesAtual+1,0).getDate();
-  const DIAS_SEM=['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
-  let html=DIAS_SEM.map(d=>`<div class="cal-dia-nome">${d}</div>`).join('');
-  for(let i=0;i<prim;i++)html+=`<div class="cal-dia vazio"></div>`;
-  for(let d=1;d<=ult;d++){
-    const eH=ehHMes&&d===dH,tF=diasFixos.has(String(d)),tC=diasCustom.has(String(d));
+  const mesNome=MESES_NOMES[calMesAtual];
+  document.getElementById('calMesAno').textContent=`${mesNome} ${calAnoAtual}`;
+  const primeiroDia=new Date(calAnoAtual,calMesAtual,1).getDay();
+  const diasNoMes=new Date(calAnoAtual,calMesAtual+1,0).getDate();
+  const hoje=new Date();
+  const hojeISO=`${hoje.getFullYear()}-${String(hoje.getMonth()+1).padStart(2,'0')}-${String(hoje.getDate()).padStart(2,'0')}`;
+  const eventosPorDia={};
+  const todasDatas=[...EVENTOS_FIXOS,...eventosCustom.map(e=>({data:e.data,titulo:e.titulo,tipo:e.tipo||'custom'}))];
+  todasDatas.forEach(ev=>{
+    const d=String(ev.data||'').slice(0,7);
+    if(d===`${calAnoAtual}-${String(calMesAtual+1).padStart(2,'0')}`){
+      const dia=parseInt(String(ev.data).slice(8,10));
+      if(!eventosPorDia[dia])eventosPorDia[dia]=[];
+      eventosPorDia[dia].push(ev);
+    }
+  });
+  const nomesDias=['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
+  let html=nomesDias.map(d=>`<div class="cal-dia-nome">${d}</div>`).join('');
+  for(let i=0;i<primeiroDia;i++)html+=`<div class="cal-dia vazio"></div>`;
+  for(let d=1;d<=diasNoMes;d++){
+    const iso=`${calAnoAtual}-${String(calMesAtual+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const evs=eventosPorDia[d]||[];
+    const temFixo=evs.some(e=>e.tipo!=='custom');
+    const temCustom=evs.some(e=>e.tipo==='custom');
     let cls='cal-dia';
-    if(eH)cls+=' hoje';else if(tF&&tC)cls+=' tem-evento tem-evento-custom';else if(tF)cls+=' tem-evento';else if(tC)cls+=' tem-evento-custom';
-    html+=`<div class="${cls}" ${(tF||tC)?`onclick="abrirDiaCalendario(${d})"`:''} >${d}</div>`;
+    if(iso===hojeISO)cls+=' hoje';
+    if(temFixo)cls+=' tem-evento';
+    if(temCustom)cls+=' tem-evento-custom';
+    const onclick=evs.length?`onclick="abrirDiaCal('${iso}')"`:'';
+    html+=`<div class="${cls}" ${onclick}>${d}</div>`;
   }
   document.getElementById('calGrid').innerHTML=html;
-  const lista=document.getElementById('calEventosLista');
-  if(!evMes.length){lista.innerHTML='<p style="font-size:0.82rem;color:var(--texto2);">Sem eventos neste mês.</p>';return;}
-  lista.innerHTML='<div style="font-weight:700;font-size:0.82rem;margin-bottom:8px;color:var(--texto2);">Eventos do mês:</div>'+
-    evMes.sort((a,b)=>a.data.localeCompare(b.data)).map(e=>{
-      const d=new Date(e.data+'T12:00:00'),dd=d.getDate().toString().padStart(2,'0'),mm=(d.getMonth()+1).toString().padStart(2,'0');
-      const cor=getCorEvento(e.tipo);
-      const isCustom=!EVENTOS_FIXOS.some(f=>f.data===e.data&&f.titulo===e.titulo);
-      return `<div class="evento-item${isCustom?' custom':''}" style="background:${cor.bg};border-left-color:${cor.border};">
-        <span class="evento-data" style="color:${cor.border};">${dd}/${mm}</span>
-        <span>${esc(e.titulo)} <span class="badge ${cor.badge}" style="margin-left:6px;">${e.tipo}</span>${e.descricao?` — <span style="color:var(--texto2);font-size:0.78rem;">${esc(e.descricao)}</span>`:''}</span>
-      </div>`;
-    }).join('');
-}
-function abrirDiaCalendario(dia){
-  const data=`${calAnoAtual}-${String(calMesAtual+1).padStart(2,'0')}-${String(dia).padStart(2,'0')}`;
-  const evs=getTodosEventos().filter(e=>e.data===data);
-  const d=new Date(data+'T12:00:00');
-  document.getElementById('calDiaTitulo').textContent='📅 '+d.getDate()+' de '+MESES_NOMES[d.getMonth()]+' de '+d.getFullYear();
-  document.getElementById('calDiaConteudo').innerHTML=evs.map(e=>{
-    const cor=getCorEvento(e.tipo);
-    return `<div class="evento-item" style="background:${cor.bg};border-left-color:${cor.border};margin-bottom:8px;">
-      <span class="badge ${cor.badge}">${e.tipo}</span>
-      <span style="margin-left:8px;font-weight:700;">${esc(e.titulo)}</span>
-      ${e.descricao?`<div style="font-size:0.8rem;color:var(--texto2);margin-top:4px;">${esc(e.descricao)}</div>`:''}
+  // Lista eventos do mês
+  const todosDoMes=todasDatas.filter(e=>String(e.data||'').slice(0,7)===`${calAnoAtual}-${String(calMesAtual+1).padStart(2,'0')}`);
+  todosDoMes.sort((a,b)=>String(a.data).localeCompare(String(b.data)));
+  document.getElementById('calEventosLista').innerHTML=todosDoMes.length?todosDoMes.map(e=>{
+    const custom=e.tipo==='custom'||!EVENTOS_FIXOS.find(f=>f.data===e.data&&f.titulo===e.titulo);
+    return `<div class="evento-item ${custom?'custom':''}">
+      <span class="evento-data">${fmtData(e.data)}</span>
+      <span>${esc(e.titulo)}</span>
     </div>`;
-  }).join('');
+  }).join(''):'<div style="color:var(--texto2);font-size:0.85rem;padding:8px 0;">Nenhum evento neste mês.</div>';
+}
+function mudarMes(dir){
+  calMesAtual+=dir;
+  if(calMesAtual<0){calMesAtual=11;calAnoAtual--;}
+  if(calMesAtual>11){calMesAtual=0;calAnoAtual++;}
+  renderCalendario();
+}
+function abrirDiaCal(iso){
+  const evs=[...EVENTOS_FIXOS,...eventosCustom.map(e=>({...e,custom:true}))].filter(e=>String(e.data).slice(0,10)===iso);
+  document.getElementById('calDiaTitulo').textContent=`📅 ${fmtData(iso)}`;
+  document.getElementById('calDiaConteudo').innerHTML=evs.map(e=>`
+    <div style="padding:8px 12px;border-left:4px solid ${e.custom?'var(--verde)':'var(--amarelo)'};background:${e.custom?'var(--verde-cl)':'var(--amar-cl)'};border-radius:6px;margin-bottom:8px;font-size:0.88rem;">
+      <strong>${esc(e.titulo)}</strong>
+      ${e.descricao?`<div style="color:var(--texto2);margin-top:2px;">${esc(e.descricao)}</div>`:''}
+    </div>`).join('');
   document.getElementById('modalCalDia').classList.add('aberto');
 }
-function abrirAdminCalendario(){limparFormCal();renderAdminCalList();document.getElementById('modalAdminCalendario').classList.add('aberto');}
+async function abrirAdminCalendario(){
+  document.getElementById('modalAdminCalendario').classList.add('aberto');
+  renderAdminCalList();
+  limparFormCal();
+}
 function renderAdminCalList(){
-  const el=document.getElementById('adminCalList');
-  if(!eventosCustom.length){el.innerHTML='<p style="font-size:0.84rem;color:var(--texto2);">Nenhum evento personalizado. Os feriados nacionais são fixos.</p>';return;}
-  el.innerHTML=eventosCustom.sort((a,b)=>a.data.localeCompare(b.data)).map(e=>`
-    <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 10px;border:1.5px solid var(--borda);border-radius:8px;margin-bottom:7px;gap:10px;flex-wrap:wrap;">
-      <div style="flex:1;"><div style="font-family:'Nunito',sans-serif;font-weight:700;font-size:0.88rem;">${esc(e.titulo)}</div>
-      <div style="font-size:0.75rem;color:var(--texto2);">${fmtData(e.data)} · ${e.tipo}${e.descricao?' · '+e.descricao:''}</div></div>
-      <div style="display:flex;gap:6px;">
-        <button class="btn btn-azul btn-icon" onclick="editarEventoCal('${esc(String(e.id))}')">✏️</button>
-        <button class="btn btn-verm btn-icon" onclick="excluirEventoCal('${esc(String(e.id))}')">🗑️</button>
+  const div=document.getElementById('adminCalList');
+  if(!eventosCustom.length){div.innerHTML='<div style="color:var(--texto2);font-size:0.84rem;">Nenhum evento personalizado.</div>';return;}
+  div.innerHTML=[...eventosCustom].sort((a,b)=>String(a.data).localeCompare(String(b.data))).map(e=>`
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:7px 10px;border-bottom:1px solid var(--borda);font-size:0.84rem;">
+      <span><strong>${fmtData(e.data)}</strong> — ${esc(e.titulo)}</span>
+      <div style="display:flex;gap:5px;">
+        <button class="btn btn-cinza btn-icon" onclick="editarEventoCal('${e.id}')">✏️</button>
+        <button class="btn btn-verm btn-icon" onclick="excluirEventoCal('${e.id}')">🗑️</button>
       </div>
     </div>`).join('');
 }
-function salvarEventoCal(){
-  const titulo=document.getElementById('calEventoTitulo').value.trim();
-  const data=document.getElementById('calEventoData').value;
-  const tipo=document.getElementById('calEventoTipo').value;
-  const desc=document.getElementById('calEventoDesc').value.trim();
-  const editId=document.getElementById('calEventoEditId').value;
-  if(!titulo||!data){toast('⚠️ Título e data são obrigatórios!');return;}
-  fetch(API_URL,{method:'POST',body:JSON.stringify({action:editId?'editarEvento':'salvarEvento',id:editId,titulo,data,tipo,descricao:desc,sheet:'Calendario'})})
-    .then(r=>r.json())
-    .then(res=>{if(res.ok){toast(editId?'✅ Atualizado!':'✅ Evento adicionado!');limparFormCal();carregarEventosCal();setTimeout(renderAdminCalList,700);}})
-    .catch(()=>toast('❌ Erro ao salvar.'));
-}
 function editarEventoCal(id){
-  const e=eventosCustom.find(x=>String(x.id)===String(id));if(!e)return;
+  const e=eventosCustom.find(x=>String(x.id)===String(id));
+  if(!e)return;
   document.getElementById('calEventoEditId').value=e.id;
   document.getElementById('calEventoTitulo').value=e.titulo||'';
   document.getElementById('calEventoData').value=e.data||'';
   document.getElementById('calEventoTipo').value=e.tipo||'evento';
   document.getElementById('calEventoDesc').value=e.descricao||'';
   document.getElementById('formCalTitulo').textContent='✏️ Editar Evento';
-  document.getElementById('modalAdminCalendario').scrollTop=999;
 }
-function excluirEventoCal(id){
-  if(!confirm('Excluir este evento?'))return;
-  fetch(API_URL,{method:'POST',body:JSON.stringify({action:'excluirEvento',id:String(id),sheet:'Calendario'})})
-    .then(()=>{eventosCustom=eventosCustom.filter(e=>String(e.id)!==String(id));renderAdminCalList();renderCalendario();toast('🗑️ Excluído.');})
-    .catch(()=>toast('❌ Erro.'));
+async function salvarEventoCal(){
+  const titulo=document.getElementById('calEventoTitulo').value.trim();
+  const data=document.getElementById('calEventoData').value;
+  if(!titulo||!data){toast('⚠️ Preencha título e data.');return;}
+  const editId=document.getElementById('calEventoEditId').value;
+  const payload={
+    action:editId?'editarEvento':'salvarEvento',
+    titulo,data,
+    tipo:document.getElementById('calEventoTipo').value,
+    descricao:document.getElementById('calEventoDesc').value.trim()
+  };
+  if(editId)payload.id=editId;
+  try{
+    const r=await apiPost(payload);
+    if(r.ok){toast('✅ Evento salvo!');limparFormCal();eventosCustom=await apiGet('Calendario');renderCalendario();renderAdminCalList();}
+    else toast('❌ '+(r.erro||'Erro'));
+  }catch(e){toast('❌ '+e.message);}
+}
+async function excluirEventoCal(id){
+  if(!confirm('Excluir evento?'))return;
+  try{
+    const r=await apiPost({action:'excluirEvento',id});
+    if(r.ok){toast('🗑️ Excluído.');eventosCustom=await apiGet('Calendario');renderCalendario();renderAdminCalList();}
+  }catch(e){toast('❌ '+e.message);}
 }
 function limparFormCal(){
-  ['calEventoEditId','calEventoTitulo','calEventoData','calEventoDesc'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('calEventoEditId').value='';
+  document.getElementById('calEventoTitulo').value='';
+  document.getElementById('calEventoData').value='';
   document.getElementById('calEventoTipo').value='evento';
+  document.getElementById('calEventoDesc').value='';
   document.getElementById('formCalTitulo').textContent='➕ Novo Evento';
 }
 
@@ -1677,499 +1468,798 @@ function limparFormCal(){
    ANIVERSARIANTES
 ══════════════════════════════════════════════════════ */
 function renderAniversariantes(){
-  const hoje=new Date(),mesH=hoje.getMonth()+1,diaH=hoje.getDate();
+  const div=document.getElementById('anivConteudo');
+  const hoje=new Date();
+  const hm=hoje.getMonth()+1,hd=hoje.getDate();
+  const porMes={};
+  ANIVERSARIANTES.forEach(a=>{
+    if(!porMes[a.mes])porMes[a.mes]=[];
+    porMes[a.mes].push(a);
+  });
+  const mesesOrdenados=Object.keys(porMes).map(Number).sort((a,b)=>{
+    const da=(a-hm+12)%12,db=(b-hm+12)%12;return da-db;
+  });
+  div.innerHTML=mesesOrdenados.map(mes=>{
+    const anivs=porMes[mes].sort((a,b)=>a.dia-b.dia);
+    const temHoje=anivs.some(a=>a.mes===hm&&a.dia===hd);
+    return `<div class="aniv-mes-grupo">
+      <div class="aniv-mes-titulo">${MESES_NOMES[mes-1]}${temHoje?'<span class="mes-destaque">🎉 hoje!</span>':''}</div>
+      <div class="aniv-grid">${anivs.map(a=>{
+        const eh=a.mes===hm&&a.dia===hd;
+        return `<div class="aniv-card ${eh?'aniv-hoje':''}">
+          <div class="aniv-emoji">${eh?'🎂':'🎁'}</div>
+          <div><div class="aniv-nome">${esc(a.nome)}</div>
+          <div class="aniv-info">${a.dia.toString().padStart(2,'0')}/${a.mes.toString().padStart(2,'0')} • ${esc(a.turma)}</div></div>
+        </div>`;}).join('')}
+      </div></div>`;
+  }).join('');
+}
+
+/* ══════════════════════════════════════════════════════
+   PESQUISA
+══════════════════════════════════════════════════════ */
+function renderPesquisa(){
+  const q=norm(document.getElementById('pesqNome').value);
+  const div=document.getElementById('pesqResultados');
+  if(!q){div.innerHTML='<div class="pesq-vazio">Digite um nome para pesquisar.</div>';return;}
+  const res=plantaoAlunos.filter(a=>norm(a.nome).includes(q));
+  const func=ANIVERSARIANTES.filter(a=>norm(a.nome).includes(q));
   let html='';
-  const doMes=ANIVERSARIANTES.filter(a=>a.mes===mesH).sort((a,b)=>a.dia-b.dia);
-  html+=`<div class="card"><div class="card-titulo">🎂 Aniversariantes de ${MESES_NOMES[mesH-1]} <span class="mes-destaque">(mês atual)</span></div>`;
-  if(doMes.length){
-    html+=`<div class="aniv-grid">`+doMes.map(a=>{const ehHoje=a.dia===diaH;return `<div class="aniv-card ${ehHoje?'aniv-hoje':''}">
-      <div class="aniv-emoji">${ehHoje?'🎂':'🎉'}</div>
-      <div><div class="aniv-nome">${esc(a.nome)} ${ehHoje?'🎉':''}</div>
-      <div class="aniv-info">${String(a.dia).padStart(2,'0')}/${String(a.mes).padStart(2,'0')} · ${esc(a.turma)}</div></div></div>`;}).join('')+'</div>';
-  } else html+=`<p style="color:var(--texto2);font-size:0.88rem;">Nenhum aniversário em ${MESES_NOMES[mesH-1]}.</p>`;
-  html+=`</div><div class="card"><div class="card-titulo">📋 Todos os aniversários por mês</div>`;
-  for(let m=1;m<=12;m++){
-    if(m===mesH)continue;
-    const grupo=ANIVERSARIANTES.filter(a=>a.mes===m).sort((a,b)=>a.dia-b.dia);
-    if(!grupo.length)continue;
-    html+=`<div class="aniv-mes-grupo"><div class="aniv-mes-titulo">${MESES_NOMES[m-1]}</div><div class="aniv-grid">`+
-      grupo.map(a=>`<div class="aniv-card"><div class="aniv-emoji">🎂</div><div><div class="aniv-nome">${esc(a.nome)}</div><div class="aniv-info">${String(a.dia).padStart(2,'0')}/${String(a.mes).padStart(2,'0')} · ${esc(a.turma)}</div></div></div>`).join('')+`</div></div>`;
-  }
-  html+=`</div>`;
-  document.getElementById('anivConteudo').innerHTML=html;
+  func.forEach(a=>{html+=`<div class="pesq-resultado"><div class="pesq-nome">👤 ${esc(a.nome)}</div><div class="pesq-detalhe">${esc(a.cargo||a.turma)} • Aniversário: ${a.dia}/${a.mes}</div></div>`;});
+  res.forEach(a=>{html+=`<div class="pesq-resultado"><div class="pesq-nome">🎓 ${esc(a.nome)}</div><div class="pesq-detalhe">Turma ${esc(a.turma)}</div></div>`;});
+  div.innerHTML=html||'<div class="pesq-vazio">Nenhum resultado encontrado.</div>';
 }
 
 /* ══════════════════════════════════════════════════════
    DOWNLOADS
 ══════════════════════════════════════════════════════ */
-const DOWNLOAD_FIXO={id:'jornal_fixo',nome:'Jornal da Escola',categoria:'Jornal Escolar',descricao:'Edição mais recente do jornal escolar.',link:'https://isaweresistemas.github.io/praticoescolar/arquivos/jornal.pdf',icone:'📰',fixo:true};
-function carregarDownloads(){
-  fetch(API_URL+'?sheet=Downloads')
-    .then(r=>r.json())
-    .then(dados=>{
-      downloads=dados.map(r=>{const n={};Object.keys(r).forEach(k=>{n[k.toLowerCase()]=r[k];});return n;});
-      localStorage.setItem('downloads_v2',JSON.stringify(downloads));
-      renderDownloads();
-    }).catch(()=>renderDownloads());
+async function carregarDownloads(){
+  try{downloads=await apiGet('Downloads');}
+  catch(e){downloads=JSON.parse(localStorage.getItem('downloads_v2')||'[]');}
+  renderDownloads();
 }
-function getTodosDownloads(){return[DOWNLOAD_FIXO,...downloads];}
 function renderDownloads(){
-  const todos=getTodosDownloads();
-  const cats=[...new Set(todos.map(d=>d.categoria||'Geral'))];
-  document.getElementById('downloadsCats').innerHTML=`<button class="cat-btn ${!downloadFiltCat?'ativo':''}" onclick="filtrarCat('')">Todos</button>`+
-    cats.map(c=>`<button class="cat-btn ${downloadFiltCat===c?'ativo':''}" onclick="filtrarCat('${esc(c)}')">${esc(c)}</button>`).join('');
-  const lista=todos.filter(d=>!downloadFiltCat||(d.categoria||'Geral')===downloadFiltCat);
-  const cont=document.getElementById('downloadsConteudo');
-  if(!lista.length){cont.innerHTML=`<div class="vazio-estado"><div class="vazio-icon">📭</div><p>Nenhum arquivo nesta categoria.</p></div>`;return;}
-  cont.innerHTML=`<div class="downloads-grid">`+lista.map(d=>`
+  const cats=[...new Set(downloads.map(d=>d.categoria).filter(Boolean))];
+  const catsDiv=document.getElementById('downloadsCats');
+  catsDiv.innerHTML=`<button class="cat-btn ${!downloadFiltCat?'ativo':''}" onclick="filtrarDownload('')">Todos</button>`+
+    cats.map(c=>`<button class="cat-btn ${downloadFiltCat===c?'ativo':''}" onclick="filtrarDownload('${esc(c)}')">${esc(c)}</button>`).join('');
+  const filtrados=downloadFiltCat?downloads.filter(d=>d.categoria===downloadFiltCat):downloads;
+  const div=document.getElementById('downloadsConteudo');
+  if(!filtrados.length){div.innerHTML='<div class="vazio-estado"><div class="vazio-icon">📭</div><p>Nenhum arquivo disponível.</p></div>';return;}
+  div.innerHTML=`<div class="downloads-grid">${filtrados.map(d=>`
     <div class="download-card">
-      <div class="download-icone">${esc(d.icone||'📄')}</div>
-      <div style="flex:1;">
+      <div class="download-icone">${d.icone||'📄'}</div>
+      <div>
         <div class="download-cat-badge">${esc(d.categoria||'Geral')}</div>
         <div class="download-nome">${esc(d.nome)}</div>
-        ${d.descricao?`<div class="download-desc">${esc(d.descricao)}</div>`:''}
-        <button class="btn btn-verde btn-icon" onclick="window.open('${esc(d.link)}','_blank','noopener,noreferrer')" style="font-size:0.78rem;margin-top:4px;">⬇️ Baixar</button>
+        <div class="download-desc">${esc(d.descricao||'')}</div>
+        <a href="${esc(d.link||'#')}" target="_blank" class="btn btn-azul btn-icon" style="font-size:0.8rem;">⬇️ Baixar</a>
       </div>
-    </div>`).join('')+'</div>';
+    </div>`).join('')}</div>`;
 }
-function filtrarCat(cat){downloadFiltCat=cat;renderDownloads();}
-function abrirAdminDownloads(){limparFormDownload();renderAdminDownloadsList();document.getElementById('modalAdminDownloads').classList.add('aberto');}
+function filtrarDownload(cat){downloadFiltCat=cat;renderDownloads();}
+function abrirAdminDownloads(){renderAdminDownloadsList();limparFormDownload();document.getElementById('modalAdminDownloads').classList.add('aberto');}
 function renderAdminDownloadsList(){
-  const el=document.getElementById('adminDownloadsList');
-  if(!downloads.length){el.innerHTML='<p style="font-size:0.84rem;color:var(--texto2);">Nenhum arquivo cadastrado ainda.</p>';return;}
-  el.innerHTML=downloads.map(d=>`<div style="display:flex;align-items:center;justify-content:space-between;padding:8px 10px;border:1.5px solid var(--borda);border-radius:8px;margin-bottom:7px;gap:10px;flex-wrap:wrap;">
-    <div style="flex:1;"><div style="font-family:'Nunito',sans-serif;font-weight:700;font-size:0.88rem;">${esc(d.icone||'📄')} ${esc(d.nome)}</div>
-    <div style="font-size:0.75rem;color:var(--texto2);">${esc(d.categoria||'Geral')}</div></div>
-    <div style="display:flex;gap:6px;">
-      <button class="btn btn-azul btn-icon" onclick="editarDownload('${esc(String(d.id))}')">✏️</button>
-      <button class="btn btn-verm btn-icon" onclick="excluirDownload('${esc(String(d.id))}')">🗑️</button>
-    </div></div>`).join('');
-}
-function selecionarIcone(icone,btn){
-  iconeEscolhido=icone;document.getElementById('downloadIcone').value=icone;
-  document.querySelectorAll('#iconeOpcoes .turma-btn-sel').forEach(b=>b.classList.remove('selecionado'));btn.classList.add('selecionado');
-}
-function salvarDownload(){
-  const nome=document.getElementById('downloadNome').value.trim();
-  const categoria=document.getElementById('downloadCategoria').value.trim();
-  const link=document.getElementById('downloadLink').value.trim();
-  if(!nome||!categoria||!link){toast('⚠️ Nome, categoria e link são obrigatórios!');return;}
-  const editId=document.getElementById('downloadEditId').value;
-  const desc=document.getElementById('downloadDesc').value.trim();
-  const icone=document.getElementById('downloadIcone').value||'📄';
-  fetch(API_URL,{method:'POST',body:JSON.stringify({action:editId?'editarDownload':'salvarDownload',id:editId,nome,categoria,descricao:desc,link,icone,sheet:'Downloads'})})
-    .then(r=>r.json())
-    .then(res=>{if(res.ok){toast(editId?'✅ Atualizado!':'✅ Adicionado!');limparFormDownload();carregarDownloads();setTimeout(renderAdminDownloadsList,800);}})
-    .catch(()=>toast('❌ Erro.'));
+  const div=document.getElementById('adminDownloadsList');
+  if(!downloads.length){div.innerHTML='<div style="color:var(--texto2);font-size:0.84rem;">Nenhum download.</div>';return;}
+  div.innerHTML=downloads.map(d=>`
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:7px 10px;border-bottom:1px solid var(--borda);font-size:0.84rem;">
+      <span>${d.icone||'📄'} ${esc(d.nome)}</span>
+      <div style="display:flex;gap:5px;">
+        <button class="btn btn-cinza btn-icon" onclick="editarDownload('${d.id}')">✏️</button>
+        <button class="btn btn-verm btn-icon" onclick="excluirDownload('${d.id}')">🗑️</button>
+      </div>
+    </div>`).join('');
 }
 function editarDownload(id){
-  const d=downloads.find(x=>String(x.id)===String(id));if(!d)return;
+  const d=downloads.find(x=>String(x.id)===String(id));
+  if(!d)return;
   document.getElementById('downloadEditId').value=d.id;
   document.getElementById('downloadNome').value=d.nome||'';
   document.getElementById('downloadCategoria').value=d.categoria||'';
   document.getElementById('downloadDesc').value=d.descricao||'';
   document.getElementById('downloadLink').value=d.link||'';
   document.getElementById('downloadIcone').value=d.icone||'📄';
-  document.getElementById('formDownloadTitulo').textContent='✏️ Editar';
-  document.getElementById('modalAdminDownloads').scrollTop=999;
+  document.getElementById('formDownloadTitulo').textContent='✏️ Editar Download';
 }
-function excluirDownload(id){
-  if(!confirm('Excluir?'))return;
-  fetch(API_URL,{method:'POST',body:JSON.stringify({action:'excluirDownload',id:String(id),sheet:'Downloads'})})
-    .then(()=>{toast('🗑️ Excluído.');carregarDownloads();setTimeout(renderAdminDownloadsList,800);})
-    .catch(()=>toast('❌ Erro.'));
+async function salvarDownload(){
+  const nome=document.getElementById('downloadNome').value.trim();
+  const cat=document.getElementById('downloadCategoria').value.trim();
+  const link=document.getElementById('downloadLink').value.trim();
+  if(!nome||!cat||!link){toast('⚠️ Preencha nome, categoria e link.');return;}
+  const editId=document.getElementById('downloadEditId').value;
+  const payload={
+    action:editId?'editarDownload':'salvarDownload',
+    nome,categoria:cat,
+    descricao:document.getElementById('downloadDesc').value.trim(),
+    link,icone:document.getElementById('downloadIcone').value||'📄'
+  };
+  if(editId)payload.id=editId;
+  try{
+    const r=await apiPost(payload);
+    if(r.ok){toast('✅ Salvo!');limparFormDownload();await carregarDownloads();renderAdminDownloadsList();}
+    else toast('❌ '+(r.erro||'Erro'));
+  }catch(e){toast('❌ '+e.message);}
+}
+async function excluirDownload(id){
+  if(!confirm('Excluir download?'))return;
+  try{const r=await apiPost({action:'excluirDownload',id});if(r.ok){toast('🗑️ Excluído.');await carregarDownloads();renderAdminDownloadsList();}}
+  catch(e){toast('❌ '+e.message);}
 }
 function limparFormDownload(){
   ['downloadEditId','downloadNome','downloadCategoria','downloadDesc','downloadLink'].forEach(id=>document.getElementById(id).value='');
   document.getElementById('downloadIcone').value='📄';
   document.getElementById('formDownloadTitulo').textContent='➕ Novo Download';
+  document.querySelectorAll('#iconeOpcoes .turma-btn-sel').forEach((b,i)=>b.classList.toggle('selecionado',i===0));
+}
+function selecionarIcone(icone,el){
+  iconeEscolhido=icone;
+  document.getElementById('downloadIcone').value=icone;
   document.querySelectorAll('#iconeOpcoes .turma-btn-sel').forEach(b=>b.classList.remove('selecionado'));
-  const first=document.querySelector('#iconeOpcoes .turma-btn-sel');if(first)first.classList.add('selecionado');
+  el.classList.add('selecionado');
 }
 
 /* ══════════════════════════════════════════════════════
-   PLANTÃO PEDAGÓGICO
+   PLANTÃO PEDAGÓGICO — DATAS (CORREÇÃO BUG 2)
 ══════════════════════════════════════════════════════ */
-function carregarPlantaoAlunos(forceRender){
-  return fetch(API_URL+'?sheet=PlantaoAlunos')
-    .then(r=>r.json())
-    .then(dados=>{
-      plantaoAlunos=dados.map(r=>{const n={};Object.keys(r).forEach(k=>{n[k.toLowerCase()]=r[k];});return n;});
-      if(forceRender)renderAdminPlantaoAlunosList();
-      return plantaoAlunos;
-    });
+async function carregarPlantaoDatas(){
+  try{
+    plantaoDatas=await apiGet('PlantaoDatas');
+    plantaoDatas.sort((a,b)=>String(a.data).localeCompare(String(b.data)));
+  }catch(e){plantaoDatas=[];}
 }
-function abrirAdminPlantaoAlunos(){atualizarSelectTurmas();limparFormPlantaoAluno();carregarPlantaoAlunos(true);document.getElementById('modalAdminPlantaoAlunos').classList.add('aberto');}
-function renderAdminPlantaoAlunosList(){
-  const filtro=document.getElementById('filtroPlantaoAlunoTurma').value;
-  const lista=filtro?plantaoAlunos.filter(a=>norm(a.turma)===norm(filtro)):plantaoAlunos;
-  lista.sort((a,b)=>norm(a.turma).localeCompare(norm(b.turma))||norm(a.nome).localeCompare(norm(b.nome)));
-  const el=document.getElementById('adminPlantaoAlunosList');
-  document.getElementById('adminPlantaoAlunosTotal').textContent=`Total: ${lista.length} aluno(s)`;
-  if(!lista.length){el.innerHTML='<p style="font-size:0.84rem;color:var(--texto2);text-align:center;padding:16px 0;">Nenhum aluno cadastrado ainda.</p>';return;}
-  el.innerHTML=lista.map(a=>`
-    <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 12px;border:1.5px solid var(--borda);border-radius:8px;margin-bottom:6px;gap:10px;flex-wrap:wrap;">
-      <div style="flex:1;"><span class="badge badge-azul" style="margin-right:8px;">${esc(a.turma)}</span><strong style="font-size:0.9rem;">${esc(a.nome)}</strong></div>
-      <div style="display:flex;gap:6px;">
-        <button class="btn btn-azul btn-icon" onclick="editarPlantaoAluno('${esc(String(a.id))}')">✏️</button>
-        <button class="btn btn-verm btn-icon" onclick="excluirPlantaoAluno('${esc(String(a.id))}')">🗑️</button>
-      </div>
-    </div>`).join('');
+
+async function abrirAdminPlantao(){
+  document.getElementById('modalAdminPlantao').classList.add('aberto');
+  limparFormPlantao();
+  await carregarPlantaoDatas();
+  renderAdminPlantaoDatasList();
 }
-function salvarPlantaoAluno(){
-  const turma=document.getElementById('plantaoAlunoTurma').value;
-  const nome=document.getElementById('plantaoAlunoNome').value.trim();
-  const editId=document.getElementById('plantaoAlunoEditId').value;
-  if(!turma||!nome){toast('⚠️ Turma e nome são obrigatórios!');return;}
-  fetch(API_URL,{method:'POST',body:JSON.stringify({action:editId?'editarPlantaoAluno':'salvarPlantaoAluno',id:editId,turma,nome,sheet:'PlantaoAlunos'})})
-    .then(r=>r.json())
-    .then(res=>{if(res.ok){toast(editId?'✅ Atualizado!':'✅ Adicionado!');limparFormPlantaoAluno();carregarPlantaoAlunos(true);setTimeout(renderPlantaoPgComDados,800);}})
-    .catch(()=>toast('❌ Erro.'));
-}
-function editarPlantaoAluno(id){
-  const a=plantaoAlunos.find(x=>String(x.id)===String(id));if(!a)return;
-  document.getElementById('plantaoAlunoEditId').value=a.id;
-  document.getElementById('plantaoAlunoTurma').value=a.turma||'';
-  document.getElementById('plantaoAlunoNome').value=a.nome||'';
-  document.getElementById('formPlantaoAlunoTitulo').textContent='✏️ Editar Aluno';
-  document.getElementById('modalAdminPlantaoAlunos').scrollTop=0;
-}
-function excluirPlantaoAluno(id){
-  if(!confirm('Excluir este aluno?'))return;
-  fetch(API_URL,{method:'POST',body:JSON.stringify({action:'excluirPlantaoAluno',id:String(id),sheet:'PlantaoAlunos'})})
-    .then(()=>{plantaoAlunos=plantaoAlunos.filter(a=>String(a.id)!==String(id));renderAdminPlantaoAlunosList();setTimeout(renderPlantaoPgComDados,400);toast('🗑️ Excluído.');})
-    .catch(()=>toast('❌ Erro.'));
-}
-function limparFormPlantaoAluno(){
-  document.getElementById('plantaoAlunoEditId').value='';
-  document.getElementById('plantaoAlunoNome').value='';
-  const t=document.getElementById('plantaoAlunoTurma');if(t)t.value=TURMAS_FIXAS[0]||'';
-  document.getElementById('formPlantaoAlunoTitulo').textContent='➕ Novo Aluno';
-}
-function carregarPlantaoPg(){
-  document.getElementById('plantaoPgConteudo').innerHTML=`<div class="loading-txt"><span class="spinner"></span> Carregando...</div>`;
-  Promise.all([
-    fetch(API_URL+'?sheet=PlantaoDatas').then(r=>r.json()),
-    fetch(API_URL+'?sheet=PlantaoPresenca').then(r=>r.json()),
-    fetch(API_URL+'?sheet=PlantaoAlunos').then(r=>r.json())
-  ]).then(([datas,presencas,alunos])=>{
-    plantaoDatas=datas.map(r=>{
-      const n={};Object.keys(r).forEach(k=>{n[k.toLowerCase()]=r[k];});
-      // Normaliza a data
-      if(n.data){
-        if(n.data instanceof Date)n.data=dataParaISO(n.data);
-        else if(typeof n.data==='string'&&n.data.includes('T'))n.data=n.data.slice(0,10);
-        else n.data=String(n.data).slice(0,10);
-      }
-      return n;
-    });
-    plantaoPresencas={};
-    presencas.forEach(p=>{
-      const obj={};Object.keys(p).forEach(k=>{obj[k.toLowerCase()]=p[k];});
-      const chave=String(obj.alunoid)+'_'+String(obj.dataid);
-      plantaoPresencas[chave]=obj.status||'-';
-    });
-    plantaoAlunos=alunos.map(r=>{const n={};Object.keys(r).forEach(k=>{n[k.toLowerCase()]=r[k];});return n;});
-    renderPlantaoPgComDados();
-  }).catch(err=>{
-    console.error(err);
-    document.getElementById('plantaoPgConteudo').innerHTML=`<div class="loading-txt" style="color:var(--vermelho);">⚠️ Erro ao carregar.</div>`;
-  });
-}
-function renderPlantaoPgComDados(){
-  const cont=document.getElementById('plantaoPgConteudo');
-  if(!plantaoAlunos.length&&!plantaoDatas.length){
-    cont.innerHTML=`<div class="vazio-estado"><div class="vazio-icon">📋</div><p>Nenhum aluno cadastrado.<br>Clique em <strong>👥 Gerenciar Alunos</strong> para adicionar.</p></div>`;return;
-  }
-  const porTurma={};
-  plantaoAlunos.forEach(a=>{const t=a.turma||'Sem Turma';if(!porTurma[t])porTurma[t]=[];porTurma[t].push(a);});
-  const turmasOrdenadas=Object.keys(porTurma).sort();
-  const datas=plantaoDatas.sort((a,b)=>String(a.data).localeCompare(String(b.data)));
-  let html='';
-  turmasOrdenadas.forEach(turma=>{
-    const alunos=porTurma[turma].sort((a,b)=>String(a.nome).localeCompare(String(b.nome)));
-    html+=`<div class="turma-section"><div class="turma-section-header"><span>🏫 Turma ${esc(turma)} <span class="badge badge-azul" style="margin-left:8px;">${alunos.length} aluno(s)</span></span></div>
-      <div class="plantao-pg-wrapper" style="margin-top:2px;"><table class="plantao-pg-table"><thead><tr><th class="col-aluno">Aluno</th>`;
-    datas.forEach(d=>{html+=`<th style="text-align:center;min-width:90px;">${esc(d.descricao||'Plantão')}<br><span style="font-weight:600;font-size:0.72rem;">${fmtData(String(d.data))}</span></th>`;});
-    if(!datas.length)html+=`<th style="text-align:center;color:rgba(255,255,255,0.7);font-size:0.78rem;">← Adicione datas em 📅 Gerenciar Datas</th>`;
-    html+=`</tr></thead><tbody>`;
-    alunos.forEach(aluno=>{
-      html+=`<tr><td class="td-nome">${esc(aluno.nome)}</td>`;
-      datas.forEach(d=>{
-        const chave=String(aluno.id)+'_'+String(d.id);
-        const status=plantaoPresencas[chave]||'-';
-        const cls=status==='P'?'pres-P':status==='F'?'pres-F':'pres-aguard';
-        const label=status==='P'?'✔':status==='F'?'✖':'—';
-        html+=`<td><button class="pres-btn ${cls}" onclick="ciclarPresenca('${esc(String(aluno.id))}','${esc(String(d.id))}','${chave}')">${label}</button></td>`;
-      });
-      if(!datas.length)html+=`<td style="color:#aaa;text-align:center;">—</td>`;
-      html+=`</tr>`;
-    });
-    html+=`</tbody></table></div></div>`;
-  });
-  html+=`<div style="display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-top:16px;font-size:0.82rem;color:var(--texto2);">
-    <span><span class="pres-btn pres-P" style="cursor:default;">✔</span> Presente</span>
-    <span><span class="pres-btn pres-F" style="cursor:default;">✖</span> Faltou</span>
-    <span><span class="pres-btn pres-aguard" style="cursor:default;">—</span> Aguardando</span>
-    <span style="font-size:0.76rem;">💡 Clique no botão para alternar</span></div>`;
-  cont.innerHTML=html;
-}
-function ciclarPresenca(alunoId,dataId,chave){
-  const atual=plantaoPresencas[chave]||'-';
-  const proximo=atual==='-'?'P':atual==='P'?'F':'-';
-  plantaoPresencas[chave]=proximo;
-  renderPlantaoPgComDados();
-  fetch(API_URL,{method:'POST',body:JSON.stringify({action:'salvarPresenca',alunoId,dataId,status:proximo,sheet:'PlantaoPresenca'})})
-    .catch(()=>{toast('❌ Erro ao salvar presença.');plantaoPresencas[chave]=atual;renderPlantaoPgComDados();});
-}
-function imprimirPlantao(){window.print();}
-function abrirAdminPlantao(){limparFormPlantao();renderAdminPlantaoDatasList();document.getElementById('modalAdminPlantao').classList.add('aberto');}
-function renderAdminPlantaoDatasList(){
-  const el=document.getElementById('adminPlantaoDatasList');
-  if(!plantaoDatas.length){el.innerHTML='<p style="font-size:0.84rem;color:var(--texto2);">Nenhuma data cadastrada ainda.</p>';return;}
-  el.innerHTML=plantaoDatas.sort((a,b)=>String(a.data).localeCompare(String(b.data))).map(d=>`
-    <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 10px;border:1.5px solid var(--borda);border-radius:8px;margin-bottom:7px;gap:10px;">
-      <div><div style="font-family:'Nunito',sans-serif;font-weight:700;font-size:0.88rem;">${esc(d.descricao||'Plantão')}</div>
-      <div style="font-size:0.75rem;color:var(--texto2);">${fmtData(String(d.data))}</div></div>
-      <button class="btn btn-verm btn-icon" onclick="excluirDataPlantao('${esc(String(d.id))}')">🗑️</button>
-    </div>`).join('');
-}
-function salvarDataPlantao(){
-  const data=document.getElementById('plantaoDataInput').value;
-  const desc=document.getElementById('plantaoDataDesc').value.trim();
-  if(!data){toast('⚠️ Selecione uma data!');return;}
-  if(plantaoDatas.some(d=>String(d.data)===data)){toast('⚠️ Data já cadastrada!');return;}
-  fetch(API_URL,{method:'POST',body:JSON.stringify({action:'salvarPlantaoData',data,descricao:desc||'Plantão',sheet:'PlantaoDatas'})})
-    .then(r=>r.json())
-    .then(res=>{
-      if(res.ok){
-        plantaoDatas.push({id:res.id,data,descricao:desc||'Plantão'});
-        limparFormPlantao();renderAdminPlantaoDatasList();renderPlantaoPgComDados();
-        toast('✅ Data adicionada!');
-      } else {
-        toast('❌ Erro: '+JSON.stringify(res));
-      }
-    })
-    .catch(err=>{toast('❌ Erro ao salvar.');console.error(err);});
-}
-function excluirDataPlantao(id){
-  if(!confirm('Excluir esta data? As presenças serão apagadas.'))return;
-  fetch(API_URL,{method:'POST',body:JSON.stringify({action:'excluirPlantaoData',id:String(id),sheet:'PlantaoDatas'})})
-    .then(()=>{
-      plantaoDatas=plantaoDatas.filter(d=>String(d.id)!==String(id));
-      Object.keys(plantaoPresencas).forEach(k=>{if(k.endsWith('_'+id))delete plantaoPresencas[k];});
-      renderAdminPlantaoDatasList();renderPlantaoPgComDados();toast('🗑️ Data excluída.');
-    }).catch(()=>toast('❌ Erro.'));
-}
+
 function limparFormPlantao(){
-  document.getElementById('plantaoDataEditId').value='';
   document.getElementById('plantaoDataInput').value='';
   document.getElementById('plantaoDataDesc').value='';
+  document.getElementById('plantaoDataEditId').value='';
   document.getElementById('formPlantaoTitulo').textContent='➕ Nova Data';
 }
 
-/* ══════════════════════════════════════════════════════
-   ATA
-══════════════════════════════════════════════════════ */
-function salvarAtas(){localStorage.setItem('atas_v1',JSON.stringify(atas));}
-let qtdParticipantesAta = 4;
+function renderAdminPlantaoDatasList(){
+  const div=document.getElementById('adminPlantaoDatasList');
+  if(!div)return;
+  if(!plantaoDatas.length){
+    div.innerHTML='<div style="color:var(--texto2);font-size:0.84rem;padding:8px 0;">Nenhuma data cadastrada.</div>';
+    return;
+  }
+  div.innerHTML=plantaoDatas.map(d=>`
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 10px;border-bottom:1px solid var(--borda);font-size:0.85rem;">
+      <div>
+        <strong>${fmtData(d.data)}</strong>
+        <span style="color:var(--texto2);margin-left:8px;">${esc(d.descricao||'')}</span>
+      </div>
+      <div style="display:flex;gap:6px;">
+        <button class="btn btn-cinza btn-icon" onclick="editarDataPlantao('${d.id}')">✏️</button>
+        <button class="btn btn-verm btn-icon" onclick="excluirDataPlantao('${d.id}')">🗑️</button>
+      </div>
+    </div>`).join('');
+}
 
-function abrirModalNovaAta(id){
-  qtdParticipantesAta=4;
+function editarDataPlantao(id){
+  const d=plantaoDatas.find(x=>String(x.id)===String(id));
+  if(!d)return;
+  document.getElementById('plantaoDataInput').value=d.data||'';
+  document.getElementById('plantaoDataDesc').value=d.descricao||'';
+  document.getElementById('plantaoDataEditId').value=d.id;
+  document.getElementById('formPlantaoTitulo').textContent='✏️ Editar Data';
+}
+
+async function excluirDataPlantao(id){
+  if(!confirm('Excluir esta data e todas as presenças associadas?'))return;
+  try{
+    const r=await apiPost({action:'excluirPlantaoData',id});
+    if(r.ok){toast('🗑️ Data excluída.');await carregarPlantaoDatas();renderAdminPlantaoDatasList();carregarPlantaoPg();}
+    else toast('❌ '+(r.erro||'Erro ao excluir'));
+  }catch(e){toast('❌ Erro: '+e.message);}
+}
+
+// ✅ CORREÇÃO BUG 2: salvar data com POST correto
+async function salvarDataPlantao(){
+  const dataVal=document.getElementById('plantaoDataInput').value.trim();
+  const descVal=document.getElementById('plantaoDataDesc').value.trim();
+  const editId=document.getElementById('plantaoDataEditId').value;
+  if(!dataVal){toast('⚠️ Informe a data.');return;}
+  const btn=document.querySelector('#modalAdminPlantao .btn-verde');
+  if(btn){btn.disabled=true;btn.innerHTML='<span class="spinner"></span> Salvando...';}
+  try{
+    const payload={
+      action: editId?'editarPlantaoData':'salvarPlantaoData',
+      data:   dataVal,
+      descricao: descVal||'Plantão'
+    };
+    if(editId)payload.id=editId;
+    const r=await apiPost(payload);
+    if(r.ok){
+      toast(editId?'✅ Data atualizada!':'✅ Data salva!');
+      limparFormPlantao();
+      await carregarPlantaoDatas();
+      renderAdminPlantaoDatasList();
+      carregarPlantaoPg();
+    }else{
+      toast('❌ Erro: '+(r.erro||'Falha no servidor'));
+    }
+  }catch(e){toast('❌ Erro de conexão: '+e.message);}
+  finally{if(btn){btn.disabled=false;btn.innerHTML='💾 Salvar Data';}}
+}
+
+/* ══════════════════════════════════════════════════════
+   PLANTÃO PEDAGÓGICO — ALUNOS
+══════════════════════════════════════════════════════ */
+async function carregarPlantaoAlunos(forcar=false){
+  if(!plantaoAlunos.length||forcar){
+    try{plantaoAlunos=await apiGet('PlantaoAlunos');}
+    catch(e){plantaoAlunos=[];}
+  }
+  renderAdminPlantaoAlunosList();
+}
+
+function renderAdminPlantaoAlunosList(){
+  const filtro=document.getElementById('filtroPlantaoAlunoTurma')?.value||'';
+  const div=document.getElementById('adminPlantaoAlunosList');
+  if(!div)return;
+  const lista=filtro?plantaoAlunos.filter(a=>a.turma===filtro):plantaoAlunos;
+  const sorted=[...lista].sort((a,b)=>String(a.turma).localeCompare(String(b.turma))||String(a.nome).localeCompare(String(b.nome),'pt'));
+  if(!sorted.length){div.innerHTML='<div style="color:var(--texto2);font-size:0.84rem;padding:8px 0;">Nenhum aluno.</div>';return;}
+  div.innerHTML=sorted.map(a=>`
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:7px 10px;border-bottom:1px solid var(--borda);font-size:0.85rem;">
+      <span><strong style="color:var(--azul);">${esc(a.turma)}</strong> — ${esc(a.nome)}</span>
+      <div style="display:flex;gap:5px;">
+        <button class="btn btn-cinza btn-icon" onclick="editarPlantaoAluno('${a.id}')">✏️</button>
+        <button class="btn btn-verm btn-icon" onclick="excluirPlantaoAluno('${a.id}')">🗑️</button>
+      </div>
+    </div>`).join('');
+  const total=document.getElementById('adminPlantaoAlunosTotal');
+  if(total)total.textContent=`Total: ${sorted.length} aluno(s)${filtro?' na turma '+filtro:''}`;
+}
+
+async function abrirAdminPlantaoAlunos(){
+  document.getElementById('modalAdminPlantaoAlunos').classList.add('aberto');
+  limparFormPlantaoAluno();
+  await carregarPlantaoAlunos(true);
+}
+
+function limparFormPlantaoAluno(){
+  document.getElementById('plantaoAlunoEditId').value='';
+  document.getElementById('plantaoAlunoNome').value='';
+  const sel=document.getElementById('plantaoAlunoTurma');
+  if(sel)sel.value=TURMAS_FIXAS[0]||'';
+  document.getElementById('formPlantaoAlunoTitulo').textContent='➕ Novo Aluno';
+}
+
+function editarPlantaoAluno(id){
+  const a=plantaoAlunos.find(x=>String(x.id)===String(id));
+  if(!a)return;
+  document.getElementById('plantaoAlunoEditId').value=a.id;
+  document.getElementById('plantaoAlunoNome').value=a.nome||'';
+  const sel=document.getElementById('plantaoAlunoTurma');
+  if(sel)sel.value=a.turma||'';
+  document.getElementById('formPlantaoAlunoTitulo').textContent='✏️ Editar Aluno';
+}
+
+async function salvarPlantaoAluno(){
+  const nome=document.getElementById('plantaoAlunoNome').value.trim();
+  const turma=document.getElementById('plantaoAlunoTurma').value;
+  if(!nome||!turma){toast('⚠️ Preencha turma e nome.');return;}
+  const editId=document.getElementById('plantaoAlunoEditId').value;
+  const payload={action:editId?'editarPlantaoAluno':'salvarPlantaoAluno',turma,nome};
+  if(editId)payload.id=editId;
+  try{
+    const r=await apiPost(payload);
+    if(r.ok){toast('✅ Aluno salvo!');limparFormPlantaoAluno();await carregarPlantaoAlunos(true);}
+    else toast('❌ '+(r.erro||'Erro'));
+  }catch(e){toast('❌ '+e.message);}
+}
+
+async function excluirPlantaoAluno(id){
+  if(!confirm('Excluir aluno e presenças?'))return;
+  try{
+    const r=await apiPost({action:'excluirPlantaoAluno',id});
+    if(r.ok){toast('🗑️ Aluno excluído.');await carregarPlantaoAlunos(true);}
+    else toast('❌ '+(r.erro||'Erro'));
+  }catch(e){toast('❌ '+e.message);}
+}
+
+/* ══════════════════════════════════════════════════════
+   PLANTÃO PEDAGÓGICO — TABELA PRINCIPAL
+══════════════════════════════════════════════════════ */
+async function carregarPlantaoPg(){
+  const div=document.getElementById('plantaoPgConteudo');
+  div.innerHTML='<div class="loading-txt"><span class="spinner spinner-azul"></span> Carregando...</div>';
+  try{
+    await Promise.all([carregarPlantaoDatas(),carregarPlantaoAlunos()]);
+    const presRaw=await apiGet('PlantaoPresenca');
+    plantaoPresencas={};
+    presRaw.forEach(p=>{
+      const k=`${p.alunoid}_${p.dataid}`;
+      plantaoPresencas[k]=p.status||'-';
+    });
+  }catch(e){div.innerHTML='<div style="color:var(--vermelho);">Erro ao carregar dados.</div>';return;}
+  renderPlantaoPg();
+}
+
+function renderPlantaoPg(){
+  const div=document.getElementById('plantaoPgConteudo');
+  if(!plantaoDatas.length){
+    div.innerHTML='<div class="vazio-estado"><div class="vazio-icon">📅</div><p>Nenhuma data de plantão cadastrada.<br>Clique em <strong>📅 Gerenciar Datas</strong> para adicionar.</p></div>';
+    return;
+  }
+  if(!plantaoAlunos.length){
+    div.innerHTML='<div class="vazio-estado"><div class="vazio-icon">👥</div><p>Nenhum aluno cadastrado.<br>Clique em <strong>👥 Gerenciar Alunos</strong>.</p></div>';
+    return;
+  }
+  const turmas=[...new Set(plantaoAlunos.map(a=>a.turma))].sort();
+  let html='<div class="plantao-pg-wrapper">';
+  turmas.forEach(turma=>{
+    const alunos=plantaoAlunos.filter(a=>a.turma===turma).sort((a,b)=>String(a.nome).localeCompare(String(b.nome),'pt'));
+    html+=`<div class="turma-section">
+      <div class="turma-section-header">🏫 Turma ${esc(turma)} <span style="font-size:0.8rem;font-weight:600;color:var(--texto2);">${alunos.length} aluno(s)</span></div>
+      <div style="overflow-x:auto;">
+      <table class="plantao-pg-table">
+        <thead><tr>
+          <th class="col-aluno">Aluno</th>
+          ${plantaoDatas.map(d=>`<th title="${esc(d.descricao||'')}">${fmtData(d.data)}<br><small style="font-weight:400;opacity:0.85;">${esc(d.descricao||'')}</small></th>`).join('')}
+        </tr></thead>
+        <tbody>
+          ${alunos.map(a=>`
+            <tr>
+              <td class="td-nome">${esc(a.nome)}</td>
+              ${plantaoDatas.map(d=>{
+                const k=`${a.id}_${d.id}`;
+                const st=plantaoPresencas[k]||'-';
+                const cls=st==='P'?'pres-P':st==='F'?'pres-F':'pres-aguard';
+                const label=st==='-'?'·':st;
+                return `<td><button class="pres-btn ${cls}" onclick="togglePresenca('${a.id}','${d.id}',this)">${label}</button></td>`;
+              }).join('')}
+            </tr>`).join('')}
+        </tbody>
+      </table></div>
+    </div>`;
+  });
+  html+='</div>';
+  div.innerHTML=html;
+}
+
+async function togglePresenca(alunoId,dataId,btn){
+  const k=`${alunoId}_${dataId}`;
+  const cur=plantaoPresencas[k]||'-';
+  const prox=cur==='-'?'P':cur==='P'?'F':'-';
+  btn.textContent=prox==='-'?'·':prox;
+  btn.className='pres-btn '+(prox==='P'?'pres-P':prox==='F'?'pres-F':'pres-aguard');
+  plantaoPresencas[k]=prox;
+  try{
+    await apiPost({action:'salvarPresenca',alunoId,dataId,status:prox});
+  }catch(e){toast('❌ Erro ao salvar presença: '+e.message);}
+}
+
+function imprimirPlantao(){window.print();}
+
+/* ══════════════════════════════════════════════════════
+   CADASTRO DE LISTA (CORREÇÃO BUG 1)
+══════════════════════════════════════════════════════ */
+function renderCadastroLista(){
+  const div=document.getElementById('cadastroConteudo');
+  if(!listaAtual.tipo){
+    div.innerHTML='<div class="vazio-estado"><div class="vazio-icon">📝</div><p>Clique em <strong>+ Nova Lista</strong> para começar.</p></div>';
+    return;
+  }
+  const label=TIPOS_LISTA.find(t=>t.value===listaAtual.tipo)?.label||listaAtual.tipoCustom||listaAtual.tipo;
+  div.innerHTML=`
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px;">
+      <div>
+        <span class="badge badge-azul" style="font-size:0.85rem;">${esc(label)}</span>
+        <span style="font-size:0.84rem;color:var(--texto2);margin-left:8px;">${listaAtual.itens.length} item(s)</span>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <button class="btn btn-verde btn-icon" onclick="abrirModalOrigemLista()">+ Adicionar</button>
+        <button class="btn btn-amarelo btn-icon" onclick="salvarListaLocal()">💾 Salvar Lista</button>
+        <button class="btn btn-cinza btn-icon" onclick="imprimirLista()">🖨️ Imprimir</button>
+        <button class="btn btn-verm btn-icon" onclick="limparLista()">🗑️ Nova</button>
+      </div>
+    </div>
+    <div style="border:1.5px solid var(--borda);border-radius:10px;overflow:hidden;">
+      <div style="background:var(--azul);color:#fff;padding:8px 12px;font-family:'Nunito',sans-serif;font-weight:700;font-size:0.88rem;display:flex;">
+        <span style="flex:0 0 40px;">#</span>
+        <span style="flex:1;">Nome</span>
+        <span style="flex:1;">Observação</span>
+        <span style="flex:0 0 50px;"></span>
+      </div>
+      ${listaAtual.itens.length?listaAtual.itens.map((item,i)=>`
+        <div class="lista-item-row">
+          <span style="flex:0 0 40px;color:var(--texto2);font-weight:700;">${i+1}</span>
+          <span style="flex:1;">${esc(item.nome)}</span>
+          <input type="text" value="${esc(item.obs||'')}" placeholder="obs..." style="flex:1;border:none;border-bottom:1px solid var(--borda);border-radius:0;padding:4px 6px;font-size:0.85rem;" onchange="listaAtual.itens[${i}].obs=this.value">
+          <button class="btn btn-verm btn-icon" onclick="removerItemLista(${i})" style="flex:0 0 auto;">✕</button>
+        </div>`).join('')
+      :'<div style="padding:20px;text-align:center;color:var(--texto2);font-size:0.88rem;">Nenhum item ainda. Clique em <strong>+ Adicionar</strong>.</div>'}
+    </div>`;
+}
+
+function abrirModalNovaLista(){
+  document.getElementById('listaTipoOpts').innerHTML=TIPOS_LISTA.map(t=>`
+    <div class="lista-tipo-btn" onclick="selecionarTipoLista('${t.value}',this)">${t.label}</div>`).join('');
+  document.getElementById('listaTipoCustomWrap').style.display='none';
+  document.getElementById('listaTipoCustom').value='';
+  document.getElementById('modalNovaLista').classList.add('aberto');
+}
+
+let tipoListaSel='';
+function selecionarTipoLista(val,el){
+  tipoListaSel=val;
+  document.querySelectorAll('.lista-tipo-btn').forEach(b=>b.classList.remove('selecionado'));
+  el.classList.add('selecionado');
+  document.getElementById('listaTipoCustomWrap').style.display=val==='outro'?'block':'none';
+}
+
+function confirmarTipoLista(){
+  if(!tipoListaSel){toast('⚠️ Selecione um tipo.');return;}
+  const custom=document.getElementById('listaTipoCustom').value.trim();
+  if(tipoListaSel==='outro'&&!custom){toast('⚠️ Informe o nome da lista.');return;}
+  listaAtual={tipo:tipoListaSel,tipoCustom:custom,itens:[]};
+  fecharModal('modalNovaLista');
+  renderCadastroLista();
+}
+
+function abrirModalOrigemLista(){
+  const label=TIPOS_LISTA.find(t=>t.value===listaAtual.tipo)?.label||listaAtual.tipoCustom||listaAtual.tipo;
+  document.getElementById('origemListaTitulo').textContent=`Adicionar à lista: ${label}`;
+  document.getElementById('origemListaConteudo').innerHTML='';
+  document.getElementById('modalOrigemLista').classList.add('aberto');
+}
+
+// ✅ CORREÇÃO BUG 1: busca na aba PlantaoAlunos e filtra por turma
+function mostrarTurmasParaLista(){
+  const div=document.getElementById('origemListaConteudo');
+  div.innerHTML=`
+    <label style="font-size:0.82rem;font-weight:600;color:var(--texto2);">Selecione a turma:</label>
+    <div class="turmas-grid-popup" style="margin-top:10px;">
+      ${TURMAS_FIXAS.map(t=>`<div class="turma-btn-popup" onclick="carregarAlunosDaTurmaParaLista('${t}')">${t}</div>`).join('')}
+    </div>`;
+}
+
+async function carregarAlunosDaTurmaParaLista(turma){
+  const div=document.getElementById('origemListaConteudo');
+  div.innerHTML=`<div class="loading-txt"><span class="spinner spinner-azul"></span> Carregando turma ${turma}...</div>`;
+  try{
+    // Busca na aba correta: PlantaoAlunos
+    const todos=await apiGet('PlantaoAlunos');
+    const alunos=todos
+      .filter(a=>String(a.turma||'').trim().toUpperCase()===turma.trim().toUpperCase())
+      .sort((a,b)=>String(a.nome).localeCompare(String(b.nome),'pt'));
+
+    if(!alunos.length){
+      div.innerHTML=`
+        <div style="text-align:center;padding:20px;color:var(--texto2);font-size:0.88rem;">
+          Nenhum aluno cadastrado na turma <strong>${turma}</strong>.<br>
+          Cadastre em <em>Plantão Ped. → Gerenciar Alunos</em>.
+        </div>
+        <button class="btn btn-cinza" style="margin-top:8px;" onclick="mostrarTurmasParaLista()">← Voltar</button>`;
+      return;
+    }
+
+    div.innerHTML=`
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+        <strong style="font-size:0.9rem;">Turma ${turma} — ${alunos.length} aluno(s)</strong>
+        <button class="btn btn-cinza btn-icon" onclick="mostrarTurmasParaLista()">← Voltar</button>
+      </div>
+      <label style="display:flex;align-items:center;gap:8px;margin-bottom:8px;cursor:pointer;">
+        <input type="checkbox" id="chkTodosAlunos" onchange="marcarTodosAlunos(this)" style="width:16px;height:16px;accent-color:var(--azul);">
+        <span style="font-size:0.84rem;font-weight:700;">Selecionar todos</span>
+      </label>
+      <div style="max-height:260px;overflow-y:auto;border:1px solid var(--borda);border-radius:8px;padding:4px 0;">
+        ${alunos.map(a=>`
+          <label class="lista-item-row" style="cursor:pointer;gap:10px;justify-content:flex-start;">
+            <input type="checkbox" class="chk-aluno-lista" data-nome="${esc(a.nome)}" style="width:16px;height:16px;accent-color:var(--azul);flex-shrink:0;">
+            <span style="font-size:0.88rem;">${esc(a.nome)}</span>
+          </label>`).join('')}
+      </div>
+      <button class="btn btn-verde" style="margin-top:12px;width:100%;" onclick="adicionarAlunosSelecionados()">
+        ✅ Adicionar selecionados
+      </button>`;
+  }catch(err){
+    div.innerHTML=`<div style="color:var(--vermelho);font-size:0.85rem;padding:12px 0;">❌ Erro ao carregar alunos: ${err.message}</div>
+      <button class="btn btn-cinza" style="margin-top:8px;" onclick="mostrarTurmasParaLista()">← Voltar</button>`;
+  }
+}
+
+function marcarTodosAlunos(chk){
+  document.querySelectorAll('.chk-aluno-lista').forEach(c=>c.checked=chk.checked);
+}
+
+function adicionarAlunosSelecionados(){
+  const sel=document.querySelectorAll('.chk-aluno-lista:checked');
+  if(!sel.length){toast('⚠️ Marque ao menos um aluno.');return;}
+  let adicionados=0;
+  sel.forEach(chk=>{
+    const nome=chk.dataset.nome;
+    if(!listaAtual.itens.find(i=>norm(i.nome)===norm(nome))){
+      listaAtual.itens.push({nome,obs:''});
+      adicionados++;
+    }
+  });
+  fecharModal('modalOrigemLista');
+  renderCadastroLista();
+  toast(`✅ ${adicionados} aluno(s) adicionado(s).`);
+}
+
+function adicionarFuncionarioLista(){
+  const div=document.getElementById('origemListaConteudo');
+  div.innerHTML=`
+    <label style="font-size:0.82rem;font-weight:600;color:var(--texto2);">Selecione o funcionário:</label>
+    <div style="max-height:260px;overflow-y:auto;border:1px solid var(--borda);border-radius:8px;margin-top:8px;padding:4px 0;">
+      ${ANIVERSARIANTES.filter(a=>a.tipo==='Funcionário'||a.tipo==='Funcionária').sort((a,b)=>a.nome.localeCompare(b.nome,'pt')).map(a=>`
+        <div class="lista-item-row" style="cursor:pointer;" onclick="addItemLista('${esc(a.nome)}')">
+          👤 ${esc(a.nome)} <span style="color:var(--texto2);font-size:0.8rem;margin-left:6px;">${esc(a.turma)}</span>
+        </div>`).join('')}
+    </div>`;
+}
+
+function adicionarOutroLista(){
+  const div=document.getElementById('origemListaConteudo');
+  div.innerHTML=`
+    <label>Nome</label>
+    <input type="text" id="outroNomeInput" placeholder="Nome completo..." style="margin-bottom:10px;">
+    <button class="btn btn-verde" onclick="addItemLista(document.getElementById('outroNomeInput').value.trim())">+ Adicionar</button>`;
+  setTimeout(()=>document.getElementById('outroNomeInput')?.focus(),50);
+}
+
+function addItemLista(nome){
+  if(!nome){toast('⚠️ Informe o nome.');return;}
+  if(listaAtual.itens.find(i=>norm(i.nome)===norm(nome))){toast('⚠️ Já está na lista.');return;}
+  listaAtual.itens.push({nome,obs:''});
+  fecharModal('modalOrigemLista');
+  renderCadastroLista();
+  toast('✅ '+nome+' adicionado(a).');
+}
+
+function removerItemLista(idx){
+  listaAtual.itens.splice(idx,1);
+  renderCadastroLista();
+}
+
+function limparLista(){
+  if(listaAtual.itens.length&&!confirm('Descartar a lista atual?'))return;
+  listaAtual={tipo:'',itens:[]};
+  tipoListaSel='';
+  renderCadastroLista();
+}
+
+function salvarListaLocal(){
+  if(!listaAtual.itens.length){toast('⚠️ Adicione itens à lista.');return;}
+  const lista={...listaAtual,id:Date.now(),criadaEm:new Date().toISOString().slice(0,10)};
+  listasSalvas.push(lista);
+  localStorage.setItem('listas_v1',JSON.stringify(listasSalvas));
+  toast('💾 Lista salva!');
+}
+
+function abrirModalListasSalvas(){
+  const div=document.getElementById('listasSalvasConteudo');
+  if(!listasSalvas.length){div.innerHTML='<div class="vazio-estado"><div class="vazio-icon">📭</div><p>Nenhuma lista salva.</p></div>';}
+  else{div.innerHTML=listasSalvas.slice().reverse().map(l=>{
+    const label=TIPOS_LISTA.find(t=>t.value===l.tipo)?.label||l.tipoCustom||l.tipo;
+    return `<div class="reuniao-card">
+      <div>
+        <div class="reuniao-titulo">${esc(label)}</div>
+        <div class="reuniao-info">${l.itens.length} item(s) • Criada em ${fmtData(l.criadaEm)}</div>
+      </div>
+      <div style="display:flex;gap:6px;">
+        <button class="btn btn-azul btn-icon" onclick="carregarListaSalva('${l.id}')">📂 Abrir</button>
+        <button class="btn btn-verm btn-icon" onclick="excluirListaSalva('${l.id}')">🗑️</button>
+      </div>
+    </div>`;
+  }).join('');}
+  document.getElementById('modalListasSalvas').classList.add('aberto');
+}
+
+function carregarListaSalva(id){
+  const l=listasSalvas.find(x=>String(x.id)===String(id));
+  if(!l)return;
+  listaAtual={tipo:l.tipo,tipoCustom:l.tipoCustom,itens:[...l.itens]};
+  fecharModal('modalListasSalvas');
+  renderCadastroLista();
+  toast('📂 Lista carregada.');
+}
+
+function excluirListaSalva(id){
+  if(!confirm('Excluir lista salva?'))return;
+  listasSalvas=listasSalvas.filter(x=>String(x.id)!==String(id));
+  localStorage.setItem('listas_v1',JSON.stringify(listasSalvas));
+  abrirModalListasSalvas();
+  toast('🗑️ Excluída.');
+}
+
+function imprimirLista(){window.print();}
+
+/* ══════════════════════════════════════════════════════
+   ATAS
+══════════════════════════════════════════════════════ */
+function renderAtas(){
+  const div=document.getElementById('ataConteudo');
+  if(!atas.length){div.innerHTML='<div class="vazio-estado"><div class="vazio-icon">📋</div><p>Nenhuma ata. Clique em <strong>+ Nova Ata</strong>.</p></div>';return;}
+  div.innerHTML=[...atas].sort((a,b)=>String(b.data).localeCompare(String(a.data))).map(a=>`
+    <div class="ata-card">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px;">
+        <div>
+          <div class="ata-card-titulo">${esc(a.titulo)}</div>
+          <div class="ata-card-info">${fmtData(a.data)}${a.horario?' às '+a.horario:''}${a.local?' • '+a.local:''}</div>
+        </div>
+        <div style="display:flex;gap:6px;flex-shrink:0;">
+          <button class="btn btn-cinza btn-icon" onclick="editarAta('${a.id}')">✏️</button>
+          <button class="btn btn-verm btn-icon" onclick="excluirAta('${a.id}')">🗑️</button>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+function abrirModalNovaAta(){
   document.getElementById('ataEditId').value='';
-  document.getElementById('ataData').value=dataParaISO(new Date());
+  document.getElementById('ataData').value=new Date().toISOString().slice(0,10);
   document.getElementById('ataHorario').value='';
   document.getElementById('ataTitulo').value='';
   document.getElementById('ataLocal').value='';
   document.getElementById('ataConteudo').value='';
-  document.getElementById('ataModalTitulo').textContent='📋 Nova Ata';
-  renderCamposParticipantes([]);
-  if(id){
-    const a=atas.find(x=>x.id===id);if(!a)return;
-    document.getElementById('ataEditId').value=a.id;
-    document.getElementById('ataData').value=a.data||'';
-    document.getElementById('ataHorario').value=a.horario||'';
-    document.getElementById('ataTitulo').value=a.titulo||'';
-    document.getElementById('ataLocal').value=a.local||'';
-    document.getElementById('ataConteudo').value=a.conteudo||'';
-    document.getElementById('ataModalTitulo').textContent='✏️ Editar Ata';
-    renderCamposParticipantes(a.participantes||[]);
-  }
+  document.getElementById('ataParticipantesWrap').innerHTML='';
+  document.getElementById('ataModalTitulo').textContent='📋 Nova Ata de Reunião';
+  adicionarCampoParticipante();
   document.getElementById('modalNovaAta').classList.add('aberto');
 }
-function renderCamposParticipantes(participantes){
+
+function editarAta(id){
+  const a=atas.find(x=>String(x.id)===String(id));
+  if(!a)return;
+  document.getElementById('ataEditId').value=a.id;
+  document.getElementById('ataData').value=a.data||'';
+  document.getElementById('ataHorario').value=a.horario||'';
+  document.getElementById('ataTitulo').value=a.titulo||'';
+  document.getElementById('ataLocal').value=a.local||'';
+  document.getElementById('ataConteudo').value=a.conteudo||'';
+  document.getElementById('ataModalTitulo').textContent='✏️ Editar Ata';
   const wrap=document.getElementById('ataParticipantesWrap');
-  const qtd=Math.max(4,participantes.length);
-  wrap.innerHTML=Array.from({length:qtd},(_,i)=>`
-    <div class="ata-participante-row">
-      <input type="text" placeholder="Nome do participante ${i+1}" value="${esc(participantes[i]||'')}" class="ata-part-input">
-    </div>`).join('');
-  qtdParticipantesAta=qtd;
+  wrap.innerHTML='';
+  (a.participantes||[]).forEach(p=>{const row=criarRowParticipante();row.querySelector('input').value=p;wrap.appendChild(row);});
+  if(!(a.participantes||[]).length)adicionarCampoParticipante();
+  document.getElementById('modalNovaAta').classList.add('aberto');
 }
-function adicionarCampoParticipante(){
-  const wrap=document.getElementById('ataParticipantesWrap');
+
+function criarRowParticipante(){
   const div=document.createElement('div');
   div.className='ata-participante-row';
-  div.innerHTML=`<input type="text" placeholder="Nome do participante ${qtdParticipantesAta+1}" class="ata-part-input">`;
-  wrap.appendChild(div);
-  qtdParticipantesAta++;
+  div.innerHTML='<input type="text" placeholder="Nome do participante..."><button class="btn btn-verm btn-icon" onclick="this.parentElement.remove()">✕</button>';
+  return div;
 }
-function getParticipantesAta(){
-  return [...document.querySelectorAll('.ata-part-input')].map(i=>i.value.trim()).filter(Boolean);
+
+function adicionarCampoParticipante(){
+  document.getElementById('ataParticipantesWrap').appendChild(criarRowParticipante());
 }
+
 function salvarAta(){
   const titulo=document.getElementById('ataTitulo').value.trim();
   const conteudo=document.getElementById('ataConteudo').value.trim();
-  if(!titulo||!conteudo){toast('⚠️ Título e conteúdo são obrigatórios!');return;}
+  if(!titulo||!conteudo){toast('⚠️ Preencha título e conteúdo.');return;}
   const editId=document.getElementById('ataEditId').value;
+  const participantes=[...document.querySelectorAll('#ataParticipantesWrap input')].map(i=>i.value.trim()).filter(Boolean);
   const ata={
-    id:editId||Date.now().toString(36),
-    titulo,
+    id:editId||Date.now(),
     data:document.getElementById('ataData').value,
     horario:document.getElementById('ataHorario').value,
-    local:document.getElementById('ataLocal').value.trim(),
-    conteudo,
-    participantes:getParticipantesAta(),
-    criadaEm:new Date().toISOString()
+    titulo,local:document.getElementById('ataLocal').value.trim(),
+    conteudo,participantes
   };
-  if(editId){const idx=atas.findIndex(a=>a.id===editId);if(idx>=0)atas[idx]=ata;else atas.unshift(ata);}
-  else atas.unshift(ata);
-  salvarAtas();
-  fecharModal('modalNovaAta');
-  renderAtas();
-  toast('✅ Ata salva!');
-  // Oferece download txt
-  baixarAtaTxt(ata);
+  if(editId){const idx=atas.findIndex(x=>String(x.id)===String(editId));if(idx>=0)atas[idx]=ata;else atas.push(ata);}
+  else atas.push(ata);
+  localStorage.setItem('atas_v1',JSON.stringify(atas));
+  fecharModal('modalNovaAta');renderAtas();toast('✅ Ata salva!');
 }
-function baixarAtaTxt(ata){
-  const partes=ata.participantes.length?'\n\nParticipantes:\n'+ata.participantes.map((p,i)=>`${i+1}. ${p}`).join('\n'):'';
-  const txt=`${NOME_ESCOLA}\n${ENDERECO_ESCOLA}\n\n${'='.repeat(60)}\nATA DE REUNIÃO\n${'='.repeat(60)}\n\nTítulo: ${ata.titulo}\nData: ${fmtData(ata.data)}\nHorário: ${ata.horario||'—'}\nLocal: ${ata.local||'—'}\n\n${ata.conteudo}${partes}\n\n${'_'.repeat(60)}\nAta gerada em ${new Date().toLocaleString('pt-BR')}`;
-  const blob=new Blob([txt],{type:'text/plain;charset=utf-8'});
-  const a=document.createElement('a');a.href=URL.createObjectURL(blob);
-  a.download=`ata_${ata.titulo.replace(/[^a-zA-Z0-9]/g,'_').slice(0,30)}.txt`;
-  a.click();
-}
-function imprimirAtaModal(){
-  const titulo=document.getElementById('ataTitulo').value.trim();
-  const conteudo=document.getElementById('ataConteudo').value.trim();
-  if(!titulo){toast('⚠️ Preencha o título.');return;}
-  const ataTemp={titulo,data:document.getElementById('ataData').value,horario:document.getElementById('ataHorario').value,local:document.getElementById('ataLocal').value.trim(),conteudo,participantes:getParticipantesAta()};
-  imprimirAtaObj(ataTemp);
-}
-function imprimirAtaObj(ata){
-  const w=window.open('','_blank');
-  const partes=ata.participantes.length?`<div class="secao-assinaturas"><h3>Participantes</h3>${ata.participantes.map((p,i)=>`<p>${i+1}. ${p}</p><div class="linha-assinatura">_________________________</div>`).join('')}</div>`:'';
-  w.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Ata - ${ata.titulo}</title>
-  <style>body{font-family:Arial,sans-serif;max-width:750px;margin:40px auto;padding:20px;line-height:1.7;}h1{font-size:1rem;text-align:center;}h2{font-size:0.9rem;text-align:center;color:#444;margin-bottom:2px;}hr{margin:16px 0;}table{width:100%;border-collapse:collapse;margin-bottom:16px;}td{padding:6px 10px;border:1px solid #ccc;}.conteudo{white-space:pre-wrap;font-size:0.95rem;margin:20px 0;}.secao-assinaturas{margin-top:30px;}.linha-assinatura{margin-top:30px;margin-bottom:8px;}</style>
-  </head><body>
-  <h1>${NOME_ESCOLA}</h1><h2>${ENDERECO_ESCOLA}</h2><hr>
-  <h1 style="font-size:1.2rem;margin:16px 0;">ATA DE REUNIÃO</h1>
-  <table><tr><td><strong>Título:</strong> ${ata.titulo}</td></tr><tr><td><strong>Data:</strong> ${fmtData(ata.data)} &nbsp; <strong>Horário:</strong> ${ata.horario||'—'} &nbsp; <strong>Local:</strong> ${ata.local||'—'}</td></tr></table>
-  <div class="conteudo">${ata.conteudo}</div>${partes}
-  <p style="font-size:0.78rem;color:#aaa;margin-top:30px;text-align:right;">Documento gerado em ${new Date().toLocaleString('pt-BR')}</p>
-  </body></html>`);
-  w.document.close();w.print();
-}
-function renderAtas(){
-  const el=document.getElementById('ataConteudo');
-  if(!atas.length){el.innerHTML=`<div class="vazio-estado"><div class="vazio-icon">📋</div><p>Nenhuma ata salva.<br>Clique em <strong>+ Nova Ata</strong> para criar.</p></div>`;return;}
-  el.innerHTML=atas.map(a=>`
-    <div class="ata-card">
-      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px;flex-wrap:wrap;">
-        <div>
-          <div class="ata-card-titulo">${esc(a.titulo)}</div>
-          <div class="ata-card-info">📅 ${fmtData(a.data)}${a.horario?' · ⏰ '+esc(a.horario):''}${a.local?' · 📍 '+esc(a.local):''}${a.participantes&&a.participantes.length?' · 👥 '+a.participantes.length+' participante(s)':''}</div>
-        </div>
-        <div style="display:flex;gap:6px;flex-wrap:wrap;">
-          <button class="btn btn-azul btn-icon" onclick="abrirModalNovaAta('${a.id}')" style="font-size:0.78rem;">✏️</button>
-          <button class="btn btn-verde btn-icon" onclick="imprimirAtaObj(atas.find(x=>x.id==='${a.id}'))" style="font-size:0.78rem;">🖨️</button>
-          <button class="btn btn-cinza btn-icon" onclick="baixarAtaTxt(atas.find(x=>x.id==='${a.id}'))" style="font-size:0.78rem;">⬇️ .txt</button>
-          <button class="btn btn-verm btn-icon" onclick="excluirAta('${a.id}')" style="font-size:0.78rem;">🗑️</button>
-        </div>
-      </div>
-    </div>`).join('');
-}
+
 function excluirAta(id){
-  if(!confirm('Excluir esta ata?'))return;
-  atas=atas.filter(a=>a.id!==id);salvarAtas();renderAtas();toast('🗑️ Ata excluída.');
+  if(!confirm('Excluir ata?'))return;
+  atas=atas.filter(a=>String(a.id)!==String(id));
+  localStorage.setItem('atas_v1',JSON.stringify(atas));
+  renderAtas();toast('🗑️ Ata excluída.');
 }
+
 function abrirModalListarAtas(){
-  const el=document.getElementById('atasSalvasConteudo');
-  if(!atas.length){el.innerHTML='<div class="pesq-vazio">Nenhuma ata salva.</div>';}
-  else el.innerHTML=atas.map(a=>`<div style="display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border:1.5px solid var(--borda);border-radius:10px;margin-bottom:8px;gap:10px;flex-wrap:wrap;">
-    <div><div style="font-family:'Nunito',sans-serif;font-weight:700;">${esc(a.titulo)}</div><div style="font-size:0.78rem;color:var(--texto2);">${fmtData(a.data)}</div></div>
-    <div style="display:flex;gap:6px;">
-      <button class="btn btn-verde btn-icon" onclick="imprimirAtaObj(atas.find(x=>x.id==='${a.id}'))" style="font-size:0.78rem;">🖨️</button>
-      <button class="btn btn-cinza btn-icon" onclick="baixarAtaTxt(atas.find(x=>x.id==='${a.id}'))" style="font-size:0.78rem;">⬇️</button>
-    </div></div>`).join('');
+  const div=document.getElementById('atasSalvasConteudo');
+  div.innerHTML=[...atas].sort((a,b)=>String(b.data).localeCompare(String(a.data))).map(a=>`
+    <div class="reuniao-card">
+      <div>
+        <div class="reuniao-titulo">${esc(a.titulo)}</div>
+        <div class="reuniao-info">${fmtData(a.data)}${a.horario?' às '+a.horario:''}${a.local?' • '+a.local:''}</div>
+      </div>
+      <div style="display:flex;gap:6px;flex-shrink:0;">
+        <button class="btn btn-azul btn-icon" onclick="editarAtaModal('${a.id}')">✏️ Abrir</button>
+        <button class="btn btn-verm btn-icon" onclick="excluirAta('${a.id}');abrirModalListarAtas()">🗑️</button>
+      </div>
+    </div>`).join('')||'<div class="vazio-estado"><div class="vazio-icon">📭</div><p>Nenhuma ata salva.</p></div>';
   document.getElementById('modalListarAtas').classList.add('aberto');
+}
+
+function editarAtaModal(id){fecharModal('modalListarAtas');editarAta(id);}
+
+function imprimirAtaModal(){
+  const a={
+    titulo:document.getElementById('ataTitulo').value,
+    data:document.getElementById('ataData').value,
+    horario:document.getElementById('ataHorario').value,
+    local:document.getElementById('ataLocal').value,
+    conteudo:document.getElementById('ataConteudo').value,
+    participantes:[...document.querySelectorAll('#ataParticipantesWrap input')].map(i=>i.value.trim()).filter(Boolean)
+  };
+  document.getElementById('ataImpressaoArea').innerHTML=`
+    <div class="ata-impressao-conteudo">
+      <h1 style="font-size:1.4rem;text-align:center;margin-bottom:4px;">${NOME_ESCOLA}</h1>
+      <p style="text-align:center;font-size:0.85rem;color:#666;margin-bottom:20px;">${ENDERECO_ESCOLA}</p>
+      <h2 style="font-size:1.1rem;border-bottom:2px solid #333;padding-bottom:6px;margin-bottom:12px;">ATA DE REUNIÃO</h2>
+      <p><strong>Assunto:</strong> ${esc(a.titulo)}</p>
+      <p><strong>Data:</strong> ${fmtData(a.data)}${a.horario?' às '+a.horario:''}</p>
+      ${a.local?`<p><strong>Local:</strong> ${esc(a.local)}</p>`:''}
+      <div style="margin-top:16px;white-space:pre-wrap;line-height:1.8;">${esc(a.conteudo)}</div>
+      ${a.participantes.length?`<div style="margin-top:20px;"><strong>Participantes:</strong><ul style="margin-top:6px;">${a.participantes.map(p=>`<li>${esc(p)}</li>`).join('')}</ul></div>`:''}
+    </div>`;
+  window.print();
 }
 
 /* ══════════════════════════════════════════════════════
    TOTALIZADOR
 ══════════════════════════════════════════════════════ */
-function carregarTotalizador(){
-  renderColaboradores();
-  document.getElementById('totalAlunosTabela').innerHTML=`<div class="loading-txt"><span class="spinner spinner-azul"></span> Buscando dados...</div>`;
-  fetch(API_URL+'?sheet=PlantaoAlunos')
-    .then(r=>r.json())
-    .then(dados=>{
-      const alunos=dados.map(r=>{const n={};Object.keys(r).forEach(k=>{n[k.toLowerCase()]=r[k];});return n;});
-      renderTotalizadorAlunos(alunos);
-    })
-    .catch(()=>{document.getElementById('totalAlunosTabela').innerHTML=`<div class="loading-txt" style="color:var(--vermelho);">⚠️ Erro ao carregar.</div>`;});
+async function carregarTotalizador(){
+  try{
+    if(!plantaoAlunos.length)plantaoAlunos=await apiGet('PlantaoAlunos');
+    renderTotalizador();
+  }catch(e){
+    document.getElementById('totalAlunosTabela').innerHTML='<div style="color:var(--vermelho);">Erro ao carregar dados.</div>';
+  }
 }
-function renderTotalizadorAlunos(alunos){
+
+function renderTotalizador(){
   const porTurma={};
-  TURMAS_FIXAS.forEach(t=>{porTurma[t]=0;});
-  alunos.forEach(a=>{const t=(a.turma||'').trim().toUpperCase();if(porTurma[t]!==undefined)porTurma[t]++;else porTurma[t]=(porTurma[t]||0)+1;});
-  const totalIni=ANOS_INICIAIS.reduce((s,t)=>s+(porTurma[t]||0),0);
-  const totalFin=ANOS_FINAIS.reduce((s,t)=>s+(porTurma[t]||0),0);
-  const totalGeral=totalIni+totalFin;
-  const totalColab=ANIVERSARIANTES.length;
-  const maxTurma=Math.max(...TURMAS_FIXAS.map(t=>porTurma[t]||0),1);
-  animarContador('numAnosIni',totalIni);animarContador('numAnosFin',totalFin);
-  animarContador('numTotalAlunos',totalGeral);animarContador('numColaboradores',totalColab);
-  let html=`<div class="total-tabela-wrap"><table class="total-tabela"><thead><tr><th>Turma</th><th>Ciclo</th><th class="right">Alunos</th><th style="min-width:120px;">Distribuição</th></tr></thead><tbody>`;
-  ANOS_INICIAIS.forEach((t,i)=>{
-    const qt=porTurma[t]||0;const pct=maxTurma>0?Math.round((qt/maxTurma)*100):0;
-    html+=`<tr class="row-ani" style="animation:slideUp 0.35s ease both;animation-delay:${i*0.04}s"><td><span class="badge badge-verde">${t}</span></td><td style="font-size:0.8rem;color:var(--verde);font-weight:700;">Anos Iniciais</td><td class="right">${qt}</td><td><div class="barra-wrap"><div class="barra-fill barra-ini" style="width:${pct}%"></div></div></td></tr>`;
-  });
-  html+=`<tr class="row-subtotal"><td colspan="2"><strong>📗 Subtotal — Anos Iniciais</strong></td><td class="right" style="color:var(--verde);">${totalIni}</td><td></td></tr>`;
-  ANOS_FINAIS.forEach((t,i)=>{
-    const qt=porTurma[t]||0;const pct=maxTurma>0?Math.round((qt/maxTurma)*100):0;
-    html+=`<tr class="row-anf" style="animation:slideUp 0.35s ease both;animation-delay:${(ANOS_INICIAIS.length+i+1)*0.04}s"><td><span class="badge badge-azul">${t}</span></td><td style="font-size:0.8rem;color:var(--azul);font-weight:700;">Anos Finais</td><td class="right">${qt}</td><td><div class="barra-wrap"><div class="barra-fill barra-fin" style="width:${pct}%"></div></div></td></tr>`;
-  });
-  html+=`<tr class="row-subtotal"><td colspan="2"><strong>📘 Subtotal — Anos Finais</strong></td><td class="right" style="color:var(--azul);">${totalFin}</td><td></td></tr>`;
-  html+=`<tr class="row-total"><td colspan="2"><strong>🎓 TOTAL GERAL</strong></td><td class="right" style="font-size:1.1rem;color:var(--amarelo);">${totalGeral}</td><td></td></tr>`;
-  html+=`</tbody></table></div><div style="font-size:0.78rem;color:var(--texto2);margin-top:10px;">📌 Dados carregados da aba <strong>PlantaoAlunos</strong>.</div>`;
+  TURMAS_FIXAS.forEach(t=>porTurma[t]=0);
+  plantaoAlunos.forEach(a=>{const t=String(a.turma||'').trim();if(porTurma[t]!==undefined)porTurma[t]++;});
+  const totIni=ANOS_INICIAIS.reduce((s,t)=>s+(porTurma[t]||0),0);
+  const totFin=ANOS_FINAIS.reduce((s,t)=>s+(porTurma[t]||0),0);
+  const totGeral=totIni+totFin;
+  document.getElementById('numAnosIni').textContent=totIni;
+  document.getElementById('numAnosFin').textContent=totFin;
+  document.getElementById('numTotalAlunos').textContent=totGeral;
+  document.getElementById('numColaboradores').textContent=ANIVERSARIANTES.length;
+
+  const max=Math.max(...Object.values(porTurma),1);
+  let html=`<div class="total-tabela-wrap"><table class="total-tabela">
+    <thead><tr><th>Turma</th><th>Segmento</th><th class="right">Alunos</th><th style="min-width:100px;">Proporção</th></tr></thead><tbody>`;
+
+  const renderTurmas=(turmas,cls,seg)=>turmas.map(t=>{
+    const n=porTurma[t]||0;
+    const pct=max?Math.round(n/max*100):0;
+    const cor=cls==='row-ani'?'barra-ini':'barra-fin';
+    return `<tr class="${cls}"><td>${t}</td><td>${seg}</td><td class="right">${n}</td>
+      <td><div style="display:flex;align-items:center;gap:8px;">
+        <div class="barra-wrap"><div class="barra-fill ${cor}" style="width:${pct}%"></div></div>
+        <span style="font-size:0.78rem;color:var(--texto2);">${pct}%</span>
+      </div></td></tr>`;
+  }).join('');
+
+  html+=renderTurmas(ANOS_INICIAIS,'row-ani','Anos Iniciais');
+  html+=`<tr class="row-subtotal"><td colspan="2">Subtotal Anos Iniciais</td><td class="right">${totIni}</td><td></td></tr>`;
+  html+=renderTurmas(ANOS_FINAIS,'row-anf','Anos Finais');
+  html+=`<tr class="row-subtotal"><td colspan="2">Subtotal Anos Finais</td><td class="right">${totFin}</td><td></td></tr>`;
+  html+=`<tr class="row-total"><td colspan="2">🎓 Total Geral</td><td class="right">${totGeral}</td><td></td></tr>`;
+  html+='</tbody></table></div>';
   document.getElementById('totalAlunosTabela').innerHTML=html;
+
+  document.getElementById('totalColabConteudo').innerHTML=`<div class="colab-grid">${
+    ANIVERSARIANTES.map((a,i)=>`<div class="colab-card" style="animation-delay:${i*0.03}s">
+      <div class="colab-avatar">👤</div>
+      <div><div class="colab-nome">${esc(a.nome)}</div><div class="colab-cargo">${esc(a.turma)}</div></div>
+    </div>`).join('')}</div>`;
 }
-function renderColaboradores(){
-  const totalColab=ANIVERSARIANTES.length;
-  const porCargo={};
-  ANIVERSARIANTES.forEach(a=>{const c=a.turma||'Outros';if(!porCargo[c])porCargo[c]=[];porCargo[c].push(a);});
-  let html=`<div style="margin-bottom:18px;"><div style="font-family:'Nunito',sans-serif;font-weight:800;font-size:1rem;margin-bottom:14px;">👥 Total: <span style="color:var(--roxo);font-size:1.3rem;">${totalColab}</span></div>
-  <div class="total-tabela-wrap" style="margin-bottom:18px;"><table class="total-tabela"><thead><tr><th>Função</th><th class="right">Qtd</th></tr></thead><tbody>`;
-  Object.entries(porCargo).sort((a,b)=>b[1].length-a[1].length).forEach(([cargo,pessoas],i)=>{
-    html+=`<tr style="animation:slideUp 0.35s ease both;animation-delay:${i*0.04}s"><td>${esc(cargo)}</td><td class="right"><span class="badge badge-roxo">${pessoas.length}</span></td></tr>`;
-  });
-  html+=`<tr class="row-total"><td><strong>TOTAL</strong></td><td class="right" style="color:var(--roxo);">${totalColab}</td></tr></tbody></table></div>
-  <div style="font-family:'Nunito',sans-serif;font-weight:800;font-size:0.92rem;margin-bottom:10px;color:var(--texto2);">Lista completa</div>
-  <div class="colab-grid">`;
-  ANIVERSARIANTES.sort((a,b)=>a.nome.localeCompare(b.nome)).forEach((a,i)=>{
-    html+=`<div class="colab-card" style="animation-delay:${i*0.025}s"><div class="colab-avatar">${a.nome.trim()[0]||'?'}</div><div><div class="colab-nome">${esc(a.nome)}</div><div class="colab-cargo">${esc(a.turma)} · ${String(a.dia).padStart(2,'0')}/${String(a.mes).padStart(2,'0')}</div></div></div>`;
-  });
-  html+=`</div></div>`;
-  document.getElementById('totalColabConteudo').innerHTML=html;
-}
-function animarContador(elementId,valorFinal){
-  const el=document.getElementById(elementId);
-  if(!el||valorFinal===0){if(el)el.textContent='0';return;}
-  const dur=900,fps=40,steps=Math.min(valorFinal,fps),inc=valorFinal/steps;
-  let atual=0,step=0;
-  const timer=setInterval(()=>{step++;atual=Math.min(Math.round(inc*step),valorFinal);el.textContent=atual;if(atual>=valorFinal){clearInterval(timer);el.textContent=valorFinal;}},dur/steps);
-}
+
 function mudarAbaTotal(aba,btn){
   document.querySelectorAll('.total-tab-btn').forEach(b=>b.classList.remove('ativo'));
   document.querySelectorAll('.total-tab-content').forEach(c=>c.classList.remove('ativo'));
@@ -2178,10 +2268,9 @@ function mudarAbaTotal(aba,btn){
 }
 
 /* ══════════════════════════════════════════════════════
-   INICIALIZAÇÃO
+   INIT
 ══════════════════════════════════════════════════════ */
 renderLoginUsuarios();
-carregarTodosAlunos();
 </script>
 </body>
 </html>
