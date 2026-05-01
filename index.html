@@ -24,18 +24,16 @@
     *{box-sizing:border-box;margin:0;padding:0;}
     body{font-family:'Nunito Sans',sans-serif;background:var(--cinza);color:var(--texto);font-size:15px;line-height:1.6;overflow-x:hidden;}
 
-    /* ══ LOGIN SCREEN ══ */
+    /* LOGIN */
     #loginScreen{position:fixed;inset:0;background:linear-gradient(135deg,var(--azul-dark) 0%,var(--azul) 60%,#1976d2 100%);display:flex;align-items:center;justify-content:center;z-index:9999;padding:20px;}
-    #loginScreen::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");}
     .login-card{background:#fff;border-radius:24px;box-shadow:0 20px 60px rgba(0,0,0,0.3);padding:48px 44px 40px;width:100%;max-width:400px;text-align:center;position:relative;animation:loginEntrada 0.5s cubic-bezier(.4,0,.2,1);}
     @keyframes loginEntrada{from{opacity:0;transform:translateY(30px) scale(0.95);}to{opacity:1;transform:translateY(0) scale(1);}}
     .login-logo{font-size:3.5rem;margin-bottom:8px;}
-    .login-sistema-nome{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.5rem;color:var(--azul-dark);margin-bottom:4px;line-height:1.2;}
+    .login-sistema-nome{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.5rem;color:var(--azul-dark);margin-bottom:4px;}
     .login-sistema-sub{font-size:0.82rem;color:var(--texto2);margin-bottom:28px;}
     .login-usuarios{display:flex;flex-direction:column;gap:12px;margin-bottom:24px;}
     .login-usuario-btn{background:var(--cinza);border:2px solid var(--borda);border-radius:12px;padding:12px 16px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:all 0.18s;text-align:left;}
-    .login-usuario-btn:hover{border-color:var(--azul);background:var(--azul-cl);}
-    .login-usuario-btn.selecionado{border-color:var(--azul);background:var(--azul-cl);}
+    .login-usuario-btn:hover,.login-usuario-btn.selecionado{border-color:var(--azul);background:var(--azul-cl);}
     .login-user-avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--azul),var(--azul-dark));display:flex;align-items:center;justify-content:center;font-size:1.1rem;color:#fff;font-family:'Nunito',sans-serif;font-weight:900;flex-shrink:0;}
     .login-user-info .login-user-nome{font-family:'Nunito',sans-serif;font-weight:800;font-size:0.92rem;color:var(--texto);}
     .login-user-info .login-user-cargo{font-size:0.74rem;color:var(--texto2);}
@@ -49,30 +47,30 @@
     .login-entrar-btn:active{transform:scale(0.98);}
     @keyframes shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-8px)}40%,80%{transform:translateX(8px)}}
 
-    /* ══ APP LAYOUT ══ */
+    /* APP */
     .app-layout{display:flex;min-height:100vh;}
     #appContent{display:none;}
     #appContent.visivel{display:flex;width:100%;}
 
-    /* ══ SIDEBAR ══ */
+    /* SIDEBAR */
     .sidebar{position:fixed;top:0;left:0;bottom:0;width:var(--sidebar-w);background:linear-gradient(180deg,var(--azul-dark) 0%,var(--azul) 100%);z-index:200;display:flex;flex-direction:column;overflow-y:auto;overflow-x:hidden;transition:transform 0.28s cubic-bezier(.4,0,.2,1);box-shadow:4px 0 20px rgba(0,0,0,0.18);}
     .sidebar-header{display:flex;align-items:center;gap:10px;padding:18px 16px 14px;border-bottom:1px solid rgba(255,255,255,0.12);flex-shrink:0;}
     .sidebar-logo{font-size:1.5rem;line-height:1;}
     .sidebar-titulo{font-family:'Nunito',sans-serif;font-weight:900;font-size:0.9rem;color:#fff;line-height:1.2;}
-    .sidebar-close{display:none;margin-left:auto;background:none;border:none;color:rgba(255,255,255,0.7);font-size:1.1rem;cursor:pointer;padding:4px;line-height:1;border-radius:6px;}
+    .sidebar-close{display:none;margin-left:auto;background:none;border:none;color:rgba(255,255,255,0.7);font-size:1.1rem;cursor:pointer;padding:4px;border-radius:6px;}
     .sidebar-close:hover{background:rgba(255,255,255,0.15);}
     .sidebar-nav{flex:1;padding:8px 10px;display:flex;flex-direction:column;gap:2px;}
     .sidebar-nav button{width:100%;background:transparent;color:rgba(255,255,255,0.78);border:none;padding:9px 12px;border-radius:10px;font-family:'Nunito',sans-serif;font-weight:700;font-size:0.83rem;cursor:pointer;transition:background 0.18s,color 0.18s;text-align:left;display:flex;align-items:center;gap:9px;white-space:nowrap;}
     .sidebar-nav button:hover{background:rgba(255,255,255,0.15);color:#fff;}
     .sidebar-nav button.ativo{background:rgba(255,255,255,0.22);color:#fff;box-shadow:0 2px 8px rgba(0,0,0,0.15);}
     .nav-icon{font-size:1rem;flex-shrink:0;width:20px;text-align:center;}
-    .sidebar-footer{padding:12px 16px;border-top:1px solid rgba(255,255,255,0.1);font-size:0.7rem;color:rgba(255,255,255,0.5);text-align:center;line-height:1.5;flex-shrink:0;}
+    .sidebar-footer{padding:12px 16px;border-top:1px solid rgba(255,255,255,0.1);font-size:0.7rem;color:rgba(255,255,255,0.5);text-align:center;flex-shrink:0;}
     .sidebar-footer a{color:rgba(255,255,255,0.65);text-decoration:none;}
 
-    /* ══ TOPBAR ══ */
+    /* TOPBAR */
     .main-wrapper{margin-left:var(--sidebar-w);flex:1;min-width:0;display:flex;flex-direction:column;}
     .topbar{background:var(--azul-dark);color:#fff;padding:0 16px 0 20px;min-height:52px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:150;box-shadow:0 2px 8px rgba(0,0,0,0.2);}
-    .topbar-hamburger{display:none;background:none;border:none;color:#fff;font-size:1.3rem;cursor:pointer;padding:4px;line-height:1;border-radius:6px;flex-shrink:0;}
+    .topbar-hamburger{display:none;background:none;border:none;color:#fff;font-size:1.3rem;cursor:pointer;padding:4px;border-radius:6px;flex-shrink:0;}
     .topbar-title{font-family:'Nunito',sans-serif;font-weight:900;font-size:1rem;flex:1;}
     .topbar-usuario{display:flex;align-items:center;gap:10px;}
     .topbar-user-info{text-align:right;}
@@ -82,20 +80,20 @@
     .btn-sair{background:rgba(255,255,255,0.15);color:#fff;border:1px solid rgba(255,255,255,0.3);border-radius:8px;padding:6px 12px;font-family:'Nunito',sans-serif;font-weight:700;font-size:0.78rem;cursor:pointer;transition:background 0.15s;display:flex;align-items:center;gap:5px;}
     .btn-sair:hover{background:rgba(255,255,255,0.25);}
 
-    /* ══ SIDEBAR OVERLAY MOBILE ══ */
+    /* OVERLAY MOBILE */
     .sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:199;opacity:0;transition:opacity 0.28s;}
     .sidebar-overlay.visivel{display:block;opacity:1;}
 
-    /* ══ SEÇÕES ══ */
-    .secao{display:none;padding:22px 22px;max-width:1150px;margin:0 auto;width:100%;animation:fadeIn 0.22s ease;}
+    /* SEÇÕES */
+    .secao{display:none;padding:22px;max-width:1150px;margin:0 auto;width:100%;animation:fadeIn 0.22s ease;}
     .secao.ativa{display:block;}
     @keyframes fadeIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
 
-    /* ══ CARD ══ */
+    /* CARDS */
     .card{background:var(--branco);border-radius:var(--raio);box-shadow:var(--sombra);padding:20px 22px;margin-bottom:18px;}
     .card-titulo{font-family:'Nunito',sans-serif;font-weight:800;font-size:1rem;margin-bottom:14px;display:flex;align-items:center;gap:7px;}
 
-    /* ══ BADGE ══ */
+    /* BADGE */
     .badge{display:inline-block;padding:2px 10px;border-radius:20px;font-size:0.74rem;font-weight:700;}
     .badge-verde{background:var(--verde-cl);color:var(--verde);}
     .badge-azul{background:var(--azul-cl);color:var(--azul);}
@@ -105,7 +103,7 @@
     .badge-cinza{background:#eee;color:#888;}
     .badge-laranja{background:var(--laran-cl);color:var(--laranja);}
 
-    /* ══ BOTÕES ══ */
+    /* BOTÕES */
     .btn{padding:7px 16px;border-radius:8px;border:none;font-family:'Nunito',sans-serif;font-weight:700;font-size:0.82rem;cursor:pointer;transition:filter 0.15s,transform 0.1s;display:inline-flex;align-items:center;gap:5px;}
     .btn:hover{filter:brightness(1.08);}.btn:active{transform:scale(0.97);}
     .btn-verde{background:var(--verde);color:#fff;}
@@ -117,30 +115,21 @@
     .btn-laranja{background:var(--laranja);color:#fff;}
     .btn-icon{padding:5px 9px;font-size:0.78rem;border-radius:7px;}
 
-    /* ══ INPUTS ══ */
+    /* INPUTS */
     input[type="text"],input[type="date"],input[type="password"],input[type="url"],input[type="time"],select,textarea{border:1.5px solid var(--borda);border-radius:8px;padding:7px 11px;font-family:'Nunito Sans',sans-serif;font-size:0.9rem;color:var(--texto);background:#fff;transition:border-color 0.18s;width:100%;}
     input:focus,select:focus,textarea:focus{outline:none;border-color:var(--azul);}
     label{font-size:0.82rem;font-weight:600;color:var(--texto2);display:block;margin-bottom:4px;margin-top:10px;}
     .form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 14px;}
 
-    /* ══ MODAL ══ */
+    /* MODAL */
     .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.50);z-index:300;align-items:center;justify-content:center;padding:20px;}
     .modal-overlay.aberto{display:flex;}
     .modal{background:#fff;border-radius:16px;box-shadow:0 8px 40px rgba(0,0,0,0.22);width:100%;max-width:560px;padding:28px 28px 22px;position:relative;animation:zoomIn 0.2s ease;max-height:90vh;overflow-y:auto;}
     @keyframes zoomIn{from{opacity:0;transform:scale(0.93);}to{opacity:1;transform:scale(1);}}
     .modal-titulo{font-family:'Nunito',sans-serif;font-weight:800;font-size:1.1rem;margin-bottom:16px;}
-    .modal-fechar{position:absolute;top:14px;right:16px;background:none;border:none;font-size:1.3rem;cursor:pointer;color:var(--texto2);line-height:1;}
+    .modal-fechar{position:absolute;top:14px;right:16px;background:none;border:none;font-size:1.3rem;cursor:pointer;color:var(--texto2);}
 
-    /* ══ PAGINAÇÃO ══ */
-    .paginacao{display:flex;align-items:center;justify-content:space-between;margin-top:12px;flex-wrap:wrap;gap:8px;}
-    .paginacao-info{font-size:0.8rem;color:var(--texto2);}
-    .paginacao-btns{display:flex;gap:6px;align-items:center;flex-wrap:wrap;}
-    .pag-btn{width:32px;height:32px;border-radius:8px;border:1.5px solid var(--borda);background:#fff;font-family:'Nunito',sans-serif;font-weight:700;font-size:0.82rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.15s,color 0.15s,border-color 0.15s;}
-    .pag-btn:hover{background:var(--azul-cl);border-color:var(--azul);color:var(--azul);}
-    .pag-btn.ativo{background:var(--azul);color:#fff;border-color:var(--azul);}
-    .pag-btn:disabled{opacity:0.4;cursor:default;pointer-events:none;}
-
-    /* ══ TABELA ══ */
+    /* TABELA */
     .tabela-wrapper{overflow-x:auto;border-radius:var(--raio);max-height:440px;overflow-y:auto;border:1px solid var(--borda);}
     table{width:100%;border-collapse:collapse;font-size:0.88rem;}
     thead th{background:var(--azul);color:#fff;padding:9px 12px;text-align:left;font-family:'Nunito',sans-serif;font-weight:700;white-space:nowrap;position:sticky;top:0;z-index:1;}
@@ -148,14 +137,11 @@
     tbody tr:hover{background:#f0f4ff;}
     tbody td{padding:9px 12px;vertical-align:middle;}
     .acoes{display:flex;gap:6px;flex-wrap:wrap;}
-    .num-linha{color:var(--texto2);font-size:0.78rem;font-weight:700;}
 
-    /* ══ CONTROLES ══ */
-    .controles-topo{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end;margin-bottom:16px;}
-    .controles-topo>div{flex:1;min-width:140px;}
+    /* CONTROLES */
     .admin-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px;}
 
-    /* ══ NOTÍCIAS ══ */
+    /* NOTÍCIAS */
     .noticias-hero{position:relative;border-radius:18px;overflow:hidden;margin-bottom:20px;background:linear-gradient(135deg,#1565c0,#0d47a1);display:flex;align-items:flex-end;cursor:pointer;box-shadow:0 4px 24px rgba(21,101,192,0.18);}
     .noticias-hero.banner-grande{min-height:280px;}
     .noticias-hero.banner-pequeno{min-height:160px;}
@@ -188,7 +174,7 @@
     .modal-noticia-meta{font-size:0.78rem;color:var(--texto2);margin-bottom:14px;}
     .modal-noticia-texto{font-size:0.9rem;color:var(--texto);line-height:1.7;white-space:pre-wrap;}
 
-    /* ══ AVISOS ══ */
+    /* AVISOS */
     .avisos-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;}
     .aviso-card{border-radius:14px;padding:16px 18px;border-left:5px solid;position:relative;box-shadow:var(--sombra);}
     .aviso-card.aviso-azul{background:#e3f2fd;border-color:var(--azul);}
@@ -205,7 +191,7 @@
     .cor-opt{width:28px;height:28px;border-radius:50%;cursor:pointer;border:3px solid transparent;transition:transform 0.15s,border-color 0.15s;}
     .cor-opt.selecionada{border-color:#333;transform:scale(1.2);}
 
-    /* ══ CALENDÁRIO ══ */
+    /* CALENDÁRIO */
     .cal-nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
     .cal-mes{font-family:'Nunito',sans-serif;font-weight:800;font-size:1rem;}
     .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;}
@@ -215,7 +201,6 @@
     .cal-dia.tem-evento{background:var(--amar-cl);color:var(--amarelo);font-weight:700;cursor:pointer;}
     .cal-dia.tem-evento-custom{background:#e8f5e9;color:var(--verde);font-weight:700;cursor:pointer;}
     .cal-dia.tem-evento.tem-evento-custom{background:linear-gradient(135deg,var(--amar-cl),#e8f5e9);}
-    .cal-dia.tem-evento:hover,.cal-dia.tem-evento-custom:hover{filter:brightness(0.95);}
     .cal-dia.vazio{opacity:0;pointer-events:none;}
     .cal-eventos-lista{margin-top:14px;}
     .evento-item{display:flex;gap:10px;align-items:flex-start;padding:8px 12px;background:var(--amar-cl);border-left:3px solid var(--amarelo);border-radius:8px;margin-bottom:7px;font-size:0.85rem;}
@@ -223,26 +208,25 @@
     .evento-data{font-weight:700;color:var(--amarelo);white-space:nowrap;min-width:50px;}
     .evento-item.custom .evento-data{color:var(--verde);}
 
-    /* ══ DOWNLOADS ══ */
+    /* DOWNLOADS */
     .downloads-cats{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px;}
     .cat-btn{padding:6px 16px;border-radius:20px;border:2px solid var(--borda);background:#fff;font-family:'Nunito',sans-serif;font-weight:700;font-size:0.82rem;cursor:pointer;transition:all 0.15s;color:var(--texto2);}
     .cat-btn:hover,.cat-btn.ativo{border-color:var(--azul);background:var(--azul-cl);color:var(--azul);}
     .downloads-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;}
     .download-card{background:#fff;border-radius:14px;box-shadow:var(--sombra);padding:16px 18px;display:flex;align-items:flex-start;gap:14px;transition:transform 0.15s,box-shadow 0.15s;}
     .download-card:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,0.11);}
-    .download-icone{font-size:2rem;flex-shrink:0;line-height:1;margin-top:2px;}
+    .download-icone{font-size:2rem;flex-shrink:0;margin-top:2px;}
     .download-nome{font-family:'Nunito',sans-serif;font-weight:800;font-size:0.92rem;margin-bottom:3px;}
     .download-desc{font-size:0.78rem;color:var(--texto2);margin-bottom:8px;}
     .download-cat-badge{font-size:0.7rem;font-weight:700;background:var(--azul-cl);color:var(--azul);padding:2px 8px;border-radius:12px;display:inline-block;margin-bottom:8px;}
 
-    /* ══ PESQUISA ══ */
-    .pesq-resultado{background:#fff;border:1.5px solid var(--borda);border-left:4px solid var(--azul);border-radius:10px;padding:14px 16px;margin-bottom:10px;transition:box-shadow 0.15s;}
-    .pesq-resultado:hover{box-shadow:0 2px 12px rgba(0,0,0,0.08);}
+    /* PESQUISA */
+    .pesq-resultado{background:#fff;border:1.5px solid var(--borda);border-left:4px solid var(--azul);border-radius:10px;padding:14px 16px;margin-bottom:10px;}
     .pesq-nome{font-family:'Nunito',sans-serif;font-weight:800;font-size:1rem;}
     .pesq-detalhe{font-size:0.82rem;color:var(--texto2);margin-top:3px;}
     .pesq-vazio{text-align:center;color:var(--texto2);font-size:0.9rem;padding:36px 0;}
 
-    /* ══ PLANTÃO PEDAGÓGICO ══ */
+    /* PLANTÃO */
     .plantao-pg-wrapper{overflow-x:auto;}
     .plantao-pg-table{min-width:900px;border-collapse:collapse;font-size:0.82rem;width:100%;}
     .plantao-pg-table th{background:var(--azul);color:#fff;padding:8px 10px;text-align:center;font-family:'Nunito',sans-serif;font-weight:700;white-space:nowrap;position:sticky;top:0;z-index:1;}
@@ -258,8 +242,12 @@
     .turma-section{margin-bottom:18px;}
     .turma-section-header{font-family:'Nunito',sans-serif;font-weight:900;font-size:1rem;padding:8px 12px;background:linear-gradient(90deg,var(--azul-cl),#fff);border-left:4px solid var(--azul);border-radius:6px;margin-bottom:0;display:flex;align-items:center;justify-content:space-between;}
 
-    /* ══ ATA ══ */
-    .ata-card{background:#fff;border-radius:12px;border:1.5px solid var(--borda);padding:14px 16px;margin-bottom:10px;transition:box-shadow 0.15s;}
+    /* ATA */
+    .reuniao-card{background:#fff;border-radius:12px;border:1.5px solid var(--borda);padding:14px 16px;margin-bottom:10px;display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap;transition:box-shadow 0.15s;}
+    .reuniao-card:hover{box-shadow:0 2px 12px rgba(0,0,0,0.08);}
+    .reuniao-titulo{font-family:'Nunito',sans-serif;font-weight:800;font-size:0.96rem;margin-bottom:4px;}
+    .reuniao-info{font-size:0.82rem;color:var(--texto2);}
+    .ata-card{background:#fff;border-radius:12px;border:1.5px solid var(--borda);padding:14px 16px;margin-bottom:10px;}
     .ata-card:hover{box-shadow:var(--sombra);}
     .ata-card-titulo{font-family:'Nunito',sans-serif;font-weight:800;font-size:0.96rem;}
     .ata-card-info{font-size:0.8rem;color:var(--texto2);margin-top:3px;}
@@ -268,7 +256,7 @@
     .ata-participante-row input{flex:1;}
     .ata-impressao{display:none;}
 
-    /* ══ ANIVERSARIANTES ══ */
+    /* ANIVERSARIANTES */
     .aniv-mes-grupo{margin-bottom:22px;}
     .aniv-mes-titulo{font-family:'Nunito',sans-serif;font-weight:900;font-size:0.92rem;color:var(--azul);padding:6px 12px;background:var(--azul-cl);border-radius:8px;margin-bottom:10px;display:inline-block;}
     .aniv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;}
@@ -279,13 +267,13 @@
     .aniv-hoje{border-color:var(--amarelo);background:linear-gradient(135deg,#fff3cd,#fffde7);box-shadow:0 0 0 2px rgba(245,127,23,0.25);}
     .mes-destaque{font-size:0.75rem;color:var(--verde);font-weight:700;margin-left:6px;}
 
-    /* ══ TOTALIZADOR ══ */
+    /* TOTALIZADOR */
     .totalizador-hero{background:linear-gradient(135deg,var(--azul-dark) 0%,var(--azul) 60%,#1976d2 100%);border-radius:16px;padding:28px 28px 24px;margin-bottom:22px;display:flex;align-items:center;gap:20px;box-shadow:0 6px 28px rgba(21,101,192,0.22);position:relative;overflow:hidden;}
     .totalizador-hero-icon{font-size:3rem;flex-shrink:0;}
     .totalizador-hero-text h2{font-family:'Nunito',sans-serif;font-weight:900;color:#fff;font-size:1.35rem;margin-bottom:4px;}
     .totalizador-hero-text p{color:rgba(255,255,255,0.75);font-size:0.88rem;}
     .total-big-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-bottom:22px;}
-    .total-big-card{border-radius:14px;padding:20px 18px;text-align:center;box-shadow:var(--sombra);animation:slideUp 0.5s ease both;}
+    .total-big-card{border-radius:14px;padding:20px 18px;text-align:center;box-shadow:var(--sombra);}
     .total-big-card.card-ini{background:linear-gradient(135deg,#e8f5e9,#f1f8e9);}
     .total-big-card.card-fin{background:linear-gradient(135deg,#e3f2fd,#e8eaf6);}
     .total-big-card.card-tot{background:linear-gradient(135deg,#fff8e1,#fff3e0);}
@@ -296,7 +284,6 @@
     .total-big-card.card-tot .total-big-num{color:var(--amarelo);}
     .total-big-card.card-colab .total-big-num{color:var(--roxo);}
     .total-big-label{font-size:0.8rem;font-weight:700;color:var(--texto2);text-transform:uppercase;letter-spacing:0.5px;}
-    @keyframes slideUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
     .total-tabela-wrap{overflow-x:auto;border-radius:var(--raio);border:1px solid var(--borda);}
     .total-tabela{width:100%;border-collapse:collapse;font-size:0.88rem;}
     .total-tabela th{background:var(--azul);color:#fff;padding:10px 14px;text-align:left;font-family:'Nunito',sans-serif;font-weight:700;}
@@ -319,12 +306,12 @@
     .total-tab-content{display:none;animation:fadeIn 0.22s ease;}
     .total-tab-content.ativo{display:block;}
     .colab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px;margin-top:12px;}
-    .colab-card{background:#fff;border:1.5px solid var(--borda);border-radius:10px;padding:10px 14px;display:flex;align-items:center;gap:10px;animation:slideUp 0.4s ease both;}
+    .colab-card{background:#fff;border:1.5px solid var(--borda);border-radius:10px;padding:10px 14px;display:flex;align-items:center;gap:10px;}
     .colab-avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--roxo-cl),#e8eaf6);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
     .colab-nome{font-family:'Nunito',sans-serif;font-weight:700;font-size:0.84rem;line-height:1.3;}
     .colab-cargo{font-size:0.72rem;color:var(--texto2);}
 
-    /* ══ CADASTRO LISTA ══ */
+    /* LISTA/CADASTRO */
     .lista-tipo-opts{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin:10px 0;}
     .lista-tipo-btn{border:2px solid var(--borda);border-radius:10px;padding:10px 12px;text-align:center;cursor:pointer;font-family:'Nunito',sans-serif;font-weight:700;font-size:0.84rem;background:#fff;transition:all 0.15s;color:var(--texto);}
     .lista-tipo-btn:hover,.lista-tipo-btn.selecionado{border-color:var(--azul);background:var(--azul-cl);color:var(--azul);}
@@ -336,8 +323,32 @@
     .check-row{display:flex;align-items:center;gap:8px;margin-top:6px;}
     .check-row input[type="checkbox"]{width:16px;height:16px;cursor:pointer;accent-color:var(--azul);}
     .check-row label{margin:0;font-size:0.88rem;font-weight:600;color:var(--texto);cursor:pointer;}
+    .turma-btn-sel{padding:10px 8px;border-radius:10px;border:2px solid var(--borda);background:#fff;font-family:'Nunito',sans-serif;font-weight:700;font-size:0.9rem;cursor:pointer;text-align:center;transition:all 0.15s;color:var(--azul);}
+    .turma-btn-sel:hover,.turma-btn-sel.selecionado{border-color:var(--azul);background:var(--azul-cl);}
 
-    /* ══ MISC ══ */
+    /* ══ BAIXA EM LISTA ══ */
+    .baixa-lista-card{background:#fff;border-radius:14px;border:1.5px solid var(--borda);padding:16px 18px;margin-bottom:10px;display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap;transition:box-shadow 0.15s;cursor:pointer;}
+    .baixa-lista-card:hover{box-shadow:0 4px 18px rgba(0,0,0,0.1);}
+    .baixa-lista-nome{font-family:'Nunito',sans-serif;font-weight:800;font-size:0.96rem;margin-bottom:3px;}
+    .baixa-lista-info{font-size:0.8rem;color:var(--texto2);}
+    .baixa-item-row{display:flex;align-items:center;gap:12px;padding:10px 12px;border-bottom:1px solid var(--borda);transition:background 0.15s;}
+    .baixa-item-row:hover{background:#f8faff;}
+    .baixa-item-row:last-child{border-bottom:none;}
+    .baixa-item-nome{flex:1;font-size:0.9rem;font-family:'Nunito',sans-serif;font-weight:600;transition:color 0.2s;}
+    .baixa-item-nome.baixado{color:#aaa;text-decoration:line-through;}
+    .baixa-item-cat{font-size:0.74rem;color:var(--texto2);min-width:70px;}
+    .baixa-item-status{font-size:0.78rem;font-weight:700;padding:2px 10px;border-radius:12px;}
+    .baixa-item-status.sim{background:var(--verde-cl);color:var(--verde);}
+    .baixa-item-status.nao{background:#eee;color:#aaa;}
+    .baixa-check{width:22px;height:22px;border-radius:50%;border:2px solid var(--borda);background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 0.15s;}
+    .baixa-check.marcado{background:var(--verde);border-color:var(--verde);color:#fff;}
+    .baixa-check:hover{border-color:var(--azul);}
+    .baixa-progresso{height:8px;background:#eee;border-radius:20px;overflow:hidden;margin-top:6px;}
+    .baixa-progresso-fill{height:100%;background:linear-gradient(90deg,var(--verde),#66bb6a);border-radius:20px;transition:width 0.4s ease;}
+    .baixa-stats{display:flex;gap:12px;font-size:0.8rem;color:var(--texto2);margin-top:6px;flex-wrap:wrap;}
+    .baixa-stat-num{font-weight:800;color:var(--texto);}
+
+    /* MISC */
     .spinner{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,0.4);border-top-color:#fff;border-radius:50%;animation:spin 0.6s linear infinite;vertical-align:middle;margin-right:6px;}
     .spinner-azul{border-color:rgba(21,101,192,0.2);border-top-color:var(--azul);}
     @keyframes spin{to{transform:rotate(360deg);}}
@@ -346,37 +357,27 @@
     .vazio-estado .vazio-icon{font-size:3rem;margin-bottom:12px;}
     .vazio-estado p{font-size:0.9rem;}
 
-    /* ══ REUNIÕES ══ */
-    .reuniao-card{background:#fff;border-radius:12px;border:1.5px solid var(--borda);padding:14px 16px;margin-bottom:10px;display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap;transition:box-shadow 0.15s;}
-    .reuniao-card:hover{box-shadow:0 2px 12px rgba(0,0,0,0.08);}
-    .reuniao-titulo{font-family:'Nunito',sans-serif;font-weight:800;font-size:0.96rem;margin-bottom:4px;}
-    .reuniao-info{font-size:0.82rem;color:var(--texto2);}
-    .part-item{display:flex;align-items:center;justify-content:space-between;padding:6px 10px;border-bottom:1px solid var(--borda);font-size:0.85rem;}
-    .part-item:last-child{border-bottom:none;}
-    .turma-btn-sel{padding:10px 8px;border-radius:10px;border:2px solid var(--borda);background:#fff;font-family:'Nunito',sans-serif;font-weight:700;font-size:0.9rem;cursor:pointer;text-align:center;transition:all 0.15s;color:var(--azul);}
-    .turma-btn-sel:hover,.turma-btn-sel.selecionado{border-color:var(--azul);background:var(--azul-cl);}
-    .turmas-popup{display:grid;grid-template-columns:repeat(auto-fill,minmax(80px,1fr));gap:8px;margin-top:10px;}
+    /* RESTRIÇÃO visualização */
+    .apenas-visualizacao .btn-edicao{display:none!important;}
 
-    /* ══ RELÓGIO ══ */
-    #relogio{position:fixed;bottom:16px;right:20px;background:rgba(21,101,192,0.92);color:#fff;font-family:'Nunito',sans-serif;font-weight:700;font-size:0.78rem;padding:6px 14px;border-radius:20px;box-shadow:0 2px 10px rgba(0,0,0,0.18);z-index:400;line-height:1.4;text-align:center;pointer-events:none;letter-spacing:0.2px;}
+    /* RELÓGIO */
+    #relogio{position:fixed;bottom:16px;right:20px;background:rgba(21,101,192,0.92);color:#fff;font-family:'Nunito',sans-serif;font-weight:700;font-size:0.78rem;padding:6px 14px;border-radius:20px;box-shadow:0 2px 10px rgba(0,0,0,0.18);z-index:400;text-align:center;pointer-events:none;}
     #relogio .hora{font-size:1rem;font-weight:900;letter-spacing:1px;}
 
-    /* ══ TOAST ══ */
+    /* TOAST */
     #toast{position:fixed;bottom:70px;right:24px;background:#222;color:#fff;padding:10px 20px;border-radius:10px;font-size:0.88rem;font-weight:600;opacity:0;pointer-events:none;transition:opacity 0.3s;z-index:500;}
     #toast.visivel{opacity:1;}
 
-    /* ══ IMPRIMIR ══ */
+    /* IMPRIMIR */
     @media print{
       .sidebar,.sidebar-overlay,.topbar,#relogio,#toast,.btn,.admin-bar button,.modal-overlay,#loginScreen,.acoes{display:none!important;}
       .main-wrapper{margin-left:0!important;}
       .secao{display:block!important;padding:0;}
       body{background:#fff;}
-      .plantao-pg-table th{background:#1565c0!important;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
       .ata-impressao{display:block!important;}
-      .ata-impressao-conteudo{font-family:'Nunito Sans',sans-serif;max-width:700px;margin:0 auto;padding:20px;}
     }
 
-    /* ══ MOBILE ══ */
+    /* MOBILE */
     @media(max-width:768px){
       .sidebar{transform:translateX(-100%);}
       .sidebar.aberta{transform:translateX(0);}
@@ -394,7 +395,7 @@
 </head>
 <body>
 
-<!-- ══════════════ TELA DE LOGIN ══════════════ -->
+<!-- LOGIN -->
 <div id="loginScreen">
   <div class="login-card">
     <div class="login-logo">📚</div>
@@ -411,12 +412,11 @@
   </div>
 </div>
 
-<!-- ══════════════ APP ══════════════ -->
+<!-- APP -->
 <div id="appContent">
 <div class="sidebar-overlay" id="sidebarOverlay" onclick="fecharSidebar()"></div>
 <div class="app-layout">
 
-  <!-- SIDEBAR -->
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-header">
       <span class="sidebar-logo">📚</span>
@@ -429,6 +429,7 @@
       <button onclick="irPara('aniversariantes',this)"><span class="nav-icon">🎂</span> Aniversários</button>
       <button onclick="irPara('avisos',this)"><span class="nav-icon">📢</span> Avisos</button>
       <button onclick="irPara('cadastro',this)"><span class="nav-icon">📝</span> Cadastro de Lista</button>
+      <button onclick="irPara('baixa',this)"><span class="nav-icon">✔️</span> Baixa em Lista</button>
       <button onclick="irPara('pesquisa',this)"><span class="nav-icon">🔍</span> Pesquisa</button>
       <button onclick="irPara('plantaopg',this)"><span class="nav-icon">✅</span> Plantão Ped.</button>
       <button onclick="irPara('ata',this)"><span class="nav-icon">📋</span> ATA</button>
@@ -441,7 +442,6 @@
     </div>
   </aside>
 
-  <!-- MAIN WRAPPER -->
   <div class="main-wrapper">
     <header class="topbar">
       <button class="topbar-hamburger" onclick="abrirSidebar()">☰</button>
@@ -461,12 +461,12 @@
       <div class="card">
         <div class="admin-bar">
           <div class="card-titulo" style="margin:0;">📰 Notícias da Escola</div>
-          <button class="btn btn-amarelo btn-icon" onclick="abrirAdminNoticias()" style="font-size:0.8rem;padding:6px 12px;">⚙️ Gerenciar</button>
+          <button class="btn btn-amarelo btn-icon btn-edicao" onclick="abrirAdminNoticias()" style="font-size:0.8rem;padding:6px 12px;">⚙️ Gerenciar</button>
         </div>
-        <div id="noticias-loading" style="display:none;" class="loading-txt"><span class="spinner"></span> Carregando notícias...</div>
+        <div id="noticias-loading" style="display:none;" class="loading-txt"><span class="spinner"></span> Carregando...</div>
         <div id="noticiasPrincipal"></div>
         <div id="noticiasGrid" class="noticias-grid"></div>
-        <div id="noticias-vazio" style="display:none;" class="vazio-estado"><div class="vazio-icon">📭</div><p>Nenhuma notícia cadastrada ainda.</p></div>
+        <div id="noticias-vazio" style="display:none;" class="vazio-estado"><div class="vazio-icon">📭</div><p>Nenhuma notícia ainda.</p></div>
       </div>
     </section>
 
@@ -475,7 +475,7 @@
       <div class="card">
         <div class="admin-bar">
           <div class="card-titulo" style="margin:0;">📅 Calendário Escolar</div>
-          <button class="btn btn-roxo btn-icon" onclick="abrirAdminCalendario()" style="font-size:0.8rem;padding:6px 12px;">⚙️ Gerenciar Eventos</button>
+          <button class="btn btn-roxo btn-icon btn-edicao" onclick="abrirAdminCalendario()" style="font-size:0.8rem;padding:6px 12px;">⚙️ Gerenciar Eventos</button>
         </div>
         <div class="cal-nav">
           <button class="btn btn-cinza btn-icon" onclick="mudarMes(-1)">◀</button>
@@ -497,7 +497,7 @@
       <div class="card">
         <div class="admin-bar">
           <div class="card-titulo" style="margin:0;">📢 Avisos</div>
-          <button class="btn btn-amarelo btn-icon" onclick="abrirModalAviso()" style="font-size:0.8rem;padding:6px 12px;">+ Novo Aviso</button>
+          <button class="btn btn-amarelo btn-icon btn-edicao" onclick="abrirModalAviso()" style="font-size:0.8rem;padding:6px 12px;">+ Novo Aviso</button>
         </div>
         <div id="avisosConteudo"></div>
       </div>
@@ -508,7 +508,7 @@
       <div class="card">
         <div class="admin-bar">
           <div class="card-titulo" style="margin:0;">📝 Cadastro de Lista</div>
-          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <div style="display:flex;gap:8px;flex-wrap:wrap;" class="btn-edicao">
             <button class="btn btn-azul" onclick="abrirModalNovaLista()">+ Nova Lista</button>
             <button class="btn btn-cinza" onclick="abrirModalListasSalvas()">📂 Listas Salvas</button>
           </div>
@@ -517,14 +517,22 @@
       </div>
     </section>
 
+    <!-- BAIXA EM LISTA -->
+    <section class="secao" id="sec-baixa">
+      <div class="card">
+        <div class="admin-bar">
+          <div class="card-titulo" style="margin:0;">✔️ Baixa em Lista</div>
+          <button class="btn btn-verde btn-icon" onclick="abrirModalNovaBaixaLista()">+ Nova Lista de Baixa</button>
+        </div>
+        <div id="baixaConteudo"><div class="loading-txt"><span class="spinner spinner-azul"></span> Carregando...</div></div>
+      </div>
+    </section>
+
     <!-- PESQUISA -->
     <section class="secao" id="sec-pesquisa">
       <div class="card">
         <div class="card-titulo">🔍 Pesquisar Aluno ou Funcionário</div>
-        <div>
-          <label>Nome</label>
-          <input type="text" id="pesqNome" placeholder="Digite parte do nome..." oninput="renderPesquisa()">
-        </div>
+        <div><label>Nome</label><input type="text" id="pesqNome" placeholder="Digite parte do nome..." oninput="renderPesquisa()"></div>
         <div id="pesqResultados" style="margin-top:14px;"><div class="pesq-vazio">Digite um nome para pesquisar.</div></div>
       </div>
     </section>
@@ -535,8 +543,8 @@
         <div class="admin-bar">
           <div class="card-titulo" style="margin:0;">✅ Plantão Pedagógico</div>
           <div style="display:flex;gap:8px;flex-wrap:wrap;">
-            <button class="btn btn-verde btn-icon" onclick="abrirAdminPlantaoAlunos()" style="font-size:0.8rem;padding:6px 12px;">👥 Gerenciar Alunos</button>
-            <button class="btn btn-roxo btn-icon" onclick="abrirAdminPlantao()" style="font-size:0.8rem;padding:6px 12px;">📅 Gerenciar Datas</button>
+            <button class="btn btn-verde btn-icon btn-edicao" onclick="abrirAdminPlantaoAlunos()" style="font-size:0.8rem;padding:6px 12px;">👥 Gerenciar Alunos</button>
+            <button class="btn btn-roxo btn-icon btn-edicao" onclick="abrirAdminPlantao()" style="font-size:0.8rem;padding:6px 12px;">📅 Gerenciar Datas</button>
             <button class="btn btn-cinza btn-icon" onclick="imprimirPlantao()" style="font-size:0.8rem;padding:6px 12px;">🖨️ Imprimir</button>
           </div>
         </div>
@@ -549,7 +557,7 @@
       <div class="card">
         <div class="admin-bar">
           <div class="card-titulo" style="margin:0;">📋 Atas de Reunião</div>
-          <div style="display:flex;gap:8px;">
+          <div style="display:flex;gap:8px;" class="btn-edicao">
             <button class="btn btn-azul" onclick="abrirModalNovaAta()">+ Nova Ata</button>
             <button class="btn btn-cinza" onclick="abrirModalListarAtas()">📂 Atas Salvas</button>
           </div>
@@ -563,7 +571,7 @@
       <div class="card">
         <div class="admin-bar">
           <div class="card-titulo" style="margin:0;">📥 Downloads</div>
-          <button class="btn btn-amarelo btn-icon" onclick="abrirAdminDownloads()" style="font-size:0.8rem;padding:6px 12px;">⚙️ Gerenciar</button>
+          <button class="btn btn-amarelo btn-icon btn-edicao" onclick="abrirAdminDownloads()" style="font-size:0.8rem;padding:6px 12px;">⚙️ Gerenciar</button>
         </div>
         <div class="downloads-cats" id="downloadsCats"></div>
         <div id="downloadsConteudo"></div>
@@ -574,29 +582,29 @@
     <section class="secao" id="sec-totalizador">
       <div class="totalizador-hero">
         <div class="totalizador-hero-icon">📊</div>
-        <div class="totalizador-hero-text"><h2>Totalizador Geral</h2><p>Visão consolidada de alunos por turma e colaboradores da escola</p></div>
+        <div class="totalizador-hero-text"><h2>Totalizador Geral</h2><p>Visão consolidada de alunos por turma e colaboradores</p></div>
       </div>
-      <div class="total-big-cards" id="totalBigCards">
-        <div class="total-big-card card-ini" style="animation-delay:0.05s"><div class="total-big-num" id="numAnosIni">—</div><div class="total-big-label">📗 Anos Iniciais</div></div>
-        <div class="total-big-card card-fin" style="animation-delay:0.1s"><div class="total-big-num" id="numAnosFin">—</div><div class="total-big-label">📘 Anos Finais</div></div>
-        <div class="total-big-card card-tot" style="animation-delay:0.15s"><div class="total-big-num" id="numTotalAlunos">—</div><div class="total-big-label">🎓 Total de Alunos</div></div>
-        <div class="total-big-card card-colab" style="animation-delay:0.2s"><div class="total-big-num" id="numColaboradores">—</div><div class="total-big-label">👥 Colaboradores</div></div>
+      <div class="total-big-cards">
+        <div class="total-big-card card-ini"><div class="total-big-num" id="numAnosIni">—</div><div class="total-big-label">📗 Anos Iniciais</div></div>
+        <div class="total-big-card card-fin"><div class="total-big-num" id="numAnosFin">—</div><div class="total-big-label">📘 Anos Finais</div></div>
+        <div class="total-big-card card-tot"><div class="total-big-num" id="numTotalAlunos">—</div><div class="total-big-label">🎓 Total de Alunos</div></div>
+        <div class="total-big-card card-colab"><div class="total-big-num" id="numColaboradores">—</div><div class="total-big-label">👥 Colaboradores</div></div>
       </div>
       <div class="card">
         <div class="total-tab-row">
           <button class="total-tab-btn ativo" onclick="mudarAbaTotal('alunos',this)">🎓 Alunos por Turma</button>
-          <button class="total-tab-btn" onclick="mudarAbaTotal('colab',this)">👥 Colaboradores</button>
+          <button class="total-tab-btn" onclick="mudarAbaTotal('Colab',this)">👥 Colaboradores</button>
         </div>
         <div class="total-tab-content ativo" id="abaAlunos"><div id="totalAlunosTabela"><div class="loading-txt"><span class="spinner spinner-azul"></span> Carregando...</div></div></div>
         <div class="total-tab-content" id="abaColab"><div id="totalColabConteudo"></div></div>
       </div>
     </section>
 
-  </div><!-- fim main-wrapper -->
-</div><!-- fim app-layout -->
-</div><!-- fim appContent -->
+  </div>
+</div>
+</div>
 
-<!-- ════════════════ MODAIS ════════════════ -->
+<!-- ════ MODAIS ════ -->
 
 <!-- NOTÍCIA COMPLETA -->
 <div class="modal-overlay" id="modalNoticia">
@@ -617,7 +625,7 @@
     <input type="hidden" id="noticiaEditId">
     <div><label>Título *</label><input type="text" id="noticiaTitulo" placeholder="Título da notícia"></div>
     <div><label>Categoria</label><input type="text" id="noticiaCategoria" placeholder="Ex: Evento, Aviso..."></div>
-    <div><label>Texto *</label><textarea id="noticiaTexto" rows="4" placeholder="Conteúdo da notícia..."></textarea></div>
+    <div><label>Texto *</label><textarea id="noticiaTexto" rows="4" placeholder="Conteúdo..."></textarea></div>
     <div><label>Imagem (URL)</label><input type="url" id="noticiaImagem" placeholder="https://..." oninput="previewImagem()"><img id="imgPreview" class="img-preview" src="" alt="Preview"></div>
     <div style="margin-top:10px;"><label>Tamanho</label>
       <div class="tamanho-opcoes">
@@ -634,7 +642,7 @@
   </div>
 </div>
 
-<!-- MODAL AVISO -->
+<!-- AVISO -->
 <div class="modal-overlay" id="modalAviso">
   <div class="modal" style="max-width:500px;">
     <button class="modal-fechar" onclick="fecharModal('modalAviso')">✕</button>
@@ -660,7 +668,7 @@
   </div>
 </div>
 
-<!-- MODAL NOVA LISTA -->
+<!-- NOVA LISTA -->
 <div class="modal-overlay" id="modalNovaLista">
   <div class="modal" style="max-width:520px;">
     <button class="modal-fechar" onclick="fecharModal('modalNovaLista')">✕</button>
@@ -678,7 +686,7 @@
   </div>
 </div>
 
-<!-- MODAL SELECIONAR ORIGEM -->
+<!-- ORIGEM LISTA -->
 <div class="modal-overlay" id="modalOrigemLista">
   <div class="modal" style="max-width:500px;">
     <button class="modal-fechar" onclick="fecharModal('modalOrigemLista')">✕</button>
@@ -693,7 +701,7 @@
   </div>
 </div>
 
-<!-- MODAL LISTAS SALVAS -->
+<!-- LISTAS SALVAS -->
 <div class="modal-overlay" id="modalListasSalvas">
   <div class="modal" style="max-width:520px;">
     <button class="modal-fechar" onclick="fecharModal('modalListasSalvas')">✕</button>
@@ -750,7 +758,7 @@
     <div class="modal-titulo" id="formDownloadTitulo" style="font-size:0.95rem;margin-bottom:10px;">➕ Novo Download</div>
     <input type="hidden" id="downloadEditId">
     <div><label>Nome *</label><input type="text" id="downloadNome" placeholder="Ex: Jornal da Escola - Abril"></div>
-    <div><label>Categoria *</label><input type="text" id="downloadCategoria" placeholder="Ex: Jornal Escolar, Comunicados..."></div>
+    <div><label>Categoria *</label><input type="text" id="downloadCategoria" placeholder="Ex: Jornal Escolar..."></div>
     <div><label>Descrição</label><input type="text" id="downloadDesc" placeholder="Breve descrição (opcional)"></div>
     <div><label>Link *</label><input type="url" id="downloadLink" placeholder="https://drive.google.com/..."><div style="font-size:0.74rem;color:var(--texto2);margin-top:4px;">💡 Google Drive → Compartilhar → "Qualquer pessoa com o link"</div></div>
     <div style="margin-top:10px;"><label>Ícone</label>
@@ -785,7 +793,7 @@
       <div><label>Descrição</label><input type="text" id="plantaoDataDesc" placeholder="Ex: 1º Plantão..."></div>
     </div>
     <div style="display:flex;gap:10px;margin-top:12px;">
-      <button class="btn btn-verde" onclick="salvarDataPlantao()">💾 Salvar Data</button>
+      <button class="btn btn-verde" id="btnSalvarDataPlantao" onclick="salvarDataPlantao()">💾 Salvar Data</button>
       <button class="btn btn-cinza" onclick="limparFormPlantao()">✕ Cancelar</button>
     </div>
     <hr style="border:none;border-top:1px solid var(--borda);margin:14px 0;">
@@ -820,7 +828,7 @@
   </div>
 </div>
 
-<!-- MODAL NOVA ATA -->
+<!-- NOVA ATA -->
 <div class="modal-overlay" id="modalNovaAta">
   <div class="modal" style="max-width:640px;">
     <button class="modal-fechar" onclick="fecharModal('modalNovaAta')">✕</button>
@@ -829,7 +837,7 @@
     <div class="form-grid">
       <div><label>Data *</label><input type="date" id="ataData"></div>
       <div><label>Horário</label><input type="time" id="ataHorario"></div>
-      <div style="grid-column:1/-1;"><label>Título / Assunto *</label><input type="text" id="ataTitulo" placeholder="Ex: Reunião de pais e mestres - 3º bimestre"></div>
+      <div style="grid-column:1/-1;"><label>Título / Assunto *</label><input type="text" id="ataTitulo" placeholder="Ex: Reunião de pais e mestres"></div>
       <div style="grid-column:1/-1;"><label>Local</label><input type="text" id="ataLocal" placeholder="Ex: Auditório da escola"></div>
     </div>
     <div style="margin-top:10px;"><label>Conteúdo da Ata *</label><textarea id="ataConteudo" class="ata-texto-area" placeholder="Digite o conteúdo da ata aqui..."></textarea></div>
@@ -846,12 +854,72 @@
   </div>
 </div>
 
-<!-- MODAL LISTAR ATAS -->
+<!-- LISTAR ATAS -->
 <div class="modal-overlay" id="modalListarAtas">
   <div class="modal" style="max-width:560px;">
     <button class="modal-fechar" onclick="fecharModal('modalListarAtas')">✕</button>
     <div class="modal-titulo">📂 Atas Salvas</div>
     <div id="atasSalvasConteudo"></div>
+  </div>
+</div>
+
+<!-- BAIXA — MODAL NOVA LISTA -->
+<div class="modal-overlay" id="modalNovaBaixaLista">
+  <div class="modal" style="max-width:500px;">
+    <button class="modal-fechar" onclick="fecharModal('modalNovaBaixaLista')">✕</button>
+    <div class="modal-titulo">✔️ Nova Lista de Baixa</div>
+    <div><label>Nome da lista *</label><input type="text" id="baixaNomeLista" placeholder="Ex: Uniforme, Brinde, Visto..."></div>
+    <div style="margin-top:10px;"><label>Tipo</label>
+      <div class="lista-tipo-opts" id="baixaTipoOpts" style="margin-top:6px;"></div>
+      <div id="baixaTipoCustomWrap" style="display:none;margin-top:6px;">
+        <input type="text" id="baixaTipoCustom" placeholder="Nome do tipo personalizado...">
+      </div>
+    </div>
+    <div style="display:flex;gap:10px;margin-top:16px;">
+      <button class="btn btn-verde" onclick="confirmarNovaBaixaLista()">Próximo →</button>
+      <button class="btn btn-cinza" onclick="fecharModal('modalNovaBaixaLista')">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<!-- BAIXA — MODAL GERENCIAR (adicionar pessoas à lista) -->
+<div class="modal-overlay" id="modalBaixaGerenciar">
+  <div class="modal" style="max-width:540px;">
+    <button class="modal-fechar" onclick="fecharModal('modalBaixaGerenciar')">✕</button>
+    <div class="modal-titulo" id="baixaGerenciarTitulo">✔️ Adicionar Pessoas</div>
+    <p style="font-size:0.84rem;color:var(--texto2);margin-bottom:12px;">Selecione quem estará nesta lista:</p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px;">
+      <button class="btn btn-azul" onclick="baixaMostrarTurmas()">🏫 Por Turma</button>
+      <button class="btn btn-roxo" onclick="baixaAdicionarFuncionario()">👤 Funcionário</button>
+      <button class="btn btn-cinza" onclick="baixaAdicionarOutro()">✏️ Outro nome</button>
+    </div>
+    <div id="baixaGerenciarConteudo"></div>
+    <div style="margin-top:16px;border-top:1px solid var(--borda);padding-top:12px;">
+      <div style="font-size:0.85rem;font-weight:700;margin-bottom:8px;">Pessoas já na lista (<span id="baixaListaCount">0</span>):</div>
+      <div id="baixaListaPreview" style="max-height:140px;overflow-y:auto;border:1px solid var(--borda);border-radius:8px;"></div>
+    </div>
+    <div style="display:flex;gap:10px;margin-top:14px;">
+      <button class="btn btn-verde" onclick="salvarBaixaListaCompleta()">💾 Salvar e Abrir Lista</button>
+    </div>
+  </div>
+</div>
+
+<!-- BAIXA — MODAL EXECUTAR BAIXAS -->
+<div class="modal-overlay" id="modalBaixaExecutar">
+  <div class="modal" style="max-width:640px;">
+    <button class="modal-fechar" onclick="fecharModal('modalBaixaExecutar');carregarBaixas()">✕</button>
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;flex-wrap:wrap;gap:8px;">
+      <div class="modal-titulo" style="margin:0;" id="baixaExecTitulo">✔️ Baixa</div>
+      <button class="btn btn-verde btn-icon" id="btnSalvarBaixas" onclick="salvarTodasBaixas()">💾 Salvar</button>
+    </div>
+    <div class="baixa-stats" id="baixaExecStats"></div>
+    <div class="baixa-progresso" style="margin:10px 0 16px;"><div class="baixa-progresso-fill" id="baixaProgressoFill" style="width:0%"></div></div>
+    <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;">
+      <button class="btn btn-cinza btn-icon" onclick="baixaFiltrarStatus('')" id="fBaixaTodos" style="font-size:0.78rem;">Todos</button>
+      <button class="btn btn-cinza btn-icon" onclick="baixaFiltrarStatus('nao')" id="fBaixaNao" style="font-size:0.78rem;">Pendentes</button>
+      <button class="btn btn-verde btn-icon" onclick="baixaFiltrarStatus('sim')" id="fBaixaSim" style="font-size:0.78rem;">✓ Baixados</button>
+    </div>
+    <div id="baixaExecLista" style="border:1px solid var(--borda);border-radius:10px;max-height:420px;overflow-y:auto;"></div>
   </div>
 </div>
 
@@ -862,19 +930,21 @@
 
 <script>
 /* ══════════════════════════════════════════════════════
-   CONFIG E USUÁRIOS
+   CONFIG
 ══════════════════════════════════════════════════════ */
 const API_URL = "https://script.google.com/macros/s/AKfycbzP_n9hFNcnMgDzEIUTYyl5CVa__JPWBbOF7F20p46B9qgwVx8o0p21ay62qRq3bzM4/exec";
 
+// ── USUÁRIOS ── Professor e Visitante = somenteLeitura:true
 const USUARIOS = [
-  {nome:"Kadigina",cargo:"Diretora",senha:"1234"},
-  {nome:"Ivan",cargo:"Coordenador Pedagógico",senha:"1234"},
-  {nome:"Januacelis",cargo:"Coordenador Pedagógico",senha:"1234"},
-  {nome:"Jessica",cargo:"Secretaria Escolar",senha:"1234"},
-  {nome:"Visitante",cargo:"Operacional",senha:"1234"},
+  {nome:"Kadigina",  cargo:"Diretora",               senha:"1234", somenteLeitura:false},
+  {nome:"Ivan",      cargo:"Coordenador Pedagógico",  senha:"1234", somenteLeitura:false},
+  {nome:"Januacelis",cargo:"Coordenador Pedagógico",  senha:"1234", somenteLeitura:false},
+  {nome:"Jessica",   cargo:"Secretaria Escolar",      senha:"1234", somenteLeitura:false},
+  {nome:"Professor", cargo:"Professor",               senha:"1234", somenteLeitura:true},
+  {nome:"Visitante", cargo:"Operacional",             senha:"1234", somenteLeitura:true},
 ];
 
-const NOME_ESCOLA    = "Escola Municipal";
+const NOME_ESCOLA     = "Escola Municipal";
 const ENDERECO_ESCOLA = "Rua Exemplo, 123 — Cidade/PB — CEP 00000-000";
 
 const TURMAS_FIXAS  = ["1A","1B","2A","2B","3A","3B","4A","4B","5A","5B","6A","6B","7A","7B","8A","8B","9A","9B"];
@@ -886,9 +956,12 @@ const MESES_REL     = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Ou
 
 const TIPOS_LISTA = [
   {value:'kit-escolar',  label:'🎒 Kit Escolar'},
-  {value:'reforco-mat',  label:'📐 Reforço de Mat.'},
-  {value:'reforco-alfa', label:'📖 Reforço de Alfa.'},
+  {value:'reforco-mat',  label:'📐 Reforço Mat.'},
+  {value:'reforco-alfa', label:'📖 Reforço Alfa.'},
   {value:'fardamento',   label:'👕 Fardamento'},
+  {value:'uniforme',     label:'👔 Uniforme'},
+  {value:'brinde',       label:'🎁 Brinde'},
+  {value:'visto',        label:'✅ Visto'},
   {value:'outro',        label:'✏️ Outro'},
 ];
 
@@ -966,12 +1039,11 @@ const ANIVERSARIANTES = [
    ESTADO GLOBAL
 ══════════════════════════════════════════════════════ */
 let usuarioLogado    = null;
-let noticias         = JSON.parse(localStorage.getItem('noticias_v2')||'[]');
-let downloads        = JSON.parse(localStorage.getItem('downloads_v2')||'[]');
+let noticias         = [];
+let downloads        = [];
 let avisos           = JSON.parse(localStorage.getItem('avisos_v1')||'[]');
 let atas             = JSON.parse(localStorage.getItem('atas_v1')||'[]');
 let eventosCustom    = [];
-let todosAlunos      = [];
 let plantaoAlunos    = [];
 let plantaoDatas     = [];
 let plantaoPresencas = {};
@@ -983,6 +1055,14 @@ let calAnoAtual      = new Date().getFullYear();
 let corAvisoSel      = 'azul';
 let listaAtual       = {tipo:'',itens:[]};
 let listasSalvas     = JSON.parse(localStorage.getItem('listas_v1')||'[]');
+
+// Baixa em lista
+let baixaListasAll   = [];
+let baixaItensAll    = [];
+let baixaAtual       = null; // {id, nome, tipo, itens:[{nome,categoria,baixado}]}
+let baixaFiltro      = '';   // '', 'sim', 'nao'
+let baixaTipoSel     = '';
+let baixaItensPendentes = {}; // mudanças ainda não salvas {nome: bool}
 
 /* ══════════════════════════════════════════════════════
    HELPERS
@@ -999,11 +1079,6 @@ function fmtData(iso){
   if(p.length===3)return `${p[2]}/${p[1]}/${p[0]}`;
   return s;
 }
-function dataParaISO(val){
-  if(!val)return '';
-  if(val instanceof Date){const y=val.getFullYear(),m=String(val.getMonth()+1).padStart(2,'0'),d=String(val.getDate()).padStart(2,'0');return `${y}-${m}-${d}`;}
-  return String(val).slice(0,10);
-}
 function toggleVerSenha(inputId,btnId){
   const inp=document.getElementById(inputId),btn=document.getElementById(btnId);
   if(inp.type==='password'){inp.type='text';btn.textContent='🙈';}else{inp.type='password';btn.textContent='👁️';}
@@ -1019,6 +1094,14 @@ async function apiGet(sheet){
 }
 
 /* ══════════════════════════════════════════════════════
+   RESTRIÇÃO DE VISUALIZAÇÃO
+══════════════════════════════════════════════════════ */
+function aplicarModoVisualizacao(){
+  const sl=usuarioLogado&&usuarioLogado.somenteLeitura;
+  document.getElementById('appContent').classList.toggle('apenas-visualizacao',!!sl);
+}
+
+/* ══════════════════════════════════════════════════════
    LOGIN / LOGOUT
 ══════════════════════════════════════════════════════ */
 function renderLoginUsuarios(){
@@ -1027,7 +1110,7 @@ function renderLoginUsuarios(){
       <div class="login-user-avatar">${u.nome[0]}</div>
       <div class="login-user-info">
         <div class="login-user-nome">${esc(u.nome)}</div>
-        <div class="login-user-cargo">${esc(u.cargo)}</div>
+        <div class="login-user-cargo">${esc(u.cargo)}${u.somenteLeitura?' <span style="font-size:0.7rem;color:#aaa;">(visualização)</span>':''}</div>
       </div>
     </div>`).join('');
   selecionarUsuario(0,document.querySelector('.login-usuario-btn'));
@@ -1055,8 +1138,9 @@ function fazerLogin(){
   document.getElementById('loginScreen').style.display='none';
   document.getElementById('appContent').classList.add('visivel');
   document.getElementById('topbarNome').textContent=u.nome;
-  document.getElementById('topbarCargo').textContent=u.cargo;
+  document.getElementById('topbarCargo').textContent=u.cargo+(u.somenteLeitura?' (somente leitura)':'');
   document.getElementById('topbarAvatar').textContent=u.nome[0];
+  aplicarModoVisualizacao();
   atualizarSelectTurmas();
   carregarNoticias();
   carregarDownloads();
@@ -1069,6 +1153,7 @@ function fazerLogout(){
   usuarioLogado=null;
   document.getElementById('loginScreen').style.display='flex';
   document.getElementById('appContent').classList.remove('visivel');
+  document.getElementById('appContent').classList.remove('apenas-visualizacao');
   document.getElementById('loginSenha').value='';
   document.getElementById('loginErro').textContent='';
   document.querySelectorAll('.secao').forEach(s=>s.classList.remove('ativa'));
@@ -1092,6 +1177,7 @@ function irPara(secao,btn){
   if(secao==='aniversariantes') renderAniversariantes();
   if(secao==='avisos')          renderAvisos();
   if(secao==='cadastro')        renderCadastroLista();
+  if(secao==='baixa')           carregarBaixas();
   if(secao==='pesquisa')        {document.getElementById('pesqNome').value='';renderPesquisa();}
   if(secao==='plantaopg')       carregarPlantaoPg();
   if(secao==='ata')             renderAtas();
@@ -1111,7 +1197,7 @@ function atualizarRelogio(){
 setInterval(atualizarRelogio,1000);atualizarRelogio();
 
 /* ══════════════════════════════════════════════════════
-   TURMAS — select helpers
+   TURMAS — selects
 ══════════════════════════════════════════════════════ */
 function atualizarSelectTurmas(){
   ['plantaoAlunoTurma','filtroPlantaoAlunoTurma'].forEach(id=>{
@@ -1129,10 +1215,8 @@ function atualizarSelectTurmas(){
 async function carregarNoticias(){
   document.getElementById('noticias-loading').style.display='block';
   document.getElementById('noticias-vazio').style.display='none';
-  try{
-    noticias=await apiGet('Noticias');
-    noticias.sort((a,b)=>String(b.data||b.id).localeCompare(String(a.data||a.id)));
-  }catch(e){noticias=JSON.parse(localStorage.getItem('noticias_v2')||'[]');}
+  try{noticias=await apiGet('Noticias');noticias.sort((a,b)=>String(b.data||b.id).localeCompare(String(a.data||a.id)));}
+  catch(e){noticias=[];}
   document.getElementById('noticias-loading').style.display='none';
   renderNoticias();
 }
@@ -1146,14 +1230,14 @@ function renderNoticias(){
   const resto=noticias.filter(n=>n.id!==destaque.id);
   const tam=destaque.tamanho||'grande';
   if(tam==='semimagem'||!destaque.imagem){
-    princ.innerHTML=`<div class="noticias-hero banner-${tam==='pequeno'?'pequeno':'grande'}" onclick="abrirNoticia('${destaque.id}')" style="cursor:pointer;">
+    princ.innerHTML=`<div class="noticias-hero banner-${tam==='pequeno'?'pequeno':'grande'}" onclick="abrirNoticia('${destaque.id}')">
       <div class="noticias-hero-conteudo">
         ${destaque.categoria?`<span class="noticias-hero-badge">${esc(destaque.categoria)}</span>`:''}
         <div class="noticias-hero-titulo">${esc(destaque.titulo)}</div>
         <div class="noticias-hero-data">${fmtData(destaque.data)}</div>
       </div></div>`;
   }else{
-    princ.innerHTML=`<div class="noticias-hero banner-${tam==='pequeno'?'pequeno':'grande'}" onclick="abrirNoticia('${destaque.id}')" style="cursor:pointer;">
+    princ.innerHTML=`<div class="noticias-hero banner-${tam==='pequeno'?'pequeno':'grande'}" onclick="abrirNoticia('${destaque.id}')">
       <img src="${esc(destaque.imagem)}" alt="" onerror="this.style.display='none'">
       <div class="noticias-hero-conteudo">
         ${destaque.categoria?`<span class="noticias-hero-badge">${esc(destaque.categoria)}</span>`:''}
@@ -1189,8 +1273,8 @@ function abrirNoticia(id){
   document.getElementById('modalNoticia').classList.add('aberto');
 }
 function abrirAdminNoticias(){
-  renderAdminNoticiasList();
-  limparFormNoticia();
+  if(usuarioLogado&&usuarioLogado.somenteLeitura){toast('⛔ Sem permissão de edição.');return;}
+  renderAdminNoticiasList();limparFormNoticia();
   document.getElementById('modalAdminNoticias').classList.add('aberto');
 }
 function renderAdminNoticiasList(){
@@ -1198,7 +1282,7 @@ function renderAdminNoticiasList(){
   if(!noticias.length){div.innerHTML='<div style="color:var(--texto2);font-size:0.84rem;">Nenhuma notícia.</div>';return;}
   div.innerHTML=noticias.map(n=>`
     <div style="display:flex;align-items:center;justify-content:space-between;padding:7px 10px;border-bottom:1px solid var(--borda);font-size:0.84rem;">
-      <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${esc(n.titulo)}</span>
+      <span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${esc(n.titulo)}</span>
       <div style="display:flex;gap:6px;margin-left:8px;">
         <button class="btn btn-cinza btn-icon" onclick="editarNoticia('${n.id}')">✏️</button>
         <button class="btn btn-verm btn-icon" onclick="excluirNoticia('${n.id}')">🗑️</button>
@@ -1206,16 +1290,14 @@ function renderAdminNoticiasList(){
     </div>`).join('');
 }
 function editarNoticia(id){
-  const n=noticias.find(x=>String(x.id)===String(id));
-  if(!n)return;
+  const n=noticias.find(x=>String(x.id)===String(id));if(!n)return;
   document.getElementById('noticiaEditId').value=n.id;
   document.getElementById('noticiaTitulo').value=n.titulo||'';
   document.getElementById('noticiaCategoria').value=n.categoria||'';
   document.getElementById('noticiaTexto').value=n.texto||'';
   document.getElementById('noticiaImagem').value=n.imagem||'';
   document.getElementById('noticiaDestaque').checked=String(n.destaque)==='SIM';
-  setTamanho(n.tamanho||'grande');
-  previewImagem();
+  setTamanho(n.tamanho||'grande');previewImagem();
   document.getElementById('formNoticiasTitulo').textContent='✏️ Editar Notícia';
 }
 async function salvarNoticia(){
@@ -1223,21 +1305,14 @@ async function salvarNoticia(){
   const texto=document.getElementById('noticiaTexto').value.trim();
   if(!titulo||!texto){toast('⚠️ Preencha título e texto.');return;}
   const editId=document.getElementById('noticiaEditId').value;
-  const payload={
-    action: editId?'editarNoticia':'salvarNoticia',
-    titulo, texto,
+  const payload={action:editId?'editarNoticia':'salvarNoticia',titulo,texto,
     categoria:document.getElementById('noticiaCategoria').value.trim(),
     imagem:document.getElementById('noticiaImagem').value.trim(),
     destaque:document.getElementById('noticiaDestaque').checked?'SIM':'NÃO',
-    tamanho:tamanhoImagem,
-    data:new Date().toISOString().slice(0,10)
-  };
+    tamanho:tamanhoImagem,data:new Date().toISOString().slice(0,10)};
   if(editId)payload.id=editId;
-  try{
-    const r=await apiPost(payload);
-    if(r.ok){toast('✅ Notícia salva!');limparFormNoticia();await carregarNoticias();renderAdminNoticiasList();}
-    else toast('❌ '+(r.erro||'Erro'));
-  }catch(e){toast('❌ Erro: '+e.message);}
+  try{const r=await apiPost(payload);if(r.ok){toast('✅ Notícia salva!');limparFormNoticia();await carregarNoticias();renderAdminNoticiasList();}else toast('❌ '+(r.erro||'Erro'));}
+  catch(e){toast('❌ Erro: '+e.message);}
 }
 async function excluirNoticia(id){
   if(!confirm('Excluir esta notícia?'))return;
@@ -1245,28 +1320,19 @@ async function excluirNoticia(id){
   catch(e){toast('❌ '+e.message);}
 }
 function limparFormNoticia(){
-  document.getElementById('noticiaEditId').value='';
-  document.getElementById('noticiaTitulo').value='';
-  document.getElementById('noticiaCategoria').value='';
-  document.getElementById('noticiaTexto').value='';
-  document.getElementById('noticiaImagem').value='';
+  ['noticiaEditId','noticiaTitulo','noticiaCategoria','noticiaTexto','noticiaImagem'].forEach(id=>document.getElementById(id).value='');
   document.getElementById('noticiaDestaque').checked=false;
-  setTamanho('grande');
-  document.getElementById('imgPreview').className='img-preview';
+  setTamanho('grande');document.getElementById('imgPreview').className='img-preview';
   document.getElementById('formNoticiasTitulo').textContent='➕ Nova Notícia';
 }
 function setTamanho(t){
   tamanhoImagem=t;
-  ['grande','pequeno','semimagem'].forEach(k=>{
-    const el=document.getElementById('opt-'+k);
-    if(el)el.classList.toggle('selecionado',k===t);
-  });
+  ['grande','pequeno','semimagem'].forEach(k=>{const el=document.getElementById('opt-'+k);if(el)el.classList.toggle('selecionado',k===t);});
 }
 function previewImagem(){
   const url=document.getElementById('noticiaImagem').value.trim();
   const img=document.getElementById('imgPreview');
-  if(url){img.src=url;img.className='img-preview visivel';}
-  else{img.className='img-preview';}
+  if(url){img.src=url;img.className='img-preview visivel';}else{img.className='img-preview';}
 }
 
 /* ══════════════════════════════════════════════════════
@@ -1276,18 +1342,20 @@ function renderAvisos(){
   const div=document.getElementById('avisosConteudo');
   if(!avisos.length){div.innerHTML='<div class="vazio-estado"><div class="vazio-icon">📭</div><p>Nenhum aviso.</p></div>';return;}
   const sorted=[...avisos].sort((a,b)=>String(b.data||b.id).localeCompare(String(a.data||a.id)));
+  const podEditar=!(usuarioLogado&&usuarioLogado.somenteLeitura);
   div.innerHTML=`<div class="avisos-grid">${sorted.map(a=>`
     <div class="aviso-card aviso-${a.cor||'azul'}">
-      <div class="aviso-acoes">
+      ${podEditar?`<div class="aviso-acoes">
         <button class="btn btn-cinza btn-icon" onclick="editarAviso('${a.id}')">✏️</button>
         <button class="btn btn-verm btn-icon" onclick="excluirAviso('${a.id}')">🗑️</button>
-      </div>
+      </div>`:''}
       <div class="aviso-titulo">${esc(a.titulo)}</div>
       <div class="aviso-data">${fmtData(a.data)}</div>
       <div class="aviso-desc">${esc(a.desc||'')}</div>
     </div>`).join('')}</div>`;
 }
 function abrirModalAviso(){
+  if(usuarioLogado&&usuarioLogado.somenteLeitura){toast('⛔ Sem permissão de edição.');return;}
   document.getElementById('avisoEditId').value='';
   document.getElementById('avisoTitulo').value='';
   document.getElementById('avisoData').value=new Date().toISOString().slice(0,10);
@@ -1304,8 +1372,7 @@ function selecionarCorAviso(cor,el){
   el.classList.add('selecionada');
 }
 function editarAviso(id){
-  const a=avisos.find(x=>String(x.id)===String(id));
-  if(!a)return;
+  const a=avisos.find(x=>String(x.id)===String(id));if(!a)return;
   document.getElementById('avisoEditId').value=a.id;
   document.getElementById('avisoTitulo').value=a.titulo||'';
   document.getElementById('avisoData').value=a.data||'';
@@ -1320,12 +1387,8 @@ function salvarAviso(){
   const desc=document.getElementById('avisoDesc').value.trim();
   if(!titulo||!desc){toast('⚠️ Preencha título e descrição.');return;}
   const editId=document.getElementById('avisoEditId').value;
-  if(editId){
-    const a=avisos.find(x=>String(x.id)===String(editId));
-    if(a){a.titulo=titulo;a.data=document.getElementById('avisoData').value;a.desc=desc;a.cor=corAvisoSel;}
-  }else{
-    avisos.push({id:Date.now(),titulo,data:document.getElementById('avisoData').value,desc,cor:corAvisoSel});
-  }
+  if(editId){const a=avisos.find(x=>String(x.id)===String(editId));if(a){a.titulo=titulo;a.data=document.getElementById('avisoData').value;a.desc=desc;a.cor=corAvisoSel;}}
+  else{avisos.push({id:Date.now(),titulo,data:document.getElementById('avisoData').value,desc,cor:corAvisoSel});}
   localStorage.setItem('avisos_v1',JSON.stringify(avisos));
   fecharModal('modalAviso');renderAvisos();toast('✅ Aviso salvo!');
 }
@@ -1344,15 +1407,13 @@ async function carregarEventosCal(){
   renderCalendario();
 }
 function renderCalendario(){
-  const mesNome=MESES_NOMES[calMesAtual];
-  document.getElementById('calMesAno').textContent=`${mesNome} ${calAnoAtual}`;
+  document.getElementById('calMesAno').textContent=`${MESES_NOMES[calMesAtual]} ${calAnoAtual}`;
   const primeiroDia=new Date(calAnoAtual,calMesAtual,1).getDay();
   const diasNoMes=new Date(calAnoAtual,calMesAtual+1,0).getDate();
   const hoje=new Date();
   const hojeISO=`${hoje.getFullYear()}-${String(hoje.getMonth()+1).padStart(2,'0')}-${String(hoje.getDate()).padStart(2,'0')}`;
   const eventosPorDia={};
-  const todasDatas=[...EVENTOS_FIXOS,...eventosCustom.map(e=>({data:e.data,titulo:e.titulo,tipo:e.tipo||'custom'}))];
-  todasDatas.forEach(ev=>{
+  [...EVENTOS_FIXOS,...eventosCustom.map(e=>({data:e.data,titulo:e.titulo,tipo:e.tipo||'custom'}))].forEach(ev=>{
     const d=String(ev.data||'').slice(0,7);
     if(d===`${calAnoAtual}-${String(calMesAtual+1).padStart(2,'0')}`){
       const dia=parseInt(String(ev.data).slice(8,10));
@@ -1376,15 +1437,10 @@ function renderCalendario(){
     html+=`<div class="${cls}" ${onclick}>${d}</div>`;
   }
   document.getElementById('calGrid').innerHTML=html;
-  // Lista eventos do mês
-  const todosDoMes=todasDatas.filter(e=>String(e.data||'').slice(0,7)===`${calAnoAtual}-${String(calMesAtual+1).padStart(2,'0')}`);
-  todosDoMes.sort((a,b)=>String(a.data).localeCompare(String(b.data)));
+  const todosDoMes=[...EVENTOS_FIXOS,...eventosCustom.map(e=>({...e,custom:true}))].filter(e=>String(e.data||'').slice(0,7)===`${calAnoAtual}-${String(calMesAtual+1).padStart(2,'0')}`).sort((a,b)=>String(a.data).localeCompare(String(b.data)));
   document.getElementById('calEventosLista').innerHTML=todosDoMes.length?todosDoMes.map(e=>{
-    const custom=e.tipo==='custom'||!EVENTOS_FIXOS.find(f=>f.data===e.data&&f.titulo===e.titulo);
-    return `<div class="evento-item ${custom?'custom':''}">
-      <span class="evento-data">${fmtData(e.data)}</span>
-      <span>${esc(e.titulo)}</span>
-    </div>`;
+    const custom=e.custom||!EVENTOS_FIXOS.find(f=>f.data===e.data&&f.titulo===e.titulo);
+    return `<div class="evento-item ${custom?'custom':''}"><span class="evento-data">${fmtData(e.data)}</span><span>${esc(e.titulo)}</span></div>`;
   }).join(''):'<div style="color:var(--texto2);font-size:0.85rem;padding:8px 0;">Nenhum evento neste mês.</div>';
 }
 function mudarMes(dir){
@@ -1404,9 +1460,9 @@ function abrirDiaCal(iso){
   document.getElementById('modalCalDia').classList.add('aberto');
 }
 async function abrirAdminCalendario(){
+  if(usuarioLogado&&usuarioLogado.somenteLeitura){toast('⛔ Sem permissão.');return;}
   document.getElementById('modalAdminCalendario').classList.add('aberto');
-  renderAdminCalList();
-  limparFormCal();
+  renderAdminCalList();limparFormCal();
 }
 function renderAdminCalList(){
   const div=document.getElementById('adminCalList');
@@ -1421,8 +1477,7 @@ function renderAdminCalList(){
     </div>`).join('');
 }
 function editarEventoCal(id){
-  const e=eventosCustom.find(x=>String(x.id)===String(id));
-  if(!e)return;
+  const e=eventosCustom.find(x=>String(x.id)===String(id));if(!e)return;
   document.getElementById('calEventoEditId').value=e.id;
   document.getElementById('calEventoTitulo').value=e.titulo||'';
   document.getElementById('calEventoData').value=e.data||'';
@@ -1435,12 +1490,9 @@ async function salvarEventoCal(){
   const data=document.getElementById('calEventoData').value;
   if(!titulo||!data){toast('⚠️ Preencha título e data.');return;}
   const editId=document.getElementById('calEventoEditId').value;
-  const payload={
-    action:editId?'editarEvento':'salvarEvento',
-    titulo,data,
+  const payload={action:editId?'editarEvento':'salvarEvento',titulo,data,
     tipo:document.getElementById('calEventoTipo').value,
-    descricao:document.getElementById('calEventoDesc').value.trim()
-  };
+    descricao:document.getElementById('calEventoDesc').value.trim()};
   if(editId)payload.id=editId;
   try{
     const r=await apiPost(payload);
@@ -1456,11 +1508,8 @@ async function excluirEventoCal(id){
   }catch(e){toast('❌ '+e.message);}
 }
 function limparFormCal(){
-  document.getElementById('calEventoEditId').value='';
-  document.getElementById('calEventoTitulo').value='';
-  document.getElementById('calEventoData').value='';
+  ['calEventoEditId','calEventoTitulo','calEventoData','calEventoDesc'].forEach(id=>document.getElementById(id).value='');
   document.getElementById('calEventoTipo').value='evento';
-  document.getElementById('calEventoDesc').value='';
   document.getElementById('formCalTitulo').textContent='➕ Novo Evento';
 }
 
@@ -1469,16 +1518,10 @@ function limparFormCal(){
 ══════════════════════════════════════════════════════ */
 function renderAniversariantes(){
   const div=document.getElementById('anivConteudo');
-  const hoje=new Date();
-  const hm=hoje.getMonth()+1,hd=hoje.getDate();
+  const hoje=new Date();const hm=hoje.getMonth()+1,hd=hoje.getDate();
   const porMes={};
-  ANIVERSARIANTES.forEach(a=>{
-    if(!porMes[a.mes])porMes[a.mes]=[];
-    porMes[a.mes].push(a);
-  });
-  const mesesOrdenados=Object.keys(porMes).map(Number).sort((a,b)=>{
-    const da=(a-hm+12)%12,db=(b-hm+12)%12;return da-db;
-  });
+  ANIVERSARIANTES.forEach(a=>{if(!porMes[a.mes])porMes[a.mes]=[];porMes[a.mes].push(a);});
+  const mesesOrdenados=Object.keys(porMes).map(Number).sort((a,b)=>((a-hm+12)%12)-((b-hm+12)%12));
   div.innerHTML=mesesOrdenados.map(mes=>{
     const anivs=porMes[mes].sort((a,b)=>a.dia-b.dia);
     const temHoje=anivs.some(a=>a.mes===hm&&a.dia===hd);
@@ -1490,8 +1533,7 @@ function renderAniversariantes(){
           <div class="aniv-emoji">${eh?'🎂':'🎁'}</div>
           <div><div class="aniv-nome">${esc(a.nome)}</div>
           <div class="aniv-info">${a.dia.toString().padStart(2,'0')}/${a.mes.toString().padStart(2,'0')} • ${esc(a.turma)}</div></div>
-        </div>`;}).join('')}
-      </div></div>`;
+        </div>`;}).join('')}</div></div>`;
   }).join('');
 }
 
@@ -1505,7 +1547,7 @@ function renderPesquisa(){
   const res=plantaoAlunos.filter(a=>norm(a.nome).includes(q));
   const func=ANIVERSARIANTES.filter(a=>norm(a.nome).includes(q));
   let html='';
-  func.forEach(a=>{html+=`<div class="pesq-resultado"><div class="pesq-nome">👤 ${esc(a.nome)}</div><div class="pesq-detalhe">${esc(a.cargo||a.turma)} • Aniversário: ${a.dia}/${a.mes}</div></div>`;});
+  func.forEach(a=>{html+=`<div class="pesq-resultado"><div class="pesq-nome">👤 ${esc(a.nome)}</div><div class="pesq-detalhe">${esc(a.turma)} • Aniversário: ${a.dia}/${a.mes}</div></div>`;});
   res.forEach(a=>{html+=`<div class="pesq-resultado"><div class="pesq-nome">🎓 ${esc(a.nome)}</div><div class="pesq-detalhe">Turma ${esc(a.turma)}</div></div>`;});
   div.innerHTML=html||'<div class="pesq-vazio">Nenhum resultado encontrado.</div>';
 }
@@ -1514,14 +1556,12 @@ function renderPesquisa(){
    DOWNLOADS
 ══════════════════════════════════════════════════════ */
 async function carregarDownloads(){
-  try{downloads=await apiGet('Downloads');}
-  catch(e){downloads=JSON.parse(localStorage.getItem('downloads_v2')||'[]');}
+  try{downloads=await apiGet('Downloads');}catch(e){downloads=[];}
   renderDownloads();
 }
 function renderDownloads(){
   const cats=[...new Set(downloads.map(d=>d.categoria).filter(Boolean))];
-  const catsDiv=document.getElementById('downloadsCats');
-  catsDiv.innerHTML=`<button class="cat-btn ${!downloadFiltCat?'ativo':''}" onclick="filtrarDownload('')">Todos</button>`+
+  document.getElementById('downloadsCats').innerHTML=`<button class="cat-btn ${!downloadFiltCat?'ativo':''}" onclick="filtrarDownload('')">Todos</button>`+
     cats.map(c=>`<button class="cat-btn ${downloadFiltCat===c?'ativo':''}" onclick="filtrarDownload('${esc(c)}')">${esc(c)}</button>`).join('');
   const filtrados=downloadFiltCat?downloads.filter(d=>d.categoria===downloadFiltCat):downloads;
   const div=document.getElementById('downloadsConteudo');
@@ -1538,7 +1578,10 @@ function renderDownloads(){
     </div>`).join('')}</div>`;
 }
 function filtrarDownload(cat){downloadFiltCat=cat;renderDownloads();}
-function abrirAdminDownloads(){renderAdminDownloadsList();limparFormDownload();document.getElementById('modalAdminDownloads').classList.add('aberto');}
+function abrirAdminDownloads(){
+  if(usuarioLogado&&usuarioLogado.somenteLeitura){toast('⛔ Sem permissão.');return;}
+  renderAdminDownloadsList();limparFormDownload();document.getElementById('modalAdminDownloads').classList.add('aberto');
+}
 function renderAdminDownloadsList(){
   const div=document.getElementById('adminDownloadsList');
   if(!downloads.length){div.innerHTML='<div style="color:var(--texto2);font-size:0.84rem;">Nenhum download.</div>';return;}
@@ -1552,8 +1595,7 @@ function renderAdminDownloadsList(){
     </div>`).join('');
 }
 function editarDownload(id){
-  const d=downloads.find(x=>String(x.id)===String(id));
-  if(!d)return;
+  const d=downloads.find(x=>String(x.id)===String(id));if(!d)return;
   document.getElementById('downloadEditId').value=d.id;
   document.getElementById('downloadNome').value=d.nome||'';
   document.getElementById('downloadCategoria').value=d.categoria||'';
@@ -1568,12 +1610,9 @@ async function salvarDownload(){
   const link=document.getElementById('downloadLink').value.trim();
   if(!nome||!cat||!link){toast('⚠️ Preencha nome, categoria e link.');return;}
   const editId=document.getElementById('downloadEditId').value;
-  const payload={
-    action:editId?'editarDownload':'salvarDownload',
-    nome,categoria:cat,
+  const payload={action:editId?'editarDownload':'salvarDownload',nome,categoria:cat,
     descricao:document.getElementById('downloadDesc').value.trim(),
-    link,icone:document.getElementById('downloadIcone').value||'📄'
-  };
+    link,icone:document.getElementById('downloadIcone').value||'📄'};
   if(editId)payload.id=editId;
   try{
     const r=await apiPost(payload);
@@ -1582,7 +1621,7 @@ async function salvarDownload(){
   }catch(e){toast('❌ '+e.message);}
 }
 async function excluirDownload(id){
-  if(!confirm('Excluir download?'))return;
+  if(!confirm('Excluir?'))return;
   try{const r=await apiPost({action:'excluirDownload',id});if(r.ok){toast('🗑️ Excluído.');await carregarDownloads();renderAdminDownloadsList();}}
   catch(e){toast('❌ '+e.message);}
 }
@@ -1593,85 +1632,71 @@ function limparFormDownload(){
   document.querySelectorAll('#iconeOpcoes .turma-btn-sel').forEach((b,i)=>b.classList.toggle('selecionado',i===0));
 }
 function selecionarIcone(icone,el){
-  iconeEscolhido=icone;
-  document.getElementById('downloadIcone').value=icone;
+  iconeEscolhido=icone;document.getElementById('downloadIcone').value=icone;
   document.querySelectorAll('#iconeOpcoes .turma-btn-sel').forEach(b=>b.classList.remove('selecionado'));
   el.classList.add('selecionado');
 }
 
 /* ══════════════════════════════════════════════════════
-   PLANTÃO PEDAGÓGICO — DATAS (CORREÇÃO BUG 2)
+   PLANTÃO — DATAS (bug corrigido)
 ══════════════════════════════════════════════════════ */
 async function carregarPlantaoDatas(){
-  try{
-    plantaoDatas=await apiGet('PlantaoDatas');
-    plantaoDatas.sort((a,b)=>String(a.data).localeCompare(String(b.data)));
-  }catch(e){plantaoDatas=[];}
+  try{plantaoDatas=await apiGet('PlantaoDatas');plantaoDatas.sort((a,b)=>String(a.data).localeCompare(String(b.data)));}
+  catch(e){plantaoDatas=[];}
 }
-
 async function abrirAdminPlantao(){
+  if(usuarioLogado&&usuarioLogado.somenteLeitura){toast('⛔ Sem permissão.');return;}
   document.getElementById('modalAdminPlantao').classList.add('aberto');
   limparFormPlantao();
   await carregarPlantaoDatas();
   renderAdminPlantaoDatasList();
 }
-
 function limparFormPlantao(){
   document.getElementById('plantaoDataInput').value='';
   document.getElementById('plantaoDataDesc').value='';
   document.getElementById('plantaoDataEditId').value='';
   document.getElementById('formPlantaoTitulo').textContent='➕ Nova Data';
 }
-
 function renderAdminPlantaoDatasList(){
   const div=document.getElementById('adminPlantaoDatasList');
   if(!div)return;
-  if(!plantaoDatas.length){
-    div.innerHTML='<div style="color:var(--texto2);font-size:0.84rem;padding:8px 0;">Nenhuma data cadastrada.</div>';
-    return;
-  }
+  if(!plantaoDatas.length){div.innerHTML='<div style="color:var(--texto2);font-size:0.84rem;padding:8px 0;">Nenhuma data cadastrada.</div>';return;}
   div.innerHTML=plantaoDatas.map(d=>`
     <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 10px;border-bottom:1px solid var(--borda);font-size:0.85rem;">
-      <div>
-        <strong>${fmtData(d.data)}</strong>
-        <span style="color:var(--texto2);margin-left:8px;">${esc(d.descricao||'')}</span>
-      </div>
+      <div><strong>${fmtData(d.data)}</strong><span style="color:var(--texto2);margin-left:8px;">${esc(d.descricao||'')}</span></div>
       <div style="display:flex;gap:6px;">
         <button class="btn btn-cinza btn-icon" onclick="editarDataPlantao('${d.id}')">✏️</button>
         <button class="btn btn-verm btn-icon" onclick="excluirDataPlantao('${d.id}')">🗑️</button>
       </div>
     </div>`).join('');
 }
-
 function editarDataPlantao(id){
-  const d=plantaoDatas.find(x=>String(x.id)===String(id));
-  if(!d)return;
+  const d=plantaoDatas.find(x=>String(x.id)===String(id));if(!d)return;
   document.getElementById('plantaoDataInput').value=d.data||'';
   document.getElementById('plantaoDataDesc').value=d.descricao||'';
   document.getElementById('plantaoDataEditId').value=d.id;
   document.getElementById('formPlantaoTitulo').textContent='✏️ Editar Data';
 }
-
 async function excluirDataPlantao(id){
-  if(!confirm('Excluir esta data e todas as presenças associadas?'))return;
+  if(!confirm('Excluir esta data e presenças associadas?'))return;
   try{
     const r=await apiPost({action:'excluirPlantaoData',id});
     if(r.ok){toast('🗑️ Data excluída.');await carregarPlantaoDatas();renderAdminPlantaoDatasList();carregarPlantaoPg();}
-    else toast('❌ '+(r.erro||'Erro ao excluir'));
+    else toast('❌ '+(r.erro||'Erro'));
   }catch(e){toast('❌ Erro: '+e.message);}
 }
 
-// ✅ CORREÇÃO BUG 2: salvar data com POST correto
+// ✅ CORREÇÃO PRINCIPAL: suporte a novo e editar
 async function salvarDataPlantao(){
   const dataVal=document.getElementById('plantaoDataInput').value.trim();
   const descVal=document.getElementById('plantaoDataDesc').value.trim();
   const editId=document.getElementById('plantaoDataEditId').value;
   if(!dataVal){toast('⚠️ Informe a data.');return;}
-  const btn=document.querySelector('#modalAdminPlantao .btn-verde');
+  const btn=document.getElementById('btnSalvarDataPlantao');
   if(btn){btn.disabled=true;btn.innerHTML='<span class="spinner"></span> Salvando...';}
   try{
     const payload={
-      action: editId?'editarPlantaoData':'salvarPlantaoData',
+      action: editId ? 'editarPlantaoData' : 'salvarPlantaoData',
       data:   dataVal,
       descricao: descVal||'Plantão'
     };
@@ -1691,16 +1716,14 @@ async function salvarDataPlantao(){
 }
 
 /* ══════════════════════════════════════════════════════
-   PLANTÃO PEDAGÓGICO — ALUNOS
+   PLANTÃO — ALUNOS
 ══════════════════════════════════════════════════════ */
 async function carregarPlantaoAlunos(forcar=false){
   if(!plantaoAlunos.length||forcar){
-    try{plantaoAlunos=await apiGet('PlantaoAlunos');}
-    catch(e){plantaoAlunos=[];}
+    try{plantaoAlunos=await apiGet('PlantaoAlunos');}catch(e){plantaoAlunos=[];}
   }
   renderAdminPlantaoAlunosList();
 }
-
 function renderAdminPlantaoAlunosList(){
   const filtro=document.getElementById('filtroPlantaoAlunoTurma')?.value||'';
   const div=document.getElementById('adminPlantaoAlunosList');
@@ -1719,31 +1742,24 @@ function renderAdminPlantaoAlunosList(){
   const total=document.getElementById('adminPlantaoAlunosTotal');
   if(total)total.textContent=`Total: ${sorted.length} aluno(s)${filtro?' na turma '+filtro:''}`;
 }
-
 async function abrirAdminPlantaoAlunos(){
+  if(usuarioLogado&&usuarioLogado.somenteLeitura){toast('⛔ Sem permissão.');return;}
   document.getElementById('modalAdminPlantaoAlunos').classList.add('aberto');
-  limparFormPlantaoAluno();
-  await carregarPlantaoAlunos(true);
+  limparFormPlantaoAluno();await carregarPlantaoAlunos(true);
 }
-
 function limparFormPlantaoAluno(){
   document.getElementById('plantaoAlunoEditId').value='';
   document.getElementById('plantaoAlunoNome').value='';
-  const sel=document.getElementById('plantaoAlunoTurma');
-  if(sel)sel.value=TURMAS_FIXAS[0]||'';
+  const sel=document.getElementById('plantaoAlunoTurma');if(sel)sel.value=TURMAS_FIXAS[0]||'';
   document.getElementById('formPlantaoAlunoTitulo').textContent='➕ Novo Aluno';
 }
-
 function editarPlantaoAluno(id){
-  const a=plantaoAlunos.find(x=>String(x.id)===String(id));
-  if(!a)return;
+  const a=plantaoAlunos.find(x=>String(x.id)===String(id));if(!a)return;
   document.getElementById('plantaoAlunoEditId').value=a.id;
   document.getElementById('plantaoAlunoNome').value=a.nome||'';
-  const sel=document.getElementById('plantaoAlunoTurma');
-  if(sel)sel.value=a.turma||'';
+  const sel=document.getElementById('plantaoAlunoTurma');if(sel)sel.value=a.turma||'';
   document.getElementById('formPlantaoAlunoTitulo').textContent='✏️ Editar Aluno';
 }
-
 async function salvarPlantaoAluno(){
   const nome=document.getElementById('plantaoAlunoNome').value.trim();
   const turma=document.getElementById('plantaoAlunoTurma').value;
@@ -1751,24 +1767,17 @@ async function salvarPlantaoAluno(){
   const editId=document.getElementById('plantaoAlunoEditId').value;
   const payload={action:editId?'editarPlantaoAluno':'salvarPlantaoAluno',turma,nome};
   if(editId)payload.id=editId;
-  try{
-    const r=await apiPost(payload);
-    if(r.ok){toast('✅ Aluno salvo!');limparFormPlantaoAluno();await carregarPlantaoAlunos(true);}
-    else toast('❌ '+(r.erro||'Erro'));
-  }catch(e){toast('❌ '+e.message);}
+  try{const r=await apiPost(payload);if(r.ok){toast('✅ Aluno salvo!');limparFormPlantaoAluno();await carregarPlantaoAlunos(true);}else toast('❌ '+(r.erro||'Erro'));}
+  catch(e){toast('❌ '+e.message);}
 }
-
 async function excluirPlantaoAluno(id){
   if(!confirm('Excluir aluno e presenças?'))return;
-  try{
-    const r=await apiPost({action:'excluirPlantaoAluno',id});
-    if(r.ok){toast('🗑️ Aluno excluído.');await carregarPlantaoAlunos(true);}
-    else toast('❌ '+(r.erro||'Erro'));
-  }catch(e){toast('❌ '+e.message);}
+  try{const r=await apiPost({action:'excluirPlantaoAluno',id});if(r.ok){toast('🗑️ Excluído.');await carregarPlantaoAlunos(true);}else toast('❌ '+(r.erro||'Erro'));}
+  catch(e){toast('❌ '+e.message);}
 }
 
 /* ══════════════════════════════════════════════════════
-   PLANTÃO PEDAGÓGICO — TABELA PRINCIPAL
+   PLANTÃO — TABELA PRINCIPAL
 ══════════════════════════════════════════════════════ */
 async function carregarPlantaoPg(){
   const div=document.getElementById('plantaoPgConteudo');
@@ -1777,48 +1786,35 @@ async function carregarPlantaoPg(){
     await Promise.all([carregarPlantaoDatas(),carregarPlantaoAlunos()]);
     const presRaw=await apiGet('PlantaoPresenca');
     plantaoPresencas={};
-    presRaw.forEach(p=>{
-      const k=`${p.alunoid}_${p.dataid}`;
-      plantaoPresencas[k]=p.status||'-';
-    });
+    presRaw.forEach(p=>{plantaoPresencas[`${p.alunoid}_${p.dataid}`]=p.status||'-';});
   }catch(e){div.innerHTML='<div style="color:var(--vermelho);">Erro ao carregar dados.</div>';return;}
   renderPlantaoPg();
 }
-
 function renderPlantaoPg(){
   const div=document.getElementById('plantaoPgConteudo');
-  if(!plantaoDatas.length){
-    div.innerHTML='<div class="vazio-estado"><div class="vazio-icon">📅</div><p>Nenhuma data de plantão cadastrada.<br>Clique em <strong>📅 Gerenciar Datas</strong> para adicionar.</p></div>';
-    return;
-  }
-  if(!plantaoAlunos.length){
-    div.innerHTML='<div class="vazio-estado"><div class="vazio-icon">👥</div><p>Nenhum aluno cadastrado.<br>Clique em <strong>👥 Gerenciar Alunos</strong>.</p></div>';
-    return;
-  }
+  if(!plantaoDatas.length){div.innerHTML='<div class="vazio-estado"><div class="vazio-icon">📅</div><p>Nenhuma data cadastrada.<br>Clique em <strong>📅 Gerenciar Datas</strong>.</p></div>';return;}
+  if(!plantaoAlunos.length){div.innerHTML='<div class="vazio-estado"><div class="vazio-icon">👥</div><p>Nenhum aluno cadastrado.<br>Clique em <strong>👥 Gerenciar Alunos</strong>.</p></div>';return;}
   const turmas=[...new Set(plantaoAlunos.map(a=>a.turma))].sort();
   let html='<div class="plantao-pg-wrapper">';
+  const podEditar=!(usuarioLogado&&usuarioLogado.somenteLeitura);
   turmas.forEach(turma=>{
     const alunos=plantaoAlunos.filter(a=>a.turma===turma).sort((a,b)=>String(a.nome).localeCompare(String(b.nome),'pt'));
     html+=`<div class="turma-section">
       <div class="turma-section-header">🏫 Turma ${esc(turma)} <span style="font-size:0.8rem;font-weight:600;color:var(--texto2);">${alunos.length} aluno(s)</span></div>
       <div style="overflow-x:auto;">
       <table class="plantao-pg-table">
-        <thead><tr>
-          <th class="col-aluno">Aluno</th>
-          ${plantaoDatas.map(d=>`<th title="${esc(d.descricao||'')}">${fmtData(d.data)}<br><small style="font-weight:400;opacity:0.85;">${esc(d.descricao||'')}</small></th>`).join('')}
-        </tr></thead>
-        <tbody>
-          ${alunos.map(a=>`
-            <tr>
-              <td class="td-nome">${esc(a.nome)}</td>
-              ${plantaoDatas.map(d=>{
-                const k=`${a.id}_${d.id}`;
-                const st=plantaoPresencas[k]||'-';
-                const cls=st==='P'?'pres-P':st==='F'?'pres-F':'pres-aguard';
-                const label=st==='-'?'·':st;
-                return `<td><button class="pres-btn ${cls}" onclick="togglePresenca('${a.id}','${d.id}',this)">${label}</button></td>`;
-              }).join('')}
-            </tr>`).join('')}
+        <thead><tr><th class="col-aluno">Aluno</th>${plantaoDatas.map(d=>`<th>${fmtData(d.data)}<br><small style="font-weight:400;opacity:0.85;">${esc(d.descricao||'')}</small></th>`).join('')}</tr></thead>
+        <tbody>${alunos.map(a=>`
+          <tr><td class="td-nome">${esc(a.nome)}</td>
+          ${plantaoDatas.map(d=>{
+            const k=`${a.id}_${d.id}`;
+            const st=plantaoPresencas[k]||'-';
+            const cls=st==='P'?'pres-P':st==='F'?'pres-F':'pres-aguard';
+            const label=st==='-'?'·':st;
+            const onclick=podEditar?`onclick="togglePresenca('${a.id}','${d.id}',this)"`:'';
+            return `<td><button class="pres-btn ${cls}" ${onclick} ${!podEditar?'disabled style="cursor:default"':''}>${label}</button></td>`;
+          }).join('')}
+          </tr>`).join('')}
         </tbody>
       </table></div>
     </div>`;
@@ -1826,7 +1822,6 @@ function renderPlantaoPg(){
   html+='</div>';
   div.innerHTML=html;
 }
-
 async function togglePresenca(alunoId,dataId,btn){
   const k=`${alunoId}_${dataId}`;
   const cur=plantaoPresencas[k]||'-';
@@ -1834,23 +1829,19 @@ async function togglePresenca(alunoId,dataId,btn){
   btn.textContent=prox==='-'?'·':prox;
   btn.className='pres-btn '+(prox==='P'?'pres-P':prox==='F'?'pres-F':'pres-aguard');
   plantaoPresencas[k]=prox;
-  try{
-    await apiPost({action:'salvarPresenca',alunoId,dataId,status:prox});
-  }catch(e){toast('❌ Erro ao salvar presença: '+e.message);}
+  try{await apiPost({action:'salvarPresenca',alunoId,dataId,status:prox});}
+  catch(e){toast('❌ Erro ao salvar: '+e.message);}
 }
-
 function imprimirPlantao(){window.print();}
 
 /* ══════════════════════════════════════════════════════
-   CADASTRO DE LISTA (CORREÇÃO BUG 1)
+   CADASTRO DE LISTA
 ══════════════════════════════════════════════════════ */
 function renderCadastroLista(){
   const div=document.getElementById('cadastroConteudo');
-  if(!listaAtual.tipo){
-    div.innerHTML='<div class="vazio-estado"><div class="vazio-icon">📝</div><p>Clique em <strong>+ Nova Lista</strong> para começar.</p></div>';
-    return;
-  }
+  if(!listaAtual.tipo){div.innerHTML='<div class="vazio-estado"><div class="vazio-icon">📝</div><p>Clique em <strong>+ Nova Lista</strong> para começar.</p></div>';return;}
   const label=TIPOS_LISTA.find(t=>t.value===listaAtual.tipo)?.label||listaAtual.tipoCustom||listaAtual.tipo;
+  const podEditar=!(usuarioLogado&&usuarioLogado.somenteLeitura);
   div.innerHTML=`
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px;">
       <div>
@@ -1858,38 +1849,34 @@ function renderCadastroLista(){
         <span style="font-size:0.84rem;color:var(--texto2);margin-left:8px;">${listaAtual.itens.length} item(s)</span>
       </div>
       <div style="display:flex;gap:8px;flex-wrap:wrap;">
-        <button class="btn btn-verde btn-icon" onclick="abrirModalOrigemLista()">+ Adicionar</button>
-        <button class="btn btn-amarelo btn-icon" onclick="salvarListaLocal()">💾 Salvar Lista</button>
+        ${podEditar?`<button class="btn btn-verde btn-icon" onclick="abrirModalOrigemLista()">+ Adicionar</button>`:''}
+        ${podEditar?`<button class="btn btn-amarelo btn-icon" onclick="salvarListaLocal()">💾 Salvar Lista</button>`:''}
         <button class="btn btn-cinza btn-icon" onclick="imprimirLista()">🖨️ Imprimir</button>
-        <button class="btn btn-verm btn-icon" onclick="limparLista()">🗑️ Nova</button>
+        ${podEditar?`<button class="btn btn-verm btn-icon" onclick="limparLista()">🗑️ Nova</button>`:''}
       </div>
     </div>
     <div style="border:1.5px solid var(--borda);border-radius:10px;overflow:hidden;">
       <div style="background:var(--azul);color:#fff;padding:8px 12px;font-family:'Nunito',sans-serif;font-weight:700;font-size:0.88rem;display:flex;">
-        <span style="flex:0 0 40px;">#</span>
-        <span style="flex:1;">Nome</span>
-        <span style="flex:1;">Observação</span>
-        <span style="flex:0 0 50px;"></span>
+        <span style="flex:0 0 40px;">#</span><span style="flex:1;">Nome</span><span style="flex:1;">Observação</span><span style="flex:0 0 50px;"></span>
       </div>
       ${listaAtual.itens.length?listaAtual.itens.map((item,i)=>`
         <div class="lista-item-row">
           <span style="flex:0 0 40px;color:var(--texto2);font-weight:700;">${i+1}</span>
           <span style="flex:1;">${esc(item.nome)}</span>
-          <input type="text" value="${esc(item.obs||'')}" placeholder="obs..." style="flex:1;border:none;border-bottom:1px solid var(--borda);border-radius:0;padding:4px 6px;font-size:0.85rem;" onchange="listaAtual.itens[${i}].obs=this.value">
-          <button class="btn btn-verm btn-icon" onclick="removerItemLista(${i})" style="flex:0 0 auto;">✕</button>
+          <input type="text" value="${esc(item.obs||'')}" placeholder="obs..." style="flex:1;border:none;border-bottom:1px solid var(--borda);border-radius:0;padding:4px 6px;font-size:0.85rem;" onchange="listaAtual.itens[${i}].obs=this.value" ${!podEditar?'disabled':''}> 
+          ${podEditar?`<button class="btn btn-verm btn-icon" onclick="removerItemLista(${i})" style="flex:0 0 auto;">✕</button>`:'<span style="flex:0 0 50px;"></span>'}
         </div>`).join('')
-      :'<div style="padding:20px;text-align:center;color:var(--texto2);font-size:0.88rem;">Nenhum item ainda. Clique em <strong>+ Adicionar</strong>.</div>'}
+      :'<div style="padding:20px;text-align:center;color:var(--texto2);font-size:0.88rem;">Nenhum item. Clique em <strong>+ Adicionar</strong>.</div>'}
     </div>`;
 }
-
 function abrirModalNovaLista(){
+  if(usuarioLogado&&usuarioLogado.somenteLeitura){toast('⛔ Sem permissão.');return;}
   document.getElementById('listaTipoOpts').innerHTML=TIPOS_LISTA.map(t=>`
     <div class="lista-tipo-btn" onclick="selecionarTipoLista('${t.value}',this)">${t.label}</div>`).join('');
   document.getElementById('listaTipoCustomWrap').style.display='none';
   document.getElementById('listaTipoCustom').value='';
   document.getElementById('modalNovaLista').classList.add('aberto');
 }
-
 let tipoListaSel='';
 function selecionarTipoLista(val,el){
   tipoListaSel=val;
@@ -1897,53 +1884,38 @@ function selecionarTipoLista(val,el){
   el.classList.add('selecionado');
   document.getElementById('listaTipoCustomWrap').style.display=val==='outro'?'block':'none';
 }
-
 function confirmarTipoLista(){
   if(!tipoListaSel){toast('⚠️ Selecione um tipo.');return;}
   const custom=document.getElementById('listaTipoCustom').value.trim();
   if(tipoListaSel==='outro'&&!custom){toast('⚠️ Informe o nome da lista.');return;}
   listaAtual={tipo:tipoListaSel,tipoCustom:custom,itens:[]};
-  fecharModal('modalNovaLista');
-  renderCadastroLista();
+  fecharModal('modalNovaLista');renderCadastroLista();
 }
-
 function abrirModalOrigemLista(){
   const label=TIPOS_LISTA.find(t=>t.value===listaAtual.tipo)?.label||listaAtual.tipoCustom||listaAtual.tipo;
   document.getElementById('origemListaTitulo').textContent=`Adicionar à lista: ${label}`;
   document.getElementById('origemListaConteudo').innerHTML='';
   document.getElementById('modalOrigemLista').classList.add('aberto');
 }
-
-// ✅ CORREÇÃO BUG 1: busca na aba PlantaoAlunos e filtra por turma
 function mostrarTurmasParaLista(){
   const div=document.getElementById('origemListaConteudo');
-  div.innerHTML=`
-    <label style="font-size:0.82rem;font-weight:600;color:var(--texto2);">Selecione a turma:</label>
+  div.innerHTML=`<label style="font-size:0.82rem;font-weight:600;color:var(--texto2);">Selecione a turma:</label>
     <div class="turmas-grid-popup" style="margin-top:10px;">
       ${TURMAS_FIXAS.map(t=>`<div class="turma-btn-popup" onclick="carregarAlunosDaTurmaParaLista('${t}')">${t}</div>`).join('')}
     </div>`;
 }
-
 async function carregarAlunosDaTurmaParaLista(turma){
   const div=document.getElementById('origemListaConteudo');
   div.innerHTML=`<div class="loading-txt"><span class="spinner spinner-azul"></span> Carregando turma ${turma}...</div>`;
   try{
-    // Busca na aba correta: PlantaoAlunos
     const todos=await apiGet('PlantaoAlunos');
-    const alunos=todos
-      .filter(a=>String(a.turma||'').trim().toUpperCase()===turma.trim().toUpperCase())
+    const alunos=todos.filter(a=>String(a.turma||'').trim().toUpperCase()===turma.trim().toUpperCase())
       .sort((a,b)=>String(a.nome).localeCompare(String(b.nome),'pt'));
-
     if(!alunos.length){
-      div.innerHTML=`
-        <div style="text-align:center;padding:20px;color:var(--texto2);font-size:0.88rem;">
-          Nenhum aluno cadastrado na turma <strong>${turma}</strong>.<br>
-          Cadastre em <em>Plantão Ped. → Gerenciar Alunos</em>.
-        </div>
+      div.innerHTML=`<div style="text-align:center;padding:20px;color:var(--texto2);font-size:0.88rem;">Nenhum aluno na turma <strong>${turma}</strong>.</div>
         <button class="btn btn-cinza" style="margin-top:8px;" onclick="mostrarTurmasParaLista()">← Voltar</button>`;
       return;
     }
-
     div.innerHTML=`
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
         <strong style="font-size:0.9rem;">Turma ${turma} — ${alunos.length} aluno(s)</strong>
@@ -1960,39 +1932,26 @@ async function carregarAlunosDaTurmaParaLista(turma){
             <span style="font-size:0.88rem;">${esc(a.nome)}</span>
           </label>`).join('')}
       </div>
-      <button class="btn btn-verde" style="margin-top:12px;width:100%;" onclick="adicionarAlunosSelecionados()">
-        ✅ Adicionar selecionados
-      </button>`;
+      <button class="btn btn-verde" style="margin-top:12px;width:100%;" onclick="adicionarAlunosSelecionados()">✅ Adicionar selecionados</button>`;
   }catch(err){
-    div.innerHTML=`<div style="color:var(--vermelho);font-size:0.85rem;padding:12px 0;">❌ Erro ao carregar alunos: ${err.message}</div>
+    div.innerHTML=`<div style="color:var(--vermelho);font-size:0.85rem;padding:12px 0;">❌ Erro: ${err.message}</div>
       <button class="btn btn-cinza" style="margin-top:8px;" onclick="mostrarTurmasParaLista()">← Voltar</button>`;
   }
 }
-
-function marcarTodosAlunos(chk){
-  document.querySelectorAll('.chk-aluno-lista').forEach(c=>c.checked=chk.checked);
-}
-
+function marcarTodosAlunos(chk){document.querySelectorAll('.chk-aluno-lista').forEach(c=>c.checked=chk.checked);}
 function adicionarAlunosSelecionados(){
   const sel=document.querySelectorAll('.chk-aluno-lista:checked');
   if(!sel.length){toast('⚠️ Marque ao menos um aluno.');return;}
   let adicionados=0;
   sel.forEach(chk=>{
     const nome=chk.dataset.nome;
-    if(!listaAtual.itens.find(i=>norm(i.nome)===norm(nome))){
-      listaAtual.itens.push({nome,obs:''});
-      adicionados++;
-    }
+    if(!listaAtual.itens.find(i=>norm(i.nome)===norm(nome))){listaAtual.itens.push({nome,obs:''});adicionados++;}
   });
-  fecharModal('modalOrigemLista');
-  renderCadastroLista();
-  toast(`✅ ${adicionados} aluno(s) adicionado(s).`);
+  fecharModal('modalOrigemLista');renderCadastroLista();toast(`✅ ${adicionados} aluno(s) adicionado(s).`);
 }
-
 function adicionarFuncionarioLista(){
   const div=document.getElementById('origemListaConteudo');
-  div.innerHTML=`
-    <label style="font-size:0.82rem;font-weight:600;color:var(--texto2);">Selecione o funcionário:</label>
+  div.innerHTML=`<label style="font-size:0.82rem;font-weight:600;color:var(--texto2);">Selecione o funcionário:</label>
     <div style="max-height:260px;overflow-y:auto;border:1px solid var(--borda);border-radius:8px;margin-top:8px;padding:4px 0;">
       ${ANIVERSARIANTES.filter(a=>a.tipo==='Funcionário'||a.tipo==='Funcionária').sort((a,b)=>a.nome.localeCompare(b.nome,'pt')).map(a=>`
         <div class="lista-item-row" style="cursor:pointer;" onclick="addItemLista('${esc(a.nome)}')">
@@ -2000,55 +1959,35 @@ function adicionarFuncionarioLista(){
         </div>`).join('')}
     </div>`;
 }
-
 function adicionarOutroLista(){
   const div=document.getElementById('origemListaConteudo');
-  div.innerHTML=`
-    <label>Nome</label>
+  div.innerHTML=`<label>Nome</label>
     <input type="text" id="outroNomeInput" placeholder="Nome completo..." style="margin-bottom:10px;">
     <button class="btn btn-verde" onclick="addItemLista(document.getElementById('outroNomeInput').value.trim())">+ Adicionar</button>`;
   setTimeout(()=>document.getElementById('outroNomeInput')?.focus(),50);
 }
-
 function addItemLista(nome){
   if(!nome){toast('⚠️ Informe o nome.');return;}
   if(listaAtual.itens.find(i=>norm(i.nome)===norm(nome))){toast('⚠️ Já está na lista.');return;}
-  listaAtual.itens.push({nome,obs:''});
-  fecharModal('modalOrigemLista');
-  renderCadastroLista();
-  toast('✅ '+nome+' adicionado(a).');
+  listaAtual.itens.push({nome,obs:''});fecharModal('modalOrigemLista');renderCadastroLista();toast('✅ '+nome+' adicionado(a).');
 }
-
-function removerItemLista(idx){
-  listaAtual.itens.splice(idx,1);
-  renderCadastroLista();
-}
-
+function removerItemLista(idx){listaAtual.itens.splice(idx,1);renderCadastroLista();}
 function limparLista(){
   if(listaAtual.itens.length&&!confirm('Descartar a lista atual?'))return;
-  listaAtual={tipo:'',itens:[]};
-  tipoListaSel='';
-  renderCadastroLista();
+  listaAtual={tipo:'',itens:[]};tipoListaSel='';renderCadastroLista();
 }
-
 function salvarListaLocal(){
-  if(!listaAtual.itens.length){toast('⚠️ Adicione itens à lista.');return;}
+  if(!listaAtual.itens.length){toast('⚠️ Adicione itens.');return;}
   const lista={...listaAtual,id:Date.now(),criadaEm:new Date().toISOString().slice(0,10)};
-  listasSalvas.push(lista);
-  localStorage.setItem('listas_v1',JSON.stringify(listasSalvas));
-  toast('💾 Lista salva!');
+  listasSalvas.push(lista);localStorage.setItem('listas_v1',JSON.stringify(listasSalvas));toast('💾 Lista salva!');
 }
-
 function abrirModalListasSalvas(){
   const div=document.getElementById('listasSalvasConteudo');
   if(!listasSalvas.length){div.innerHTML='<div class="vazio-estado"><div class="vazio-icon">📭</div><p>Nenhuma lista salva.</p></div>';}
   else{div.innerHTML=listasSalvas.slice().reverse().map(l=>{
     const label=TIPOS_LISTA.find(t=>t.value===l.tipo)?.label||l.tipoCustom||l.tipo;
     return `<div class="reuniao-card">
-      <div>
-        <div class="reuniao-titulo">${esc(label)}</div>
-        <div class="reuniao-info">${l.itens.length} item(s) • Criada em ${fmtData(l.criadaEm)}</div>
-      </div>
+      <div><div class="reuniao-titulo">${esc(label)}</div><div class="reuniao-info">${l.itens.length} item(s) • Criada em ${fmtData(l.criadaEm)}</div></div>
       <div style="display:flex;gap:6px;">
         <button class="btn btn-azul btn-icon" onclick="carregarListaSalva('${l.id}')">📂 Abrir</button>
         <button class="btn btn-verm btn-icon" onclick="excluirListaSalva('${l.id}')">🗑️</button>
@@ -2057,25 +1996,304 @@ function abrirModalListasSalvas(){
   }).join('');}
   document.getElementById('modalListasSalvas').classList.add('aberto');
 }
-
 function carregarListaSalva(id){
-  const l=listasSalvas.find(x=>String(x.id)===String(id));
-  if(!l)return;
+  const l=listasSalvas.find(x=>String(x.id)===String(id));if(!l)return;
   listaAtual={tipo:l.tipo,tipoCustom:l.tipoCustom,itens:[...l.itens]};
-  fecharModal('modalListasSalvas');
-  renderCadastroLista();
-  toast('📂 Lista carregada.');
+  fecharModal('modalListasSalvas');renderCadastroLista();toast('📂 Lista carregada.');
 }
-
 function excluirListaSalva(id){
   if(!confirm('Excluir lista salva?'))return;
   listasSalvas=listasSalvas.filter(x=>String(x.id)!==String(id));
   localStorage.setItem('listas_v1',JSON.stringify(listasSalvas));
-  abrirModalListasSalvas();
-  toast('🗑️ Excluída.');
+  abrirModalListasSalvas();toast('🗑️ Excluída.');
+}
+function imprimirLista(){window.print();}
+
+/* ══════════════════════════════════════════════════════
+   BAIXA EM LISTA
+══════════════════════════════════════════════════════ */
+async function carregarBaixas(){
+  const div=document.getElementById('baixaConteudo');
+  div.innerHTML='<div class="loading-txt"><span class="spinner spinner-azul"></span> Carregando...</div>';
+  try{
+    [baixaListasAll,baixaItensAll]=await Promise.all([apiGet('BaixaListas'),apiGet('BaixaItens')]);
+  }catch(e){baixaListasAll=[];baixaItensAll=[];}
+  renderBaixas();
+}
+function renderBaixas(){
+  const div=document.getElementById('baixaConteudo');
+  if(!baixaListasAll.length){
+    div.innerHTML='<div class="vazio-estado"><div class="vazio-icon">✔️</div><p>Nenhuma lista de baixa ainda.<br>Clique em <strong>+ Nova Lista de Baixa</strong>.</p></div>';
+    return;
+  }
+  const sorted=[...baixaListasAll].sort((a,b)=>String(b.atualizadaem||b.criadaem).localeCompare(String(a.atualizadaem||a.criadaem)));
+  div.innerHTML=sorted.map(lista=>{
+    const itens=baixaItensAll.filter(i=>String(i.listaid)===String(lista.id));
+    const total=itens.length;
+    const baixados=itens.filter(i=>String(i.baixado)==='SIM').length;
+    const pct=total?Math.round(baixados/total*100):0;
+    const tipoLabel=TIPOS_LISTA.find(t=>t.value===lista.tipo)?.label||lista.tipo||'';
+    return `<div class="baixa-lista-card" onclick="abrirBaixaLista('${lista.id}')">
+      <div style="flex:1;min-width:0;">
+        <div class="baixa-lista-nome">${esc(lista.nome)}</div>
+        <div class="baixa-lista-info">${tipoLabel} • ${total} pessoa(s) • Atualizada: ${fmtData(lista.atualizadaem||lista.criadaem)}</div>
+        <div class="baixa-progresso" style="margin-top:8px;"><div class="baixa-progresso-fill" style="width:${pct}%"></div></div>
+        <div class="baixa-stats">
+          <span><span class="baixa-stat-num">${baixados}</span> baixados</span>
+          <span><span class="baixa-stat-num">${total-baixados}</span> pendentes</span>
+          <span><span class="baixa-stat-num">${pct}%</span> concluído</span>
+        </div>
+      </div>
+      <button class="btn btn-verm btn-icon" style="flex-shrink:0;" onclick="event.stopPropagation();excluirBaixaLista('${lista.id}')">🗑️</button>
+    </div>`;
+  }).join('');
 }
 
-function imprimirLista(){window.print();}
+// Abre modal para executar baixas
+async function abrirBaixaLista(listaId){
+  const lista=baixaListasAll.find(l=>String(l.id)===String(listaId));
+  if(!lista)return;
+  const itens=baixaItensAll.filter(i=>String(i.listaid)===String(listaId));
+  baixaAtual={id:listaId,nome:lista.nome,tipo:lista.tipo,itens:itens.map(i=>({
+    nome:i.nome,categoria:i.categoria||'',baixado:String(i.baixado)==='SIM',original:String(i.baixado)==='SIM'
+  }))};
+  baixaItensPendentes={};
+  baixaFiltro='';
+  document.getElementById('baixaExecTitulo').textContent=`✔️ ${esc(lista.nome)}`;
+  atualizarBaixaStats();
+  renderBaixaExecLista();
+  document.getElementById('modalBaixaExecutar').classList.add('aberto');
+}
+function atualizarBaixaStats(){
+  if(!baixaAtual)return;
+  const total=baixaAtual.itens.length;
+  const baixados=baixaAtual.itens.filter(i=>i.baixado).length;
+  const pct=total?Math.round(baixados/total*100):0;
+  document.getElementById('baixaExecStats').innerHTML=`
+    <span><span class="baixa-stat-num">${total}</span> total</span>
+    <span><span class="baixa-stat-num" style="color:var(--verde);">${baixados}</span> baixados</span>
+    <span><span class="baixa-stat-num" style="color:var(--amarelo);">${total-baixados}</span> pendentes</span>
+    <span><span class="baixa-stat-num">${pct}%</span></span>`;
+  document.getElementById('baixaProgressoFill').style.width=pct+'%';
+}
+function renderBaixaExecLista(){
+  const div=document.getElementById('baixaExecLista');
+  if(!baixaAtual){div.innerHTML='';return;}
+  let itens=[...baixaAtual.itens];
+  if(baixaFiltro==='sim')itens=itens.filter(i=>i.baixado);
+  else if(baixaFiltro==='nao')itens=itens.filter(i=>!i.baixado);
+  // Ordena: pendentes primeiro, depois baixados
+  itens.sort((a,b)=>{
+    if(a.baixado===b.baixado)return String(a.nome).localeCompare(String(b.nome),'pt');
+    return a.baixado?1:-1;
+  });
+  if(!itens.length){div.innerHTML='<div style="padding:20px;text-align:center;color:var(--texto2);">Nenhum item neste filtro.</div>';return;}
+  div.innerHTML=itens.map(item=>`
+    <div class="baixa-item-row" id="baixaRow_${esc(item.nome).replace(/\s/g,'_')}">
+      <div class="baixa-check ${item.baixado?'marcado':''}" onclick="toggleBaixaItem('${esc(item.nome)}')" title="${item.baixado?'Clique para desmarcar':'Clique para baixar'}">
+        ${item.baixado?'✓':''}
+      </div>
+      <div class="baixa-item-nome ${item.baixado?'baixado':''}">${esc(item.nome)}</div>
+      <div class="baixa-item-cat">${esc(item.categoria||'')}</div>
+      <span class="baixa-item-status ${item.baixado?'sim':'nao'}">${item.baixado?'Baixado':'Pendente'}</span>
+    </div>`).join('');
+}
+function toggleBaixaItem(nome){
+  const item=baixaAtual.itens.find(i=>norm(i.nome)===norm(nome));
+  if(!item)return;
+  item.baixado=!item.baixado;
+  baixaItensPendentes[nome]=item.baixado;
+  atualizarBaixaStats();
+  renderBaixaExecLista();
+}
+function baixaFiltrarStatus(filtro){
+  baixaFiltro=filtro;
+  ['fBaixaTodos','fBaixaNao','fBaixaSim'].forEach(id=>document.getElementById(id).classList.remove('btn-azul','btn-verde'));
+  if(filtro==='')document.getElementById('fBaixaTodos').classList.add('btn-azul');
+  else if(filtro==='nao')document.getElementById('fBaixaNao').classList.add('btn-azul');
+  else document.getElementById('fBaixaSim').classList.add('btn-verde');
+  renderBaixaExecLista();
+}
+async function salvarTodasBaixas(){
+  if(!baixaAtual)return;
+  const mudados=baixaAtual.itens.filter(i=>i.baixado!==i.original);
+  if(!mudados.length){toast('ℹ️ Nenhuma alteração para salvar.');return;}
+  const btn=document.getElementById('btnSalvarBaixas');
+  if(btn){btn.disabled=true;btn.innerHTML='<span class="spinner"></span> Salvando...';}
+  try{
+    const r=await apiPost({
+      action:'salvarBaixaItensBatch',
+      listaId:baixaAtual.id,
+      itens:mudados.map(i=>({listaId:baixaAtual.id,nome:i.nome,categoria:i.categoria,baixado:i.baixado}))
+    });
+    if(r.ok){
+      toast(`✅ ${mudados.length} baixa(s) salva(s)!`);
+      baixaAtual.itens.forEach(i=>{i.original=i.baixado;});
+      baixaItensPendentes={};
+      // Atualiza o cache local
+      const listaIdx=baixaListasAll.findIndex(l=>String(l.id)===String(baixaAtual.id));
+      if(listaIdx>=0)baixaListasAll[listaIdx].atualizadaem=new Date().toISOString().slice(0,10);
+      baixaItensAll=baixaItensAll.filter(i=>String(i.listaid)!==String(baixaAtual.id));
+      baixaAtual.itens.forEach(i=>baixaItensAll.push({listaid:baixaAtual.id,nome:i.nome,categoria:i.categoria,baixado:i.baixado?'SIM':'NÃO'}));
+    }else toast('❌ '+(r.erro||'Erro'));
+  }catch(e){toast('❌ Erro: '+e.message);}
+  finally{if(btn){btn.disabled=false;btn.innerHTML='💾 Salvar';}}
+}
+
+// Modal nova lista de baixa
+function abrirModalNovaBaixaLista(){
+  document.getElementById('baixaNomeLista').value='';
+  baixaTipoSel='';
+  document.getElementById('baixaTipoOpts').innerHTML=TIPOS_LISTA.map(t=>`
+    <div class="lista-tipo-btn" onclick="selecionarBaixaTipo('${t.value}',this)">${t.label}</div>`).join('');
+  document.getElementById('baixaTipoCustomWrap').style.display='none';
+  document.getElementById('modalNovaBaixaLista').classList.add('aberto');
+}
+function selecionarBaixaTipo(val,el){
+  baixaTipoSel=val;
+  document.querySelectorAll('#baixaTipoOpts .lista-tipo-btn').forEach(b=>b.classList.remove('selecionado'));
+  el.classList.add('selecionado');
+  document.getElementById('baixaTipoCustomWrap').style.display=val==='outro'?'block':'none';
+}
+function confirmarNovaBaixaLista(){
+  const nome=document.getElementById('baixaNomeLista').value.trim();
+  if(!nome){toast('⚠️ Informe o nome da lista.');return;}
+  if(!baixaTipoSel){toast('⚠️ Selecione o tipo.');return;}
+  // Avança para adicionar pessoas
+  fecharModal('modalNovaBaixaLista');
+  // Armazena temporariamente
+  baixaAtual={id:null,nome,tipo:baixaTipoSel,itens:[]};
+  baixaItensPendentes={};
+  document.getElementById('baixaGerenciarTitulo').textContent=`✔️ ${nome} — Adicionar Pessoas`;
+  document.getElementById('baixaListaCount').textContent='0';
+  document.getElementById('baixaListaPreview').innerHTML='<div style="padding:10px;text-align:center;color:var(--texto2);font-size:0.85rem;">Nenhuma pessoa adicionada ainda.</div>';
+  document.getElementById('baixaGerenciarConteudo').innerHTML='';
+  document.getElementById('modalBaixaGerenciar').classList.add('aberto');
+}
+
+// Gerenciar pessoas na baixa
+function baixaMostrarTurmas(){
+  const div=document.getElementById('baixaGerenciarConteudo');
+  div.innerHTML=`<label style="font-size:0.82rem;font-weight:600;color:var(--texto2);">Selecione a turma:</label>
+    <div class="turmas-grid-popup" style="margin-top:10px;">
+      ${TURMAS_FIXAS.map(t=>`<div class="turma-btn-popup" onclick="baixaCarregarTurma('${t}')">${t}</div>`).join('')}
+    </div>`;
+}
+async function baixaCarregarTurma(turma){
+  const div=document.getElementById('baixaGerenciarConteudo');
+  div.innerHTML=`<div class="loading-txt"><span class="spinner spinner-azul"></span> Carregando turma ${turma}...</div>`;
+  try{
+    const todos=await apiGet('PlantaoAlunos');
+    const alunos=todos.filter(a=>String(a.turma||'').trim().toUpperCase()===turma.trim().toUpperCase())
+      .sort((a,b)=>String(a.nome).localeCompare(String(b.nome),'pt'));
+    if(!alunos.length){
+      div.innerHTML=`<div style="text-align:center;padding:16px;color:var(--texto2);font-size:0.88rem;">Nenhum aluno na turma <strong>${turma}</strong>.</div>
+        <button class="btn btn-cinza" onclick="baixaMostrarTurmas()">← Voltar</button>`;
+      return;
+    }
+    div.innerHTML=`
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+        <strong style="font-size:0.9rem;">Turma ${turma} — ${alunos.length} aluno(s)</strong>
+        <button class="btn btn-cinza btn-icon" onclick="baixaMostrarTurmas()">← Voltar</button>
+      </div>
+      <label style="display:flex;align-items:center;gap:8px;margin-bottom:8px;cursor:pointer;">
+        <input type="checkbox" id="chkBaixaTodos" onchange="document.querySelectorAll('.chk-baixa-aluno').forEach(c=>c.checked=this.checked)" style="width:16px;height:16px;accent-color:var(--azul);">
+        <span style="font-size:0.84rem;font-weight:700;">Selecionar todos</span>
+      </label>
+      <div style="max-height:220px;overflow-y:auto;border:1px solid var(--borda);border-radius:8px;padding:4px 0;">
+        ${alunos.map(a=>`
+          <label class="lista-item-row" style="cursor:pointer;gap:10px;justify-content:flex-start;">
+            <input type="checkbox" class="chk-baixa-aluno" data-nome="${esc(a.nome)}" data-cat="Turma ${turma}" style="width:16px;height:16px;accent-color:var(--azul);flex-shrink:0;">
+            <span style="font-size:0.88rem;">${esc(a.nome)}</span>
+          </label>`).join('')}
+      </div>
+      <button class="btn btn-verde" style="margin-top:10px;width:100%;" onclick="adicionarSelecionadosBaixa()">✅ Adicionar selecionados</button>`;
+  }catch(err){
+    div.innerHTML=`<div style="color:var(--vermelho);font-size:0.85rem;">❌ Erro: ${err.message}</div>
+      <button class="btn btn-cinza" style="margin-top:8px;" onclick="baixaMostrarTurmas()">← Voltar</button>`;
+  }
+}
+function adicionarSelecionadosBaixa(){
+  const sel=document.querySelectorAll('.chk-baixa-aluno:checked');
+  if(!sel.length){toast('⚠️ Marque ao menos um.');return;}
+  let adicionados=0;
+  sel.forEach(chk=>{
+    const nome=chk.dataset.nome,cat=chk.dataset.cat||'';
+    if(!baixaAtual.itens.find(i=>norm(i.nome)===norm(nome))){
+      baixaAtual.itens.push({nome,categoria:cat,baixado:false,original:false});adicionados++;
+    }
+  });
+  atualizarPreviewBaixa();
+  document.getElementById('baixaGerenciarConteudo').innerHTML='';
+  toast(`✅ ${adicionados} pessoa(s) adicionada(s).`);
+}
+function baixaAdicionarFuncionario(){
+  const div=document.getElementById('baixaGerenciarConteudo');
+  div.innerHTML=`<label style="font-size:0.82rem;font-weight:600;color:var(--texto2);">Selecione o funcionário:</label>
+    <div style="max-height:220px;overflow-y:auto;border:1px solid var(--borda);border-radius:8px;margin-top:8px;padding:4px 0;">
+      ${ANIVERSARIANTES.filter(a=>a.tipo==='Funcionário'||a.tipo==='Funcionária').sort((a,b)=>a.nome.localeCompare(b.nome,'pt')).map(a=>`
+        <div class="lista-item-row" style="cursor:pointer;" onclick="adicionarPessoaBaixa('${esc(a.nome)}','${esc(a.turma)}')">
+          👤 ${esc(a.nome)} <span style="color:var(--texto2);font-size:0.8rem;margin-left:6px;">${esc(a.turma)}</span>
+        </div>`).join('')}
+    </div>`;
+}
+function baixaAdicionarOutro(){
+  const div=document.getElementById('baixaGerenciarConteudo');
+  div.innerHTML=`<label>Nome</label>
+    <input type="text" id="outroBaixaNome" placeholder="Nome completo..." style="margin-bottom:10px;">
+    <button class="btn btn-verde" onclick="adicionarPessoaBaixa(document.getElementById('outroBaixaNome').value.trim(),'')">+ Adicionar</button>`;
+  setTimeout(()=>document.getElementById('outroBaixaNome')?.focus(),50);
+}
+function adicionarPessoaBaixa(nome,cat){
+  if(!nome){toast('⚠️ Informe o nome.');return;}
+  if(baixaAtual.itens.find(i=>norm(i.nome)===norm(nome))){toast('⚠️ Já está na lista.');return;}
+  baixaAtual.itens.push({nome,categoria:cat||'',baixado:false,original:false});
+  atualizarPreviewBaixa();
+  document.getElementById('baixaGerenciarConteudo').innerHTML='';
+  toast('✅ '+nome+' adicionado(a).');
+}
+function atualizarPreviewBaixa(){
+  document.getElementById('baixaListaCount').textContent=baixaAtual.itens.length;
+  const div=document.getElementById('baixaListaPreview');
+  if(!baixaAtual.itens.length){div.innerHTML='<div style="padding:10px;text-align:center;color:var(--texto2);font-size:0.85rem;">Nenhuma pessoa ainda.</div>';return;}
+  div.innerHTML=baixaAtual.itens.map((item,i)=>`
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:6px 10px;border-bottom:1px solid var(--borda);font-size:0.85rem;">
+      <span>${esc(item.nome)} ${item.categoria?`<span style="color:var(--texto2);font-size:0.78rem;">(${esc(item.categoria)})</span>`:''}</span>
+      <button class="btn btn-verm btn-icon" onclick="removerPessoaBaixa(${i})" style="font-size:0.72rem;">✕</button>
+    </div>`).join('');
+}
+function removerPessoaBaixa(idx){
+  baixaAtual.itens.splice(idx,1);atualizarPreviewBaixa();
+}
+async function salvarBaixaListaCompleta(){
+  if(!baixaAtual||!baixaAtual.nome){toast('⚠️ Sem dados para salvar.');return;}
+  if(!baixaAtual.itens.length){toast('⚠️ Adicione ao menos uma pessoa.');return;}
+  const btn=document.querySelector('#modalBaixaGerenciar .btn-verde');
+  if(btn){btn.disabled=true;btn.innerHTML='<span class="spinner"></span> Salvando...';}
+  try{
+    // 1) Cria a lista
+    const r=await apiPost({action:'criarBaixaLista',nome:baixaAtual.nome,tipo:baixaAtual.tipo});
+    if(!r.ok){toast('❌ '+(r.erro||'Erro ao criar lista.'));return;}
+    const listaId=r.id;
+    baixaAtual.id=listaId;
+    // 2) Salva os itens em batch
+    await apiPost({action:'salvarBaixaItensBatch',listaId,itens:baixaAtual.itens.map(i=>({listaId,nome:i.nome,categoria:i.categoria,baixado:false}))});
+    toast('✅ Lista criada!');
+    fecharModal('modalBaixaGerenciar');
+    await carregarBaixas();
+    // 3) Abre a lista para baixar
+    abrirBaixaLista(listaId);
+  }catch(e){toast('❌ Erro: '+e.message);}
+  finally{if(btn){btn.disabled=false;btn.innerHTML='💾 Salvar e Abrir Lista';}}
+}
+async function excluirBaixaLista(id){
+  if(!confirm('Excluir esta lista de baixa e todos os registros?'))return;
+  try{
+    const r=await apiPost({action:'excluirBaixaLista',id});
+    if(r.ok){toast('🗑️ Lista excluída.');await carregarBaixas();}
+    else toast('❌ '+(r.erro||'Erro'));
+  }catch(e){toast('❌ '+e.message);}
+}
 
 /* ══════════════════════════════════════════════════════
    ATAS
@@ -2091,14 +2309,14 @@ function renderAtas(){
           <div class="ata-card-info">${fmtData(a.data)}${a.horario?' às '+a.horario:''}${a.local?' • '+a.local:''}</div>
         </div>
         <div style="display:flex;gap:6px;flex-shrink:0;">
-          <button class="btn btn-cinza btn-icon" onclick="editarAta('${a.id}')">✏️</button>
-          <button class="btn btn-verm btn-icon" onclick="excluirAta('${a.id}')">🗑️</button>
+          <button class="btn btn-cinza btn-icon btn-edicao" onclick="editarAta('${a.id}')">✏️</button>
+          <button class="btn btn-verm btn-icon btn-edicao" onclick="excluirAta('${a.id}')">🗑️</button>
         </div>
       </div>
     </div>`).join('');
 }
-
 function abrirModalNovaAta(){
+  if(usuarioLogado&&usuarioLogado.somenteLeitura){toast('⛔ Sem permissão.');return;}
   document.getElementById('ataEditId').value='';
   document.getElementById('ataData').value=new Date().toISOString().slice(0,10);
   document.getElementById('ataHorario').value='';
@@ -2110,10 +2328,8 @@ function abrirModalNovaAta(){
   adicionarCampoParticipante();
   document.getElementById('modalNovaAta').classList.add('aberto');
 }
-
 function editarAta(id){
-  const a=atas.find(x=>String(x.id)===String(id));
-  if(!a)return;
+  const a=atas.find(x=>String(x.id)===String(id));if(!a)return;
   document.getElementById('ataEditId').value=a.id;
   document.getElementById('ataData').value=a.data||'';
   document.getElementById('ataHorario').value=a.horario||'';
@@ -2121,77 +2337,50 @@ function editarAta(id){
   document.getElementById('ataLocal').value=a.local||'';
   document.getElementById('ataConteudo').value=a.conteudo||'';
   document.getElementById('ataModalTitulo').textContent='✏️ Editar Ata';
-  const wrap=document.getElementById('ataParticipantesWrap');
-  wrap.innerHTML='';
+  const wrap=document.getElementById('ataParticipantesWrap');wrap.innerHTML='';
   (a.participantes||[]).forEach(p=>{const row=criarRowParticipante();row.querySelector('input').value=p;wrap.appendChild(row);});
   if(!(a.participantes||[]).length)adicionarCampoParticipante();
   document.getElementById('modalNovaAta').classList.add('aberto');
 }
-
 function criarRowParticipante(){
-  const div=document.createElement('div');
-  div.className='ata-participante-row';
+  const div=document.createElement('div');div.className='ata-participante-row';
   div.innerHTML='<input type="text" placeholder="Nome do participante..."><button class="btn btn-verm btn-icon" onclick="this.parentElement.remove()">✕</button>';
   return div;
 }
-
-function adicionarCampoParticipante(){
-  document.getElementById('ataParticipantesWrap').appendChild(criarRowParticipante());
-}
-
+function adicionarCampoParticipante(){document.getElementById('ataParticipantesWrap').appendChild(criarRowParticipante());}
 function salvarAta(){
   const titulo=document.getElementById('ataTitulo').value.trim();
   const conteudo=document.getElementById('ataConteudo').value.trim();
   if(!titulo||!conteudo){toast('⚠️ Preencha título e conteúdo.');return;}
   const editId=document.getElementById('ataEditId').value;
   const participantes=[...document.querySelectorAll('#ataParticipantesWrap input')].map(i=>i.value.trim()).filter(Boolean);
-  const ata={
-    id:editId||Date.now(),
-    data:document.getElementById('ataData').value,
-    horario:document.getElementById('ataHorario').value,
-    titulo,local:document.getElementById('ataLocal').value.trim(),
-    conteudo,participantes
-  };
+  const ata={id:editId||Date.now(),data:document.getElementById('ataData').value,horario:document.getElementById('ataHorario').value,titulo,local:document.getElementById('ataLocal').value.trim(),conteudo,participantes};
   if(editId){const idx=atas.findIndex(x=>String(x.id)===String(editId));if(idx>=0)atas[idx]=ata;else atas.push(ata);}
   else atas.push(ata);
   localStorage.setItem('atas_v1',JSON.stringify(atas));
   fecharModal('modalNovaAta');renderAtas();toast('✅ Ata salva!');
 }
-
 function excluirAta(id){
   if(!confirm('Excluir ata?'))return;
   atas=atas.filter(a=>String(a.id)!==String(id));
   localStorage.setItem('atas_v1',JSON.stringify(atas));
   renderAtas();toast('🗑️ Ata excluída.');
 }
-
 function abrirModalListarAtas(){
   const div=document.getElementById('atasSalvasConteudo');
   div.innerHTML=[...atas].sort((a,b)=>String(b.data).localeCompare(String(a.data))).map(a=>`
     <div class="reuniao-card">
-      <div>
-        <div class="reuniao-titulo">${esc(a.titulo)}</div>
-        <div class="reuniao-info">${fmtData(a.data)}${a.horario?' às '+a.horario:''}${a.local?' • '+a.local:''}</div>
-      </div>
+      <div><div class="reuniao-titulo">${esc(a.titulo)}</div><div class="reuniao-info">${fmtData(a.data)}${a.horario?' às '+a.horario:''}${a.local?' • '+a.local:''}</div></div>
       <div style="display:flex;gap:6px;flex-shrink:0;">
         <button class="btn btn-azul btn-icon" onclick="editarAtaModal('${a.id}')">✏️ Abrir</button>
-        <button class="btn btn-verm btn-icon" onclick="excluirAta('${a.id}');abrirModalListarAtas()">🗑️</button>
+        <button class="btn btn-verm btn-icon btn-edicao" onclick="excluirAta('${a.id}');abrirModalListarAtas()">🗑️</button>
       </div>
-    </div>`).join('')||'<div class="vazio-estado"><div class="vazio-icon">📭</div><p>Nenhuma ata salva.</p></div>';
+    </div>`).join('')||'<div class="vazio-estado"><div class="vazio-icon">📭</div><p>Nenhuma ata.</p></div>';
   document.getElementById('modalListarAtas').classList.add('aberto');
 }
-
 function editarAtaModal(id){fecharModal('modalListarAtas');editarAta(id);}
-
 function imprimirAtaModal(){
-  const a={
-    titulo:document.getElementById('ataTitulo').value,
-    data:document.getElementById('ataData').value,
-    horario:document.getElementById('ataHorario').value,
-    local:document.getElementById('ataLocal').value,
-    conteudo:document.getElementById('ataConteudo').value,
-    participantes:[...document.querySelectorAll('#ataParticipantesWrap input')].map(i=>i.value.trim()).filter(Boolean)
-  };
+  const a={titulo:document.getElementById('ataTitulo').value,data:document.getElementById('ataData').value,horario:document.getElementById('ataHorario').value,local:document.getElementById('ataLocal').value,conteudo:document.getElementById('ataConteudo').value,participantes:[...document.querySelectorAll('#ataParticipantesWrap input')].map(i=>i.value.trim()).filter(Boolean)};
   document.getElementById('ataImpressaoArea').innerHTML=`
     <div class="ata-impressao-conteudo">
       <h1 style="font-size:1.4rem;text-align:center;margin-bottom:4px;">${NOME_ESCOLA}</h1>
@@ -2210,17 +2399,11 @@ function imprimirAtaModal(){
    TOTALIZADOR
 ══════════════════════════════════════════════════════ */
 async function carregarTotalizador(){
-  try{
-    if(!plantaoAlunos.length)plantaoAlunos=await apiGet('PlantaoAlunos');
-    renderTotalizador();
-  }catch(e){
-    document.getElementById('totalAlunosTabela').innerHTML='<div style="color:var(--vermelho);">Erro ao carregar dados.</div>';
-  }
+  try{if(!plantaoAlunos.length)plantaoAlunos=await apiGet('PlantaoAlunos');renderTotalizador();}
+  catch(e){document.getElementById('totalAlunosTabela').innerHTML='<div style="color:var(--vermelho);">Erro ao carregar.</div>';}
 }
-
 function renderTotalizador(){
-  const porTurma={};
-  TURMAS_FIXAS.forEach(t=>porTurma[t]=0);
+  const porTurma={};TURMAS_FIXAS.forEach(t=>porTurma[t]=0);
   plantaoAlunos.forEach(a=>{const t=String(a.turma||'').trim();if(porTurma[t]!==undefined)porTurma[t]++;});
   const totIni=ANOS_INICIAIS.reduce((s,t)=>s+(porTurma[t]||0),0);
   const totFin=ANOS_FINAIS.reduce((s,t)=>s+(porTurma[t]||0),0);
@@ -2229,22 +2412,16 @@ function renderTotalizador(){
   document.getElementById('numAnosFin').textContent=totFin;
   document.getElementById('numTotalAlunos').textContent=totGeral;
   document.getElementById('numColaboradores').textContent=ANIVERSARIANTES.length;
-
   const max=Math.max(...Object.values(porTurma),1);
   let html=`<div class="total-tabela-wrap"><table class="total-tabela">
     <thead><tr><th>Turma</th><th>Segmento</th><th class="right">Alunos</th><th style="min-width:100px;">Proporção</th></tr></thead><tbody>`;
-
   const renderTurmas=(turmas,cls,seg)=>turmas.map(t=>{
     const n=porTurma[t]||0;
     const pct=max?Math.round(n/max*100):0;
     const cor=cls==='row-ani'?'barra-ini':'barra-fin';
     return `<tr class="${cls}"><td>${t}</td><td>${seg}</td><td class="right">${n}</td>
-      <td><div style="display:flex;align-items:center;gap:8px;">
-        <div class="barra-wrap"><div class="barra-fill ${cor}" style="width:${pct}%"></div></div>
-        <span style="font-size:0.78rem;color:var(--texto2);">${pct}%</span>
-      </div></td></tr>`;
+      <td><div style="display:flex;align-items:center;gap:8px;"><div class="barra-wrap"><div class="barra-fill ${cor}" style="width:${pct}%"></div></div><span style="font-size:0.78rem;color:var(--texto2);">${pct}%</span></div></td></tr>`;
   }).join('');
-
   html+=renderTurmas(ANOS_INICIAIS,'row-ani','Anos Iniciais');
   html+=`<tr class="row-subtotal"><td colspan="2">Subtotal Anos Iniciais</td><td class="right">${totIni}</td><td></td></tr>`;
   html+=renderTurmas(ANOS_FINAIS,'row-anf','Anos Finais');
@@ -2252,14 +2429,11 @@ function renderTotalizador(){
   html+=`<tr class="row-total"><td colspan="2">🎓 Total Geral</td><td class="right">${totGeral}</td><td></td></tr>`;
   html+='</tbody></table></div>';
   document.getElementById('totalAlunosTabela').innerHTML=html;
-
-  document.getElementById('totalColabConteudo').innerHTML=`<div class="colab-grid">${
-    ANIVERSARIANTES.map((a,i)=>`<div class="colab-card" style="animation-delay:${i*0.03}s">
-      <div class="colab-avatar">👤</div>
+  document.getElementById('totalColabConteudo').innerHTML=`<div class="colab-grid">${ANIVERSARIANTES.map(a=>`
+    <div class="colab-card"><div class="colab-avatar">👤</div>
       <div><div class="colab-nome">${esc(a.nome)}</div><div class="colab-cargo">${esc(a.turma)}</div></div>
     </div>`).join('')}</div>`;
 }
-
 function mudarAbaTotal(aba,btn){
   document.querySelectorAll('.total-tab-btn').forEach(b=>b.classList.remove('ativo'));
   document.querySelectorAll('.total-tab-content').forEach(c=>c.classList.remove('ativo'));
