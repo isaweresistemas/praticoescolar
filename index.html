@@ -942,13 +942,13 @@
 /* ══════════════════════════════════════════════════════
    CONFIG — ⚠️ TROQUE PELA URL DO SEU SCRIPT IMPLANTADO
 ══════════════════════════════════════════════════════ */
-const API_URL = "https://script.google.com/macros/s/AKfycbzP_n9hFNcnMgDzElUTYyl5CVa__JPWBbOF7F20p46B9qgwVx8o0p21ay62qRq3bzM4/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbzP_n9hFNcnMgDzEIUTYyl5CVa__JPWBbOF7F20p46B9qgwVx8o0p21ay62qRq3bzM4/exec";
 
 const USUARIOS = [
   {nome:"Kadigina",  cargo:"Diretora",               senha:"1234", somenteLeitura:false},
-  {nome:"Ivan",      cargo:"Coordenador Pedagógico",  senha:"manoel@26", somenteLeitura:false},
-  {nome:"Januacelis",cargo:"Coordenador Pedagógico",  senha:"manoel@26", somenteLeitura:false},
-  {nome:"Jessica",   cargo:"Secretaria Escolar",      senha:"manoel@26", somenteLeitura:false},
+  {nome:"Ivan",      cargo:"Coordenador Pedagógico",  senha:"1234", somenteLeitura:false},
+  {nome:"Januacelis",cargo:"Coordenador Pedagógico",  senha:"1234", somenteLeitura:false},
+  {nome:"Jessica",   cargo:"Secretaria Escolar",      senha:"1234", somenteLeitura:false},
   {nome:"Professor", cargo:"Professor",               senha:"1234", somenteLeitura:true},
   {nome:"Visitante", cargo:"Operacional",             senha:"1234", somenteLeitura:true},
 ];
@@ -1093,23 +1093,13 @@ function toggleVerSenha(inputId,btnId){
   if(inp.type==='password'){inp.type='text';btn.textContent='🙈';}else{inp.type='password';btn.textContent='👁️';}
 }
 async function apiPost(payload){
-  const r = await fetch(API_URL, {
-    method: 'POST',
-    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-    body: JSON.stringify(payload),
-    cache: 'no-store'
-  });
+  const r=await fetch(API_URL,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify(payload)});
   return r.json();
 }
 async function apiGet(sheet){
-  const ts = Date.now();
-  const r = await fetch(`${API_URL}?sheet=${sheet}&t=${ts}`, {
-    method: 'GET',
-    cache: 'no-store',
-    headers: { 'Cache-Control': 'no-cache' }
-  });
-  const d = await r.json();
-  return Array.isArray(d) ? d : [];
+  const r=await fetch(`${API_URL}?sheet=${sheet}`);
+  const d=await r.json();
+  return Array.isArray(d)?d:[];
 }
 
 /* ══════════════════════════════════════════════════════
