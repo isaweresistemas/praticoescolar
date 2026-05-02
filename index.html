@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sistema Prático Escolar</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://script.google.com/macros/s/AKfycbzP_n9hFNcnMgDzEIUTYyl5CVa__JPWBbOF7F20p46B9qgwVx8o0p21ay62qRq3bzM4/exec" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --verde:#2e7d32;--verde-cl:#e8f5e9;
@@ -791,7 +791,7 @@
 <!-- ADMIN DATAS PLANTÃO -->
 <div class="modal-overlay" id="modalAdminPlantao">
   <div class="modal" style="max-width:520px;">
-    <button class="modal-fechar" onclick="fecharModal('modalAdminPlantao')">✕</button>
+    <button class="modal-fechar" onclick="fecharModal('modalAdminPlantao');carregarPlantaoPg()">✕</button>
     <div class="modal-titulo">📅 Gerenciar Datas do Plantão</div>
     <div class="modal-titulo" style="font-size:0.95rem;margin-bottom:10px;" id="formPlantaoTitulo">➕ Nova Data</div>
     <input type="hidden" id="plantaoDataEditId">
@@ -815,7 +815,7 @@
 <!-- ADMIN ALUNOS PLANTÃO -->
 <div class="modal-overlay" id="modalAdminPlantaoAlunos">
   <div class="modal" style="max-width:600px;">
-    <button class="modal-fechar" onclick="fecharModal('modalAdminPlantaoAlunos')">✕</button>
+    <button class="modal-fechar" onclick="fecharModal('modalAdminPlantaoAlunos');carregarPlantaoPg()">✕</button>
     <div class="modal-titulo">👥 Gerenciar Alunos do Plantão</div>
     <div style="background:var(--cinza);border-radius:10px;padding:14px 16px;margin-bottom:16px;">
       <div class="modal-titulo" id="formPlantaoAlunoTitulo" style="font-size:0.92rem;margin-bottom:10px;">➕ Novo Aluno</div>
@@ -942,13 +942,13 @@
 /* ══════════════════════════════════════════════════════
    CONFIG — ⚠️ TROQUE PELA URL DO SEU SCRIPT IMPLANTADO
 ══════════════════════════════════════════════════════ */
-const API_URL = "https://script.google.com/macros/s/AKfycbzP_n9hFNcnMgDzEIUTYyl5CVa__JPWBbOF7F20p46B9qgwVx8o0p21ay62qRq3bzM4/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbzP_n9hFNcnMgDzElUTYyl5CVa__JPWBbOF7F20p46B9qgwVx8o0p21ay62qRq3bzM4/exec";
 
 const USUARIOS = [
-  {nome:"Kadigina",  cargo:"Diretora",               senha:"manoel@26", somenteLeitura:false},
-  {nome:"Ivan",      cargo:"Coordenador Pedagógico",  senha:"manoel@26", somenteLeitura:false},
-  {nome:"Januacelis",cargo:"Coordenador Pedagógico",  senha:"manoel@26", somenteLeitura:false},
-  {nome:"Jessica",   cargo:"Secretaria Escolar",      senha:"manoel@26", somenteLeitura:false},
+  {nome:"Kadigina",  cargo:"Diretora",               senha:"1234", somenteLeitura:false},
+  {nome:"Ivan",      cargo:"Coordenador Pedagógico",  senha:"1234", somenteLeitura:false},
+  {nome:"Januacelis",cargo:"Coordenador Pedagógico",  senha:"1234", somenteLeitura:false},
+  {nome:"Jessica",   cargo:"Secretaria Escolar",      senha:"1234", somenteLeitura:false},
   {nome:"Professor", cargo:"Professor",               senha:"1234", somenteLeitura:true},
   {nome:"Visitante", cargo:"Operacional",             senha:"1234", somenteLeitura:true},
 ];
@@ -1769,10 +1769,10 @@ async function salvarDataPlantao(){
   finally{if(btn){btn.disabled=false;btn.innerHTML='💾 Salvar Data';}}
 }
 
-// Recarrega só a tabela sem recarregar plantaoDatas (evita race condition)
+// Recarrega a tabela usando plantaoDatas já carregados + alunos + presenças frescos
 async function _recarregarTabelaPlantao(){
   try{
-    if(!plantaoAlunos.length) plantaoAlunos=await apiGet('PlantaoAlunos');
+    plantaoAlunos=await apiGet('PlantaoAlunos');
     const presRaw=await apiGet('PlantaoPresenca');
     plantaoPresencas={};
     presRaw.forEach(p=>{plantaoPresencas[`${p.alunoid}_${p.dataid}`]=p.status||'-';});
@@ -1876,11 +1876,16 @@ async function carregarPlantaoPg(){
   const div=document.getElementById('plantaoPgConteudo');
   div.innerHTML='<div class="loading-txt"><span class="spinner spinner-azul"></span> Carregando...</div>';
   try{
-    await Promise.all([carregarPlantaoDatas(),carregarPlantaoAlunos()]);
+    // Sempre busca dados frescos do servidor
+    [plantaoDatas, plantaoAlunos] = await Promise.all([
+      apiGet('PlantaoDatas'),
+      apiGet('PlantaoAlunos')
+    ]);
+    plantaoDatas.sort((a,b)=>String(a.data).localeCompare(String(b.data)));
     const presRaw=await apiGet('PlantaoPresenca');
     plantaoPresencas={};
     presRaw.forEach(p=>{plantaoPresencas[`${p.alunoid}_${p.dataid}`]=p.status||'-';});
-  }catch(e){div.innerHTML='<div style="color:var(--vermelho);">Erro ao carregar dados.</div>';return;}
+  }catch(e){div.innerHTML='<div style="color:var(--vermelho);padding:20px;text-align:center;">❌ Erro ao carregar dados: '+e.message+'</div>';return;}
   renderPlantaoPg();
 }
 function renderPlantaoPg(){
