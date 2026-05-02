@@ -806,7 +806,10 @@
     <hr style="border:none;border-top:1px solid var(--borda);margin:14px 0;">
     <div style="font-size:0.9rem;font-weight:700;margin-bottom:8px;">Datas cadastradas:</div>
     <div id="adminPlantaoDatasList" style="max-height:220px;overflow-y:auto;"></div>
-  </div>
+    <div style="margin-top:14px;padding-top:12px;border-top:1px solid var(--borda);display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+      <button class="btn btn-cinza btn-icon" style="font-size:0.75rem;" onclick="testarConexaoPlantao()">🔍 Testar conexão</button>
+      <span id="diagPlantaoMsg" style="font-size:0.75rem;color:var(--texto2);"></span>
+    </div>
 </div>
 
 <!-- ADMIN ALUNOS PLANTÃO -->
@@ -942,10 +945,10 @@
 const API_URL = "https://script.google.com/macros/s/AKfycbzP_n9hFNcnMgDzEIUTYyl5CVa__JPWBbOF7F20p46B9qgwVx8o0p21ay62qRq3bzM4/exec";
 
 const USUARIOS = [
-  {nome:"Kadigina",  cargo:"Diretora",               senha:"manoel@26", somenteLeitura:false},
-  {nome:"Ivan",      cargo:"Coordenador Pedagógico",  senha:"manoel@26", somenteLeitura:false},
-  {nome:"Januacelis",cargo:"Coordenador Pedagógico",  senha:"manoel@26", somenteLeitura:false},
-  {nome:"Jessica",   cargo:"Secretaria Escolar",      senha:"manoel@26", somenteLeitura:false},
+  {nome:"Kadigina",  cargo:"Diretora",               senha:"1234", somenteLeitura:false},
+  {nome:"Ivan",      cargo:"Coordenador Pedagógico",  senha:"1234", somenteLeitura:false},
+  {nome:"Januacelis",cargo:"Coordenador Pedagógico",  senha:"1234", somenteLeitura:false},
+  {nome:"Jessica",   cargo:"Secretaria Escolar",      senha:"1234", somenteLeitura:false},
   {nome:"Professor", cargo:"Professor",               senha:"1234", somenteLeitura:true},
   {nome:"Visitante", cargo:"Operacional",             senha:"1234", somenteLeitura:true},
 ];
@@ -1719,8 +1722,12 @@ async function excluirDataPlantao(id){
   if(!confirm('Excluir esta data e presenças associadas?'))return;
   try{
     const r=await apiPost({action:'excluirPlantaoData',id});
-    if(r.ok){toast('🗑️ Data excluída.');await carregarPlantaoDatas();renderAdminPlantaoDatasList();carregarPlantaoPg();}
-    else toast('❌ '+(r.erro||'Erro'));
+    if(r.ok){
+      toast('🗑️ Data excluída.');
+      try{plantaoDatas=await apiGet('PlantaoDatas');plantaoDatas.sort((a,b)=>String(a.data).localeCompare(String(b.data)));}catch(e2){plantaoDatas=[];}
+      renderAdminPlantaoDatasList();
+      await _recarregarTabelaPlantao();
+    }else toast('❌ '+(r.erro||'Erro'));
   }catch(e){toast('❌ Erro: '+e.message);}
 }
 async function salvarDataPlantao(){
@@ -1741,14 +1748,64 @@ async function salvarDataPlantao(){
     if(r.ok){
       toast(editId?'✅ Data atualizada!':'✅ Data salva!');
       limparFormPlantao();
-      await carregarPlantaoDatas();
+      // Recarrega datas aguardando a resposta antes de renderizar
+      try{
+        plantaoDatas=await apiGet('PlantaoDatas');
+        plantaoDatas.sort((a,b)=>String(a.data).localeCompare(String(b.data)));
+      }catch(e2){plantaoDatas=[];}
       renderAdminPlantaoDatasList();
-      carregarPlantaoPg();
+      // Recarrega a tabela do plantão sem sobrescrever plantaoDatas
+      await _recarregarTabelaPlantao();
     }else{
-      toast('❌ Erro: '+(r.erro||'Falha no servidor'));
+      // Mostra o erro completo para diagnóstico
+      const msgErro = r.erro || r.stack || JSON.stringify(r);
+      toast('❌ Servidor: '+msgErro.slice(0,120));
+      console.error('Erro servidor plantao:', r);
     }
-  }catch(e){toast('❌ Erro de conexão: '+e.message);}
+  }catch(e){
+    toast('❌ Conexão: '+e.message);
+    console.error('Erro fetch plantao:', e);
+  }
   finally{if(btn){btn.disabled=false;btn.innerHTML='💾 Salvar Data';}}
+}
+
+// Recarrega só a tabela sem recarregar plantaoDatas (evita race condition)
+async function _recarregarTabelaPlantao(){
+  try{
+    if(!plantaoAlunos.length) plantaoAlunos=await apiGet('PlantaoAlunos');
+    const presRaw=await apiGet('PlantaoPresenca');
+    plantaoPresencas={};
+    presRaw.forEach(p=>{plantaoPresencas[`${p.alunoid}_${p.dataid}`]=p.status||'-';});
+  }catch(e){console.warn('Erro ao recarregar tabela plantão:',e);}
+  renderPlantaoPg();
+}
+
+// Diagnóstico: testa GET e POST do plantão
+async function testarConexaoPlantao(){
+  const msg=document.getElementById('diagPlantaoMsg');
+  if(msg)msg.textContent='⏳ Testando...';
+  try{
+    // Teste GET
+    const dados=await apiGet('PlantaoDatas');
+    const getOk=Array.isArray(dados);
+    // Teste POST
+    const r=await apiPost({action:'salvarPlantaoData',data:'2099-12-31',descricao:'TESTE_DIAGNOSTICO'});
+    if(r.ok){
+      // Remove o registro de teste
+      await apiPost({action:'excluirPlantaoData',id:r.id});
+    }
+    const postOk=r.ok;
+    const resumo=`GET:${getOk?'✅':'❌'}(${dados.length||0} reg) | POST:${postOk?'✅':'❌('+( r.erro||'?')+')'}`;
+    if(msg)msg.textContent=resumo;
+    toast(resumo,4000);
+    // Recarrega lista
+    plantaoDatas=dados;plantaoDatas.sort((a,b)=>String(a.data).localeCompare(String(b.data)));
+    renderAdminPlantaoDatasList();
+  }catch(e){
+    const err='Erro: '+e.message;
+    if(msg)msg.textContent=err;
+    toast('❌ '+err);
+  }
 }
 
 /* ══════════════════════════════════════════════════════
