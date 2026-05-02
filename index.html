@@ -103,6 +103,10 @@
     .badge-cinza{background:#eee;color:#888;}
     .badge-laranja{background:var(--laran-cl);color:var(--laranja);}
 
+    /* AUTORIA */
+    .autoria-tag{display:inline-flex;align-items:center;gap:4px;font-size:0.7rem;color:var(--texto2);background:rgba(0,0,0,0.05);border-radius:20px;padding:2px 8px;margin-top:6px;}
+    .autoria-tag span{font-weight:700;color:var(--azul);}
+
     /* BOTÕES */
     .btn{padding:7px 16px;border-radius:8px;border:none;font-family:'Nunito',sans-serif;font-weight:700;font-size:0.82rem;cursor:pointer;transition:filter 0.15s,transform 0.1s;display:inline-flex;align-items:center;gap:5px;}
     .btn:hover{filter:brightness(1.08);}.btn:active{transform:scale(0.97);}
@@ -150,6 +154,7 @@
     .noticias-hero-badge{display:inline-block;background:var(--amarelo);color:#fff;font-family:'Nunito',sans-serif;font-weight:800;font-size:0.7rem;padding:2px 10px;border-radius:20px;margin-bottom:7px;text-transform:uppercase;}
     .noticias-hero-titulo{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.25rem;color:#fff;line-height:1.3;margin-bottom:6px;}
     .noticias-hero-data{font-size:0.78rem;color:rgba(255,255,255,0.75);}
+    .noticias-hero-autoria{font-size:0.7rem;color:rgba(255,255,255,0.6);margin-top:3px;}
     .noticias-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-bottom:20px;}
     .noticia-card{background:#fff;border-radius:14px;box-shadow:var(--sombra);overflow:hidden;cursor:pointer;transition:transform 0.18s,box-shadow 0.18s;display:flex;flex-direction:column;}
     .noticia-card:hover{transform:translateY(-3px);box-shadow:0 6px 24px rgba(0,0,0,0.12);}
@@ -163,6 +168,8 @@
     .noticia-titulo{font-family:'Nunito',sans-serif;font-weight:800;font-size:0.96rem;color:var(--texto);line-height:1.35;margin-bottom:7px;}
     .noticia-texto{font-size:0.83rem;color:var(--texto2);line-height:1.55;flex:1;}
     .noticia-data{font-size:0.75rem;color:#aaa;margin-top:10px;}
+    .noticia-autoria{font-size:0.7rem;color:var(--texto2);margin-top:4px;display:flex;align-items:center;gap:4px;}
+    .noticia-autoria span{color:var(--azul);font-weight:700;}
     .img-preview{max-width:100%;max-height:160px;border-radius:8px;margin-top:8px;display:none;object-fit:cover;border:1px solid var(--borda);}
     .img-preview.visivel{display:block;}
     .tamanho-opcoes{display:flex;gap:10px;margin-top:8px;flex-wrap:wrap;}
@@ -326,7 +333,7 @@
     .turma-btn-sel{padding:10px 8px;border-radius:10px;border:2px solid var(--borda);background:#fff;font-family:'Nunito',sans-serif;font-weight:700;font-size:0.9rem;cursor:pointer;text-align:center;transition:all 0.15s;color:var(--azul);}
     .turma-btn-sel:hover,.turma-btn-sel.selecionado{border-color:var(--azul);background:var(--azul-cl);}
 
-    /* ══ BAIXA EM LISTA ══ */
+    /* BAIXA EM LISTA */
     .baixa-lista-card{background:#fff;border-radius:14px;border:1.5px solid var(--borda);padding:16px 18px;margin-bottom:10px;display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap;transition:box-shadow 0.15s;cursor:pointer;}
     .baixa-lista-card:hover{box-shadow:0 4px 18px rgba(0,0,0,0.1);}
     .baixa-lista-nome{font-family:'Nunito',sans-serif;font-weight:800;font-size:0.96rem;margin-bottom:3px;}
@@ -882,7 +889,7 @@
   </div>
 </div>
 
-<!-- BAIXA — MODAL GERENCIAR (adicionar pessoas à lista) -->
+<!-- BAIXA — MODAL GERENCIAR -->
 <div class="modal-overlay" id="modalBaixaGerenciar">
   <div class="modal" style="max-width:540px;">
     <button class="modal-fechar" onclick="fecharModal('modalBaixaGerenciar')">✕</button>
@@ -899,12 +906,12 @@
       <div id="baixaListaPreview" style="max-height:140px;overflow-y:auto;border:1px solid var(--borda);border-radius:8px;"></div>
     </div>
     <div style="display:flex;gap:10px;margin-top:14px;">
-      <button class="btn btn-verde" onclick="salvarBaixaListaCompleta()">💾 Salvar e Abrir Lista</button>
+      <button class="btn btn-verde" id="btnSalvarBaixaLista" onclick="salvarBaixaListaCompleta()">💾 Salvar e Abrir Lista</button>
     </div>
   </div>
 </div>
 
-<!-- BAIXA — MODAL EXECUTAR BAIXAS -->
+<!-- BAIXA — MODAL EXECUTAR -->
 <div class="modal-overlay" id="modalBaixaExecutar">
   <div class="modal" style="max-width:640px;">
     <button class="modal-fechar" onclick="fecharModal('modalBaixaExecutar');carregarBaixas()">✕</button>
@@ -930,16 +937,15 @@
 
 <script>
 /* ══════════════════════════════════════════════════════
-   CONFIG
+   CONFIG — ⚠️ TROQUE PELA URL DO SEU SCRIPT IMPLANTADO
 ══════════════════════════════════════════════════════ */
 const API_URL = "https://script.google.com/macros/s/AKfycbzP_n9hFNcnMgDzEIUTYyl5CVa__JPWBbOF7F20p46B9qgwVx8o0p21ay62qRq3bzM4/exec";
 
-// ── USUÁRIOS ── Professor e Visitante = somenteLeitura:true
 const USUARIOS = [
-  {nome:"Kadigina",  cargo:"Diretora",               senha:"1234", somenteLeitura:false},
-  {nome:"Ivan",      cargo:"Coordenador Pedagógico",  senha:"1234", somenteLeitura:false},
-  {nome:"Januacelis",cargo:"Coordenador Pedagógico",  senha:"1234", somenteLeitura:false},
-  {nome:"Jessica",   cargo:"Secretaria Escolar",      senha:"1234", somenteLeitura:false},
+  {nome:"Kadigina",  cargo:"Diretora",               senha:"manoel@26", somenteLeitura:false},
+  {nome:"Ivan",      cargo:"Coordenador Pedagógico",  senha:"manoel@26", somenteLeitura:false},
+  {nome:"Januacelis",cargo:"Coordenador Pedagógico",  senha:"manoel@26", somenteLeitura:false},
+  {nome:"Jessica",   cargo:"Secretaria Escolar",      senha:"manoel@26", somenteLeitura:false},
   {nome:"Professor", cargo:"Professor",               senha:"1234", somenteLeitura:true},
   {nome:"Visitante", cargo:"Operacional",             senha:"1234", somenteLeitura:true},
 ];
@@ -1041,7 +1047,7 @@ const ANIVERSARIANTES = [
 let usuarioLogado    = null;
 let noticias         = [];
 let downloads        = [];
-let avisos           = JSON.parse(localStorage.getItem('avisos_v1')||'[]');
+let avisos           = [];
 let atas             = JSON.parse(localStorage.getItem('atas_v1')||'[]');
 let eventosCustom    = [];
 let plantaoAlunos    = [];
@@ -1057,12 +1063,12 @@ let listaAtual       = {tipo:'',itens:[]};
 let listasSalvas     = JSON.parse(localStorage.getItem('listas_v1')||'[]');
 
 // Baixa em lista
-let baixaListasAll   = [];
-let baixaItensAll    = [];
-let baixaAtual       = null; // {id, nome, tipo, itens:[{nome,categoria,baixado}]}
-let baixaFiltro      = '';   // '', 'sim', 'nao'
-let baixaTipoSel     = '';
-let baixaItensPendentes = {}; // mudanças ainda não salvas {nome: bool}
+let baixaListasAll      = [];
+let baixaItensAll       = [];
+let baixaAtual          = null;
+let baixaFiltro         = '';
+let baixaTipoSel        = '';
+let baixaItensPendentes = {};
 
 /* ══════════════════════════════════════════════════════
    HELPERS
@@ -1084,7 +1090,7 @@ function toggleVerSenha(inputId,btnId){
   if(inp.type==='password'){inp.type='text';btn.textContent='🙈';}else{inp.type='password';btn.textContent='👁️';}
 }
 async function apiPost(payload){
-  const r=await fetch(API_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+  const r=await fetch(API_URL,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify(payload)});
   return r.json();
 }
 async function apiGet(sheet){
@@ -1144,7 +1150,7 @@ function fazerLogin(){
   atualizarSelectTurmas();
   carregarNoticias();
   carregarDownloads();
-  renderAvisos();
+  carregarAvisos();
   renderCadastroLista();
   renderAniversariantes();
   renderAtas();
@@ -1175,7 +1181,7 @@ function irPara(secao,btn){
   fecharSidebar();
   if(secao==='calendario')      carregarEventosCal();
   if(secao==='aniversariantes') renderAniversariantes();
-  if(secao==='avisos')          renderAvisos();
+  if(secao==='avisos')          carregarAvisos();
   if(secao==='cadastro')        renderCadastroLista();
   if(secao==='baixa')           carregarBaixas();
   if(secao==='pesquisa')        {document.getElementById('pesqNome').value='';renderPesquisa();}
@@ -1229,12 +1235,14 @@ function renderNoticias(){
   const destaque=noticias.find(n=>String(n.destaque)==='SIM')||noticias[0];
   const resto=noticias.filter(n=>n.id!==destaque.id);
   const tam=destaque.tamanho||'grande';
+  const autorHtml=destaque.criadopor?`<div class="noticias-hero-autoria">✍️ ${esc(destaque.criadopor)}</div>`:'';
   if(tam==='semimagem'||!destaque.imagem){
     princ.innerHTML=`<div class="noticias-hero banner-${tam==='pequeno'?'pequeno':'grande'}" onclick="abrirNoticia('${destaque.id}')">
       <div class="noticias-hero-conteudo">
         ${destaque.categoria?`<span class="noticias-hero-badge">${esc(destaque.categoria)}</span>`:''}
         <div class="noticias-hero-titulo">${esc(destaque.titulo)}</div>
         <div class="noticias-hero-data">${fmtData(destaque.data)}</div>
+        ${autorHtml}
       </div></div>`;
   }else{
     princ.innerHTML=`<div class="noticias-hero banner-${tam==='pequeno'?'pequeno':'grande'}" onclick="abrirNoticia('${destaque.id}')">
@@ -1243,6 +1251,7 @@ function renderNoticias(){
         ${destaque.categoria?`<span class="noticias-hero-badge">${esc(destaque.categoria)}</span>`:''}
         <div class="noticias-hero-titulo">${esc(destaque.titulo)}</div>
         <div class="noticias-hero-data">${fmtData(destaque.data)}</div>
+        ${autorHtml}
       </div></div>`;
   }
   grid.innerHTML=resto.map(n=>{
@@ -1258,6 +1267,7 @@ function renderNoticias(){
         <div class="noticia-titulo">${esc(n.titulo)}</div>
         <div class="noticia-texto">${esc((n.texto||'').slice(0,120))}${(n.texto||'').length>120?'…':''}</div>
         <div class="noticia-data">${fmtData(n.data)}</div>
+        ${n.criadopor?`<div class="noticia-autoria">✍️ <span>${esc(n.criadopor)}</span></div>`:''}
       </div></div>`;
   }).join('');
 }
@@ -1268,7 +1278,7 @@ function abrirNoticia(id){
     ${n.imagem&&n.tamanho!=='semimagem'?`<img class="modal-noticia-img" src="${esc(n.imagem)}" alt="" onerror="this.style.display='none'">`:''}
     ${n.categoria?`<div class="noticia-categoria">${esc(n.categoria)}</div>`:''}
     <div class="modal-noticia-titulo">${esc(n.titulo)}</div>
-    <div class="modal-noticia-meta">${fmtData(n.data)}</div>
+    <div class="modal-noticia-meta">${fmtData(n.data)}${n.criadopor?` &nbsp;·&nbsp; ✍️ ${esc(n.criadopor)}`:''}</div>
     <div class="modal-noticia-texto">${esc(n.texto||'')}</div>`;
   document.getElementById('modalNoticia').classList.add('aberto');
 }
@@ -1305,11 +1315,16 @@ async function salvarNoticia(){
   const texto=document.getElementById('noticiaTexto').value.trim();
   if(!titulo||!texto){toast('⚠️ Preencha título e texto.');return;}
   const editId=document.getElementById('noticiaEditId').value;
-  const payload={action:editId?'editarNoticia':'salvarNoticia',titulo,texto,
+  const payload={
+    action:editId?'editarNoticia':'salvarNoticia',
+    titulo,texto,
     categoria:document.getElementById('noticiaCategoria').value.trim(),
     imagem:document.getElementById('noticiaImagem').value.trim(),
     destaque:document.getElementById('noticiaDestaque').checked?'SIM':'NÃO',
-    tamanho:tamanhoImagem,data:new Date().toISOString().slice(0,10)};
+    tamanho:tamanhoImagem,
+    data:new Date().toISOString().slice(0,10),
+    criadopor: editId ? undefined : (usuarioLogado?.nome||'')
+  };
   if(editId)payload.id=editId;
   try{const r=await apiPost(payload);if(r.ok){toast('✅ Notícia salva!');limparFormNoticia();await carregarNoticias();renderAdminNoticiasList();}else toast('❌ '+(r.erro||'Erro'));}
   catch(e){toast('❌ Erro: '+e.message);}
@@ -1336,8 +1351,13 @@ function previewImagem(){
 }
 
 /* ══════════════════════════════════════════════════════
-   AVISOS
+   AVISOS — agora salva no Sheets
 ══════════════════════════════════════════════════════ */
+async function carregarAvisos(){
+  try{avisos=await apiGet('Avisos');}
+  catch(e){avisos=[];}
+  renderAvisos();
+}
 function renderAvisos(){
   const div=document.getElementById('avisosConteudo');
   if(!avisos.length){div.innerHTML='<div class="vazio-estado"><div class="vazio-icon">📭</div><p>Nenhum aviso.</p></div>';return;}
@@ -1352,6 +1372,7 @@ function renderAvisos(){
       <div class="aviso-titulo">${esc(a.titulo)}</div>
       <div class="aviso-data">${fmtData(a.data)}</div>
       <div class="aviso-desc">${esc(a.desc||'')}</div>
+      ${a.criadopor?`<div class="autoria-tag" style="margin-top:8px;">✍️ <span>${esc(a.criadopor)}</span></div>`:''}
     </div>`).join('')}</div>`;
 }
 function abrirModalAviso(){
@@ -1382,21 +1403,38 @@ function editarAviso(id){
   document.querySelectorAll('.cor-opt').forEach(c=>c.classList.toggle('selecionada',c.dataset.cor===corAvisoSel));
   document.getElementById('modalAviso').classList.add('aberto');
 }
-function salvarAviso(){
+async function salvarAviso(){
   const titulo=document.getElementById('avisoTitulo').value.trim();
   const desc=document.getElementById('avisoDesc').value.trim();
   if(!titulo||!desc){toast('⚠️ Preencha título e descrição.');return;}
   const editId=document.getElementById('avisoEditId').value;
-  if(editId){const a=avisos.find(x=>String(x.id)===String(editId));if(a){a.titulo=titulo;a.data=document.getElementById('avisoData').value;a.desc=desc;a.cor=corAvisoSel;}}
-  else{avisos.push({id:Date.now(),titulo,data:document.getElementById('avisoData').value,desc,cor:corAvisoSel});}
-  localStorage.setItem('avisos_v1',JSON.stringify(avisos));
-  fecharModal('modalAviso');renderAvisos();toast('✅ Aviso salvo!');
+  const payload={
+    action: editId?'editarAviso':'salvarAviso',
+    titulo,
+    data: document.getElementById('avisoData').value,
+    desc,
+    cor: corAvisoSel,
+    criadopor: editId ? undefined : (usuarioLogado?.nome||'')
+  };
+  if(editId) payload.id=editId;
+  try{
+    const r=await apiPost(payload);
+    if(r.ok){
+      toast('✅ Aviso salvo!');
+      fecharModal('modalAviso');
+      await carregarAvisos();
+    } else toast('❌ '+(r.erro||'Erro'));
+  }catch(e){
+    toast('❌ Erro: '+e.message);
+  }
 }
-function excluirAviso(id){
+async function excluirAviso(id){
   if(!confirm('Excluir aviso?'))return;
-  avisos=avisos.filter(a=>String(a.id)!==String(id));
-  localStorage.setItem('avisos_v1',JSON.stringify(avisos));
-  renderAvisos();toast('🗑️ Aviso excluído.');
+  try{
+    const r=await apiPost({action:'excluirAviso',id});
+    if(r.ok){toast('🗑️ Aviso excluído.');await carregarAvisos();}
+    else toast('❌ '+(r.erro||'Erro'));
+  }catch(e){toast('❌ '+e.message);}
 }
 
 /* ══════════════════════════════════════════════════════
@@ -1638,7 +1676,7 @@ function selecionarIcone(icone,el){
 }
 
 /* ══════════════════════════════════════════════════════
-   PLANTÃO — DATAS (bug corrigido)
+   PLANTÃO — DATAS
 ══════════════════════════════════════════════════════ */
 async function carregarPlantaoDatas(){
   try{plantaoDatas=await apiGet('PlantaoDatas');plantaoDatas.sort((a,b)=>String(a.data).localeCompare(String(b.data)));}
@@ -1685,8 +1723,6 @@ async function excluirDataPlantao(id){
     else toast('❌ '+(r.erro||'Erro'));
   }catch(e){toast('❌ Erro: '+e.message);}
 }
-
-// ✅ CORREÇÃO PRINCIPAL: suporte a novo e editar
 async function salvarDataPlantao(){
   const dataVal=document.getElementById('plantaoDataInput').value.trim();
   const descVal=document.getElementById('plantaoDataDesc').value.trim();
@@ -2010,7 +2046,7 @@ function excluirListaSalva(id){
 function imprimirLista(){window.print();}
 
 /* ══════════════════════════════════════════════════════
-   BAIXA EM LISTA
+   BAIXA EM LISTA — 2 abas: BaixaListas + BaixaItens
 ══════════════════════════════════════════════════════ */
 async function carregarBaixas(){
   const div=document.getElementById('baixaConteudo');
@@ -2049,7 +2085,6 @@ function renderBaixas(){
   }).join('');
 }
 
-// Abre modal para executar baixas
 async function abrirBaixaLista(listaId){
   const lista=baixaListasAll.find(l=>String(l.id)===String(listaId));
   if(!lista)return;
@@ -2059,7 +2094,7 @@ async function abrirBaixaLista(listaId){
   }))};
   baixaItensPendentes={};
   baixaFiltro='';
-  document.getElementById('baixaExecTitulo').textContent=`✔️ ${esc(lista.nome)}`;
+  document.getElementById('baixaExecTitulo').textContent=`✔️ ${lista.nome}`;
   atualizarBaixaStats();
   renderBaixaExecLista();
   document.getElementById('modalBaixaExecutar').classList.add('aberto');
@@ -2082,14 +2117,13 @@ function renderBaixaExecLista(){
   let itens=[...baixaAtual.itens];
   if(baixaFiltro==='sim')itens=itens.filter(i=>i.baixado);
   else if(baixaFiltro==='nao')itens=itens.filter(i=>!i.baixado);
-  // Ordena: pendentes primeiro, depois baixados
   itens.sort((a,b)=>{
     if(a.baixado===b.baixado)return String(a.nome).localeCompare(String(b.nome),'pt');
     return a.baixado?1:-1;
   });
   if(!itens.length){div.innerHTML='<div style="padding:20px;text-align:center;color:var(--texto2);">Nenhum item neste filtro.</div>';return;}
   div.innerHTML=itens.map(item=>`
-    <div class="baixa-item-row" id="baixaRow_${esc(item.nome).replace(/\s/g,'_')}">
+    <div class="baixa-item-row">
       <div class="baixa-check ${item.baixado?'marcado':''}" onclick="toggleBaixaItem('${esc(item.nome)}')" title="${item.baixado?'Clique para desmarcar':'Clique para baixar'}">
         ${item.baixado?'✓':''}
       </div>
@@ -2130,7 +2164,6 @@ async function salvarTodasBaixas(){
       toast(`✅ ${mudados.length} baixa(s) salva(s)!`);
       baixaAtual.itens.forEach(i=>{i.original=i.baixado;});
       baixaItensPendentes={};
-      // Atualiza o cache local
       const listaIdx=baixaListasAll.findIndex(l=>String(l.id)===String(baixaAtual.id));
       if(listaIdx>=0)baixaListasAll[listaIdx].atualizadaem=new Date().toISOString().slice(0,10);
       baixaItensAll=baixaItensAll.filter(i=>String(i.listaid)!==String(baixaAtual.id));
@@ -2159,9 +2192,7 @@ function confirmarNovaBaixaLista(){
   const nome=document.getElementById('baixaNomeLista').value.trim();
   if(!nome){toast('⚠️ Informe o nome da lista.');return;}
   if(!baixaTipoSel){toast('⚠️ Selecione o tipo.');return;}
-  // Avança para adicionar pessoas
   fecharModal('modalNovaBaixaLista');
-  // Armazena temporariamente
   baixaAtual={id:null,nome,tipo:baixaTipoSel,itens:[]};
   baixaItensPendentes={};
   document.getElementById('baixaGerenciarTitulo').textContent=`✔️ ${nome} — Adicionar Pessoas`;
@@ -2170,8 +2201,6 @@ function confirmarNovaBaixaLista(){
   document.getElementById('baixaGerenciarConteudo').innerHTML='';
   document.getElementById('modalBaixaGerenciar').classList.add('aberto');
 }
-
-// Gerenciar pessoas na baixa
 function baixaMostrarTurmas(){
   const div=document.getElementById('baixaGerenciarConteudo');
   div.innerHTML=`<label style="font-size:0.82rem;font-weight:600;color:var(--texto2);">Selecione a turma:</label>
@@ -2268,20 +2297,24 @@ function removerPessoaBaixa(idx){
 async function salvarBaixaListaCompleta(){
   if(!baixaAtual||!baixaAtual.nome){toast('⚠️ Sem dados para salvar.');return;}
   if(!baixaAtual.itens.length){toast('⚠️ Adicione ao menos uma pessoa.');return;}
-  const btn=document.querySelector('#modalBaixaGerenciar .btn-verde');
+  const btn=document.getElementById('btnSalvarBaixaLista');
   if(btn){btn.disabled=true;btn.innerHTML='<span class="spinner"></span> Salvando...';}
   try{
-    // 1) Cria a lista
+    // 1) Cria a lista (metadados)
     const r=await apiPost({action:'criarBaixaLista',nome:baixaAtual.nome,tipo:baixaAtual.tipo});
     if(!r.ok){toast('❌ '+(r.erro||'Erro ao criar lista.'));return;}
     const listaId=r.id;
     baixaAtual.id=listaId;
     // 2) Salva os itens em batch
-    await apiPost({action:'salvarBaixaItensBatch',listaId,itens:baixaAtual.itens.map(i=>({listaId,nome:i.nome,categoria:i.categoria,baixado:false}))});
+    const r2=await apiPost({
+      action:'salvarBaixaItensBatch',
+      listaId,
+      itens:baixaAtual.itens.map(i=>({listaId,nome:i.nome,categoria:i.categoria,baixado:false}))
+    });
+    if(!r2.ok){toast('❌ Erro ao salvar itens: '+(r2.erro||''));return;}
     toast('✅ Lista criada!');
     fecharModal('modalBaixaGerenciar');
     await carregarBaixas();
-    // 3) Abre a lista para baixar
     abrirBaixaLista(listaId);
   }catch(e){toast('❌ Erro: '+e.message);}
   finally{if(btn){btn.disabled=false;btn.innerHTML='💾 Salvar e Abrir Lista';}}
