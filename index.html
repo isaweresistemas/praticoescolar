@@ -569,7 +569,7 @@
             <button class="btn btn-cinza" onclick="abrirModalListarAtas()">📂 Atas Salvas</button>
           </div>
         </div>
-        <div id="ataConteudo"></div>
+        <div id="ataListaConteudo"></div>
       </div>
     </section>
 
@@ -789,6 +789,7 @@
 </div>
 
 <!-- ADMIN DATAS PLANTÃO -->
+<!-- ✅ FIX 1: div de fechamento do modal adicionada corretamente -->
 <div class="modal-overlay" id="modalAdminPlantao">
   <div class="modal" style="max-width:520px;">
     <button class="modal-fechar" onclick="fecharModal('modalAdminPlantao');carregarPlantaoPg()">✕</button>
@@ -810,6 +811,7 @@
       <button class="btn btn-cinza btn-icon" style="font-size:0.75rem;" onclick="testarConexaoPlantao()">🔍 Testar conexão</button>
       <span id="diagPlantaoMsg" style="font-size:0.75rem;color:var(--texto2);"></span>
     </div>
+  </div>
 </div>
 
 <!-- ADMIN ALUNOS PLANTÃO -->
@@ -838,7 +840,7 @@
   </div>
 </div>
 
-<!-- NOVA ATA -->
+<!-- ✅ FIX 2: Nova Ata — textarea renomeada para id="ataTexto" (evita conflito com div id="ataListaConteudo") -->
 <div class="modal-overlay" id="modalNovaAta">
   <div class="modal" style="max-width:640px;">
     <button class="modal-fechar" onclick="fecharModal('modalNovaAta')">✕</button>
@@ -850,7 +852,7 @@
       <div style="grid-column:1/-1;"><label>Título / Assunto *</label><input type="text" id="ataTitulo" placeholder="Ex: Reunião de pais e mestres"></div>
       <div style="grid-column:1/-1;"><label>Local</label><input type="text" id="ataLocal" placeholder="Ex: Auditório da escola"></div>
     </div>
-    <div style="margin-top:10px;"><label>Conteúdo da Ata *</label><textarea id="ataConteudo" class="ata-texto-area" placeholder="Digite o conteúdo da ata aqui..."></textarea></div>
+    <div style="margin-top:10px;"><label>Conteúdo da Ata *</label><textarea id="ataTexto" class="ata-texto-area" placeholder="Digite o conteúdo da ata aqui..."></textarea></div>
     <div style="margin-top:14px;">
       <label>Participantes</label>
       <div id="ataParticipantesWrap"></div>
@@ -940,7 +942,7 @@
 
 <script>
 /* ══════════════════════════════════════════════════════
-   CONFIG — ⚠️ TROQUE PELA URL DO SEU SCRIPT IMPLANTADO
+   CONFIG
 ══════════════════════════════════════════════════════ */
 const API_URL = "https://script.google.com/macros/s/AKfycbzP_n9hFNcnMgDzEIUTYyl5CVa__JPWBbOF7F20p46B9qgwVx8o0p21ay62qRq3bzM4/exec";
 
@@ -1154,6 +1156,7 @@ function fazerLogin(){
   carregarNoticias();
   carregarDownloads();
   carregarAvisos();
+  carregarEventosCal(); /* ✅ FIX 3: carrega eventos do calendário imediatamente ao logar */
   renderCadastroLista();
   renderAniversariantes();
   renderAtas();
@@ -1354,7 +1357,7 @@ function previewImagem(){
 }
 
 /* ══════════════════════════════════════════════════════
-   AVISOS — agora salva no Sheets
+   AVISOS
 ══════════════════════════════════════════════════════ */
 async function carregarAvisos(){
   try{avisos=await apiGet('Avisos');}
@@ -1422,14 +1425,9 @@ async function salvarAviso(){
   if(editId) payload.id=editId;
   try{
     const r=await apiPost(payload);
-    if(r.ok){
-      toast('✅ Aviso salvo!');
-      fecharModal('modalAviso');
-      await carregarAvisos();
-    } else toast('❌ '+(r.erro||'Erro'));
-  }catch(e){
-    toast('❌ Erro: '+e.message);
-  }
+    if(r.ok){toast('✅ Aviso salvo!');fecharModal('modalAviso');await carregarAvisos();}
+    else toast('❌ '+(r.erro||'Erro'));
+  }catch(e){toast('❌ Erro: '+e.message);}
 }
 async function excluirAviso(id){
   if(!confirm('Excluir aviso?'))return;
@@ -1748,28 +1746,16 @@ async function salvarDataPlantao(){
     if(r.ok){
       toast(editId?'✅ Data atualizada!':'✅ Data salva!');
       limparFormPlantao();
-      // Recarrega datas aguardando a resposta antes de renderizar
-      try{
-        plantaoDatas=await apiGet('PlantaoDatas');
-        plantaoDatas.sort((a,b)=>String(a.data).localeCompare(String(b.data)));
-      }catch(e2){plantaoDatas=[];}
+      try{plantaoDatas=await apiGet('PlantaoDatas');plantaoDatas.sort((a,b)=>String(a.data).localeCompare(String(b.data)));}catch(e2){plantaoDatas=[];}
       renderAdminPlantaoDatasList();
-      // Recarrega a tabela do plantão sem sobrescrever plantaoDatas
       await _recarregarTabelaPlantao();
     }else{
-      // Mostra o erro completo para diagnóstico
       const msgErro = r.erro || r.stack || JSON.stringify(r);
       toast('❌ Servidor: '+msgErro.slice(0,120));
-      console.error('Erro servidor plantao:', r);
     }
-  }catch(e){
-    toast('❌ Conexão: '+e.message);
-    console.error('Erro fetch plantao:', e);
-  }
+  }catch(e){toast('❌ Conexão: '+e.message);}
   finally{if(btn){btn.disabled=false;btn.innerHTML='💾 Salvar Data';}}
 }
-
-// Recarrega a tabela usando plantaoDatas já carregados + alunos + presenças frescos
 async function _recarregarTabelaPlantao(){
   try{
     plantaoAlunos=await apiGet('PlantaoAlunos');
@@ -1779,26 +1765,18 @@ async function _recarregarTabelaPlantao(){
   }catch(e){console.warn('Erro ao recarregar tabela plantão:',e);}
   renderPlantaoPg();
 }
-
-// Diagnóstico: testa GET e POST do plantão
 async function testarConexaoPlantao(){
   const msg=document.getElementById('diagPlantaoMsg');
   if(msg)msg.textContent='⏳ Testando...';
   try{
-    // Teste GET
     const dados=await apiGet('PlantaoDatas');
     const getOk=Array.isArray(dados);
-    // Teste POST
     const r=await apiPost({action:'salvarPlantaoData',data:'2099-12-31',descricao:'TESTE_DIAGNOSTICO'});
-    if(r.ok){
-      // Remove o registro de teste
-      await apiPost({action:'excluirPlantaoData',id:r.id});
-    }
+    if(r.ok){await apiPost({action:'excluirPlantaoData',id:r.id});}
     const postOk=r.ok;
     const resumo=`GET:${getOk?'✅':'❌'}(${dados.length||0} reg) | POST:${postOk?'✅':'❌('+( r.erro||'?')+')'}`;
     if(msg)msg.textContent=resumo;
     toast(resumo,4000);
-    // Recarrega lista
     plantaoDatas=dados;plantaoDatas.sort((a,b)=>String(a.data).localeCompare(String(b.data)));
     renderAdminPlantaoDatasList();
   }catch(e){
@@ -1876,11 +1854,7 @@ async function carregarPlantaoPg(){
   const div=document.getElementById('plantaoPgConteudo');
   div.innerHTML='<div class="loading-txt"><span class="spinner spinner-azul"></span> Carregando...</div>';
   try{
-    // Sempre busca dados frescos do servidor
-    [plantaoDatas, plantaoAlunos] = await Promise.all([
-      apiGet('PlantaoDatas'),
-      apiGet('PlantaoAlunos')
-    ]);
+    [plantaoDatas, plantaoAlunos] = await Promise.all([apiGet('PlantaoDatas'),apiGet('PlantaoAlunos')]);
     plantaoDatas.sort((a,b)=>String(a.data).localeCompare(String(b.data)));
     const presRaw=await apiGet('PlantaoPresenca');
     plantaoPresencas={};
@@ -2108,14 +2082,13 @@ function excluirListaSalva(id){
 function imprimirLista(){window.print();}
 
 /* ══════════════════════════════════════════════════════
-   BAIXA EM LISTA — 2 abas: BaixaListas + BaixaItens
+   BAIXA EM LISTA
 ══════════════════════════════════════════════════════ */
 async function carregarBaixas(){
   const div=document.getElementById('baixaConteudo');
   div.innerHTML='<div class="loading-txt"><span class="spinner spinner-azul"></span> Carregando...</div>';
-  try{
-    [baixaListasAll,baixaItensAll]=await Promise.all([apiGet('BaixaListas'),apiGet('BaixaItens')]);
-  }catch(e){baixaListasAll=[];baixaItensAll=[];}
+  try{[baixaListasAll,baixaItensAll]=await Promise.all([apiGet('BaixaListas'),apiGet('BaixaItens')]);}
+  catch(e){baixaListasAll=[];baixaItensAll=[];}
   renderBaixas();
 }
 function renderBaixas(){
@@ -2146,7 +2119,6 @@ function renderBaixas(){
     </div>`;
   }).join('');
 }
-
 async function abrirBaixaLista(listaId){
   const lista=baixaListasAll.find(l=>String(l.id)===String(listaId));
   if(!lista)return;
@@ -2234,8 +2206,6 @@ async function salvarTodasBaixas(){
   }catch(e){toast('❌ Erro: '+e.message);}
   finally{if(btn){btn.disabled=false;btn.innerHTML='💾 Salvar';}}
 }
-
-// Modal nova lista de baixa
 function abrirModalNovaBaixaLista(){
   document.getElementById('baixaNomeLista').value='';
   baixaTipoSel='';
@@ -2362,12 +2332,10 @@ async function salvarBaixaListaCompleta(){
   const btn=document.getElementById('btnSalvarBaixaLista');
   if(btn){btn.disabled=true;btn.innerHTML='<span class="spinner"></span> Salvando...';}
   try{
-    // 1) Cria a lista (metadados)
     const r=await apiPost({action:'criarBaixaLista',nome:baixaAtual.nome,tipo:baixaAtual.tipo});
     if(!r.ok){toast('❌ '+(r.erro||'Erro ao criar lista.'));return;}
     const listaId=r.id;
     baixaAtual.id=listaId;
-    // 2) Salva os itens em batch
     const r2=await apiPost({
       action:'salvarBaixaItensBatch',
       listaId,
@@ -2391,10 +2359,10 @@ async function excluirBaixaLista(id){
 }
 
 /* ══════════════════════════════════════════════════════
-   ATAS
+   ATAS — ✅ FIX 2: renderAtas usa id="ataListaConteudo" (sem conflito)
 ══════════════════════════════════════════════════════ */
 function renderAtas(){
-  const div=document.getElementById('ataConteudo');
+  const div=document.getElementById('ataListaConteudo');
   if(!atas.length){div.innerHTML='<div class="vazio-estado"><div class="vazio-icon">📋</div><p>Nenhuma ata. Clique em <strong>+ Nova Ata</strong>.</p></div>';return;}
   div.innerHTML=[...atas].sort((a,b)=>String(b.data).localeCompare(String(a.data))).map(a=>`
     <div class="ata-card">
@@ -2417,7 +2385,7 @@ function abrirModalNovaAta(){
   document.getElementById('ataHorario').value='';
   document.getElementById('ataTitulo').value='';
   document.getElementById('ataLocal').value='';
-  document.getElementById('ataConteudo').value='';
+  document.getElementById('ataTexto').value=''; /* ✅ FIX 2: usa ataTexto */
   document.getElementById('ataParticipantesWrap').innerHTML='';
   document.getElementById('ataModalTitulo').textContent='📋 Nova Ata de Reunião';
   adicionarCampoParticipante();
@@ -2430,7 +2398,7 @@ function editarAta(id){
   document.getElementById('ataHorario').value=a.horario||'';
   document.getElementById('ataTitulo').value=a.titulo||'';
   document.getElementById('ataLocal').value=a.local||'';
-  document.getElementById('ataConteudo').value=a.conteudo||'';
+  document.getElementById('ataTexto').value=a.conteudo||''; /* ✅ FIX 2: usa ataTexto */
   document.getElementById('ataModalTitulo').textContent='✏️ Editar Ata';
   const wrap=document.getElementById('ataParticipantesWrap');wrap.innerHTML='';
   (a.participantes||[]).forEach(p=>{const row=criarRowParticipante();row.querySelector('input').value=p;wrap.appendChild(row);});
@@ -2445,7 +2413,7 @@ function criarRowParticipante(){
 function adicionarCampoParticipante(){document.getElementById('ataParticipantesWrap').appendChild(criarRowParticipante());}
 function salvarAta(){
   const titulo=document.getElementById('ataTitulo').value.trim();
-  const conteudo=document.getElementById('ataConteudo').value.trim();
+  const conteudo=document.getElementById('ataTexto').value.trim(); /* ✅ FIX 2: usa ataTexto */
   if(!titulo||!conteudo){toast('⚠️ Preencha título e conteúdo.');return;}
   const editId=document.getElementById('ataEditId').value;
   const participantes=[...document.querySelectorAll('#ataParticipantesWrap input')].map(i=>i.value.trim()).filter(Boolean);
@@ -2475,7 +2443,7 @@ function abrirModalListarAtas(){
 }
 function editarAtaModal(id){fecharModal('modalListarAtas');editarAta(id);}
 function imprimirAtaModal(){
-  const a={titulo:document.getElementById('ataTitulo').value,data:document.getElementById('ataData').value,horario:document.getElementById('ataHorario').value,local:document.getElementById('ataLocal').value,conteudo:document.getElementById('ataConteudo').value,participantes:[...document.querySelectorAll('#ataParticipantesWrap input')].map(i=>i.value.trim()).filter(Boolean)};
+  const a={titulo:document.getElementById('ataTitulo').value,data:document.getElementById('ataData').value,horario:document.getElementById('ataHorario').value,local:document.getElementById('ataLocal').value,conteudo:document.getElementById('ataTexto').value,participantes:[...document.querySelectorAll('#ataParticipantesWrap input')].map(i=>i.value.trim()).filter(Boolean)}; /* ✅ FIX 2 */
   document.getElementById('ataImpressaoArea').innerHTML=`
     <div class="ata-impressao-conteudo">
       <h1 style="font-size:1.4rem;text-align:center;margin-bottom:4px;">${NOME_ESCOLA}</h1>
