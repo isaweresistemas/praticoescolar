@@ -21,6 +21,27 @@
       --raio:12px;
       --sidebar-w:224px;
     }
+.badge{
+  padding:4px 10px;
+  border-radius:20px;
+  font-size:12px;
+  font-weight:bold;
+}
+
+.badge-verde{
+  background:#d1fae5;
+  color:#065f46;
+}
+
+.badge-amarelo{
+  background:#fef3c7;
+  color:#92400e;
+}
+
+.badge-vermelho{
+  background:#fee2e2;
+  color:#991b1b;
+}
     *{box-sizing:border-box;margin:0;padding:0;}
     body{font-family:'Nunito Sans',sans-serif;background:var(--cinza);color:var(--texto);font-size:15px;line-height:1.6;overflow-x:hidden;}
 
@@ -441,6 +462,10 @@
       <button onclick="irPara('plantaopg',this)"><span class="nav-icon">✅</span> Plantão Ped.</button>
       <button onclick="irPara('ata',this)"><span class="nav-icon">📋</span> ATA</button>
       <button onclick="irPara('downloads',this)"><span class="nav-icon">📥</span> Downloads</button>
+
+      <button onclick="irPara('planejamentos',this)"><span class="nav-icon">🗂️</span> Planejamentos</button>
+      <button onclick="irPara('laudos',this)"><span class="nav-icon">🩺</span> Alunos com Laudos</button>
+
       <button onclick="irPara('totalizador',this)"><span class="nav-icon">📊</span> Totalizador</button>
     </nav>
     <div class="sidebar-footer">
@@ -584,6 +609,60 @@
         <div id="downloadsConteudo"></div>
       </div>
     </section>
+
+
+    <!-- PLANEJAMENTOS -->
+    <section class="secao" id="sec-planejamentos">
+      <div class="card">
+        <div class="admin-bar">
+          <div class="card-titulo" style="margin:0;">🗂️ Planejamentos</div>
+          <button class="btn btn-azul btn-icon btn-edicao" onclick="abrirModalPlanejamento()" style="font-size:0.8rem;padding:6px 12px;">+ Adicionar Planejamento</button>
+        </div>
+
+        <div class="tabela-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Disciplina</th>
+                <th>Semana 1</th>
+                <th>Semana 2</th>
+                <th>Semana 3</th>
+                <th>Semana 4</th>
+                <th>Status</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody id="planejamentosTabela"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ALUNOS COM LAUDOS -->
+    <section class="secao" id="sec-laudos">
+      <div class="card">
+        <div class="admin-bar">
+          <div class="card-titulo" style="margin:0;">🩺 Alunos com Laudos</div>
+          <button class="btn btn-roxo btn-icon btn-edicao" onclick="abrirModalLaudo()" style="font-size:0.8rem;padding:6px 12px;">+ Novo Laudo</button>
+        </div>
+
+        <div class="tabela-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Turma</th>
+                <th>Aluno</th>
+                <th>CID</th>
+                <th>Orientações</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody id="laudosTabela"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
 
     <!-- TOTALIZADOR -->
     <section class="secao" id="sec-totalizador">
@@ -1194,6 +1273,8 @@ function irPara(secao,btn){
   if(secao==='plantaopg')       carregarPlantaoPg();
   if(secao==='ata')             renderAtas();
   if(secao==='downloads')       renderDownloads();
+  if(secao==='planejamentos')   carregarPlanejamentos();
+  if(secao==='laudos')          carregarLaudos();
   if(secao==='totalizador')     carregarTotalizador();
 }
 
@@ -2508,6 +2589,253 @@ function mudarAbaTotal(aba,btn){
    INIT
 ══════════════════════════════════════════════════════ */
 renderLoginUsuarios();
+</script>
+
+<!-- MODAL PLANEJAMENTO -->
+<div class="modal-overlay" id="modalPlanejamento">
+  <div class="modal">
+    <button class="modal-fechar" onclick="fecharModal('modalPlanejamento')">✕</button>
+    <div class="modal-titulo">🗂️ Planejamento</div>
+    <input type="hidden" id="planejamentoId">
+    <label>Disciplina</label>
+    <input type="text" id="planDisciplina">
+
+    <label>Semana 1</label>
+    <input type="text" id="planSemana1">
+
+    <label>Semana 2</label>
+    <input type="text" id="planSemana2">
+
+    <label>Semana 3</label>
+    <input type="text" id="planSemana3">
+
+    <label>Semana 4</label>
+    <input type="text" id="planSemana4">
+
+    <label>Status</label>
+    <select id="planStatus">
+  <option value="Recebido">Recebido</option>
+  <option value="Atrasado">Atrasado</option>
+  <option value="Não entregue">Não entregue</option>
+</select>
+
+    <div style="display:flex;gap:10px;margin-top:16px;">
+      <button class="btn btn-verde" onclick="salvarPlanejamento()">💾 Salvar</button>
+      <button class="btn btn-cinza" onclick="fecharModal('modalPlanejamento')">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL LAUDO -->
+<div class="modal-overlay" id="modalLaudo">
+  <div class="modal">
+    <button class="modal-fechar" onclick="fecharModal('modalLaudo')">✕</button>
+    <div class="modal-titulo">🩺 Laudo</div>
+    <input type="hidden" id="laudoId">
+
+    <label>Turma</label>
+    <input type="text" id="laudoTurma">
+
+    <label>Aluno</label>
+    <input type="text" id="laudoAluno">
+
+    <label>CID</label>
+    <input type="text" id="laudoCid">
+
+    <label>Orientações</label>
+    <textarea id="laudoOrientacoes"></textarea>
+
+    <div style="display:flex;gap:10px;margin-top:16px;">
+      <button class="btn btn-verde" onclick="salvarLaudo()">💾 Salvar</button>
+      <button class="btn btn-cinza" onclick="fecharModal('modalLaudo')">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<script>
+function validarSenhaPedagogica(){
+
+  const senha = prompt('Digite a senha da Coordenação Pedagógica:');
+
+  if(senha !== 'ped123456'){
+    toast('❌ Senha incorreta!');
+    return false;
+  }
+
+  return true;
+}
+async function carregarPlanejamentos(){
+  try{
+    const dados = await apiGet('Planejamentos');
+    const tbody = document.getElementById('planejamentosTabela');
+    if(!dados.length){
+      tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;">Nenhum planejamento cadastrado.</td></tr>';
+      return;
+    }
+    tbody.innerHTML = dados.map(p => `
+      <tr>
+        <td>${p.disciplina||''}</td>
+        <td>${p.semana1||''}</td>
+        <td>${p.semana2||''}</td>
+        <td>${p.semana3||''}</td>
+        <td>${p.semana4||''}</td>
+        <td>
+  ${
+    p.status === 'Recebido'
+      ? '<span class="badge badge-verde">Recebido</span>'
+      : p.status === 'Atrasado'
+      ? '<span class="badge badge-amarelo">Atrasado</span>'
+      : p.status === 'Não entregue'
+      ? '<span class="badge badge-vermelho">Não entregue</span>'
+      : ''
+  }
+</td>
+        <td>
+          <button class="btn btn-cinza btn-icon" onclick='editarPlanejamento(${JSON.stringify("${p.id}")})'>✏️</button>
+          <button class="btn btn-verm btn-icon" onclick='excluirPlanejamento("${p.id}")'>🗑️</button>
+        </td>
+      </tr>
+    `).join('');
+    window.planejamentosCache = dados;
+  }catch(e){
+    console.error(e);
+  }
+}
+
+function abrirModalPlanejamento(){
+  document.getElementById('planejamentoId').value='';
+  document.getElementById('planDisciplina').value='';
+  document.getElementById('planSemana1').value='';
+  document.getElementById('planSemana2').value='';
+  document.getElementById('planSemana3').value='';
+  document.getElementById('planSemana4').value='';
+  document.getElementById('planStatus').value='';
+  document.getElementById('modalPlanejamento').classList.add('aberto');
+}
+
+function editarPlanejamento(id){
+  const p = (window.planejamentosCache||[]).find(x=>String(x.id)===String(id));
+  if(!p)return;
+  document.getElementById('planejamentoId').value=p.id;
+  document.getElementById('planDisciplina').value=p.disciplina||'';
+  document.getElementById('planSemana1').value=p.semana1||'';
+  document.getElementById('planSemana2').value=p.semana2||'';
+  document.getElementById('planSemana3').value=p.semana3||'';
+  document.getElementById('planSemana4').value=p.semana4||'';
+  document.getElementById('planStatus').value=p.status||'';
+  document.getElementById('modalPlanejamento').classList.add('aberto');
+}
+
+async function salvarPlanejamento(){
+
+  if(!validarSenhaPedagogica()) return;
+
+  const id = document.getElementById('planejamentoId').value;
+  const payload = {
+    action: id ? 'editarPlanejamento' : 'salvarPlanejamento',
+    id:id,
+    disciplina: document.getElementById('planDisciplina').value,
+    semana1: document.getElementById('planSemana1').value,
+    semana2: document.getElementById('planSemana2').value,
+    semana3: document.getElementById('planSemana3').value,
+    semana4: document.getElementById('planSemana4').value,
+    status: document.getElementById('planStatus').value
+  };
+  const r = await apiPost(payload);
+  if(r.ok){
+    fecharModal('modalPlanejamento');
+    carregarPlanejamentos();
+    toast('✅ Planejamento salvo!');
+  }
+}
+
+async function excluirPlanejamento(id){
+  if(!confirm('Excluir planejamento?')) return;
+  const r = await apiPost({action:'excluirPlanejamento',id});
+  if(r.ok){
+    carregarPlanejamentos();
+    toast('🗑️ Planejamento excluído!');
+  }
+}
+
+async function carregarLaudos(){
+  try{
+    const dados = await apiGet('Laudos');
+    const tbody = document.getElementById('laudosTabela');
+    if(!dados.length){
+      tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;">Nenhum laudo cadastrado.</td></tr>';
+      return;
+    }
+    tbody.innerHTML = dados.map(l => `
+      <tr>
+        <td>${l.turma||''}</td>
+        <td>${l.aluno||''}</td>
+        <td>${l.cid||''}</td>
+        <td>${l.orientacoes||''}</td>
+        <td>
+          <button class="btn btn-cinza btn-icon" onclick='editarLaudo("${l.id}")'>✏️</button>
+          <button class="btn btn-verm btn-icon" onclick='excluirLaudo("${l.id}")'>🗑️</button>
+        </td>
+      </tr>
+    `).join('');
+    window.laudosCache = dados;
+  }catch(e){
+    console.error(e);
+  }
+}
+
+function abrirModalLaudo(){
+
+  if(!validarSenhaPedagogica()) return;
+  document.getElementById('laudoId').value='';
+  document.getElementById('laudoTurma').value='';
+  document.getElementById('laudoAluno').value='';
+  document.getElementById('laudoCid').value='';
+  document.getElementById('laudoOrientacoes').value='';
+  document.getElementById('modalLaudo').classList.add('aberto');
+}
+
+function editarLaudo(id){
+
+  if(!validarSenhaPedagogica()) return;
+  const l = (window.laudosCache||[]).find(x=>String(x.id)===String(id));
+  if(!l)return;
+  document.getElementById('laudoId').value=l.id;
+  document.getElementById('laudoTurma').value=l.turma||'';
+  document.getElementById('laudoAluno').value=l.aluno||'';
+  document.getElementById('laudoCid').value=l.cid||'';
+  document.getElementById('laudoOrientacoes').value=l.orientacoes||'';
+  document.getElementById('modalLaudo').classList.add('aberto');
+}
+
+async function salvarLaudo(){
+  const id = document.getElementById('laudoId').value;
+  const payload = {
+    action: id ? 'editarLaudo' : 'salvarLaudo',
+    id:id,
+    turma: document.getElementById('laudoTurma').value,
+    aluno: document.getElementById('laudoAluno').value,
+    cid: document.getElementById('laudoCid').value,
+    orientacoes: document.getElementById('laudoOrientacoes').value
+  };
+  const r = await apiPost(payload);
+  if(r.ok){
+    fecharModal('modalLaudo');
+    carregarLaudos();
+    toast('✅ Laudo salvo!');
+  }
+}
+
+async function excluirLaudo(id){
+
+  if(!validarSenhaPedagogica()) return;
+  if(!confirm('Excluir laudo?')) return;
+  const r = await apiPost({action:'excluirLaudo',id});
+  if(r.ok){
+    carregarLaudos();
+    toast('🗑️ Laudo excluído!');
+  }
+}
 </script>
 </body>
 </html>
