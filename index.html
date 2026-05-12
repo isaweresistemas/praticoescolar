@@ -453,6 +453,7 @@
     </div>
     <nav class="sidebar-nav">
       <button class="ativo" onclick="irPara('inicio',this)"><span class="nav-icon">🏠</span> Início</button>
+      <button onclick="irPara('atestados',this)"><span class="nav-icon">📄</span> Atestados</button>
       <button onclick="irPara('calendario',this)"><span class="nav-icon">📅</span> Calendário</button>
       <button onclick="irPara('aniversariantes',this)"><span class="nav-icon">🎂</span> Aniversários</button>
       <button onclick="irPara('avisos',this)"><span class="nav-icon">📢</span> Avisos</button>
@@ -572,14 +573,15 @@
     <!-- PLANTÃO PEDAGÓGICO -->
     <section class="secao" id="sec-plantaopg">
       <div class="card">
-        <div class="admin-bar">
-          <div class="card-titulo" style="margin:0;">✅ Plantão Pedagógico</div>
-          <div style="display:flex;gap:8px;flex-wrap:wrap;">
-            <button class="btn btn-verde btn-icon btn-edicao" onclick="abrirAdminPlantaoAlunos()" style="font-size:0.8rem;padding:6px 12px;">👥 Gerenciar Alunos</button>
-            <button class="btn btn-roxo btn-icon btn-edicao" onclick="abrirAdminPlantao()" style="font-size:0.8rem;padding:6px 12px;">📅 Gerenciar Datas</button>
-            <button class="btn btn-cinza btn-icon" onclick="imprimirPlantao()" style="font-size:0.8rem;padding:6px 12px;">🖨️ Imprimir</button>
-          </div>
-        </div>
+  <div class="admin-bar">
+    <div class="card-titulo" style="margin:0;">✅ Plantão Pedagógico</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;">
+      <button class="btn btn-verde btn-icon btn-edicao" onclick="abrirAdminPlantaoAlunos()" style="font-size:0.8rem;padding:6px 12px;">👥 Gerenciar Alunos</button>
+      <button class="btn btn-roxo btn-icon btn-edicao" onclick="abrirAdminPlantao()" style="font-size:0.8rem;padding:6px 12px;">📅 Gerenciar Datas</button>
+      <button class="btn btn-azul btn-icon" id="btnSalvarPlantao" onclick="salvarPlantaoEmLote()" style="font-size:0.8rem;padding:6px 12px;">💾 Salvar Presenças</button>
+      <button class="btn btn-cinza btn-icon" onclick="imprimirPlantao()" style="font-size:0.8rem;padding:6px 12px;">🖨️ Imprimir</button>
+    </div>
+  </div>
         <div id="plantaoPgConteudo" class="loading-txt"><span class="spinner"></span> Carregando...</div>
       </div>
     </section>
@@ -663,7 +665,34 @@
       </div>
     </section>
 
-
+<!-- ATESTADOS -->
+<section class="secao" id="sec-atestados">
+  <div class="card">
+    <div class="admin-bar">
+      <div class="card-titulo" style="margin:0;">📄 Atestados</div>
+      <button class="btn btn-roxo btn-icon btn-edicao" onclick="abrirModalAtestado()" style="font-size:0.8rem;padding:6px 12px;">+ Novo Atestado</button>
+    </div>
+    <div style="display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;">
+      <input type="text" id="atestadoFiltroNome" placeholder="🔍 Filtrar por nome..." style="max-width:260px;" oninput="renderAtestados()">
+    </div>
+    <div class="tabela-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Pessoa</th>
+            <th>Tipo</th>
+            <th>Data Início</th>
+            <th>Data Fim</th>
+            <th>Qtd. Dias</th>
+            <th>Motivo</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody id="atestadosTabela"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
     <!-- TOTALIZADOR -->
     <section class="secao" id="sec-totalizador">
       <div class="totalizador-hero">
@@ -1276,6 +1305,7 @@ function irPara(secao,btn){
   if(secao==='planejamentos')   carregarPlanejamentos();
   if(secao==='laudos')          carregarLaudos();
   if(secao==='totalizador')     carregarTotalizador();
+  if(secao==='atestados') carregarAtestados();
 }
 
 /* ══════════════════════════════════════════════════════
@@ -2000,15 +2030,38 @@ function renderPlantaoPg(){
   html+='</div>';
   div.innerHTML=html;
 }
-async function togglePresenca(alunoId,dataId,btn){
+let plantaoPendentes = {}; // alterações ainda não salvas
+
+function togglePresenca(alunoId,dataId,btn){
   const k=`${alunoId}_${dataId}`;
   const cur=plantaoPresencas[k]||'-';
   const prox=cur==='-'?'P':cur==='P'?'F':'-';
   btn.textContent=prox==='-'?'·':prox;
   btn.className='pres-btn '+(prox==='P'?'pres-P':prox==='F'?'pres-F':'pres-aguard');
   plantaoPresencas[k]=prox;
-  try{await apiPost({action:'salvarPresenca',alunoId,dataId,status:prox});}
-  catch(e){toast('❌ Erro ao salvar: '+e.message);}
+  plantaoPendentes[k]={alunoId,dataId,status:prox};
+  // Destaca o botão Salvar para indicar alterações pendentes
+  const btnSalvar=document.getElementById('btnSalvarPlantao');
+  if(btnSalvar){btnSalvar.style.animation='pulse 1s infinite';btnSalvar.textContent='💾 Salvar Presenças *';}
+}
+
+async function salvarPlantaoEmLote(){
+  const pendentes=Object.values(plantaoPendentes);
+  if(!pendentes.length){toast('ℹ️ Nenhuma alteração para salvar.');return;}
+  const btn=document.getElementById('btnSalvarPlantao');
+  if(btn){btn.disabled=true;btn.innerHTML='<span class="spinner"></span> Salvando...';}
+  let erros=0;
+  for(const p of pendentes){
+    try{await apiPost({action:'salvarPresenca',alunoId:p.alunoId,dataId:p.dataId,status:p.status});}
+    catch(e){erros++;}
+  }
+  if(btn){btn.disabled=false;btn.style.animation='';btn.textContent='💾 Salvar Presenças';}
+  if(erros===0){
+    toast(`✅ ${pendentes.length} presença(s) salva(s)!`);
+    plantaoPendentes={};
+  }else{
+    toast(`⚠️ ${erros} erro(s) ao salvar. Tente novamente.`);
+  }
 }
 function imprimirPlantao(){window.print();}
 
@@ -2677,6 +2730,52 @@ renderLoginUsuarios();
   </div>
 </div>
 
+<!-- MODAL ATESTADO -->
+<div class="modal-overlay" id="modalAtestado">
+  <div class="modal" style="max-width:520px;">
+    <button class="modal-fechar" onclick="fecharModal('modalAtestado')">✕</button>
+    <div class="modal-titulo" id="atestadoModalTitulo">📄 Novo Atestado</div>
+    <input type="hidden" id="atestadoId">
+    <div class="form-grid">
+      <div style="grid-column:1/-1;">
+        <label>Pessoa (aluno ou funcionário) *</label>
+        <input type="text" id="atestadoNome" placeholder="Nome completo...">
+      </div>
+      <div>
+        <label>Tipo</label>
+        <select id="atestadoTipo">
+          <option value="Aluno">🎓 Aluno</option>
+          <option value="Funcionário">👤 Funcionário</option>
+        </select>
+      </div>
+      <div>
+        <label>Turma / Cargo</label>
+        <input type="text" id="atestadoCargo" placeholder="Ex: 5A ou Professor">
+      </div>
+      <div>
+        <label>Data Início *</label>
+        <input type="date" id="atestadoDataInicio" oninput="calcularDiasAtestado()">
+      </div>
+      <div>
+        <label>Data Fim *</label>
+        <input type="date" id="atestadoDataFim" oninput="calcularDiasAtestado()">
+      </div>
+      <div>
+        <label>Quantidade de Dias</label>
+        <input type="text" id="atestadoDias" placeholder="Calculado automaticamente" readonly style="background:#f5f6fa;">
+      </div>
+      <div style="grid-column:1/-1;">
+        <label>Motivo *</label>
+        <textarea id="atestadoMotivo" rows="3" placeholder="Descreva o motivo do atestado..."></textarea>
+      </div>
+    </div>
+    <div style="display:flex;gap:10px;margin-top:16px;">
+      <button class="btn btn-verde" onclick="salvarAtestado()">💾 Salvar</button>
+      <button class="btn btn-cinza" onclick="fecharModal('modalAtestado')">Cancelar</button>
+    </div>
+  </div>
+</div>
+
 <script>
 function validarSenhaPedagogica(){
 
@@ -2860,6 +2959,128 @@ async function excluirLaudo(id){
     carregarLaudos();
     toast('🗑️ Laudo excluído!');
   }
+}
+/* ══════════════════════════════════════════════════════
+   ATESTADOS
+══════════════════════════════════════════════════════ */
+async function carregarAtestados(){
+  try{
+    const dados = await apiGet('Atestados');
+    window.atestadosCache = dados;
+    renderAtestados();
+  }catch(e){
+    document.getElementById('atestadosTabela').innerHTML=
+      '<tr><td colspan="7" style="text-align:center;color:var(--vermelho);">Erro ao carregar.</td></tr>';
+  }
+}
+
+function renderAtestados(){
+  const dados = window.atestadosCache || [];
+  const filtro = (document.getElementById('atestadoFiltroNome')?.value||'').toLowerCase().trim();
+  const filtrados = filtro ? dados.filter(a=>String(a.nome||'').toLowerCase().includes(filtro)) : dados;
+  const tbody = document.getElementById('atestadosTabela');
+  if(!filtrados.length){
+    tbody.innerHTML='<tr><td colspan="7" style="text-align:center;color:var(--texto2);padding:20px;">Nenhum atestado encontrado.</td></tr>';
+    return;
+  }
+  const sorted=[...filtrados].sort((a,b)=>String(b.datainicio||b.id).localeCompare(String(a.datainicio||a.id)));
+  const podEditar=!(usuarioLogado&&usuarioLogado.somenteLeitura);
+  tbody.innerHTML=sorted.map(a=>`
+    <tr>
+      <td><strong>${esc(a.nome||'')}</strong><br><span style="font-size:0.78rem;color:var(--texto2);">${esc(a.cargo||'')}</span></td>
+      <td><span class="badge ${a.tipo==='Aluno'?'badge-azul':'badge-roxo'}">${esc(a.tipo||'')}</span></td>
+      <td>${fmtData(a.datainicio)}</td>
+      <td>${fmtData(a.datafim)}</td>
+      <td style="text-align:center;font-weight:700;">${esc(a.dias||'')}</td>
+      <td style="max-width:200px;white-space:normal;font-size:0.85rem;">${esc(a.motivo||'')}</td>
+      <td>
+        <div class="acoes">
+          ${podEditar?`<button class="btn btn-cinza btn-icon" onclick="editarAtestado('${a.id}')">✏️</button>`:''}
+          ${podEditar?`<button class="btn btn-verm btn-icon" onclick="excluirAtestado('${a.id}')">🗑️</button>`:''}
+        </div>
+      </td>
+    </tr>`).join('');
+}
+
+function calcularDiasAtestado(){
+  const ini=document.getElementById('atestadoDataInicio').value;
+  const fim=document.getElementById('atestadoDataFim').value;
+  if(ini&&fim){
+    const d1=new Date(ini),d2=new Date(fim);
+    if(d2>=d1){
+      const dias=Math.round((d2-d1)/(1000*60*60*24))+1;
+      document.getElementById('atestadoDias').value=dias+' dia(s)';
+    }else{
+      document.getElementById('atestadoDias').value='Data inválida';
+    }
+  }
+}
+
+function abrirModalAtestado(){
+  if(usuarioLogado&&usuarioLogado.somenteLeitura){toast('⛔ Sem permissão.');return;}
+  document.getElementById('atestadoId').value='';
+  document.getElementById('atestadoNome').value='';
+  document.getElementById('atestadoTipo').value='Aluno';
+  document.getElementById('atestadoCargo').value='';
+  document.getElementById('atestadoDataInicio').value='';
+  document.getElementById('atestadoDataFim').value='';
+  document.getElementById('atestadoDias').value='';
+  document.getElementById('atestadoMotivo').value='';
+  document.getElementById('atestadoModalTitulo').textContent='📄 Novo Atestado';
+  document.getElementById('modalAtestado').classList.add('aberto');
+}
+
+function editarAtestado(id){
+  if(usuarioLogado&&usuarioLogado.somenteLeitura){toast('⛔ Sem permissão.');return;}
+  const a=(window.atestadosCache||[]).find(x=>String(x.id)===String(id));
+  if(!a)return;
+  document.getElementById('atestadoId').value=a.id;
+  document.getElementById('atestadoNome').value=a.nome||'';
+  document.getElementById('atestadoTipo').value=a.tipo||'Aluno';
+  document.getElementById('atestadoCargo').value=a.cargo||'';
+  document.getElementById('atestadoDataInicio').value=a.datainicio||'';
+  document.getElementById('atestadoDataFim').value=a.datafim||'';
+  document.getElementById('atestadoDias').value=a.dias||'';
+  document.getElementById('atestadoMotivo').value=a.motivo||'';
+  document.getElementById('atestadoModalTitulo').textContent='✏️ Editar Atestado';
+  document.getElementById('modalAtestado').classList.add('aberto');
+}
+
+async function salvarAtestado(){
+  const nome=document.getElementById('atestadoNome').value.trim();
+  const dataInicio=document.getElementById('atestadoDataInicio').value;
+  const dataFim=document.getElementById('atestadoDataFim').value;
+  const motivo=document.getElementById('atestadoMotivo').value.trim();
+  if(!nome||!dataInicio||!dataFim||!motivo){toast('⚠️ Preencha nome, datas e motivo.');return;}
+  const id=document.getElementById('atestadoId').value;
+  const payload={
+    action: id?'editarAtestado':'salvarAtestado',
+    nome,
+    tipo: document.getElementById('atestadoTipo').value,
+    cargo: document.getElementById('atestadoCargo').value.trim(),
+    datainicio: dataInicio,
+    datafim: dataFim,
+    dias: document.getElementById('atestadoDias').value,
+    motivo
+  };
+  if(id)payload.id=id;
+  try{
+    const r=await apiPost(payload);
+    if(r.ok){
+      toast('✅ Atestado salvo!');
+      fecharModal('modalAtestado');
+      await carregarAtestados();
+    }else toast('❌ '+(r.erro||'Erro'));
+  }catch(e){toast('❌ Erro: '+e.message);}
+}
+
+async function excluirAtestado(id){
+  if(!confirm('Excluir atestado?'))return;
+  try{
+    const r=await apiPost({action:'excluirAtestado',id});
+    if(r.ok){toast('🗑️ Atestado excluído.');await carregarAtestados();}
+    else toast('❌ '+(r.erro||'Erro'));
+  }catch(e){toast('❌ '+e.message);}
 }
 </script>
 </body>
