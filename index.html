@@ -3053,8 +3053,9 @@ async function salvarAtestado(){
   const motivo=document.getElementById('atestadoMotivo').value.trim();
   if(!nome||!dataInicio||!dataFim||!motivo){toast('⚠️ Preencha nome, datas e motivo.');return;}
   const id=document.getElementById('atestadoId').value;
+  const acao = id ? 'editarAtestado' : 'salvarAtestado';
   const payload={
-    action: id?'editarAtestado':'salvarAtestado',
+    action: acao,
     nome,
     tipo: document.getElementById('atestadoTipo').value,
     cargo: document.getElementById('atestadoCargo').value.trim(),
@@ -3063,6 +3064,18 @@ async function salvarAtestado(){
     dias: document.getElementById('atestadoDias').value,
     motivo
   };
+  if(id)payload.id=id;
+  console.log('Enviando payload:', JSON.stringify(payload));
+  try{
+    const r=await apiPost(payload);
+    console.log('Resposta:', JSON.stringify(r));
+    if(r.ok){
+      toast('✅ Atestado salvo!');
+      fecharModal('modalAtestado');
+      await carregarAtestados();
+    }else toast('❌ '+(r.erro||'Erro'));
+  }catch(e){toast('❌ Erro: '+e.message);}
+}
   if(id)payload.id=id;
   try{
     const r=await apiPost(payload);
