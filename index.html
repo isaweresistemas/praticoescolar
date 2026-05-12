@@ -1522,8 +1522,22 @@ async function excluirAviso(id){
 /* ══════════════════════════════════════════════════════
    CALENDÁRIO
 ══════════════════════════════════════════════════════ */
+function normalizarData(val) {
+  if (!val) return '';
+  val = String(val).trim();
+  if (/^\d{4}-\d{2}-\d{2}$/.test(val)) return val;
+  const d = new Date(val);
+  if (!isNaN(d.getTime())) {
+    return d.getFullYear() + '-' +
+      String(d.getMonth()+1).padStart(2,'0') + '-' +
+      String(d.getDate()).padStart(2,'0');
+  }
+  return val;
+}
+
 async function carregarEventosCal(){
   try{eventosCustom=await apiGet('Calendario');}catch(e){eventosCustom=[];}
+  eventosCustom = eventosCustom.map(e=>({...e, data: normalizarData(e.data)}));
   renderCalendario();
 }
 function renderCalendario(){
@@ -1533,7 +1547,7 @@ function renderCalendario(){
   const hoje=new Date();
   const hojeISO=`${hoje.getFullYear()}-${String(hoje.getMonth()+1).padStart(2,'0')}-${String(hoje.getDate()).padStart(2,'0')}`;
   const eventosPorDia={};
-  [...EVENTOS_FIXOS,...eventosCustom.map(e=>({data:e.data,titulo:e.titulo,tipo:e.tipo||'custom'}))].forEach(ev=>{
+  [...EVENTOS_FIXOS,...eventosCustom.map(e=>({data:normalizarData(e.data),titulo:e.titulo,tipo:e.tipo||'custom'}))].forEach(ev=>{
     const d=String(ev.data||'').slice(0,7);
     if(d===`${calAnoAtual}-${String(calMesAtual+1).padStart(2,'0')}`){
       const dia=parseInt(String(ev.data).slice(8,10));
@@ -1557,7 +1571,7 @@ function renderCalendario(){
     html+=`<div class="${cls}" ${onclick}>${d}</div>`;
   }
   document.getElementById('calGrid').innerHTML=html;
-  const todosDoMes=[...EVENTOS_FIXOS,...eventosCustom.map(e=>({...e,custom:true}))].filter(e=>String(e.data||'').slice(0,7)===`${calAnoAtual}-${String(calMesAtual+1).padStart(2,'0')}`).sort((a,b)=>String(a.data).localeCompare(String(b.data)));
+  const todosDoMes=[...EVENTOS_FIXOS,...eventosCustom.map(e=>({...e,data:normalizarData(e.data),custom:true}))].filter(e=>String(e.data||'').slice(0,7)===`${calAnoAtual}-${String(calMesAtual+1).padStart(2,'0')}`).sort((a,b)=>String(a.data).localeCompare(String(b.data)));
   document.getElementById('calEventosLista').innerHTML=todosDoMes.length?todosDoMes.map(e=>{
     const custom=e.custom||!EVENTOS_FIXOS.find(f=>f.data===e.data&&f.titulo===e.titulo);
     return `<div class="evento-item ${custom?'custom':''}"><span class="evento-data">${fmtData(e.data)}</span><span>${esc(e.titulo)}</span></div>`;
@@ -1570,7 +1584,7 @@ function mudarMes(dir){
   renderCalendario();
 }
 function abrirDiaCal(iso){
-  const evs=[...EVENTOS_FIXOS,...eventosCustom.map(e=>({...e,custom:true}))].filter(e=>String(e.data).slice(0,10)===iso);
+  const evs=[...EVENTOS_FIXOS,...eventosCustom.map(e=>({...e,data:normalizarData(e.data),custom:true}))].filter(e=>String(e.data).slice(0,10)===iso);
   document.getElementById('calDiaTitulo').textContent=`📅 ${fmtData(iso)}`;
   document.getElementById('calDiaConteudo').innerHTML=evs.map(e=>`
     <div style="padding:8px 12px;border-left:4px solid ${e.custom?'var(--verde)':'var(--amarelo)'};background:${e.custom?'var(--verde-cl)':'var(--amar-cl)'};border-radius:6px;margin-bottom:8px;font-size:0.88rem;">
@@ -1616,15 +1630,27 @@ async function salvarEventoCal(){
   if(editId)payload.id=editId;
   try{
     const r=await apiPost(payload);
-    if(r.ok){toast('✅ Evento salvo!');limparFormCal();eventosCustom=await apiGet('Calendario');renderCalendario();renderAdminCalList();}
-    else toast('❌ '+(r.erro||'Erro'));
+    if(r.ok){
+      toast('✅ Evento salvo!');
+      limparFormCal();
+      eventosCustom=await apiGet('Calendario');
+      eventosCustom=eventosCustom.map(e=>({...e,data:normalizarData(e.data)}));
+      renderCalendario();
+      renderAdminCalList();
+    }else toast('❌ '+(r.erro||'Erro'));
   }catch(e){toast('❌ '+e.message);}
 }
 async function excluirEventoCal(id){
   if(!confirm('Excluir evento?'))return;
   try{
     const r=await apiPost({action:'excluirEvento',id});
-    if(r.ok){toast('🗑️ Excluído.');eventosCustom=await apiGet('Calendario');renderCalendario();renderAdminCalList();}
+    if(r.ok){
+      toast('🗑️ Excluído.');
+      eventosCustom=await apiGet('Calendario');
+      eventosCustom=eventosCustom.map(e=>({...e,data:normalizarData(e.data)}));
+      renderCalendario();
+      renderAdminCalList();
+    }
   }catch(e){toast('❌ '+e.message);}
 }
 function limparFormCal(){
@@ -1632,7 +1658,6 @@ function limparFormCal(){
   document.getElementById('calEventoTipo').value='evento';
   document.getElementById('formCalTitulo').textContent='➕ Novo Evento';
 }
-
 /* ══════════════════════════════════════════════════════
    ANIVERSARIANTES
 ══════════════════════════════════════════════════════ */
