@@ -3076,16 +3076,6 @@ async function salvarAtestado(){
     }else toast('❌ '+(r.erro||'Erro'));
   }catch(e){toast('❌ Erro: '+e.message);}
 }
-  if(id)payload.id=id;
-  try{
-    const r=await apiPost(payload);
-    if(r.ok){
-      toast('✅ Atestado salvo!');
-      fecharModal('modalAtestado');
-      await carregarAtestados();
-    }else toast('❌ '+(r.erro||'Erro'));
-  }catch(e){toast('❌ Erro: '+e.message);}
-}
 
 async function excluirAtestado(id){
   if(!confirm('Excluir atestado?'))return;
