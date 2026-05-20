@@ -21,27 +21,6 @@
       --raio:12px;
       --sidebar-w:224px;
     }
-.badge{
-  padding:4px 10px;
-  border-radius:20px;
-  font-size:12px;
-  font-weight:bold;
-}
-
-.badge-verde{
-  background:#d1fae5;
-  color:#065f46;
-}
-
-.badge-amarelo{
-  background:#fef3c7;
-  color:#92400e;
-}
-
-.badge-vermelho{
-  background:#fee2e2;
-  color:#991b1b;
-}
     *{box-sizing:border-box;margin:0;padding:0;}
     body{font-family:'Nunito Sans',sans-serif;background:var(--cinza);color:var(--texto);font-size:15px;line-height:1.6;overflow-x:hidden;}
 
@@ -404,7 +383,22 @@
       body{background:#fff;}
       .ata-impressao{display:block!important;}
     }
-
+/* NOSSA EQUIPE */
+.equipe-depto{margin-bottom:22px;}
+.equipe-depto-titulo{font-family:'Nunito',sans-serif;font-weight:900;font-size:0.82rem;text-transform:uppercase;letter-spacing:1px;color:var(--azul-dark);background:var(--azul-cl);padding:7px 14px;border-radius:8px;margin-bottom:8px;display:flex;align-items:center;gap:6px;}
+.equipe-membro{border-bottom:1px solid var(--borda);transition:background 0.12s;}
+.equipe-membro:last-child{border-bottom:none;}
+.equipe-membro-header{display:flex;align-items:center;gap:10px;padding:10px 12px;cursor:pointer;}
+.equipe-membro-header:hover{background:#f0f4ff;border-radius:8px;}
+.equipe-membro-nome{flex:1;font-family:'Nunito',sans-serif;font-weight:700;font-size:0.92rem;color:var(--texto);}
+.equipe-btn-expand{width:26px;height:26px;border-radius:50%;background:var(--azul-cl);color:var(--azul);border:none;font-size:1.1rem;font-weight:900;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.15s,transform 0.2s;flex-shrink:0;line-height:1;}
+.equipe-btn-expand.aberto{background:var(--azul);color:#fff;transform:rotate(45deg);}
+.equipe-detalhe{display:none;padding:8px 14px 12px 38px;font-size:0.84rem;color:var(--texto2);line-height:1.8;animation:fadeIn 0.18s ease;}
+.equipe-detalhe.visivel{display:block;}
+.equipe-detalhe strong{color:var(--texto);font-weight:700;}
+.equipe-total-bar{background:linear-gradient(135deg,var(--azul-dark),var(--azul));color:#fff;border-radius:12px;padding:14px 20px;display:flex;align-items:center;gap:14px;margin-top:8px;}
+.equipe-total-num{font-family:'Nunito',sans-serif;font-weight:900;font-size:2rem;line-height:1;}
+.equipe-total-label{font-size:0.88rem;opacity:0.9;font-family:'Nunito',sans-serif;font-weight:700;}
     /* MOBILE */
     @media(max-width:768px){
       .sidebar{transform:translateX(-100%);}
@@ -453,7 +447,6 @@
     </div>
     <nav class="sidebar-nav">
       <button class="ativo" onclick="irPara('inicio',this)"><span class="nav-icon">🏠</span> Início</button>
-      <button onclick="irPara('atestados',this)"><span class="nav-icon">📄</span> Atestados</button>
       <button onclick="irPara('calendario',this)"><span class="nav-icon">📅</span> Calendário</button>
       <button onclick="irPara('aniversariantes',this)"><span class="nav-icon">🎂</span> Aniversários</button>
       <button onclick="irPara('avisos',this)"><span class="nav-icon">📢</span> Avisos</button>
@@ -463,10 +456,7 @@
       <button onclick="irPara('plantaopg',this)"><span class="nav-icon">✅</span> Plantão Ped.</button>
       <button onclick="irPara('ata',this)"><span class="nav-icon">📋</span> ATA</button>
       <button onclick="irPara('downloads',this)"><span class="nav-icon">📥</span> Downloads</button>
-
-      <button onclick="irPara('planejamentos',this)"><span class="nav-icon">🗂️</span> Planejamentos</button>
-      <button onclick="irPara('laudos',this)"><span class="nav-icon">🩺</span> Alunos com Laudos</button>
-
+      <button onclick="irPara('equipe',this)"><span class="nav-icon">👥</span> Nossa Equipe</button>
       <button onclick="irPara('totalizador',this)"><span class="nav-icon">📊</span> Totalizador</button>
     </nav>
     <div class="sidebar-footer">
@@ -573,15 +563,14 @@
     <!-- PLANTÃO PEDAGÓGICO -->
     <section class="secao" id="sec-plantaopg">
       <div class="card">
-  <div class="admin-bar">
-    <div class="card-titulo" style="margin:0;">✅ Plantão Pedagógico</div>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;">
-      <button class="btn btn-verde btn-icon btn-edicao" onclick="abrirAdminPlantaoAlunos()" style="font-size:0.8rem;padding:6px 12px;">👥 Gerenciar Alunos</button>
-      <button class="btn btn-roxo btn-icon btn-edicao" onclick="abrirAdminPlantao()" style="font-size:0.8rem;padding:6px 12px;">📅 Gerenciar Datas</button>
-      <button class="btn btn-azul btn-icon" id="btnSalvarPlantao" onclick="salvarPlantaoEmLote()" style="font-size:0.8rem;padding:6px 12px;">💾 Salvar Presenças</button>
-      <button class="btn btn-cinza btn-icon" onclick="imprimirPlantao()" style="font-size:0.8rem;padding:6px 12px;">🖨️ Imprimir</button>
-    </div>
-  </div>
+        <div class="admin-bar">
+          <div class="card-titulo" style="margin:0;">✅ Plantão Pedagógico</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <button class="btn btn-verde btn-icon btn-edicao" onclick="abrirAdminPlantaoAlunos()" style="font-size:0.8rem;padding:6px 12px;">👥 Gerenciar Alunos</button>
+            <button class="btn btn-roxo btn-icon btn-edicao" onclick="abrirAdminPlantao()" style="font-size:0.8rem;padding:6px 12px;">📅 Gerenciar Datas</button>
+            <button class="btn btn-cinza btn-icon" onclick="imprimirPlantao()" style="font-size:0.8rem;padding:6px 12px;">🖨️ Imprimir</button>
+          </div>
+        </div>
         <div id="plantaoPgConteudo" class="loading-txt"><span class="spinner"></span> Carregando...</div>
       </div>
     </section>
@@ -596,7 +585,7 @@
             <button class="btn btn-cinza" onclick="abrirModalListarAtas()">📂 Atas Salvas</button>
           </div>
         </div>
-        <div id="ataListaConteudo"></div>
+        <div id="ataConteudo"></div>
       </div>
     </section>
 
@@ -612,87 +601,6 @@
       </div>
     </section>
 
-
-    <!-- PLANEJAMENTOS -->
-    <section class="secao" id="sec-planejamentos">
-      <div class="card">
-        <div class="admin-bar">
-          <div class="card-titulo" style="margin:0;">🗂️ Planejamentos</div>
-          <button class="btn btn-azul btn-icon btn-edicao" onclick="abrirModalPlanejamento()" style="font-size:0.8rem;padding:6px 12px;">+ Adicionar Planejamento</button>
-        </div>
-
-        <div class="tabela-wrapper">
-          <table>
-            <thead>
-              <tr>
-                <th>Disciplina</th>
-                <th>Semana 1</th>
-                <th>Semana 2</th>
-                <th>Semana 3</th>
-                <th>Semana 4</th>
-                <th>Status</th>
-                <th>Ações</th>
-              </tr>
-            </thead>
-            <tbody id="planejamentosTabela"></tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
-    <!-- ALUNOS COM LAUDOS -->
-    <section class="secao" id="sec-laudos">
-      <div class="card">
-        <div class="admin-bar">
-          <div class="card-titulo" style="margin:0;">🩺 Alunos com Laudos</div>
-          <button class="btn btn-roxo btn-icon btn-edicao" onclick="abrirModalLaudo()" style="font-size:0.8rem;padding:6px 12px;">+ Novo Laudo</button>
-        </div>
-
-        <div class="tabela-wrapper">
-          <table>
-            <thead>
-              <tr>
-                <th>Turma</th>
-                <th>Aluno</th>
-                <th>CID</th>
-                <th>Orientações</th>
-                <th>Ações</th>
-              </tr>
-            </thead>
-            <tbody id="laudosTabela"></tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
-<!-- ATESTADOS -->
-<section class="secao" id="sec-atestados">
-  <div class="card">
-    <div class="admin-bar">
-      <div class="card-titulo" style="margin:0;">📄 Atestados</div>
-      <button class="btn btn-roxo btn-icon btn-edicao" onclick="abrirModalAtestado()" style="font-size:0.8rem;padding:6px 12px;">+ Novo Atestado</button>
-    </div>
-    <div style="display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;">
-      <input type="text" id="atestadoFiltroNome" placeholder="🔍 Filtrar por nome..." style="max-width:260px;" oninput="renderAtestados()">
-    </div>
-    <div class="tabela-wrapper">
-      <table>
-        <thead>
-          <tr>
-            <th>Pessoa</th>
-            <th>Tipo</th>
-            <th>Data Início</th>
-            <th>Data Fim</th>
-            <th>Qtd. Dias</th>
-            <th>Motivo</th>
-            <th>Ações</th>
-          </tr>
-        </thead>
-        <tbody id="atestadosTabela"></tbody>
-      </table>
-    </div>
-  </div>
-</section>
     <!-- TOTALIZADOR -->
     <section class="secao" id="sec-totalizador">
       <div class="totalizador-hero">
@@ -714,7 +622,322 @@
         <div class="total-tab-content" id="abaColab"><div id="totalColabConteudo"></div></div>
       </div>
     </section>
+<!-- NOSSA EQUIPE -->
+<section class="secao" id="sec-equipe">
+  <div class="card">
+    <div class="card-titulo">👥 Nossa Equipe</div>
 
+    <!-- DIREÇÃO -->
+    <div class="equipe-depto">
+      <div class="equipe-depto-titulo">🏫 Direção</div>
+      <div class="equipe-membro">
+        <div class="equipe-membro-header" onclick="toggleEquipe(this)">
+          <span class="equipe-membro-nome">Kadigina Holanda</span>
+          <button class="equipe-btn-expand">+</button>
+        </div>
+        <div class="equipe-detalhe">
+          <strong>Função:</strong> Direção Escolar<br>
+          <strong>Vínculo:</strong> —
+        </div>
+      </div>
+    </div>
+
+    <!-- COORDENAÇÃO - ANOS INICIAIS -->
+    <div class="equipe-depto">
+      <div class="equipe-depto-titulo">📐 Coordenação — Anos Iniciais</div>
+      <div class="equipe-membro">
+        <div class="equipe-membro-header" onclick="toggleEquipe(this)">
+          <span class="equipe-membro-nome">Ivan Rosas</span>
+          <button class="equipe-btn-expand">+</button>
+        </div>
+        <div class="equipe-detalhe">
+          <strong>Função:</strong> Coordenação Pedagógica — Anos Iniciais<br>
+          <strong>Vínculo:</strong> Efetivo
+        </div>
+      </div>
+      <div class="equipe-membro">
+        <div class="equipe-membro-header" onclick="toggleEquipe(this)">
+          <span class="equipe-membro-nome">Januacelis Dias</span>
+          <button class="equipe-btn-expand">+</button>
+        </div>
+        <div class="equipe-detalhe">
+          <strong>Função:</strong> Coordenação Pedagógica — Anos Finais<br>
+          <strong>Vínculo:</strong> Efetiva
+        </div>
+      </div>
+    </div>
+
+    <!-- PROFESSORES ANOS FINAIS -->
+    <div class="equipe-depto">
+      <div class="equipe-depto-titulo">📘 Professores(as) dos Anos Finais do Ens. Fund.</div>
+      <div class="equipe-membro">
+        <div class="equipe-membro-header" onclick="toggleEquipe(this)">
+          <span class="equipe-membro-nome">Camila da Silva Sousa</span>
+          <button class="equipe-btn-expand">+</button>
+        </div>
+        <div class="equipe-detalhe">
+          <strong>Função:</strong> Professora de Matemática — Anos Finais<br>
+          <strong>Vínculo:</strong> Contratada
+        </div>
+      </div>
+      <div class="equipe-membro">
+        <div class="equipe-membro-header" onclick="toggleEquipe(this)">
+          <span class="equipe-membro-nome">Dominique de Almeida Macedo</span>
+          <button class="equipe-btn-expand">+</button>
+        </div>
+        <div class="equipe-detalhe">
+          <strong>Função:</strong> Professor de Geografia — Anos Finais<br>
+          <strong>Vínculo:</strong> Efetivo
+        </div>
+      </div>
+      <div class="equipe-membro">
+        <div class="equipe-membro-header" onclick="toggleEquipe(this)">
+          <span class="equipe-membro-nome">José Diones Lopes Batista</span>
+          <button class="equipe-btn-expand">+</button>
+        </div>
+        <div class="equipe-detalhe">
+          <strong>Função:</strong> Professor de Matemática — Anos Finais<br>
+          <strong>Vínculo:</strong> Efetivo
+        </div>
+      </div>
+      <div class="equipe-membro">
+        <div class="equipe-membro-header" onclick="toggleEquipe(this)">
+          <span class="equipe-membro-nome">Maria Selma Queiroz do Nascimento</span>
+          <button class="equipe-btn-expand">+</button>
+        </div>
+        <div class="equipe-detalhe">
+          <strong>Função:</strong> Professora de Artes — Anos Finais<br>
+          <strong>Vínculo:</strong> Efetiva
+        </div>
+      </div>
+      <div class="equipe-membro">
+        <div class="equipe-membro-header" onclick="toggleEquipe(this)">
+          <span class="equipe-membro-nome">Francisco de Assis Leite Freire</span>
+          <button class="equipe-btn-expand">+</button>
+        </div>
+        <div class="equipe-detalhe">
+          <strong>Função:</strong> Professor de História — Anos Finais<br>
+          <strong>Vínculo:</strong> Efetivo
+        </div>
+      </div>
+      <div class="equipe-membro">
+        <div class="equipe-membro-header" onclick="toggleEquipe(this)">
+          <span class="equipe-membro-nome">Manoel Severino Pessoa Neto</span>
+          <button class="equipe-btn-expand">+</button>
+        </div>
+        <div class="equipe-detalhe">
+          <strong>Função:</strong> Professor de História e Geografia — Anos Finais<br>
+          <strong>Vínculo:</strong> Contratado
+        </div>
+      </div>
+      <div class="equipe-membro">
+        <div class="equipe-membro-header" onclick="toggleEquipe(this)">
+          <span class="equipe-membro-nome">Joshenilda Oliveira de Souza</span>
+          <button class="equipe-btn-expand">+</button>
+        </div>
+        <div class="equipe-detalhe">
+          <strong>Função:</strong> Professora de Língua Inglesa — Anos Finais<br>
+          <strong>Vínculo:</strong> Contratada
+        </div>
+      </div>
+      <div class="equipe-membro">
+        <div class="equipe-membro-header" onclick="toggleEquipe(this)">
+          <span class="equipe-membro-nome">Vitória Regina da Silva Trajano</span>
+          <button class="equipe-btn-expand">+</button>
+        </div>
+        <div class="equipe-detalhe">
+          <strong>Função:</strong> Professora de Ciências — Anos Finais<br>
+          <strong>Vínculo:</strong> Contratada
+        </div>
+      </div>
+      <div class="equipe-membro">
+        <div class="equipe-membro-header" onclick="toggleEquipe(this)">
+          <span class="equipe-membro-nome">Cedrick Oliveira Brito</span>
+          <button class="equipe-btn-expand">+</button>
+        </div>
+        <div class="equipe-detalhe">
+          <strong>Função:</strong> Professor de Educação Física — Anos Finais<br>
+          <strong>Vínculo:</strong> Contratado
+        </div>
+      </div>
+      <div class="equipe-membro">
+        <div class="equipe-membro-header" onclick="toggleEquipe(this)">
+          <span class="equipe-membro-nome">Inácia Uênia Dionizio Gomes</span>
+          <button class="equipe-btn-expand">+</button>
+        </div>
+        <div class="equipe-detalhe">
+          <strong>Função:</strong> Professora de Língua Portuguesa — Anos Finais<br>
+          <strong>Vínculo:</strong> Efetiva
+        </div>
+      </div>
+    </div>
+
+    <!-- PROFESSORES ANOS INICIAIS -->
+    <div class="equipe-depto">
+      <div class="equipe-depto-titulo">📗 Professores(as) dos Anos Iniciais do Ens. Fund.</div>
+      <div class="equipe-membro">
+        <div class="equipe-membro-header" onclick="toggleEquipe(this)">
+          <span class="equipe-membro-nome">Dione Galdino Macêdo</span>
+          <button class="equipe-btn-expand">+</button>
+        </div>
+        <div class="equipe-detalhe">
+          <strong>Função:</strong> Professora<br>
+          <strong>Vínculo:</strong> Contratada
+        </div>
+      </div>
+      <div class="equipe-membro">
+        <div class="equipe-membro-header" onclick="toggleEquipe(this)">
+          <span class="equipe-membro-nome">Lígia da Conceição Araújo</span>
+          <button class="equipe-btn-expand">+</button>
+        </div>
+        <div class="equipe-detalhe">
+          <strong>Função:</strong> Professora Polivalente<br>
+          <strong>Vínculo:</strong> Efetiva
+        </div>
+      </div>
+      <div class="equipe-membro">
+        <div class="equipe-membro-header" onclick="toggleEquipe(this)">
+          <span class="equipe-membro-nome">Joelma Trajano da Silva Feitosa</span>
+          <button class="equipe-btn-expand">+</button>
+        </div>
+        <div class="equipe-detalhe">
+          <strong>Função:</strong> Professora Polivalente<br>
+          <strong>Vínculo:</strong> Efetiva
+        </div>
+      </div>
+      <div class="equipe-membro">
+        <div class="equipe-membro-header" onclick="toggleEquipe(this)">
+          <span class="equipe-membro-nome">Marluce da Silva Araújo</span>
+          <button class="equipe-btn-expand">+</button>
+        </div>
+        <div class="equipe-detalhe">
+          <strong>Função:</strong> Professora Polivalente<br>
+          <strong>Vínculo:</strong> Efetiva
+        </div>
+      </div>
+      <div class="equipe-membro">
+        <div class="equipe-membro-header" onclick="toggleEquipe(this)">
+          <span class="equipe-membro-nome">Marcionne Fernandes da Silva Santos</span>
+          <button class="equipe-btn-expand">+</button>
+        </div>
+        <div class="equipe-detalhe">
+          <strong>Função:</strong> Professora Polivalente<br>
+          <strong>Vínculo:</strong> Contratada
+        </div>
+      </div>
+      <div class="equipe-membro">
+        <div class="equipe-membro-header" onclick="toggleEquipe(this)">
+          <span class="equipe-membro-nome">Joana Márcia de Lira Ferreira Batista</span>
+          <button class="equipe-btn-expand">+</button>
+        </div>
+        <div class="equipe-detalhe">
+          <strong>Função:</strong> Professora Polivalente<br>
+          <strong>Vínculo:</strong> Efetiva
+        </div>
+      </div>
+      <div class="equipe-membro">
+        <div class="equipe-membro-header" onclick="toggleEquipe(this)">
+          <span class="equipe-membro-nome">Vanuza Farias de Holanda</span>
+          <button class="equipe-btn-expand">+</button>
+        </div>
+        <div class="equipe-detalhe">
+          <strong>Função:</strong> Professora Polivalente<br>
+          <strong>Vínculo:</strong> Contratada
+        </div>
+      </div>
+      <div class="equipe-membro">
+        <div class="equipe-membro-header" onclick="toggleEquipe(this)">
+          <span class="equipe-membro-nome">Joseina Magna Araújo do Nascimento</span>
+          <button class="equipe-btn-expand">+</button>
+        </div>
+        <div class="equipe-detalhe">
+          <strong>Função:</strong> Professora Polivalente<br>
+          <strong>Vínculo:</strong> Contratada
+        </div>
+      </div>
+      <div class="equipe-membro">
+        <div class="equipe-membro-header" onclick="toggleEquipe(this)">
+          <span class="equipe-membro-nome">Luciana Pereira Arruda</span>
+          <button class="equipe-btn-expand">+</button>
+        </div>
+        <div class="equipe-detalhe">
+          <strong>Função:</strong> Professora Polivalente<br>
+          <strong>Vínculo:</strong> Contratada
+        </div>
+      </div>
+    </div>
+
+    <!-- PORTEIRO -->
+    <div class="equipe-depto">
+      <div class="equipe-depto-titulo">🚪 Porteiro</div>
+      <div class="equipe-membro">
+        <div class="equipe-membro-header" onclick="toggleEquipe(this)">
+          <span class="equipe-membro-nome">Wamberto Holanda</span>
+          <button class="equipe-btn-expand">+</button>
+        </div>
+        <div class="equipe-detalhe">
+          <strong>Função:</strong> Porteiro<br>
+          <strong>Vínculo:</strong> Efetivo
+        </div>
+      </div>
+    </div>
+
+    <!-- MERENDEIRAS E AUXILIARES -->
+    <div class="equipe-depto">
+      <div class="equipe-depto-titulo">🍽️ Merendeiras e Auxiliares</div>
+      <div class="equipe-membro">
+        <div class="equipe-membro-header" onclick="toggleEquipe(this)">
+          <span class="equipe-membro-nome">A preencher</span>
+          <button class="equipe-btn-expand">+</button>
+        </div>
+        <div class="equipe-detalhe">
+          <strong>Função:</strong> —<br>
+          <strong>Vínculo:</strong> —
+        </div>
+      </div>
+    </div>
+
+    <!-- APOIO -->
+    <div class="equipe-depto">
+      <div class="equipe-depto-titulo">🛠️ Apoio</div>
+      <div class="equipe-membro">
+        <div class="equipe-membro-header" onclick="toggleEquipe(this)">
+          <span class="equipe-membro-nome">A preencher</span>
+          <button class="equipe-btn-expand">+</button>
+        </div>
+        <div class="equipe-detalhe">
+          <strong>Função:</strong> —<br>
+          <strong>Vínculo:</strong> —
+        </div>
+      </div>
+    </div>
+
+    <!-- CUIDADORES -->
+    <div class="equipe-depto">
+      <div class="equipe-depto-titulo">🤝 Cuidadores(as)</div>
+      <div class="equipe-membro">
+        <div class="equipe-membro-header" onclick="toggleEquipe(this)">
+          <span class="equipe-membro-nome">A preencher</span>
+          <button class="equipe-btn-expand">+</button>
+        </div>
+        <div class="equipe-detalhe">
+          <strong>Função:</strong> —<br>
+          <strong>Vínculo:</strong> —
+        </div>
+      </div>
+    </div>
+
+    <!-- TOTAL -->
+    <div class="equipe-total-bar">
+      <div class="equipe-total-num">25</div>
+      <div>
+        <div class="equipe-total-label">Total de Colaboradores</div>
+        <div style="font-size:0.75rem;opacity:0.75;">(nomes confirmados na lista)</div>
+      </div>
+    </div>
+
+  </div>
+</section>
   </div>
 </div>
 </div>
@@ -897,7 +1120,6 @@
 </div>
 
 <!-- ADMIN DATAS PLANTÃO -->
-<!-- ✅ FIX 1: div de fechamento do modal adicionada corretamente -->
 <div class="modal-overlay" id="modalAdminPlantao">
   <div class="modal" style="max-width:520px;">
     <button class="modal-fechar" onclick="fecharModal('modalAdminPlantao');carregarPlantaoPg()">✕</button>
@@ -919,7 +1141,6 @@
       <button class="btn btn-cinza btn-icon" style="font-size:0.75rem;" onclick="testarConexaoPlantao()">🔍 Testar conexão</button>
       <span id="diagPlantaoMsg" style="font-size:0.75rem;color:var(--texto2);"></span>
     </div>
-  </div>
 </div>
 
 <!-- ADMIN ALUNOS PLANTÃO -->
@@ -948,7 +1169,7 @@
   </div>
 </div>
 
-<!-- ✅ FIX 2: Nova Ata — textarea renomeada para id="ataTexto" (evita conflito com div id="ataListaConteudo") -->
+<!-- NOVA ATA -->
 <div class="modal-overlay" id="modalNovaAta">
   <div class="modal" style="max-width:640px;">
     <button class="modal-fechar" onclick="fecharModal('modalNovaAta')">✕</button>
@@ -960,7 +1181,7 @@
       <div style="grid-column:1/-1;"><label>Título / Assunto *</label><input type="text" id="ataTitulo" placeholder="Ex: Reunião de pais e mestres"></div>
       <div style="grid-column:1/-1;"><label>Local</label><input type="text" id="ataLocal" placeholder="Ex: Auditório da escola"></div>
     </div>
-    <div style="margin-top:10px;"><label>Conteúdo da Ata *</label><textarea id="ataTexto" class="ata-texto-area" placeholder="Digite o conteúdo da ata aqui..."></textarea></div>
+    <div style="margin-top:10px;"><label>Conteúdo da Ata *</label><textarea id="ataConteudo" class="ata-texto-area" placeholder="Digite o conteúdo da ata aqui..."></textarea></div>
     <div style="margin-top:14px;">
       <label>Participantes</label>
       <div id="ataParticipantesWrap"></div>
@@ -1050,15 +1271,15 @@
 
 <script>
 /* ══════════════════════════════════════════════════════
-   CONFIG
+   CONFIG — ⚠️ TROQUE PELA URL DO SEU SCRIPT IMPLANTADO
 ══════════════════════════════════════════════════════ */
 const API_URL = "https://script.google.com/macros/s/AKfycbzP_n9hFNcnMgDzEIUTYyl5CVa__JPWBbOF7F20p46B9qgwVx8o0p21ay62qRq3bzM4/exec";
 
 const USUARIOS = [
-  {nome:"Kadigina",  cargo:"Diretora",               senha:"manoel1234", somenteLeitura:false},
-  {nome:"Ivan",      cargo:"Coordenador Pedagógico",  senha:"manoel1234", somenteLeitura:false},
-  {nome:"Januacelis",cargo:"Coordenador Pedagógico",  senha:"manoel1234", somenteLeitura:false},
-  {nome:"Jessica",   cargo:"Secretaria Escolar",      senha:"manoel1234", somenteLeitura:false},
+  {nome:"Kadigina",  cargo:"Diretora",               senha:"1234", somenteLeitura:false},
+  {nome:"Ivan",      cargo:"Coordenador Pedagógico",  senha:"1234", somenteLeitura:false},
+  {nome:"Januacelis",cargo:"Coordenador Pedagógico",  senha:"1234", somenteLeitura:false},
+  {nome:"Jessica",   cargo:"Secretaria Escolar",      senha:"1234", somenteLeitura:false},
   {nome:"Professor", cargo:"Professor",               senha:"1234", somenteLeitura:true},
   {nome:"Visitante", cargo:"Operacional",             senha:"1234", somenteLeitura:true},
 ];
@@ -1264,7 +1485,6 @@ function fazerLogin(){
   carregarNoticias();
   carregarDownloads();
   carregarAvisos();
-  carregarEventosCal(); /* ✅ FIX 3: carrega eventos do calendário imediatamente ao logar */
   renderCadastroLista();
   renderAniversariantes();
   renderAtas();
@@ -1302,10 +1522,7 @@ function irPara(secao,btn){
   if(secao==='plantaopg')       carregarPlantaoPg();
   if(secao==='ata')             renderAtas();
   if(secao==='downloads')       renderDownloads();
-  if(secao==='planejamentos')   carregarPlanejamentos();
-  if(secao==='laudos')          carregarLaudos();
   if(secao==='totalizador')     carregarTotalizador();
-  if(secao==='atestados') carregarAtestados();
 }
 
 /* ══════════════════════════════════════════════════════
@@ -1468,7 +1685,7 @@ function previewImagem(){
 }
 
 /* ══════════════════════════════════════════════════════
-   AVISOS
+   AVISOS — agora salva no Sheets
 ══════════════════════════════════════════════════════ */
 async function carregarAvisos(){
   try{avisos=await apiGet('Avisos');}
@@ -1536,9 +1753,14 @@ async function salvarAviso(){
   if(editId) payload.id=editId;
   try{
     const r=await apiPost(payload);
-    if(r.ok){toast('✅ Aviso salvo!');fecharModal('modalAviso');await carregarAvisos();}
-    else toast('❌ '+(r.erro||'Erro'));
-  }catch(e){toast('❌ Erro: '+e.message);}
+    if(r.ok){
+      toast('✅ Aviso salvo!');
+      fecharModal('modalAviso');
+      await carregarAvisos();
+    } else toast('❌ '+(r.erro||'Erro'));
+  }catch(e){
+    toast('❌ Erro: '+e.message);
+  }
 }
 async function excluirAviso(id){
   if(!confirm('Excluir aviso?'))return;
@@ -1552,22 +1774,8 @@ async function excluirAviso(id){
 /* ══════════════════════════════════════════════════════
    CALENDÁRIO
 ══════════════════════════════════════════════════════ */
-function normalizarData(val) {
-  if (!val) return '';
-  val = String(val).trim();
-  if (/^\d{4}-\d{2}-\d{2}$/.test(val)) return val;
-  const d = new Date(val);
-  if (!isNaN(d.getTime())) {
-    return d.getFullYear() + '-' +
-      String(d.getMonth()+1).padStart(2,'0') + '-' +
-      String(d.getDate()).padStart(2,'0');
-  }
-  return val;
-}
-
 async function carregarEventosCal(){
   try{eventosCustom=await apiGet('Calendario');}catch(e){eventosCustom=[];}
-  eventosCustom = eventosCustom.map(e=>({...e, data: normalizarData(e.data)}));
   renderCalendario();
 }
 function renderCalendario(){
@@ -1577,7 +1785,7 @@ function renderCalendario(){
   const hoje=new Date();
   const hojeISO=`${hoje.getFullYear()}-${String(hoje.getMonth()+1).padStart(2,'0')}-${String(hoje.getDate()).padStart(2,'0')}`;
   const eventosPorDia={};
-  [...EVENTOS_FIXOS,...eventosCustom.map(e=>({data:normalizarData(e.data),titulo:e.titulo,tipo:e.tipo||'custom'}))].forEach(ev=>{
+  [...EVENTOS_FIXOS,...eventosCustom.map(e=>({data:e.data,titulo:e.titulo,tipo:e.tipo||'custom'}))].forEach(ev=>{
     const d=String(ev.data||'').slice(0,7);
     if(d===`${calAnoAtual}-${String(calMesAtual+1).padStart(2,'0')}`){
       const dia=parseInt(String(ev.data).slice(8,10));
@@ -1601,7 +1809,7 @@ function renderCalendario(){
     html+=`<div class="${cls}" ${onclick}>${d}</div>`;
   }
   document.getElementById('calGrid').innerHTML=html;
-  const todosDoMes=[...EVENTOS_FIXOS,...eventosCustom.map(e=>({...e,data:normalizarData(e.data),custom:true}))].filter(e=>String(e.data||'').slice(0,7)===`${calAnoAtual}-${String(calMesAtual+1).padStart(2,'0')}`).sort((a,b)=>String(a.data).localeCompare(String(b.data)));
+  const todosDoMes=[...EVENTOS_FIXOS,...eventosCustom.map(e=>({...e,custom:true}))].filter(e=>String(e.data||'').slice(0,7)===`${calAnoAtual}-${String(calMesAtual+1).padStart(2,'0')}`).sort((a,b)=>String(a.data).localeCompare(String(b.data)));
   document.getElementById('calEventosLista').innerHTML=todosDoMes.length?todosDoMes.map(e=>{
     const custom=e.custom||!EVENTOS_FIXOS.find(f=>f.data===e.data&&f.titulo===e.titulo);
     return `<div class="evento-item ${custom?'custom':''}"><span class="evento-data">${fmtData(e.data)}</span><span>${esc(e.titulo)}</span></div>`;
@@ -1614,7 +1822,7 @@ function mudarMes(dir){
   renderCalendario();
 }
 function abrirDiaCal(iso){
-  const evs=[...EVENTOS_FIXOS,...eventosCustom.map(e=>({...e,data:normalizarData(e.data),custom:true}))].filter(e=>String(e.data).slice(0,10)===iso);
+  const evs=[...EVENTOS_FIXOS,...eventosCustom.map(e=>({...e,custom:true}))].filter(e=>String(e.data).slice(0,10)===iso);
   document.getElementById('calDiaTitulo').textContent=`📅 ${fmtData(iso)}`;
   document.getElementById('calDiaConteudo').innerHTML=evs.map(e=>`
     <div style="padding:8px 12px;border-left:4px solid ${e.custom?'var(--verde)':'var(--amarelo)'};background:${e.custom?'var(--verde-cl)':'var(--amar-cl)'};border-radius:6px;margin-bottom:8px;font-size:0.88rem;">
@@ -1660,27 +1868,15 @@ async function salvarEventoCal(){
   if(editId)payload.id=editId;
   try{
     const r=await apiPost(payload);
-    if(r.ok){
-      toast('✅ Evento salvo!');
-      limparFormCal();
-      eventosCustom=await apiGet('Calendario');
-      eventosCustom=eventosCustom.map(e=>({...e,data:normalizarData(e.data)}));
-      renderCalendario();
-      renderAdminCalList();
-    }else toast('❌ '+(r.erro||'Erro'));
+    if(r.ok){toast('✅ Evento salvo!');limparFormCal();eventosCustom=await apiGet('Calendario');renderCalendario();renderAdminCalList();}
+    else toast('❌ '+(r.erro||'Erro'));
   }catch(e){toast('❌ '+e.message);}
 }
 async function excluirEventoCal(id){
   if(!confirm('Excluir evento?'))return;
   try{
     const r=await apiPost({action:'excluirEvento',id});
-    if(r.ok){
-      toast('🗑️ Excluído.');
-      eventosCustom=await apiGet('Calendario');
-      eventosCustom=eventosCustom.map(e=>({...e,data:normalizarData(e.data)}));
-      renderCalendario();
-      renderAdminCalList();
-    }
+    if(r.ok){toast('🗑️ Excluído.');eventosCustom=await apiGet('Calendario');renderCalendario();renderAdminCalList();}
   }catch(e){toast('❌ '+e.message);}
 }
 function limparFormCal(){
@@ -1688,6 +1884,7 @@ function limparFormCal(){
   document.getElementById('calEventoTipo').value='evento';
   document.getElementById('formCalTitulo').textContent='➕ Novo Evento';
 }
+
 /* ══════════════════════════════════════════════════════
    ANIVERSARIANTES
 ══════════════════════════════════════════════════════ */
@@ -1882,16 +2079,28 @@ async function salvarDataPlantao(){
     if(r.ok){
       toast(editId?'✅ Data atualizada!':'✅ Data salva!');
       limparFormPlantao();
-      try{plantaoDatas=await apiGet('PlantaoDatas');plantaoDatas.sort((a,b)=>String(a.data).localeCompare(String(b.data)));}catch(e2){plantaoDatas=[];}
+      // Recarrega datas aguardando a resposta antes de renderizar
+      try{
+        plantaoDatas=await apiGet('PlantaoDatas');
+        plantaoDatas.sort((a,b)=>String(a.data).localeCompare(String(b.data)));
+      }catch(e2){plantaoDatas=[];}
       renderAdminPlantaoDatasList();
+      // Recarrega a tabela do plantão sem sobrescrever plantaoDatas
       await _recarregarTabelaPlantao();
     }else{
+      // Mostra o erro completo para diagnóstico
       const msgErro = r.erro || r.stack || JSON.stringify(r);
       toast('❌ Servidor: '+msgErro.slice(0,120));
+      console.error('Erro servidor plantao:', r);
     }
-  }catch(e){toast('❌ Conexão: '+e.message);}
+  }catch(e){
+    toast('❌ Conexão: '+e.message);
+    console.error('Erro fetch plantao:', e);
+  }
   finally{if(btn){btn.disabled=false;btn.innerHTML='💾 Salvar Data';}}
 }
+
+// Recarrega a tabela usando plantaoDatas já carregados + alunos + presenças frescos
 async function _recarregarTabelaPlantao(){
   try{
     plantaoAlunos=await apiGet('PlantaoAlunos');
@@ -1901,18 +2110,26 @@ async function _recarregarTabelaPlantao(){
   }catch(e){console.warn('Erro ao recarregar tabela plantão:',e);}
   renderPlantaoPg();
 }
+
+// Diagnóstico: testa GET e POST do plantão
 async function testarConexaoPlantao(){
   const msg=document.getElementById('diagPlantaoMsg');
   if(msg)msg.textContent='⏳ Testando...';
   try{
+    // Teste GET
     const dados=await apiGet('PlantaoDatas');
     const getOk=Array.isArray(dados);
+    // Teste POST
     const r=await apiPost({action:'salvarPlantaoData',data:'2099-12-31',descricao:'TESTE_DIAGNOSTICO'});
-    if(r.ok){await apiPost({action:'excluirPlantaoData',id:r.id});}
+    if(r.ok){
+      // Remove o registro de teste
+      await apiPost({action:'excluirPlantaoData',id:r.id});
+    }
     const postOk=r.ok;
     const resumo=`GET:${getOk?'✅':'❌'}(${dados.length||0} reg) | POST:${postOk?'✅':'❌('+( r.erro||'?')+')'}`;
     if(msg)msg.textContent=resumo;
     toast(resumo,4000);
+    // Recarrega lista
     plantaoDatas=dados;plantaoDatas.sort((a,b)=>String(a.data).localeCompare(String(b.data)));
     renderAdminPlantaoDatasList();
   }catch(e){
@@ -1990,7 +2207,11 @@ async function carregarPlantaoPg(){
   const div=document.getElementById('plantaoPgConteudo');
   div.innerHTML='<div class="loading-txt"><span class="spinner spinner-azul"></span> Carregando...</div>';
   try{
-    [plantaoDatas, plantaoAlunos] = await Promise.all([apiGet('PlantaoDatas'),apiGet('PlantaoAlunos')]);
+    // Sempre busca dados frescos do servidor
+    [plantaoDatas, plantaoAlunos] = await Promise.all([
+      apiGet('PlantaoDatas'),
+      apiGet('PlantaoAlunos')
+    ]);
     plantaoDatas.sort((a,b)=>String(a.data).localeCompare(String(b.data)));
     const presRaw=await apiGet('PlantaoPresenca');
     plantaoPresencas={};
@@ -2030,38 +2251,15 @@ function renderPlantaoPg(){
   html+='</div>';
   div.innerHTML=html;
 }
-let plantaoPendentes = {}; // alterações ainda não salvas
-
-function togglePresenca(alunoId,dataId,btn){
+async function togglePresenca(alunoId,dataId,btn){
   const k=`${alunoId}_${dataId}`;
   const cur=plantaoPresencas[k]||'-';
   const prox=cur==='-'?'P':cur==='P'?'F':'-';
   btn.textContent=prox==='-'?'·':prox;
   btn.className='pres-btn '+(prox==='P'?'pres-P':prox==='F'?'pres-F':'pres-aguard');
   plantaoPresencas[k]=prox;
-  plantaoPendentes[k]={alunoId,dataId,status:prox};
-  // Destaca o botão Salvar para indicar alterações pendentes
-  const btnSalvar=document.getElementById('btnSalvarPlantao');
-  if(btnSalvar){btnSalvar.style.animation='pulse 1s infinite';btnSalvar.textContent='💾 Salvar Presenças *';}
-}
-
-async function salvarPlantaoEmLote(){
-  const pendentes=Object.values(plantaoPendentes);
-  if(!pendentes.length){toast('ℹ️ Nenhuma alteração para salvar.');return;}
-  const btn=document.getElementById('btnSalvarPlantao');
-  if(btn){btn.disabled=true;btn.innerHTML='<span class="spinner"></span> Salvando...';}
-  let erros=0;
-  for(const p of pendentes){
-    try{await apiPost({action:'salvarPresenca',alunoId:p.alunoId,dataId:p.dataId,status:p.status});}
-    catch(e){erros++;}
-  }
-  if(btn){btn.disabled=false;btn.style.animation='';btn.textContent='💾 Salvar Presenças';}
-  if(erros===0){
-    toast(`✅ ${pendentes.length} presença(s) salva(s)!`);
-    plantaoPendentes={};
-  }else{
-    toast(`⚠️ ${erros} erro(s) ao salvar. Tente novamente.`);
-  }
+  try{await apiPost({action:'salvarPresenca',alunoId,dataId,status:prox});}
+  catch(e){toast('❌ Erro ao salvar: '+e.message);}
 }
 function imprimirPlantao(){window.print();}
 
@@ -2241,13 +2439,14 @@ function excluirListaSalva(id){
 function imprimirLista(){window.print();}
 
 /* ══════════════════════════════════════════════════════
-   BAIXA EM LISTA
+   BAIXA EM LISTA — 2 abas: BaixaListas + BaixaItens
 ══════════════════════════════════════════════════════ */
 async function carregarBaixas(){
   const div=document.getElementById('baixaConteudo');
   div.innerHTML='<div class="loading-txt"><span class="spinner spinner-azul"></span> Carregando...</div>';
-  try{[baixaListasAll,baixaItensAll]=await Promise.all([apiGet('BaixaListas'),apiGet('BaixaItens')]);}
-  catch(e){baixaListasAll=[];baixaItensAll=[];}
+  try{
+    [baixaListasAll,baixaItensAll]=await Promise.all([apiGet('BaixaListas'),apiGet('BaixaItens')]);
+  }catch(e){baixaListasAll=[];baixaItensAll=[];}
   renderBaixas();
 }
 function renderBaixas(){
@@ -2278,6 +2477,7 @@ function renderBaixas(){
     </div>`;
   }).join('');
 }
+
 async function abrirBaixaLista(listaId){
   const lista=baixaListasAll.find(l=>String(l.id)===String(listaId));
   if(!lista)return;
@@ -2365,6 +2565,8 @@ async function salvarTodasBaixas(){
   }catch(e){toast('❌ Erro: '+e.message);}
   finally{if(btn){btn.disabled=false;btn.innerHTML='💾 Salvar';}}
 }
+
+// Modal nova lista de baixa
 function abrirModalNovaBaixaLista(){
   document.getElementById('baixaNomeLista').value='';
   baixaTipoSel='';
@@ -2491,10 +2693,12 @@ async function salvarBaixaListaCompleta(){
   const btn=document.getElementById('btnSalvarBaixaLista');
   if(btn){btn.disabled=true;btn.innerHTML='<span class="spinner"></span> Salvando...';}
   try{
+    // 1) Cria a lista (metadados)
     const r=await apiPost({action:'criarBaixaLista',nome:baixaAtual.nome,tipo:baixaAtual.tipo});
     if(!r.ok){toast('❌ '+(r.erro||'Erro ao criar lista.'));return;}
     const listaId=r.id;
     baixaAtual.id=listaId;
+    // 2) Salva os itens em batch
     const r2=await apiPost({
       action:'salvarBaixaItensBatch',
       listaId,
@@ -2518,10 +2722,10 @@ async function excluirBaixaLista(id){
 }
 
 /* ══════════════════════════════════════════════════════
-   ATAS — ✅ FIX 2: renderAtas usa id="ataListaConteudo" (sem conflito)
+   ATAS
 ══════════════════════════════════════════════════════ */
 function renderAtas(){
-  const div=document.getElementById('ataListaConteudo');
+  const div=document.getElementById('ataConteudo');
   if(!atas.length){div.innerHTML='<div class="vazio-estado"><div class="vazio-icon">📋</div><p>Nenhuma ata. Clique em <strong>+ Nova Ata</strong>.</p></div>';return;}
   div.innerHTML=[...atas].sort((a,b)=>String(b.data).localeCompare(String(a.data))).map(a=>`
     <div class="ata-card">
@@ -2544,7 +2748,7 @@ function abrirModalNovaAta(){
   document.getElementById('ataHorario').value='';
   document.getElementById('ataTitulo').value='';
   document.getElementById('ataLocal').value='';
-  document.getElementById('ataTexto').value=''; /* ✅ FIX 2: usa ataTexto */
+  document.getElementById('ataConteudo').value='';
   document.getElementById('ataParticipantesWrap').innerHTML='';
   document.getElementById('ataModalTitulo').textContent='📋 Nova Ata de Reunião';
   adicionarCampoParticipante();
@@ -2557,7 +2761,7 @@ function editarAta(id){
   document.getElementById('ataHorario').value=a.horario||'';
   document.getElementById('ataTitulo').value=a.titulo||'';
   document.getElementById('ataLocal').value=a.local||'';
-  document.getElementById('ataTexto').value=a.conteudo||''; /* ✅ FIX 2: usa ataTexto */
+  document.getElementById('ataConteudo').value=a.conteudo||'';
   document.getElementById('ataModalTitulo').textContent='✏️ Editar Ata';
   const wrap=document.getElementById('ataParticipantesWrap');wrap.innerHTML='';
   (a.participantes||[]).forEach(p=>{const row=criarRowParticipante();row.querySelector('input').value=p;wrap.appendChild(row);});
@@ -2572,7 +2776,7 @@ function criarRowParticipante(){
 function adicionarCampoParticipante(){document.getElementById('ataParticipantesWrap').appendChild(criarRowParticipante());}
 function salvarAta(){
   const titulo=document.getElementById('ataTitulo').value.trim();
-  const conteudo=document.getElementById('ataTexto').value.trim(); /* ✅ FIX 2: usa ataTexto */
+  const conteudo=document.getElementById('ataConteudo').value.trim();
   if(!titulo||!conteudo){toast('⚠️ Preencha título e conteúdo.');return;}
   const editId=document.getElementById('ataEditId').value;
   const participantes=[...document.querySelectorAll('#ataParticipantesWrap input')].map(i=>i.value.trim()).filter(Boolean);
@@ -2602,7 +2806,7 @@ function abrirModalListarAtas(){
 }
 function editarAtaModal(id){fecharModal('modalListarAtas');editarAta(id);}
 function imprimirAtaModal(){
-  const a={titulo:document.getElementById('ataTitulo').value,data:document.getElementById('ataData').value,horario:document.getElementById('ataHorario').value,local:document.getElementById('ataLocal').value,conteudo:document.getElementById('ataTexto').value,participantes:[...document.querySelectorAll('#ataParticipantesWrap input')].map(i=>i.value.trim()).filter(Boolean)}; /* ✅ FIX 2 */
+  const a={titulo:document.getElementById('ataTitulo').value,data:document.getElementById('ataData').value,horario:document.getElementById('ataHorario').value,local:document.getElementById('ataLocal').value,conteudo:document.getElementById('ataConteudo').value,participantes:[...document.querySelectorAll('#ataParticipantesWrap input')].map(i=>i.value.trim()).filter(Boolean)};
   document.getElementById('ataImpressaoArea').innerHTML=`
     <div class="ata-impressao-conteudo">
       <h1 style="font-size:1.4rem;text-align:center;margin-bottom:4px;">${NOME_ESCOLA}</h1>
@@ -2662,429 +2866,19 @@ function mudarAbaTotal(aba,btn){
   btn.classList.add('ativo');
   document.getElementById('aba'+aba.charAt(0).toUpperCase()+aba.slice(1)).classList.add('ativo');
 }
-
+/* ══════════════════════════════════════════════════════
+   NOSSA EQUIPE
+══════════════════════════════════════════════════════ */
+function toggleEquipe(header){
+  const detalhe=header.nextElementSibling;
+  const btn=header.querySelector('.equipe-btn-expand');
+  const aberto=detalhe.classList.toggle('visivel');
+  btn.classList.toggle('aberto',aberto);
+}
 /* ══════════════════════════════════════════════════════
    INIT
 ══════════════════════════════════════════════════════ */
 renderLoginUsuarios();
-</script>
-
-<!-- MODAL PLANEJAMENTO -->
-<div class="modal-overlay" id="modalPlanejamento">
-  <div class="modal">
-    <button class="modal-fechar" onclick="fecharModal('modalPlanejamento')">✕</button>
-    <div class="modal-titulo">🗂️ Planejamento</div>
-    <input type="hidden" id="planejamentoId">
-    <label>Disciplina</label>
-    <input type="text" id="planDisciplina">
-
-    <label>Semana 1</label>
-    <input type="text" id="planSemana1">
-
-    <label>Semana 2</label>
-    <input type="text" id="planSemana2">
-
-    <label>Semana 3</label>
-    <input type="text" id="planSemana3">
-
-    <label>Semana 4</label>
-    <input type="text" id="planSemana4">
-
-    <label>Status</label>
-    <select id="planStatus">
-  <option value="Recebido">Recebido</option>
-  <option value="Atrasado">Atrasado</option>
-  <option value="Não entregue">Não entregue</option>
-</select>
-
-    <div style="display:flex;gap:10px;margin-top:16px;">
-      <button class="btn btn-verde" onclick="salvarPlanejamento()">💾 Salvar</button>
-      <button class="btn btn-cinza" onclick="fecharModal('modalPlanejamento')">Cancelar</button>
-    </div>
-  </div>
-</div>
-
-<!-- MODAL LAUDO -->
-<div class="modal-overlay" id="modalLaudo">
-  <div class="modal">
-    <button class="modal-fechar" onclick="fecharModal('modalLaudo')">✕</button>
-    <div class="modal-titulo">🩺 Laudo</div>
-    <input type="hidden" id="laudoId">
-
-    <label>Turma</label>
-    <input type="text" id="laudoTurma">
-
-    <label>Aluno</label>
-    <input type="text" id="laudoAluno">
-
-    <label>CID</label>
-    <input type="text" id="laudoCid">
-
-    <label>Orientações</label>
-    <textarea id="laudoOrientacoes"></textarea>
-
-    <div style="display:flex;gap:10px;margin-top:16px;">
-      <button class="btn btn-verde" onclick="salvarLaudo()">💾 Salvar</button>
-      <button class="btn btn-cinza" onclick="fecharModal('modalLaudo')">Cancelar</button>
-    </div>
-  </div>
-</div>
-
-<!-- MODAL ATESTADO -->
-<div class="modal-overlay" id="modalAtestado">
-  <div class="modal" style="max-width:520px;">
-    <button class="modal-fechar" onclick="fecharModal('modalAtestado')">✕</button>
-    <div class="modal-titulo" id="atestadoModalTitulo">📄 Novo Atestado</div>
-    <input type="hidden" id="atestadoId">
-    <div class="form-grid">
-      <div style="grid-column:1/-1;">
-        <label>Pessoa (aluno ou funcionário) *</label>
-        <input type="text" id="atestadoNome" placeholder="Nome completo...">
-      </div>
-      <div>
-        <label>Tipo</label>
-        <select id="atestadoTipo">
-          <option value="Aluno">🎓 Aluno</option>
-          <option value="Funcionário">👤 Funcionário</option>
-        </select>
-      </div>
-      <div>
-        <label>Turma / Cargo</label>
-        <input type="text" id="atestadoCargo" placeholder="Ex: 5A ou Professor">
-      </div>
-      <div>
-        <label>Data Início *</label>
-        <input type="date" id="atestadoDataInicio" oninput="calcularDiasAtestado()">
-      </div>
-      <div>
-        <label>Data Fim *</label>
-        <input type="date" id="atestadoDataFim" oninput="calcularDiasAtestado()">
-      </div>
-      <div>
-        <label>Quantidade de Dias</label>
-        <input type="text" id="atestadoDias" placeholder="Calculado automaticamente" readonly style="background:#f5f6fa;">
-      </div>
-      <div style="grid-column:1/-1;">
-        <label>Motivo *</label>
-        <textarea id="atestadoMotivo" rows="3" placeholder="Descreva o motivo do atestado..."></textarea>
-      </div>
-    </div>
-    <div style="display:flex;gap:10px;margin-top:16px;">
-      <button class="btn btn-verde" onclick="salvarAtestado()">💾 Salvar</button>
-      <button class="btn btn-cinza" onclick="fecharModal('modalAtestado')">Cancelar</button>
-    </div>
-  </div>
-</div>
-
-<script>
-function validarSenhaPedagogica(){
-
-  const senha = prompt('Digite a senha da Coordenação Pedagógica:');
-
-  if(senha !== 'ped123456'){
-    toast('❌ Senha incorreta!');
-    return false;
-  }
-
-  return true;
-}
-async function carregarPlanejamentos(){
-  try{
-    const dados = await apiGet('Planejamentos');
-    const tbody = document.getElementById('planejamentosTabela');
-    if(!dados.length){
-      tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;">Nenhum planejamento cadastrado.</td></tr>';
-      return;
-    }
-    tbody.innerHTML = dados.map(p => `
-      <tr>
-        <td>${p.disciplina||''}</td>
-        <td>${p.semana1||''}</td>
-        <td>${p.semana2||''}</td>
-        <td>${p.semana3||''}</td>
-        <td>${p.semana4||''}</td>
-        <td>
-  ${
-    p.status === 'Recebido'
-      ? '<span class="badge badge-verde">Recebido</span>'
-      : p.status === 'Atrasado'
-      ? '<span class="badge badge-amarelo">Atrasado</span>'
-      : p.status === 'Não entregue'
-      ? '<span class="badge badge-vermelho">Não entregue</span>'
-      : ''
-  }
-</td>
-        <td>
-          <button class="btn btn-cinza btn-icon" onclick='editarPlanejamento(${JSON.stringify("${p.id}")})'>✏️</button>
-          <button class="btn btn-verm btn-icon" onclick='excluirPlanejamento("${p.id}")'>🗑️</button>
-        </td>
-      </tr>
-    `).join('');
-    window.planejamentosCache = dados;
-  }catch(e){
-    console.error(e);
-  }
-}
-
-function abrirModalPlanejamento(){
-  document.getElementById('planejamentoId').value='';
-  document.getElementById('planDisciplina').value='';
-  document.getElementById('planSemana1').value='';
-  document.getElementById('planSemana2').value='';
-  document.getElementById('planSemana3').value='';
-  document.getElementById('planSemana4').value='';
-  document.getElementById('planStatus').value='';
-  document.getElementById('modalPlanejamento').classList.add('aberto');
-}
-
-function editarPlanejamento(id){
-  const p = (window.planejamentosCache||[]).find(x=>String(x.id)===String(id));
-  if(!p)return;
-  document.getElementById('planejamentoId').value=p.id;
-  document.getElementById('planDisciplina').value=p.disciplina||'';
-  document.getElementById('planSemana1').value=p.semana1||'';
-  document.getElementById('planSemana2').value=p.semana2||'';
-  document.getElementById('planSemana3').value=p.semana3||'';
-  document.getElementById('planSemana4').value=p.semana4||'';
-  document.getElementById('planStatus').value=p.status||'';
-  document.getElementById('modalPlanejamento').classList.add('aberto');
-}
-
-async function salvarPlanejamento(){
-
-  if(!validarSenhaPedagogica()) return;
-
-  const id = document.getElementById('planejamentoId').value;
-  const payload = {
-    action: id ? 'editarPlanejamento' : 'salvarPlanejamento',
-    id:id,
-    disciplina: document.getElementById('planDisciplina').value,
-    semana1: document.getElementById('planSemana1').value,
-    semana2: document.getElementById('planSemana2').value,
-    semana3: document.getElementById('planSemana3').value,
-    semana4: document.getElementById('planSemana4').value,
-    status: document.getElementById('planStatus').value
-  };
-  const r = await apiPost(payload);
-  if(r.ok){
-    fecharModal('modalPlanejamento');
-    carregarPlanejamentos();
-    toast('✅ Planejamento salvo!');
-  }
-}
-
-async function excluirPlanejamento(id){
-  if(!confirm('Excluir planejamento?')) return;
-  const r = await apiPost({action:'excluirPlanejamento',id});
-  if(r.ok){
-    carregarPlanejamentos();
-    toast('🗑️ Planejamento excluído!');
-  }
-}
-
-async function carregarLaudos(){
-  try{
-    const dados = await apiGet('Laudos');
-    const tbody = document.getElementById('laudosTabela');
-    if(!dados.length){
-      tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;">Nenhum laudo cadastrado.</td></tr>';
-      return;
-    }
-    tbody.innerHTML = dados.map(l => `
-      <tr>
-        <td>${l.turma||''}</td>
-        <td>${l.aluno||''}</td>
-        <td>${l.cid||''}</td>
-        <td>${l.orientacoes||''}</td>
-        <td>
-          <button class="btn btn-cinza btn-icon" onclick='editarLaudo("${l.id}")'>✏️</button>
-          <button class="btn btn-verm btn-icon" onclick='excluirLaudo("${l.id}")'>🗑️</button>
-        </td>
-      </tr>
-    `).join('');
-    window.laudosCache = dados;
-  }catch(e){
-    console.error(e);
-  }
-}
-
-function abrirModalLaudo(){
-
-  if(!validarSenhaPedagogica()) return;
-  document.getElementById('laudoId').value='';
-  document.getElementById('laudoTurma').value='';
-  document.getElementById('laudoAluno').value='';
-  document.getElementById('laudoCid').value='';
-  document.getElementById('laudoOrientacoes').value='';
-  document.getElementById('modalLaudo').classList.add('aberto');
-}
-
-function editarLaudo(id){
-
-  if(!validarSenhaPedagogica()) return;
-  const l = (window.laudosCache||[]).find(x=>String(x.id)===String(id));
-  if(!l)return;
-  document.getElementById('laudoId').value=l.id;
-  document.getElementById('laudoTurma').value=l.turma||'';
-  document.getElementById('laudoAluno').value=l.aluno||'';
-  document.getElementById('laudoCid').value=l.cid||'';
-  document.getElementById('laudoOrientacoes').value=l.orientacoes||'';
-  document.getElementById('modalLaudo').classList.add('aberto');
-}
-
-async function salvarLaudo(){
-  const id = document.getElementById('laudoId').value;
-  const payload = {
-    action: id ? 'editarLaudo' : 'salvarLaudo',
-    id:id,
-    turma: document.getElementById('laudoTurma').value,
-    aluno: document.getElementById('laudoAluno').value,
-    cid: document.getElementById('laudoCid').value,
-    orientacoes: document.getElementById('laudoOrientacoes').value
-  };
-  const r = await apiPost(payload);
-  if(r.ok){
-    fecharModal('modalLaudo');
-    carregarLaudos();
-    toast('✅ Laudo salvo!');
-  }
-}
-
-async function excluirLaudo(id){
-
-  if(!validarSenhaPedagogica()) return;
-  if(!confirm('Excluir laudo?')) return;
-  const r = await apiPost({action:'excluirLaudo',id});
-  if(r.ok){
-    carregarLaudos();
-    toast('🗑️ Laudo excluído!');
-  }
-}
-/* ══════════════════════════════════════════════════════
-   ATESTADOS
-══════════════════════════════════════════════════════ */
-async function carregarAtestados(){
-  try{
-    const dados = await apiGet('Atestados');
-    window.atestadosCache = dados;
-    renderAtestados();
-  }catch(e){
-    document.getElementById('atestadosTabela').innerHTML=
-      '<tr><td colspan="7" style="text-align:center;color:var(--vermelho);">Erro ao carregar.</td></tr>';
-  }
-}
-
-function renderAtestados(){
-  const dados = window.atestadosCache || [];
-  const filtro = (document.getElementById('atestadoFiltroNome')?.value||'').toLowerCase().trim();
-  const filtrados = filtro ? dados.filter(a=>String(a.nome||'').toLowerCase().includes(filtro)) : dados;
-  const tbody = document.getElementById('atestadosTabela');
-  if(!filtrados.length){
-    tbody.innerHTML='<tr><td colspan="7" style="text-align:center;color:var(--texto2);padding:20px;">Nenhum atestado encontrado.</td></tr>';
-    return;
-  }
-  const sorted=[...filtrados].sort((a,b)=>String(b.datainicio||b.id).localeCompare(String(a.datainicio||a.id)));
-  const podEditar=!(usuarioLogado&&usuarioLogado.somenteLeitura);
-  tbody.innerHTML=sorted.map(a=>`
-    <tr>
-      <td><strong>${esc(a.nome||'')}</strong><br><span style="font-size:0.78rem;color:var(--texto2);">${esc(a.cargo||'')}</span></td>
-      <td><span class="badge ${a.tipo==='Aluno'?'badge-azul':'badge-roxo'}">${esc(a.tipo||'')}</span></td>
-      <td>${fmtData(a.datainicio)}</td>
-      <td>${fmtData(a.datafim)}</td>
-      <td style="text-align:center;font-weight:700;">${esc(a.dias||'')}</td>
-      <td style="max-width:200px;white-space:normal;font-size:0.85rem;">${esc(a.motivo||'')}</td>
-      <td>
-        <div class="acoes">
-          ${podEditar?`<button class="btn btn-cinza btn-icon" onclick="editarAtestado('${a.id}')">✏️</button>`:''}
-          ${podEditar?`<button class="btn btn-verm btn-icon" onclick="excluirAtestado('${a.id}')">🗑️</button>`:''}
-        </div>
-      </td>
-    </tr>`).join('');
-}
-
-function calcularDiasAtestado(){
-  const ini=document.getElementById('atestadoDataInicio').value;
-  const fim=document.getElementById('atestadoDataFim').value;
-  if(ini&&fim){
-    const d1=new Date(ini),d2=new Date(fim);
-    if(d2>=d1){
-      const dias=Math.round((d2-d1)/(1000*60*60*24))+1;
-      document.getElementById('atestadoDias').value=dias+' dia(s)';
-    }else{
-      document.getElementById('atestadoDias').value='Data inválida';
-    }
-  }
-}
-
-function abrirModalAtestado(){
-  if(usuarioLogado&&usuarioLogado.somenteLeitura){toast('⛔ Sem permissão.');return;}
-  document.getElementById('atestadoId').value='';
-  document.getElementById('atestadoNome').value='';
-  document.getElementById('atestadoTipo').value='Aluno';
-  document.getElementById('atestadoCargo').value='';
-  document.getElementById('atestadoDataInicio').value='';
-  document.getElementById('atestadoDataFim').value='';
-  document.getElementById('atestadoDias').value='';
-  document.getElementById('atestadoMotivo').value='';
-  document.getElementById('atestadoModalTitulo').textContent='📄 Novo Atestado';
-  document.getElementById('modalAtestado').classList.add('aberto');
-}
-
-function editarAtestado(id){
-  if(usuarioLogado&&usuarioLogado.somenteLeitura){toast('⛔ Sem permissão.');return;}
-  const a=(window.atestadosCache||[]).find(x=>String(x.id)===String(id));
-  if(!a)return;
-  document.getElementById('atestadoId').value=a.id;
-  document.getElementById('atestadoNome').value=a.nome||'';
-  document.getElementById('atestadoTipo').value=a.tipo||'Aluno';
-  document.getElementById('atestadoCargo').value=a.cargo||'';
-  document.getElementById('atestadoDataInicio').value=a.datainicio||'';
-  document.getElementById('atestadoDataFim').value=a.datafim||'';
-  document.getElementById('atestadoDias').value=a.dias||'';
-  document.getElementById('atestadoMotivo').value=a.motivo||'';
-  document.getElementById('atestadoModalTitulo').textContent='✏️ Editar Atestado';
-  document.getElementById('modalAtestado').classList.add('aberto');
-}
-
-async function salvarAtestado(){
-  const nome=document.getElementById('atestadoNome').value.trim();
-  const dataInicio=document.getElementById('atestadoDataInicio').value;
-  const dataFim=document.getElementById('atestadoDataFim').value;
-  const motivo=document.getElementById('atestadoMotivo').value.trim();
-  if(!nome||!dataInicio||!dataFim||!motivo){toast('⚠️ Preencha nome, datas e motivo.');return;}
-  const id=document.getElementById('atestadoId').value;
-  const acao = id ? 'editarAtestado' : 'salvarAtestado';
-  const payload={
-    action: acao,
-    nome,
-    tipo: document.getElementById('atestadoTipo').value,
-    cargo: document.getElementById('atestadoCargo').value.trim(),
-    datainicio: dataInicio,
-    datafim: dataFim,
-    dias: document.getElementById('atestadoDias').value,
-    motivo
-  };
-  if(id)payload.id=id;
-  console.log('Enviando payload:', JSON.stringify(payload));
-  try{
-    const r=await apiPost(payload);
-    console.log('Resposta:', JSON.stringify(r));
-    if(r.ok){
-      toast('✅ Atestado salvo!');
-      fecharModal('modalAtestado');
-      await carregarAtestados();
-    }else toast('❌ '+(r.erro||'Erro'));
-  }catch(e){toast('❌ Erro: '+e.message);}
-}
-
-async function excluirAtestado(id){
-  if(!confirm('Excluir atestado?'))return;
-  try{
-    const r=await apiPost({action:'excluirAtestado',id});
-    if(r.ok){toast('🗑️ Atestado excluído.');await carregarAtestados();}
-    else toast('❌ '+(r.erro||'Erro'));
-  }catch(e){toast('❌ '+e.message);}
-}
 </script>
 </body>
 </html>
