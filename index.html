@@ -438,7 +438,7 @@
     <div class="login-sistema-nome">Sistema Prático Escolar</div>
     <div class="login-sistema-sub">Escola Municipal — Faça login para continuar</div>
     <div class="login-usuarios" id="loginUsuarios"></div>
-    <label id="labelSenha" style="text-align:left;margin-bottom:4px;">Senha</label>
+    <label style="text-align:left;margin-bottom:4px;">Senha</label>
     <div class="login-senha-wrap">
       <input type="password" id="loginSenha" placeholder="••••••" maxlength="20" onkeydown="if(event.key==='Enter')fazerLogin()">
       <button class="login-olho" onclick="toggleVerSenha('loginSenha','loginOlho')" id="loginOlho">👁️</button>
@@ -724,8 +724,11 @@
       </div>
     </section>
 
-    <!-- MINHA EQUIPE -->
-    <section class="secao" id="sec-equipe">
+  </div>
+</div>
+</div>
+<!-- MINHA EQUIPE -->
+<section class="secao" id="sec-equipe">
   <div class="card">
     <div class="card-titulo">👥 Minha Equipe</div>
 
@@ -1023,11 +1026,7 @@
     </div>
 
   </div>
-    </section>
-
-  </div><!-- fim main-wrapper -->
-</div><!-- fim app-layout -->
-</div><!-- fim appContent -->
+</section>
 <!-- ════ MODAIS ════ -->
 
 <!-- NOTÍCIA COMPLETA -->
@@ -1369,7 +1368,7 @@ const USUARIOS = [
   {nome:"Januacelis",cargo:"Coordenador Pedagógico",  senha:"manoel1234", somenteLeitura:false},
   {nome:"Jessica",   cargo:"Secretaria Escolar",      senha:"manoel1234", somenteLeitura:false},
   {nome:"Professor", cargo:"Professor",               senha:"1234", somenteLeitura:true},
-  {nome:"Visitante", cargo:"Operacional",             senha:"", somenteLeitura:true},
+  {nome:"Visitante", cargo:"Operacional",             senha:"1234", somenteLeitura:true},
 ];
 
 const NOME_ESCOLA     = "Escola Municipal";
@@ -1550,15 +1549,12 @@ function selecionarUsuario(idx,el){
   if(el)el.classList.add('selecionado');
   document.getElementById('loginSenha').value='';
   document.getElementById('loginErro').textContent='';
-  const semSenha = USUARIOS[idx].senha === '';
-  document.getElementById('labelSenha').style.display = semSenha ? 'none' : '';
-  document.getElementById('loginSenha').closest('.login-senha-wrap').style.display = semSenha ? 'none' : '';
-  if(!semSenha) setTimeout(()=>document.getElementById('loginSenha').focus(),50);
+  setTimeout(()=>document.getElementById('loginSenha').focus(),50);
 }
 function fazerLogin(){
   const u=USUARIOS[usuarioSelecionadoIdx];
   const senha=document.getElementById('loginSenha').value;
-  if(u.senha !== '' && senha !== u.senha){
+  if(senha!==u.senha){
     document.getElementById('loginErro').textContent='❌ Senha incorreta.';
     document.getElementById('loginSenha').value='';
     const card=document.querySelector('.login-card');
@@ -1605,8 +1601,7 @@ function irPara(secao,btn){
   document.getElementById('sec-'+secao).classList.add('ativa');
   if(btn)btn.classList.add('ativo');
   fecharSidebar();
-  window.scrollTo({top:0, behavior:'instant'});
-  if(secao==='calendario')
+  if(secao==='calendario')      carregarEventosCal();
   if(secao==='aniversariantes') renderAniversariantes();
   if(secao==='avisos')          carregarAvisos();
   if(secao==='cadastro')        renderCadastroLista();
@@ -2043,15 +2038,37 @@ function renderPesquisa(){
 /* ══════════════════════════════════════════════════════
    DOWNLOADS
 ══════════════════════════════════════════════════════ */
+const DOWNLOADS_FIXOS = [
+  {
+    id:'fixo-intervalos',
+    nome:'Intervalos',
+    categoria:'Arquivos',
+    descricao:'Tabela de intervalos',
+    icone:'📋',
+    link:'https://raw.githubusercontent.com/isaweresistemas/praticoescolar/main/arquivos/intervalos.jpg',
+    fixo: true
+  },
+  {
+    id:'fixo-quantidade',
+    nome:'Quantidade',
+    categoria:'Arquivos',
+    descricao:'Relatório de quantidade',
+    icone:'📊',
+    link:'https://raw.githubusercontent.com/isaweresistemas/praticoescolar/main/arquivos/quantidade.pdf',
+    fixo: true
+  },
+];
+
 async function carregarDownloads(){
   try{downloads=await apiGet('Downloads');}catch(e){downloads=[];}
   renderDownloads();
 }
 function renderDownloads(){
-  const cats=[...new Set(downloads.map(d=>d.categoria).filter(Boolean))];
+  const todos=[...DOWNLOADS_FIXOS,...downloads];
+  const cats=[...new Set(todos.map(d=>d.categoria).filter(Boolean))];
   document.getElementById('downloadsCats').innerHTML=`<button class="cat-btn ${!downloadFiltCat?'ativo':''}" onclick="filtrarDownload('')">Todos</button>`+
     cats.map(c=>`<button class="cat-btn ${downloadFiltCat===c?'ativo':''}" onclick="filtrarDownload('${esc(c)}')">${esc(c)}</button>`).join('');
-  const filtrados=downloadFiltCat?downloads.filter(d=>d.categoria===downloadFiltCat):downloads;
+  const filtrados=downloadFiltCat?todos.filter(d=>d.categoria===downloadFiltCat):todos;
   const div=document.getElementById('downloadsConteudo');
   if(!filtrados.length){div.innerHTML='<div class="vazio-estado"><div class="vazio-icon">📭</div><p>Nenhum arquivo disponível.</p></div>';return;}
   div.innerHTML=`<div class="downloads-grid">${filtrados.map(d=>`
@@ -3405,9 +3422,6 @@ function toggleEquipe(row){
   detalhe.classList.toggle('visivel', !aberto);
   plus.classList.toggle('aberto', !aberto);
   plus.textContent = aberto ? '+' : '−';
-  if(!aberto){
-    setTimeout(()=>{ row.scrollIntoView({behavior:'smooth', block:'start'}); }, 50);
-  }
 }
 </script>
 </body>
