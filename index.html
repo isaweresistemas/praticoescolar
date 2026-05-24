@@ -2043,15 +2043,24 @@ function renderPesquisa(){
 /* ══════════════════════════════════════════════════════
    DOWNLOADS
 ══════════════════════════════════════════════════════ */
+const DOWNLOADS_FIXOS = [
+  {id:'fixo-01', nome:'Calendário 2026',        categoria:'Arquivos', descricao:'Calendário escolar do ano letivo',    icone:'📅', link:'https://raw.githubusercontent.com/isaweresistemas/praticoescolar/main/arquivos/calendario.pdf'},
+  {id:'fixo-02', nome:'Horário Escolar',         categoria:'Arquivos', descricao:'Horário das disciplinas',             icone:'🗓️', link:'https://raw.githubusercontent.com/isaweresistemas/praticoescolar/main/arquivos/horario.pdf'},
+  {id:'fixo-03', nome:'Intervalos',              categoria:'Arquivos', descricao:'Tabela de intervalos',                icone:'📋', link:'https://raw.githubusercontent.com/isaweresistemas/praticoescolar/main/arquivos/intervalos.jpg'},
+  {id:'fixo-04', nome:'Jornal Escolar',          categoria:'Arquivos', descricao:'Jornal informativo da escola',        icone:'📰', link:'https://raw.githubusercontent.com/isaweresistemas/praticoescolar/main/arquivos/jornal.pdf'},
+  {id:'fixo-05', nome:'Quantitativo de Alunos',  categoria:'Arquivos', descricao:'Relatório de quantidade de alunos',  icone:'📊', link:'https://raw.githubusercontent.com/isaweresistemas/praticoescolar/main/arquivos/quantidade.pdf'},
+];
+
 async function carregarDownloads(){
   try{downloads=await apiGet('Downloads');}catch(e){downloads=[];}
   renderDownloads();
 }
 function renderDownloads(){
-  const cats=[...new Set(downloads.map(d=>d.categoria).filter(Boolean))];
+  const todos=[...DOWNLOADS_FIXOS,...downloads];
+  const cats=[...new Set(todos.map(d=>d.categoria).filter(Boolean))];
   document.getElementById('downloadsCats').innerHTML=`<button class="cat-btn ${!downloadFiltCat?'ativo':''}" onclick="filtrarDownload('')">Todos</button>`+
     cats.map(c=>`<button class="cat-btn ${downloadFiltCat===c?'ativo':''}" onclick="filtrarDownload('${esc(c)}')">${esc(c)}</button>`).join('');
-  const filtrados=downloadFiltCat?downloads.filter(d=>d.categoria===downloadFiltCat):downloads;
+  const filtrados=downloadFiltCat?todos.filter(d=>d.categoria===downloadFiltCat):todos;
   const div=document.getElementById('downloadsConteudo');
   if(!filtrados.length){div.innerHTML='<div class="vazio-estado"><div class="vazio-icon">📭</div><p>Nenhum arquivo disponível.</p></div>';return;}
   div.innerHTML=`<div class="downloads-grid">${filtrados.map(d=>`
