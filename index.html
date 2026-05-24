@@ -438,7 +438,7 @@
     <div class="login-sistema-nome">Sistema Prático Escolar</div>
     <div class="login-sistema-sub">Escola Municipal — Faça login para continuar</div>
     <div class="login-usuarios" id="loginUsuarios"></div>
-    <label style="text-align:left;margin-bottom:4px;">Senha</label>
+    <label id="labelSenha" style="text-align:left;margin-bottom:4px;">Senha</label>
     <div class="login-senha-wrap">
       <input type="password" id="loginSenha" placeholder="••••••" maxlength="20" onkeydown="if(event.key==='Enter')fazerLogin()">
       <button class="login-olho" onclick="toggleVerSenha('loginSenha','loginOlho')" id="loginOlho">👁️</button>
@@ -724,11 +724,8 @@
       </div>
     </section>
 
-  </div>
-</div>
-</div>
-<!-- MINHA EQUIPE -->
-<section class="secao" id="sec-equipe">
+    <!-- MINHA EQUIPE -->
+    <section class="secao" id="sec-equipe">
   <div class="card">
     <div class="card-titulo">👥 Minha Equipe</div>
 
@@ -983,56 +980,16 @@
       </div>
     </div>
 
-    <!-- INSPETOR -->
-    <div style="margin-bottom:18px;">
-      <div style="background:linear-gradient(90deg,#e8eaf6,#fff);border-left:4px solid #3949ab;border-radius:8px;padding:8px 14px;font-family:'Nunito',sans-serif;font-weight:900;font-size:0.95rem;color:#3949ab;margin-bottom:10px;">🔍 INSPETOR</div>
-      <div class="equipe-item">
-        <div class="equipe-nome-row" onclick="toggleEquipe(this)">
-          <span>Damião Vitor Aires da Silva</span><span class="equipe-plus">+</span>
-        </div>
-        <div class="equipe-detalhe">
-          <div><strong>Função:</strong> Inspetor</div>
-          <div><strong>Turno:</strong> Manhã</div>
-          <div><strong>Data de Nascimento:</strong> 23/09/2003</div>
-        </div>
-      </div>
-    </div>
-<!-- MERENDEIRAS E AUXILIARES -->
+    <!-- MERENDEIRAS E AUXILIARES -->
     <div style="margin-bottom:18px;">
       <div style="background:linear-gradient(90deg,var(--amar-cl),#fff);border-left:4px solid var(--amarelo);border-radius:8px;padding:8px 14px;font-family:'Nunito',sans-serif;font-weight:900;font-size:0.95rem;color:var(--amarelo);margin-bottom:10px;">🍽️ MERENDEIRAS E AUXILIARES</div>
-
       <div class="equipe-item">
         <div class="equipe-nome-row" onclick="toggleEquipe(this)">
-          <span>Dayanne Maria da Silva Quaresma</span><span class="equipe-plus">+</span>
+          <span>A preencher</span><span class="equipe-plus">+</span>
         </div>
         <div class="equipe-detalhe">
-          <div><strong>Função:</strong> Merendeira</div>
-          <div><strong>Turno:</strong> Manhã e Tarde</div>
-          <div><strong>Vínculo:</strong> Contratada</div>
-        </div>
-      </div>
-
-      <div class="equipe-item">
-        <div class="equipe-nome-row" onclick="toggleEquipe(this)">
-          <span>Maria Aparecida Gomes de Alcântara</span><span class="equipe-plus">+</span>
-        </div>
-        <div class="equipe-detalhe">
-          <div><strong>Função:</strong> Auxiliar de Merenda</div>
-          <div><strong>Turno:</strong> Tarde</div>
-          <div><strong>Vínculo:</strong> Contratada</div>
-          <div><strong>Data de Nascimento:</strong> 16/04/1983</div>
-        </div>
-      </div>
-
-      <div class="equipe-item">
-        <div class="equipe-nome-row" onclick="toggleEquipe(this)">
-          <span>Maria Josilene Alves Nascimento Silva</span><span class="equipe-plus">+</span>
-        </div>
-        <div class="equipe-detalhe">
-          <div><strong>Função:</strong> Aux. Merenda</div>
-          <div><strong>Turno:</strong> Manhã</div>
-          <div><strong>Vínculo:</strong> Contratada</div>
-          <div><strong>Data de Nascimento:</strong> 10/08/1990</div>
+          <div><strong>Função:</strong> —</div>
+          <div><strong>Vínculo:</strong> —</div>
         </div>
       </div>
     </div>
@@ -1040,156 +997,37 @@
     <!-- APOIO -->
     <div style="margin-bottom:18px;">
       <div style="background:linear-gradient(90deg,#f3e5f5,#fff);border-left:4px solid var(--roxo);border-radius:8px;padding:8px 14px;font-family:'Nunito',sans-serif;font-weight:900;font-size:0.95rem;color:var(--roxo);margin-bottom:10px;">🧹 APOIO</div>
-
       <div class="equipe-item">
         <div class="equipe-nome-row" onclick="toggleEquipe(this)">
-          <span>Eliane Tavares Aires da Silva</span><span class="equipe-plus">+</span>
+          <span>A preencher</span><span class="equipe-plus">+</span>
         </div>
         <div class="equipe-detalhe">
-          <div><strong>Turno:</strong> Tarde</div>
-          <div><strong>Vínculo:</strong> Contratada</div>
-        </div>
-      </div>
-
-      <div class="equipe-item">
-        <div class="equipe-nome-row" onclick="toggleEquipe(this)">
-          <span>Maria Janete Silva de Macêdo</span><span class="equipe-plus">+</span>
-        </div>
-        <div class="equipe-detalhe">
-          <div><strong>Função:</strong> Aux. Serviços Gerais</div>
-          <div><strong>Turno:</strong> Manhã e Tarde</div>
-          <div><strong>Vínculo:</strong> Efetiva</div>
-          <div><strong>Data de Nascimento:</strong> 17/01/1977</div>
-        </div>
-      </div>
-
-      <div class="equipe-item">
-        <div class="equipe-nome-row" onclick="toggleEquipe(this)">
-          <span>Geandra Oliveira Gomes</span><span class="equipe-plus">+</span>
-        </div>
-        <div class="equipe-detalhe">
-          <div><strong>Função:</strong> Aux. Serviços Gerais</div>
-          <div><strong>Turno:</strong> Manhã e Tarde</div>
-          <div><strong>Vínculo:</strong> Contratada</div>
-          <div><strong>Data de Nascimento:</strong> 22/01/1982</div>
+          <div><strong>Função:</strong> —</div>
+          <div><strong>Vínculo:</strong> —</div>
         </div>
       </div>
     </div>
 
-<!-- CUIDADORES -->
+    <!-- CUIDADORES -->
     <div style="margin-bottom:18px;">
       <div style="background:linear-gradient(90deg,var(--verde-cl),#fff);border-left:4px solid var(--verde);border-radius:8px;padding:8px 14px;font-family:'Nunito',sans-serif;font-weight:900;font-size:0.95rem;color:var(--verde);margin-bottom:10px;">🤝 CUIDADORES(AS)</div>
-
       <div class="equipe-item">
         <div class="equipe-nome-row" onclick="toggleEquipe(this)">
-          <span>Ana Clara Gouveia Almeida</span><span class="equipe-plus">+</span>
+          <span>A preencher</span><span class="equipe-plus">+</span>
         </div>
         <div class="equipe-detalhe">
-          <div><strong>Turno:</strong> Manhã</div>
-          <div><strong>Turma:</strong> 6º ano A</div>
-          <div><strong>Estudantes:</strong> Anthony Gabriel, Maria Letícia e Pedro Rafael</div>
-          <div><strong>Data de Nascimento:</strong> 14/04/2005</div>
+          <div><strong>Função:</strong> —</div>
+          <div><strong>Vínculo:</strong> —</div>
         </div>
       </div>
-
-      <div class="equipe-item">
-        <div class="equipe-nome-row" onclick="toggleEquipe(this)">
-          <span>Thamara Kimylli Gonçalves Mariano</span><span class="equipe-plus">+</span>
-        </div>
-        <div class="equipe-detalhe">
-          <div><strong>Turno:</strong> Manhã</div>
-          <div><strong>Turma:</strong> 4º ano</div>
-          <div><strong>Data de Nascimento:</strong> 16/02/2000</div>
-        </div>
-      </div>
-
-      <div class="equipe-item">
-        <div class="equipe-nome-row" onclick="toggleEquipe(this)">
-          <span>Wagna Danielly Feitoza da Silva</span><span class="equipe-plus">+</span>
-        </div>
-        <div class="equipe-detalhe">
-          <div><strong>Turno:</strong> Tarde</div>
-          <div><strong>Turma:</strong> 1º ano B</div>
-          <div><strong>Estudantes:</strong> José Guilherme e Samuel Wagner</div>
-          <div><strong>Data de Nascimento:</strong> 12/10/2003</div>
-        </div>
-      </div>
-
-      <div class="equipe-item">
-        <div class="equipe-nome-row" onclick="toggleEquipe(this)">
-          <span>Wesley Eduardo de Souza Costa</span><span class="equipe-plus">+</span>
-        </div>
-        <div class="equipe-detalhe">
-          <div><strong>Turno:</strong> Tarde</div>
-          <div><strong>Turma:</strong> 2º ano B</div>
-          <div><strong>Estudantes:</strong> Arthur Antônio, Asafe, Emilly Nicoly e João Nicolas</div>
-          <div><strong>Data de Nascimento:</strong> 07/03/2000</div>
-        </div>
-      </div>
-
-      <div class="equipe-item">
-        <div class="equipe-nome-row" onclick="toggleEquipe(this)">
-          <span>Joelma Ferreira</span><span class="equipe-plus">+</span>
-        </div>
-        <div class="equipe-detalhe">
-          <div><strong>Turno:</strong> Manhã</div>
-          <div><strong>Turma:</strong> 2º ano A</div>
-          <div><strong>Estudantes:</strong> Isaac, Isaías, João Lucas, André Luiz, Enzo Arimael, Benício, Alice</div>
-          <div><strong>Data de Nascimento:</strong> 20/01/1987</div>
-        </div>
-      </div>
-
-      <div class="equipe-item">
-        <div class="equipe-nome-row" onclick="toggleEquipe(this)">
-          <span>Ana Júlia Santos de Freitas</span><span class="equipe-plus">+</span>
-        </div>
-        <div class="equipe-detalhe">
-          <div><strong>Turno:</strong> Tarde</div>
-          <div><strong>Turma:</strong> 6º ano B</div>
-          <div><strong>Estudantes:</strong> Lukaian e José Rafael</div>
-          <div><strong>Data de Nascimento:</strong> 16/09/2006</div>
-        </div>
-      </div>
-
-      <div class="equipe-item">
-        <div class="equipe-nome-row" onclick="toggleEquipe(this)">
-          <span>Raylla Mayane das Neves Cezar</span><span class="equipe-plus">+</span>
-        </div>
-        <div class="equipe-detalhe">
-          <div><strong>Turno:</strong> Tarde</div>
-          <div><strong>Turma:</strong> 5º ano B</div>
-          <div><strong>Estudantes:</strong> Lorenzo, Oscar, Guilherme, Gabriella</div>
-          <div><strong>Data de Nascimento:</strong> 04/01/1998</div>
-        </div>
-      </div>
-
-      <div class="equipe-item">
-        <div class="equipe-nome-row" onclick="toggleEquipe(this)">
-          <span>Fabíola Araújo dos Santos</span><span class="equipe-plus">+</span>
-        </div>
-        <div class="equipe-detalhe">
-          <div><strong>Turno:</strong> Manhã</div>
-          <div><strong>Turma:</strong> 2º ano A</div>
-          <div><strong>Estudantes:</strong> Isaac, Isaías, João Lucas, André Luiz, Enzo Arimael, Benício, Alice</div>
-          <div><strong>Data de Nascimento:</strong> 10/03/2000</div>
-        </div>
-      </div>
-
-      <div class="equipe-item">
-        <div class="equipe-nome-row" onclick="toggleEquipe(this)">
-          <span>Kalyandra de Souza da Costa</span><span class="equipe-plus">+</span>
-        </div>
-        <div class="equipe-detalhe">
-          <div><strong>Turno:</strong> Manhã</div>
-          <div><strong>Turma:</strong> 1º ano A</div>
-          <div><strong>Estudantes:</strong> Davi Basílio, José Fernando, Yasmim Diunízio, Luiz Henrique, Davi Carvalho</div>
-          <div><strong>Data de Nascimento:</strong> 26/01/1994</div>
-        </div>
-      </div>
-
     </div>
-</section>
 
+  </div>
+    </section>
+
+  </div><!-- fim main-wrapper -->
+</div><!-- fim app-layout -->
+</div><!-- fim appContent -->
 <!-- ════ MODAIS ════ -->
 
 <!-- NOTÍCIA COMPLETA -->
@@ -1531,7 +1369,7 @@ const USUARIOS = [
   {nome:"Januacelis",cargo:"Coordenador Pedagógico",  senha:"manoel1234", somenteLeitura:false},
   {nome:"Jessica",   cargo:"Secretaria Escolar",      senha:"manoel1234", somenteLeitura:false},
   {nome:"Professor", cargo:"Professor",               senha:"1234", somenteLeitura:true},
-  {nome:"Visitante", cargo:"Operacional",             senha:"1234", somenteLeitura:true},
+  {nome:"Visitante", cargo:"Operacional",             senha:"", somenteLeitura:true},
 ];
 
 const NOME_ESCOLA     = "Escola Municipal";
@@ -1712,12 +1550,15 @@ function selecionarUsuario(idx,el){
   if(el)el.classList.add('selecionado');
   document.getElementById('loginSenha').value='';
   document.getElementById('loginErro').textContent='';
-  setTimeout(()=>document.getElementById('loginSenha').focus(),50);
+  const semSenha = USUARIOS[idx].senha === '';
+  document.getElementById('labelSenha').style.display = semSenha ? 'none' : '';
+  document.getElementById('loginSenha').closest('.login-senha-wrap').style.display = semSenha ? 'none' : '';
+  if(!semSenha) setTimeout(()=>document.getElementById('loginSenha').focus(),50);
 }
 function fazerLogin(){
   const u=USUARIOS[usuarioSelecionadoIdx];
   const senha=document.getElementById('loginSenha').value;
-  if(senha!==u.senha){
+  if(u.senha !== '' && senha !== u.senha){
     document.getElementById('loginErro').textContent='❌ Senha incorreta.';
     document.getElementById('loginSenha').value='';
     const card=document.querySelector('.login-card');
@@ -1764,7 +1605,8 @@ function irPara(secao,btn){
   document.getElementById('sec-'+secao).classList.add('ativa');
   if(btn)btn.classList.add('ativo');
   fecharSidebar();
-  if(secao==='calendario')      carregarEventosCal();
+  window.scrollTo({top:0, behavior:'instant'});
+  if(secao==='calendario')
   if(secao==='aniversariantes') renderAniversariantes();
   if(secao==='avisos')          carregarAvisos();
   if(secao==='cadastro')        renderCadastroLista();
@@ -3563,6 +3405,9 @@ function toggleEquipe(row){
   detalhe.classList.toggle('visivel', !aberto);
   plus.classList.toggle('aberto', !aberto);
   plus.textContent = aberto ? '+' : '−';
+  if(!aberto){
+    setTimeout(()=>{ row.scrollIntoView({behavior:'smooth', block:'start'}); }, 50);
+  }
 }
 </script>
 </body>
