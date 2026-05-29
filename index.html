@@ -2312,7 +2312,7 @@ function selecionarIcone(icone,el){
    PLANTÃO — DATAS
 ══════════════════════════════════════════════════════ */
 async function carregarPlantaoDatas(){
-  try{plantaoDatas=await apiGet('PlantaoDatas');plantaoDatas=plantaoDatas.map(d=>({...d,data:normalizarData(d.data)}));plantaoDatas.sort((a,b)=>String(a.data).localeCompare(String(b.data)));}catch(e2){plantaoDatas=[];}
+  try{plantaoDatas=await apiGet('PlantaoDatas');plantaoDatas=plantaoDatas.map(d=>({...d,data:normalizarData(d.data)}));plantaoDatas.sort((a,b)=>String(a.data).localeCompare(String(b.data)));}
   catch(e){plantaoDatas=[];}
 }
 async function abrirAdminPlantao(){
@@ -2354,7 +2354,7 @@ async function excluirDataPlantao(id){
     const r=await apiPost({action:'excluirPlantaoData',id});
     if(r.ok){
       toast('🗑️ Data excluída.');
-    try{plantaoDatas=await apiGet('PlantaoDatas');plantaoDatas=plantaoDatas.map(d=>({...d,data:normalizarData(d.data)}));plantaoDatas.sort((a,b)=>String(a.data).localeCompare(String(b.data)));}catch(e2){plantaoDatas=[];}
+      try{plantaoDatas=await apiGet('PlantaoDatas');plantaoDatas=plantaoDatas.map(d=>({...d,data:normalizarData(d.data)}));plantaoDatas.sort((a,b)=>String(a.data).localeCompare(String(b.data)));}catch(e2){plantaoDatas=[];}
       renderAdminPlantaoDatasList();
       await _recarregarTabelaPlantao();
     }else toast('❌ '+(r.erro||'Erro'));
