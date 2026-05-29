@@ -2487,6 +2487,7 @@ async function carregarPlantaoPg(){
   div.innerHTML='<div class="loading-txt"><span class="spinner spinner-azul"></span> Carregando...</div>';
   try{
     [plantaoDatas, plantaoAlunos] = await Promise.all([apiGet('PlantaoDatas'),apiGet('PlantaoAlunos')]);
+    plantaoDatas = plantaoDatas.map(d=>({...d, data: normalizarData(d.data)}));
     plantaoDatas.sort((a,b)=>String(a.data).localeCompare(String(b.data)));
     const presRaw=await apiGet('PlantaoPresenca');
     plantaoPresencas={};
