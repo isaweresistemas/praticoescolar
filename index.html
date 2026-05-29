@@ -2312,7 +2312,7 @@ function selecionarIcone(icone,el){
    PLANTÃO — DATAS
 ══════════════════════════════════════════════════════ */
 async function carregarPlantaoDatas(){
-  try{plantaoDatas=await apiGet('PlantaoDatas');plantaoDatas=plantaoDatas.map(d=>({...d,data:normalizarData(d.data)}));plantaoDatas.sort((a,b)=>String(a.data).localeCompare(String(b.data)));}
+  try{plantaoDatas=await apiGet('PlantaoDatas');plantaoDatas=plantaoDatas.map(d=>({...d,data:normalizarData(d.data)}));plantaoDatas.sort((a,b)=>String(a.data).localeCompare(String(b.data)));}catch(e2){plantaoDatas=[];}
   catch(e){plantaoDatas=[];}
 }
 async function abrirAdminPlantao(){
