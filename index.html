@@ -437,7 +437,12 @@
     <div class="login-logo">📚</div>
     <div class="login-sistema-nome">Sistema Prático Escolar</div>
     <div class="login-sistema-sub">Escola Municipal — Faça login para continuar</div>
-    <div class="login-usuarios" id="loginUsuarios"></div>
+    <div style="margin-bottom:16px;text-align:left;">
+      <label style="font-size:0.82rem;font-weight:700;color:#555;display:block;margin-bottom:6px;">👤 Selecione seu nome</label>
+      <select id="loginSelectUsuario" onchange="selecionarUsuarioPorSelect()"
+        style="width:100%;padding:10px 14px;border:2px solid #dde3ec;border-radius:10px;font-family:'Nunito Sans',sans-serif;font-size:0.95rem;color:#1a1d23;background:#fff;cursor:pointer;transition:border-color 0.18s;">
+      </select>
+    </div>
     <label id="labelSenha" style="text-align:left;margin-bottom:4px;">Senha</label>
     <div class="login-senha-wrap">
       <input type="password" id="loginSenha" placeholder="••••••" maxlength="20" onkeydown="if(event.key==='Enter')fazerLogin()">
@@ -445,6 +450,12 @@
     </div>
     <div class="login-erro" id="loginErro"></div>
     <button class="login-entrar-btn" onclick="fazerLogin()">🔓 Entrar no Sistema</button>
+    <div style="margin-top:24px;padding-top:16px;border-top:1px solid #eee;text-align:center;font-size:0.75rem;color:#aaa;line-height:1.7;">
+      Desenvolvido por<br>
+      <strong style="color:#1565c0;font-size:0.82rem;">ISAWERE SISTEMAS</strong><br>
+      <a href="https://www.isawere.com.br/" target="_blank"
+        style="color:#1565c0;text-decoration:none;font-weight:600;">www.isawere.com.br</a>
+    </div>
   </div>
 </div>
 
@@ -479,8 +490,9 @@
       <button onclick="irPara('totalizador',this)"><span class="nav-icon">📊</span> Totalizador</button>
     </nav>
     <div class="sidebar-footer">
-      <strong style="color:rgba(255,255,255,0.7);">Isawere Sistemas</strong><br>
-      <a href="https://isaweretotal.ct.ws/" target="_blank">isaweretotal.ct.ws</a>
+      <strong style="color:rgba(255,255,255,0.7);">Desenvolvido por</strong><br>
+      <strong style="color:#fff;">ISAWERE SISTEMAS</strong><br>
+      <a href="https://www.isawere.com.br/" target="_blank">www.isawere.com.br</a>
     </div>
   </aside>
 
@@ -649,12 +661,17 @@
       </div>
     </section>
 
-    <!-- ALUNOS COM LAUDOS -->
+  <!-- ALUNOS COM LAUDOS -->
     <section class="secao" id="sec-laudos">
       <div class="card">
         <div class="admin-bar">
           <div class="card-titulo" style="margin:0;">🩺 Alunos com Laudos</div>
           <button class="btn btn-roxo btn-icon btn-edicao" onclick="abrirModalLaudo()" style="font-size:0.8rem;padding:6px 12px;">+ Novo Laudo</button>
+        </div>
+        <div style="display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap;">
+          <input type="text" id="laudoFiltroNome" placeholder="🔍 Filtrar por nome..." style="flex:2;min-width:160px;" oninput="renderLaudos()">
+          <input type="text" id="laudoFiltroTurma" placeholder="🏫 Filtrar por turma..." style="flex:1;min-width:120px;" oninput="renderLaudos()">
+          <input type="text" id="laudoFiltroCid" placeholder="🏷️ Filtrar por CID..." style="flex:1;min-width:120px;" oninput="renderLaudos()">
         </div>
 
         <div class="tabela-wrapper">
@@ -1538,12 +1555,14 @@
 const API_URL = "https://script.google.com/macros/s/AKfycbzP_n9hFNcnMgDzEIUTYyl5CVa__JPWBbOF7F20p46B9qgwVx8o0p21ay62qRq3bzM4/exec";
 
 const USUARIOS = [
-  {nome:"Kadigina",  cargo:"Diretora",               senha:"manoel1234", somenteLeitura:false},
-  {nome:"Ivan",      cargo:"Coordenador Pedagógico",  senha:"manoel1234", somenteLeitura:false},
-  {nome:"Januacelis",cargo:"Coordenador Pedagógico",  senha:"manoel1234", somenteLeitura:false},
-  {nome:"Jessica",   cargo:"Secretaria Escolar",      senha:"manoel1234", somenteLeitura:false},
-  {nome:"Professor", cargo:"Professor",               senha:"1234", somenteLeitura:true},
-  {nome:"Visitante", cargo:"Operacional",             senha:"", somenteLeitura:true},
+  {nome:"Kadigina",   cargo:"Diretora",               senha:"manoel1234", somenteLeitura:false},
+  {nome:"Ivan",       cargo:"Coordenador Pedagógico",  senha:"manoel1234", somenteLeitura:false},
+  {nome:"Januacelis", cargo:"Coordenador Pedagógico",  senha:"manoel1234", somenteLeitura:false},
+  {nome:"Jessica",    cargo:"Secretaria Escolar",      senha:"manoel1234", somenteLeitura:false},
+  {nome:"Jaqueline",  cargo:"Coordenadora SEEDUC",          senha:"manoel1234", somenteLeitura:false},
+  {nome:"Jefferson",  cargo:"Secretario SEDUC",          senha:"manoel1234", somenteLeitura:false},
+  {nome:"Professor",  cargo:"Professor",               senha:"1234", somenteLeitura:true},
+  {nome:"Visitante",  cargo:"Operacional",             senha:"", somenteLeitura:true},
 ];
 
 const NOME_ESCOLA     = "Escola Municipal";
@@ -1707,27 +1726,24 @@ function aplicarModoVisualizacao(){
    LOGIN / LOGOUT
 ══════════════════════════════════════════════════════ */
 function renderLoginUsuarios(){
-  document.getElementById('loginUsuarios').innerHTML=USUARIOS.map((u,i)=>`
-    <div class="login-usuario-btn ${i===0?'selecionado':''}" onclick="selecionarUsuario(${i},this)">
-      <div class="login-user-avatar">${u.nome[0]}</div>
-      <div class="login-user-info">
-        <div class="login-user-nome">${esc(u.nome)}</div>
-        <div class="login-user-cargo">${esc(u.cargo)}${u.somenteLeitura?' <span style="font-size:0.7rem;color:#aaa;">(visualização)</span>':''}</div>
-      </div>
-    </div>`).join('');
-  selecionarUsuario(0,document.querySelector('.login-usuario-btn'));
+  const sel = document.getElementById('loginSelectUsuario');
+  sel.innerHTML = USUARIOS.map((u,i) =>
+    `<option value="${i}">${u.nome} — ${u.cargo}${u.somenteLeitura?' (visualização)':''}</option>`
+  ).join('');
+  sel.value = '0';
+  selecionarUsuarioPorSelect();
 }
-let usuarioSelecionadoIdx=0;
-function selecionarUsuario(idx,el){
-  usuarioSelecionadoIdx=idx;
-  document.querySelectorAll('.login-usuario-btn').forEach(b=>b.classList.remove('selecionado'));
-  if(el)el.classList.add('selecionado');
-  document.getElementById('loginSenha').value='';
-  document.getElementById('loginErro').textContent='';
+let usuarioSelecionadoIdx = 0;
+function selecionarUsuarioPorSelect(){
+  const sel = document.getElementById('loginSelectUsuario');
+  const idx = parseInt(sel.value);
+  usuarioSelecionadoIdx = idx;
+  document.getElementById('loginSenha').value = '';
+  document.getElementById('loginErro').textContent = '';
   const semSenha = USUARIOS[idx].senha === '';
   document.getElementById('labelSenha').style.display = semSenha ? 'none' : '';
   document.getElementById('loginSenha').closest('.login-senha-wrap').style.display = semSenha ? 'none' : '';
-  if(!semSenha) setTimeout(()=>document.getElementById('loginSenha').focus(),50);
+  if(!semSenha) setTimeout(()=>document.getElementById('loginSenha').focus(), 50);
 }
 function fazerLogin(){
   const u=USUARIOS[usuarioSelecionadoIdx];
@@ -3382,27 +3398,45 @@ async function excluirPlanejamento(id){
 async function carregarLaudos(){
   try{
     const dados = await apiGet('Laudos');
-    const tbody = document.getElementById('laudosTabela');
-    if(!dados.length){
-      tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;">Nenhum laudo cadastrado.</td></tr>';
-      return;
-    }
-    tbody.innerHTML = dados.map(l => `
-      <tr>
-        <td>${l.turma||''}</td>
-        <td>${l.aluno||''}</td>
-        <td>${l.cid||''}</td>
-        <td>${l.orientacoes||''}</td>
-        <td>
-          <button class="btn btn-cinza btn-icon" onclick='editarLaudo("${l.id}")'>✏️</button>
-          <button class="btn btn-verm btn-icon" onclick='excluirLaudo("${l.id}")'>🗑️</button>
-        </td>
-      </tr>
-    `).join('');
     window.laudosCache = dados;
+    renderLaudos();
   }catch(e){
     console.error(e);
+    document.getElementById('laudosTabela').innerHTML =
+      '<tr><td colspan="5" style="text-align:center;color:var(--vermelho);">Erro ao carregar.</td></tr>';
   }
+}
+
+function renderLaudos(){
+  const dados = window.laudosCache || [];
+  const filtroNome  = (document.getElementById('laudoFiltroNome')?.value  || '').toLowerCase().trim();
+  const filtroTurma = (document.getElementById('laudoFiltroTurma')?.value || '').toLowerCase().trim();
+  const filtroCid   = (document.getElementById('laudoFiltroCid')?.value   || '').toLowerCase().trim();
+  const filtrados = dados.filter(l =>
+    (!filtroNome  || (l.aluno||'').toLowerCase().includes(filtroNome))  &&
+    (!filtroTurma || (l.turma||'').toLowerCase().includes(filtroTurma)) &&
+    (!filtroCid   || (l.cid||'').toLowerCase().includes(filtroCid))
+  );
+  const tbody = document.getElementById('laudosTabela');
+  const podEditar = !(usuarioLogado && usuarioLogado.somenteLeitura);
+  if(!filtrados.length){
+    tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:var(--texto2);padding:20px;">Nenhum laudo encontrado.</td></tr>';
+    return;
+  }
+  tbody.innerHTML = filtrados.map(l => `
+    <tr>
+      <td>${l.turma||''}</td>
+      <td>${l.aluno||''}</td>
+      <td>${l.cid||''}</td>
+      <td>${l.orientacoes||''}</td>
+      <td>
+        <div class="acoes">
+          ${podEditar?`<button class="btn btn-cinza btn-icon" onclick='editarLaudo("${l.id}")'>✏️</button>`:''}
+          ${podEditar?`<button class="btn btn-verm btn-icon" onclick='excluirLaudo("${l.id}")'>🗑️</button>`:''}
+        </div>
+      </td>
+    </tr>
+  `).join('');
 }
 
 function abrirModalLaudo(){
